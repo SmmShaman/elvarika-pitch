@@ -5,33 +5,34 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useLanguage } from "@/hooks/useLanguage";
 
 export const ContentSection = (): JSX.Element => {
+  const { translations } = useLanguage();
   // FAQ data for mapping
   const faqItems = [
     {
       id: "item-1",
-      question: "Hva er 'Lydordbok i Lomma'?",
-      answer:
-        "'Lydordbok i Lomma' er en revolusjonerende text-til-tale applikasjon som lar deg bygge ditt personlige lydbibliotek fra enhver tekst. Med AI-stemmer som låter naturlige kan du lytte til artikler, dokumenter, e-post og annet innhold mens du er på farten.",
+      question: translations.faq.items.what.question,
+      answer: translations.faq.items.what.answer,
       defaultOpen: true,
     },
     {
       id: "item-2",
-      question: "Hvem er målgruppen for denne teknologien?",
-      answer: "Primært studenter, profesjonelle og personer med dysleksi eller synshemming. Også investorer som ser potensialet i det raskt voksende text-til-tale markedet som forventes å nå 75 milliarder dollar innen 2032.",
+      question: translations.faq.items.audience.question,
+      answer: translations.faq.items.audience.answer,
       defaultOpen: false,
     },
     {
       id: "item-3",
-      question: "Hva gjør denne løsningen unik?",
-      answer: "Vi kombinerer hyperrealistiske AI-stemmer med en intuitiv spilleliste-funksjon som gjør tekstkonvertering til en sømløs opplevelse. Brukere kan organisere sitt innhold som en personlig Spotify for tekst.",
+      question: translations.faq.items.unique.question,
+      answer: translations.faq.items.unique.answer,
       defaultOpen: false,
     },
     {
       id: "item-4",
-      question: "Hva er investeringsmulighetene?",
-      answer: "Med tre kraftige markedstrender - TTS-teknologi som vokser 30% årlig, over 1 milliard underserverte brukere med tilgjengelighetsbehov, og lydbokmarkedet som vokser 26.5% - posisjonerer vi oss i skjæringspunktet av flere milliard-dollar markeder.",
+      question: translations.faq.items.investment.question,
+      answer: translations.faq.items.investment.answer,
       defaultOpen: false,
     },
   ];
@@ -39,7 +40,7 @@ export const ContentSection = (): JSX.Element => {
   return (
     <section className="flex flex-col md:flex-row gap-16 w-full max-w-[1280px] mx-auto py-12">
       <div className="font-normal text-[#022f36] text-5xl tracking-[-1.44px] leading-[57.6px]">
-        FAQs
+        {translations.faq.title}
       </div>
 
       <div className="flex-1 max-w-[858px]">

@@ -1,39 +1,37 @@
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
+import { useLanguage } from "@/hooks/useLanguage";
 
 export const StatisticsSection = (): JSX.Element => {
+  const { translations } = useLanguage();
   // Data for statistics cards
   const statisticsCards = [
     {
       percentage: "$75.09B",
-      title: "Markedsstørrelse 2032.",
-      description:
-        "Text-til-tale markedet vokser med 30.20% årlig og når 75 milliarder dollar innen 2032.",
+      title: translations.statistics.cards.marketSize.title,
+      description: translations.statistics.cards.marketSize.description,
       bgColor: "bg-[#7afcd0]",
       iconUrl: "/figmaAssets/640b1d792e2b160ac3040afa-reveni-icon-user-svg.svg",
     },
     {
       percentage: "1B+",
-      title: "Underservert marked.",
-      description:
-        "Over 1 milliard mennesker med funksjonshemming mangler tilgjengelige digitale løsninger.",
+      title: translations.statistics.cards.underserved.title,
+      description: translations.statistics.cards.underserved.description,
       bgColor: "bg-[#ffb8d1]",
       iconUrl: "/figmaAssets/640b1d6d85f0c063d98b8709-reveni-icon-coin-svg.svg",
     },
     {
       percentage: "26.5%",
-      title: "Lydbok-vekst årlig.",
-      description:
-        "Lydbokmarkedet vokser kraftig og viser klart skifte mot lydbasert innhold.",
+      title: translations.statistics.cards.audiobookGrowth.title,
+      description: translations.statistics.cards.audiobookGrowth.description,
       bgColor: "bg-[#cdbcff]",
       iconUrl:
         "/figmaAssets/640b1d87ba6752598dda8f62-reveni-icon-thunder-svg.svg",
     },
     {
       percentage: "96%",
-      title: "Nettsider ikke tilgjengelige.",
-      description:
-        "Nesten alle nettsider oppfyller ikke grunnleggende tilgjengelighetsstandarder.",
+      title: translations.statistics.cards.inaccessible.title,
+      description: translations.statistics.cards.inaccessible.description,
       bgColor: "bg-[#f8ff9b]",
       isImage: true,
       imageUrl: "/figmaAssets/clip-path-group-1.png",
@@ -46,23 +44,20 @@ export const StatisticsSection = (): JSX.Element => {
         <div className="text-center">
           <h2 className="text-[42px] text-[#022f36] leading-[50.4px] tracking-[-1.26px] mb-6">
             <span className="font-medium tracking-[-0.53px]">
-              Revolusjonerende{" "}
+              {translations.statistics.title.part1}{" "}
             </span>
             <span className="tracking-[-0.53px]">
-              text-til-tale teknologi som
+              {translations.statistics.title.part2}
             </span>
             <span className="font-medium tracking-[-0.53px]">
-              {" "}
-              gjør informasjon tilgjengelig{" "}
+              {translations.statistics.title.part3}
             </span>
             <span className="tracking-[-0.53px]">
-              for alle, overalt.
+              {translations.statistics.title.part4}
             </span>
           </h2>
           <p className="text-base text-[#022f36] leading-[22.4px]">
-            Over 1 milliard mennesker lever med funksjonshemming, og 96% av nettsider 
-            oppfyller ikke grunnleggende tilgjengelighetsstandarder. "Lydordbok i Lomma" 
-            møter dette behovet med AI-stemmer så naturlige at de er nesten umulige å skille fra ekte stemmer.
+            {translations.statistics.subtitle}
           </p>
         </div>
       </div>
