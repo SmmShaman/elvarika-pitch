@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useLanguage } from "@/hooks/useLanguage";
+import { Translations } from "@/lib/translations";
 
 interface PlaylistItem {
   id: string;
@@ -13,7 +14,7 @@ interface PlaylistItem {
   type: "pdf" | "article" | "email" | "document";
 }
 
-const createSamplePlaylist = (translations: any): PlaylistItem[] => [
+const createSamplePlaylist = (translations: Translations): PlaylistItem[] => [
   {
     id: "1",
     title: translations.playlist.items.analysis,

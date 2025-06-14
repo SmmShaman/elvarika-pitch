@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Mic, Brain, Zap, Shield } from "lucide-react";
+import { useLanguage } from "@/hooks/useLanguage";
 
 interface TechFeature {
   icon: React.ReactNode;
@@ -12,35 +13,36 @@ interface TechFeature {
 }
 
 export const TechShowcase: React.FC = () => {
+  const { translations } = useLanguage();
   const [activeFeature, setActiveFeature] = useState(0);
 
   const techFeatures: TechFeature[] = [
     {
       icon: <Brain className="h-8 w-8 text-white" />,
-      title: "Neural TTS Teknologi",
-      description: "Hyperrealistiske AI-stemmer som låter naturlige",
-      details: "Våre avanserte nevrale nettverk produserer tale som er nesten umulig å skille fra ekte menneskestemmer. Med emosjonell resonans og naturlig intonasjon.",
+      title: translations.techShowcase.features.neural.title,
+      description: translations.techShowcase.features.neural.description,
+      details: translations.techShowcase.features.neural.details,
       color: "bg-gradient-to-br from-[#7afcd0] to-[#5ef4c4]"
     },
     {
       icon: <Zap className="h-8 w-8 text-white" />,
-      title: "Sanntids Konvertering",
-      description: "Øyeblikkelig tekst-til-tale prosessering",
-      details: "Avansert prosessering som konverterer store tekstmengder til høykvalitets lyd på sekunder, ikke minutter.",
+      title: translations.techShowcase.features.realtime.title,
+      description: translations.techShowcase.features.realtime.description,
+      details: translations.techShowcase.features.realtime.details,
       color: "bg-gradient-to-br from-[#ffb8d1] to-[#ff9cc5]"
     },
     {
       icon: <Mic className="h-8 w-8 text-white" />,
-      title: "Flerspråklig Støtte",
-      description: "Støtter norsk og andre nordiske språk",
-      details: "Spesialisert på nordiske språk med kulturell nøyaktighet og riktig uttale av lokale navn og uttrykk.",
+      title: translations.techShowcase.features.multilingual.title,
+      description: translations.techShowcase.features.multilingual.description,
+      details: translations.techShowcase.features.multilingual.details,
       color: "bg-gradient-to-br from-[#cdbcff] to-[#b8a6ff]"
     },
     {
       icon: <Shield className="h-8 w-8 text-white" />,
-      title: "Personvern & Sikkerhet",
-      description: "GDPR-kompatibel med lokal prosessering",
-      details: "All tekstbehandling skjer sikkert med full kontroll over dine data. Ingen tekst lagres unødvendig eller deles med tredjeparter.",
+      title: translations.techShowcase.features.privacy.title,
+      description: translations.techShowcase.features.privacy.description,
+      details: translations.techShowcase.features.privacy.details,
       color: "bg-gradient-to-br from-[#f8ff9b] to-[#f0ff7a]"
     }
   ];
@@ -50,12 +52,12 @@ export const TechShowcase: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-[42px] text-[#022f36] leading-[50.4px] tracking-[-1.26px] mb-6">
-            <span className="font-medium">Banebrytende</span>
-            <span className="tracking-[-0.53px]"> teknologi som </span>
-            <span className="font-medium">definerer fremtiden</span>
+            <span className="font-medium">{translations.techShowcase.title.part1}</span>
+            <span className="tracking-[-0.53px]">{translations.techShowcase.title.part2}</span>
+            <span className="font-medium">{translations.techShowcase.title.part3}</span>
           </h2>
           <p className="text-lg text-[#022f36] leading-[25.2px] max-w-[600px] mx-auto">
-            Våre teknologiske innovasjoner setter ny standard for text-til-tale kvalitet og brukeropplevelse.
+            {translations.techShowcase.subtitle}
           </p>
         </div>
 
@@ -114,7 +116,7 @@ export const TechShowcase: React.FC = () => {
                       variant="outline"
                       className="bg-white/20 border-white/30 text-[#022f36] hover:bg-white/30"
                     >
-                      Lær mer om teknologien
+                      {translations.techShowcase.learnMore}
                     </Button>
                   </div>
 
@@ -131,19 +133,19 @@ export const TechShowcase: React.FC = () => {
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-[800px] mx-auto">
           <div className="text-center">
             <div className="text-3xl font-bold text-[#022f36] mb-2">99.9%</div>
-            <div className="text-sm text-gray-600">Oppetid</div>
+            <div className="text-sm text-gray-600">{translations.techShowcase.stats.uptime}</div>
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-[#022f36] mb-2">&lt;2s</div>
-            <div className="text-sm text-gray-600">Prosesseringstid</div>
+            <div className="text-sm text-gray-600">{translations.techShowcase.stats.processing}</div>
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-[#022f36] mb-2">15+</div>
-            <div className="text-sm text-gray-600">Stemmetyper</div>
+            <div className="text-sm text-gray-600">{translations.techShowcase.stats.voices}</div>
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-[#022f36] mb-2">5★</div>
-            <div className="text-sm text-gray-600">Kvalitetsvurdering</div>
+            <div className="text-sm text-gray-600">{translations.techShowcase.stats.quality}</div>
           </div>
         </div>
       </div>
