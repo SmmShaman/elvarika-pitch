@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { LanguageSwitcher } from "./LanguageSwitcher";
+import { useLanguage } from "@/hooks/useLanguage";
 
 export const Navigation: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { language, translations, changeLanguage } = useLanguage();
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -20,7 +23,7 @@ export const Navigation: React.FC = () => {
           {/* Logo */}
           <div className="flex items-center">
             <div className="text-xl font-bold text-[#022f36]">
-              Lydordbok i Lomma
+              {translations.nav.logo}
             </div>
           </div>
 
@@ -30,38 +33,42 @@ export const Navigation: React.FC = () => {
               onClick={() => scrollToSection('demo')}
               className="text-[#022f36] hover:text-[#033944] transition-colors"
             >
-              Demo
+              {translations.nav.demo}
             </button>
             <button
               onClick={() => scrollToSection('teknologi')}
               className="text-[#022f36] hover:text-[#033944] transition-colors"
             >
-              Teknologi
+              {translations.nav.technology}
             </button>
             <button
               onClick={() => scrollToSection('marked')}
               className="text-[#022f36] hover:text-[#033944] transition-colors"
             >
-              Marked
+              {translations.nav.market}
             </button>
             <button
               onClick={() => scrollToSection('konkurransefortrinn')}
               className="text-[#022f36] hover:text-[#033944] transition-colors"
             >
-              Fortrinn
+              {translations.nav.advantages}
             </button>
             <button
               onClick={() => scrollToSection('faq')}
               className="text-[#022f36] hover:text-[#033944] transition-colors"
             >
-              FAQ
+              {translations.nav.faq}
             </button>
             <Button
               onClick={() => scrollToSection('investor')}
               className="bg-[#022f36] text-white hover:bg-[#033944]"
             >
-              Investormulighet
+              {translations.nav.investor}
             </Button>
+            <LanguageSwitcher 
+              currentLanguage={language} 
+              onLanguageChange={changeLanguage} 
+            />
           </div>
 
           {/* Mobile Menu Button */}
@@ -84,38 +91,44 @@ export const Navigation: React.FC = () => {
                 onClick={() => scrollToSection('demo')}
                 className="text-left text-[#022f36] hover:text-[#033944] transition-colors"
               >
-                Demo
+                {translations.nav.demo}
               </button>
               <button
                 onClick={() => scrollToSection('teknologi')}
                 className="text-left text-[#022f36] hover:text-[#033944] transition-colors"
               >
-                Teknologi
+                {translations.nav.technology}
               </button>
               <button
                 onClick={() => scrollToSection('marked')}
                 className="text-left text-[#022f36] hover:text-[#033944] transition-colors"
               >
-                Marked
+                {translations.nav.market}
               </button>
               <button
                 onClick={() => scrollToSection('konkurransefortrinn')}
                 className="text-left text-[#022f36] hover:text-[#033944] transition-colors"
               >
-                Fortrinn
+                {translations.nav.advantages}
               </button>
               <button
                 onClick={() => scrollToSection('faq')}
                 className="text-left text-[#022f36] hover:text-[#033944] transition-colors"
               >
-                FAQ
+                {translations.nav.faq}
               </button>
               <Button
                 onClick={() => scrollToSection('investor')}
                 className="bg-[#022f36] text-white hover:bg-[#033944] w-fit"
               >
-                Investormulighet
+                {translations.nav.investor}
               </Button>
+              <div className="pt-2">
+                <LanguageSwitcher 
+                  currentLanguage={language} 
+                  onLanguageChange={changeLanguage} 
+                />
+              </div>
             </div>
           </div>
         )}

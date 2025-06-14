@@ -3,6 +3,7 @@ import { Play, Pause, SkipBack, SkipForward, Volume2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useLanguage } from "@/hooks/useLanguage";
 
 interface PlaylistItem {
   id: string;
@@ -12,38 +13,40 @@ interface PlaylistItem {
   type: "pdf" | "article" | "email" | "document";
 }
 
-const samplePlaylist: PlaylistItem[] = [
+const createSamplePlaylist = (translations: any): PlaylistItem[] => [
   {
     id: "1",
-    title: "Q3 Markedsanalyse.pdf",
-    source: "PDF Dokument",
+    title: translations.playlist.items.analysis,
+    source: translations.playlist.sources.pdf,
     duration: "12:34",
     type: "pdf"
   },
   {
     id: "2",
-    title: "Fremtidens AI-teknologi",
-    source: "Nettartikkel",
+    title: translations.playlist.items.article,
+    source: translations.playlist.sources.webArticle,
     duration: "8:45",
     type: "article"
   },
   {
     id: "3",
-    title: "E-post fra CEO",
-    source: "E-post",
+    title: translations.playlist.items.email,
+    source: translations.playlist.sources.email,
     duration: "3:21",
     type: "email"
   },
   {
     id: "4",
-    title: "Kapittel 5: Mikroøkonomi",
-    source: "Lærebok",
+    title: translations.playlist.items.chapter,
+    source: translations.playlist.sources.textbook,
     duration: "15:12",
     type: "document"
   }
 ];
 
 export const AudioPlayer: React.FC = () => {
+  const { translations } = useLanguage();
+  const samplePlaylist = createSamplePlaylist(translations);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTrack, setCurrentTrack] = useState(samplePlaylist[0]);
   const [progress, setProgress] = useState([25]);
@@ -94,7 +97,7 @@ export const AudioPlayer: React.FC = () => {
       <div className="flex flex-col md:flex-row">
         {/* Spilleliste */}
         <div className="w-full md:w-1/2 p-6 border-r border-[#e5e5e5]">
-          <h3 className="text-lg font-medium text-[#022f36] mb-4">Ditt lydbibliotek</h3>
+          <h3 className="text-lg font-medium text-[#022f36] mb-4">{translations.audioPlayer.library}</h3>
           <div className="space-y-3">
             {samplePlaylist.map((item) => (
               <div
@@ -126,7 +129,7 @@ export const AudioPlayer: React.FC = () => {
           <div className="space-y-6">
             {/* Nå spiller */}
             <div>
-              <h4 className="text-sm font-medium text-gray-600 mb-2">Spiller nå</h4>
+              <h4 className="text-sm font-medium text-gray-600 mb-2">{translations.audioPlayer.nowPlaying}</h4>
               <h3 className="text-lg font-medium text-[#022f36] mb-1">
                 {currentTrack.title}
               </h3>
@@ -175,7 +178,7 @@ export const AudioPlayer: React.FC = () => {
             {/* Avanserte kontroller */}
             <div className="space-y-4">
               <div className="flex items-center gap-3">
-                <span className="text-sm text-gray-600 w-16">Hastighet:</span>
+                <span className="text-sm text-gray-600 w-16">{translations.audioPlayer.speed}</span>
                 <Select value={playbackSpeed} onValueChange={setPlaybackSpeed}>
                   <SelectTrigger className="w-24">
                     <SelectValue />
@@ -192,7 +195,7 @@ export const AudioPlayer: React.FC = () => {
               </div>
 
               <div className="flex items-center gap-3">
-                <span className="text-sm text-gray-600 w-16">Stemme:</span>
+                <span className="text-sm text-gray-600 w-16">{translations.audioPlayer.voice}</span>
                 <Select defaultValue="ava">
                   <SelectTrigger className="flex-1">
                     <SelectValue />

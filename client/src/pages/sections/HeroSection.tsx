@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/hooks/useLanguage";
 
 // Define partner logos data for the carousel
 const partnerLogos = [
@@ -147,33 +148,34 @@ const partnerLogos = [
 ];
 
 export const HeroSection = (): JSX.Element => {
+  const { translations } = useLanguage();
+  
   return (
     <section className="relative w-full bg-[#defff0] py-20">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="w-full md:w-1/2 max-w-[691px]">
             <h1 className="font-normal text-[#022f36] text-[50px] leading-[60px] tracking-[-2.00px] mb-6">
-              <span className="tracking-[-1.00px]">Din </span>
+              <span className="tracking-[-1.00px]">{translations.hero.title.part1}</span>
               <span className="font-medium tracking-[-1.00px]">
-                lydordbok
+                {translations.hero.title.part2}
               </span>
-              <span className="tracking-[-1.00px]"> i </span>
-              <span className="font-medium tracking-[-1.00px]">lomma</span>
-              <span className="tracking-[-1.00px]"> - fremtidens måte å </span>
-              <span className="font-medium tracking-[-1.00px]">lytte</span>
-              <span className="tracking-[-1.00px]"> til informasjon</span>
+              <span className="tracking-[-1.00px]">{translations.hero.title.part3}</span>
+              <span className="font-medium tracking-[-1.00px]">{translations.hero.title.part4}</span>
+              <span className="tracking-[-1.00px]">{translations.hero.title.part5}</span>
+              <span className="font-medium tracking-[-1.00px]">{translations.hero.title.part6}</span>
+              <span className="tracking-[-1.00px]">{translations.hero.title.part7}</span>
             </h1>
 
             <p className="text-[#022f36] text-base leading-[22.4px] mb-8 max-w-[449px]">
-              Bygg ditt personlige lydbibliotek fra enhver tekst. Med AI-stemmer som låter naturlige, 
-              kan du nå lytte til artikler, dokumenter og e-post mens du er på farten.
+              {translations.hero.subtitle}
             </p>
 
             <Button
               variant="outline"
               className="h-[46px] px-6 rounded-[999px] border border-solid border-[#022f36] bg-white text-[#022f36] font-medium text-sm"
             >
-              Se investormulighet
+              {translations.hero.cta}
             </Button>
           </div>
 
