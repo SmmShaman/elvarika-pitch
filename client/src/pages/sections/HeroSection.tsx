@@ -153,28 +153,27 @@ export const HeroSection = (): JSX.Element => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="w-full md:w-1/2 max-w-[691px]">
             <h1 className="font-normal text-[#022f36] text-[50px] leading-[60px] tracking-[-2.00px] mb-6">
-              <span className="tracking-[-1.00px]">Velkommen til </span>
+              <span className="tracking-[-1.00px]">Din </span>
               <span className="font-medium tracking-[-1.00px]">
-                plattformen
+                lydordbok
               </span>
-              <span className="tracking-[-1.00px]"> som </span>
-              <span className="font-medium tracking-[-1.00px]">fornyer</span>
-              <span className="tracking-[-1.00px]">&nbsp;</span>
-              <span className="font-medium tracking-[-1.00px]">måten</span>
-              <span className="tracking-[-1.00px]"> du lærer</span>
+              <span className="tracking-[-1.00px]"> i </span>
+              <span className="font-medium tracking-[-1.00px]">lomma</span>
+              <span className="tracking-[-1.00px]"> - fremtidens måte å </span>
+              <span className="font-medium tracking-[-1.00px]">lytte</span>
+              <span className="tracking-[-1.00px]"> til informasjon</span>
             </h1>
 
             <p className="text-[#022f36] text-base leading-[22.4px] mb-8 max-w-[449px]">
-              Plattformen vår samler all språklæring på ett sted – med personlig
-              tilpassede leksjoner, fremdriftssporing og integrasjoner med
-              verktøy du allerede bruker.
+              Bygg ditt personlige lydbibliotek fra enhver tekst. Med AI-stemmer som låter naturlige, 
+              kan du nå lytte til artikler, dokumenter og e-post mens du er på farten.
             </p>
 
             <Button
               variant="outline"
               className="h-[46px] px-6 rounded-[999px] border border-solid border-[#022f36] bg-white text-[#022f36] font-medium text-sm"
             >
-              Les mer
+              Se investormulighet
             </Button>
           </div>
 

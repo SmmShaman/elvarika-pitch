@@ -11,27 +11,27 @@ export const ContentSection = (): JSX.Element => {
   const faqItems = [
     {
       id: "item-1",
-      question: "Hva er elverika?",
+      question: "Hva er 'Lydordbok i Lomma'?",
       answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ac scelerisque mauris. Sed vehicula orci ut nibh tempus,",
+        "'Lydordbok i Lomma' er en revolusjonerende text-til-tale applikasjon som lar deg bygge ditt personlige lydbibliotek fra enhver tekst. Med AI-stemmer som låter naturlige kan du lytte til artikler, dokumenter, e-post og annet innhold mens du er på farten.",
       defaultOpen: true,
     },
     {
       id: "item-2",
-      question: "Lorem ipsum dolor sit alor",
-      answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      question: "Hvem er målgruppen for denne teknologien?",
+      answer: "Primært studenter, profesjonelle og personer med dysleksi eller synshemming. Også investorer som ser potensialet i det raskt voksende text-til-tale markedet som forventes å nå 75 milliarder dollar innen 2032.",
       defaultOpen: false,
     },
     {
       id: "item-3",
-      question: "Lorem ipsum dolor sit alor",
-      answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      question: "Hva gjør denne løsningen unik?",
+      answer: "Vi kombinerer hyperrealistiske AI-stemmer med en intuitiv spilleliste-funksjon som gjør tekstkonvertering til en sømløs opplevelse. Brukere kan organisere sitt innhold som en personlig Spotify for tekst.",
       defaultOpen: false,
     },
     {
       id: "item-4",
-      question: "Lorem ipsum dolor sit alor",
-      answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      question: "Hva er investeringsmulighetene?",
+      answer: "Med tre kraftige markedstrender - TTS-teknologi som vokser 30% årlig, over 1 milliard underserverte brukere med tilgjengelighetsbehov, og lydbokmarkedet som vokser 26.5% - posisjonerer vi oss i skjæringspunktet av flere milliard-dollar markeder.",
       defaultOpen: false,
     },
   ];

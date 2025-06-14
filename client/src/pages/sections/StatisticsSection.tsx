@@ -5,35 +5,35 @@ export const StatisticsSection = (): JSX.Element => {
   // Data for statistics cards
   const statisticsCards = [
     {
-      percentage: "+35%",
-      title: "Gjenkjøpsrate.",
+      percentage: "$75.09B",
+      title: "Markedsstørrelse 2032.",
       description:
-        "Øk brukerlojaliteten med en bedre opplevelse etter første leksjon.",
+        "Text-til-tale markedet vokser med 30.20% årlig og når 75 milliarder dollar innen 2032.",
       bgColor: "bg-[#7afcd0]",
       iconUrl: "/figmaAssets/640b1d792e2b160ac3040afa-reveni-icon-user-svg.svg",
     },
     {
-      percentage: "+81%",
-      title: "Raskere gjentakende bruk.",
+      percentage: "1B+",
+      title: "Underservert marked.",
       description:
-        "Gjør det enkelt for brukerne å fortsette læringen – uten friksjon.",
+        "Over 1 milliard mennesker med funksjonshemming mangler tilgjengelige digitale løsninger.",
       bgColor: "bg-[#ffb8d1]",
       iconUrl: "/figmaAssets/640b1d6d85f0c063d98b8709-reveni-icon-coin-svg.svg",
     },
     {
-      percentage: "+71%",
-      title: "Leksjoner per bruker.",
+      percentage: "26.5%",
+      title: "Lydbok-vekst årlig.",
       description:
-        "Oppmuntre til gjentatte øvelser og bygg en lojal brukerbase for plattformen din.",
+        "Lydbokmarkedet vokser kraftig og viser klart skifte mot lydbasert innhold.",
       bgColor: "bg-[#cdbcff]",
       iconUrl:
         "/figmaAssets/640b1d87ba6752598dda8f62-reveni-icon-thunder-svg.svg",
     },
     {
-      percentage: "+29%",
-      title: "Økt gjennomsnittsverdi per bruker.",
+      percentage: "96%",
+      title: "Nettsider ikke tilgjengelige.",
       description:
-        "Tilpass læringsopplevelsen etter brukernes preferanser under",
+        "Nesten alle nettsider oppfyller ikke grunnleggende tilgjengelighetsstandarder.",
       bgColor: "bg-[#f8ff9b]",
       isImage: true,
       imageUrl: "/figmaAssets/clip-path-group-1.png",
@@ -46,23 +46,23 @@ export const StatisticsSection = (): JSX.Element => {
         <div className="text-center">
           <h2 className="text-[42px] text-[#022f36] leading-[50.4px] tracking-[-1.26px] mb-6">
             <span className="font-medium tracking-[-0.53px]">
-              Plattformen lar deg{" "}
+              Revolusjonerende{" "}
             </span>
             <span className="tracking-[-0.53px]">
-              lære språk enkelt og effektivt ved
+              text-til-tale teknologi som
             </span>
             <span className="font-medium tracking-[-0.53px]">
               {" "}
-              å samle alt – kurs, øving og{" "}
+              gjør informasjon tilgjengelig{" "}
             </span>
             <span className="tracking-[-0.53px]">
-              fremdrift – i én løsning.
+              for alle, overalt.
             </span>
           </h2>
           <p className="text-base text-[#022f36] leading-[22.4px]">
-            Flere separate verktøy fører til tidkrevende og lite effektive
-            læringsprosesser. Det er på tide å samle alt i én løsning som
-            effektiviserer læringen, sparer tid og gir bedre resultater.
+            Over 1 milliard mennesker lever med funksjonshemming, og 96% av nettsider 
+            oppfyller ikke grunnleggende tilgjengelighetsstandarder. "Lydordbok i Lomma" 
+            møter dette behovet med AI-stemmer så naturlige at de er nesten umulige å skille fra ekte stemmer.
           </p>
         </div>
       </div>
