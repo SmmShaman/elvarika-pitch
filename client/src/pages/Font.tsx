@@ -10,6 +10,7 @@ import { MarketVisualization } from "@/components/MarketVisualization";
 import { TechShowcase } from "@/components/TechShowcase";
 import { CompetitiveAdvantage } from "@/components/CompetitiveAdvantage";
 import { Navigation } from "@/components/Navigation";
+import { Footer } from "@/components/Footer";
 
 export const Font = (): JSX.Element => {
   return (
@@ -40,6 +41,7 @@ export const Font = (): JSX.Element => {
           </div>
           <FAQSection />
         </div>
+        <Footer />
       </div>
     </div>
   );
