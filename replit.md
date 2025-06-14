@@ -114,10 +114,18 @@ This is a full-stack web application built with a modern React frontend and Expr
 ```
 Changelog:
 - June 14, 2025. Initial setup
+- June 14, 2025. Migrated from Figma to Replit for "Lydordbok i Lomma" project
+- June 14, 2025. Updated landing page content for investor-focused TTS application
+- June 14, 2025. Added AudioPlayer component with interactive playlist functionality
+- June 14, 2025. Created sections: AudioPlayerSection, InvestorCTASection
+- June 14, 2025. Updated HeroSection, StatisticsSection, ContentSection for TTS app
 ```
 
 ## User Preferences
 
 ```
 Preferred communication style: Simple, everyday language.
+Project focus: "Lydordbok i Lomma" - text-to-speech application targeting investors
+Target audience: Investors interested in accessibility technology and audio-first content
+Key messaging: Position as intersection of TTS technology, accessibility needs, and audio content growth
 ```

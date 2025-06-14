@@ -4,15 +4,19 @@ import { FAQSection } from "./sections/FAQSection";
 import { HeroSection } from "./sections/HeroSection";
 import { PartnershipSection } from "./sections/PartnershipSection";
 import { StatisticsSection } from "./sections/StatisticsSection";
+import { AudioPlayerSection } from "./sections/AudioPlayerSection";
+import { InvestorCTASection } from "./sections/InvestorCTASection";
 
 export const Font = (): JSX.Element => {
   return (
     <div className="bg-white flex flex-row justify-center w-full">
       <div className="bg-white w-full max-w-[1920px] relative">
         <HeroSection />
-        <ContentSection />
-        <PartnershipSection />
+        <AudioPlayerSection />
         <StatisticsSection />
+        <PartnershipSection />
+        <ContentSection />
+        <InvestorCTASection />
         <FAQSection />
       </div>
     </div>
