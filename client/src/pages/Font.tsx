@@ -6,6 +6,7 @@ import { PartnershipSection } from "./sections/PartnershipSection";
 import { StatisticsSection } from "./sections/StatisticsSection";
 import { AudioPlayerSection } from "./sections/AudioPlayerSection";
 import { InvestorCTASection } from "./sections/InvestorCTASection";
+import { InteractiveDemo } from "@/components/InteractiveDemo";
 import { MarketVisualization } from "@/components/MarketVisualization";
 import { TechShowcase } from "@/components/TechShowcase";
 import { CompetitiveAdvantage } from "@/components/CompetitiveAdvantage";
@@ -21,6 +22,9 @@ export const Font = (): JSX.Element => {
           <HeroSection />
           <div id="demo">
             <AudioPlayerSection />
+          </div>
+          <div id="interactive-demo">
+            <InteractiveDemo />
           </div>
           <div id="teknologi">
             <TechShowcase />
