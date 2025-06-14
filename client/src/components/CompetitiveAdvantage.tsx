@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle, X } from "lucide-react";
+import { useLanguage } from "@/hooks/useLanguage";
 
 interface CompetitorFeature {
   feature: string;
@@ -11,58 +12,60 @@ interface CompetitorFeature {
 }
 
 export const CompetitiveAdvantage: React.FC = () => {
+  const { translations } = useLanguage();
+  
   const competitorData: CompetitorFeature[] = [
     {
-      feature: "Hyperrealistiske AI-stemmer",
+      feature: translations.competitive.features.hyperrealistic,
       us: true,
       competitor1: false,
       competitor2: true,
       competitor3: false
     },
     {
-      feature: "Personlig lydbibliotek",
+      feature: translations.competitive.features.personalLibrary,
       us: true,
       competitor1: false,
       competitor2: false,
       competitor3: false
     },
     {
-      feature: "Spilleliste-funksjonalitet",
+      feature: translations.competitive.features.playlist,
       us: true,
       competitor1: false,
       competitor2: false,
       competitor3: false
     },
     {
-      feature: "Norsk språkoptimalisering",
+      feature: translations.competitive.features.norwegianOptimized,
       us: true,
       competitor1: false,
       competitor2: false,
       competitor3: true
     },
     {
-      feature: "GDPR-kompatibel",
+      feature: translations.competitive.features.gdprCompliant,
       us: true,
       competitor1: true,
       competitor2: false,
       competitor3: true
     },
     {
-      feature: "Offline-funksjonalitet",
+      feature: translations.competitive.features.offline,
       us: true,
       competitor1: false,
       competitor2: false,
       competitor3: false
     },
     {
-      feature: "Sanntids prosessering",
+      feature: translations.competitive.features.realtime,
       us: true,
       competitor1: false,
       competitor2: true,
       competitor3: false
     },
     {
-      feature: "Tilgjengelighetsfokus",
+      feature: translations.competitive.features.accessibilityFocus,
       us: true,
       competitor1: true,
       competitor2: false,
@@ -83,13 +86,12 @@ export const CompetitiveAdvantage: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-[42px] text-[#022f36] leading-[50.4px] tracking-[-1.26px] mb-6">
-            <span className="font-medium">Konkurransefortrinn</span>
-            <span className="tracking-[-0.53px]"> som </span>
-            <span className="font-medium">definerer markedsledelse</span>
+            <span className="font-medium">{translations.competitive.title.part1}</span>
+            <span className="tracking-[-0.53px]">{translations.competitive.title.part2}</span>
+            <span className="font-medium">{translations.competitive.title.part3}</span>
           </h2>
           <p className="text-lg text-[#022f36] leading-[25.2px] max-w-[700px] mx-auto">
-            Mens konkurrentene fokuserer på enkeltfunksjoner, leverer vi en helhetlig 
-            lydopplevelse som setter ny standard i bransjen.
+            {translations.competitive.subtitle}
           </p>
         </div>
 
@@ -102,11 +104,11 @@ export const CompetitiveAdvantage: React.FC = () => {
                     <tr className="bg-[#022f36] text-white">
                       <th className="text-left p-6 font-medium">Funksjoner</th>
                       <th className="text-center p-6 font-medium bg-[#defff0] text-[#022f36]">
-                        Lydordbok i Lomma
+                        {translations.competitive.competitors.us}
                       </th>
-                      <th className="text-center p-6 font-medium">NaturalReader</th>
-                      <th className="text-center p-6 font-medium">Speechify</th>
-                      <th className="text-center p-6 font-medium">Voice Dream</th>
+                      <th className="text-center p-6 font-medium">{translations.competitive.competitors.naturalReader}</th>
+                      <th className="text-center p-6 font-medium">{translations.competitive.competitors.speechify}</th>
+                      <th className="text-center p-6 font-medium">{translations.competitive.competitors.voiceDream}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -141,30 +143,30 @@ export const CompetitiveAdvantage: React.FC = () => {
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
             <Card className="bg-gradient-to-br from-[#7afcd0] to-[#5ef4c4] border-none">
               <CardContent className="p-6 text-center">
-                <div className="text-3xl font-bold text-[#022f36] mb-2">8/8</div>
-                <div className="text-[#022f36] font-medium">Fulle funksjoner</div>
+                <div className="text-3xl font-bold text-[#022f36] mb-2">{translations.competitive.stats.fullFeatures.value}</div>
+                <div className="text-[#022f36] font-medium">{translations.competitive.stats.fullFeatures.label}</div>
                 <div className="text-sm text-[#022f36]/70 mt-2">
-                  Som eneste løsning med alle nøkkelfunksjoner
+                  {translations.competitive.stats.fullFeatures.description}
                 </div>
               </CardContent>
             </Card>
 
             <Card className="bg-gradient-to-br from-[#ffb8d1] to-[#ff9cc5] border-none">
               <CardContent className="p-6 text-center">
-                <div className="text-3xl font-bold text-[#022f36] mb-2">3x</div>
-                <div className="text-[#022f36] font-medium">Mer omfattende</div>
+                <div className="text-3xl font-bold text-[#022f36] mb-2">{translations.competitive.stats.comprehensive.value}</div>
+                <div className="text-[#022f36] font-medium">{translations.competitive.stats.comprehensive.label}</div>
                 <div className="text-sm text-[#022f36]/70 mt-2">
-                  Enn nærmeste konkurrent i funksjonalitet
+                  {translations.competitive.stats.comprehensive.description}
                 </div>
               </CardContent>
             </Card>
 
             <Card className="bg-gradient-to-br from-[#cdbcff] to-[#b8a6ff] border-none">
               <CardContent className="p-6 text-center">
-                <div className="text-3xl font-bold text-[#022f36] mb-2">1st</div>
-                <div className="text-[#022f36] font-medium">Lydbibliotek-konsept</div>
+                <div className="text-3xl font-bold text-[#022f36] mb-2">{translations.competitive.stats.first.value}</div>
+                <div className="text-[#022f36] font-medium">{translations.competitive.stats.first.label}</div>
                 <div className="text-sm text-[#022f36]/70 mt-2">
-                  Første til å introdusere spilleliste-funksjon
+                  {translations.competitive.stats.first.description}
                 </div>
               </CardContent>
             </Card>

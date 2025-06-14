@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { TrendingUp, Users, Headphones, Globe } from "lucide-react";
+import { useLanguage } from "@/hooks/useLanguage";
 
 interface MarketTrendProps {
   icon: React.ReactNode;
@@ -30,37 +31,39 @@ const MarketTrend: React.FC<MarketTrendProps> = ({ icon, title, value, descripti
 );
 
 export const MarketVisualization: React.FC = () => {
+  const { translations } = useLanguage();
+  
   const marketTrends = [
     {
       icon: <TrendingUp className="h-6 w-6 text-[#022f36]" />,
-      title: "Text-to-Speech Marked",
+      title: translations.market.trends.tts.title,
       value: "$75.09B",
-      description: "Forventet markedsstørrelse innen 2032 drevet av AI-fremskritt og økende etterspørsel",
-      growth: "+30.20% CAGR",
+      description: translations.market.trends.tts.description,
+      growth: translations.market.trends.tts.growth,
       color: "bg-gradient-to-br from-[#7afcd0] to-[#5ef4c4]"
     },
     {
       icon: <Users className="h-6 w-6 text-[#022f36]" />,
-      title: "Tilgjengelighetsbehov",
+      title: translations.market.trends.accessibility.title,
       value: "1B+",
-      description: "Mennesker med funksjonshemming som mangler tilgjengelige digitale løsninger",
-      growth: "Underservert",
+      description: translations.market.trends.accessibility.description,
+      growth: translations.market.trends.accessibility.growth,
       color: "bg-gradient-to-br from-[#ffb8d1] to-[#ff9cc5]"
     },
     {
       icon: <Headphones className="h-6 w-6 text-[#022f36]" />,
-      title: "Lydbok Revolusjon",
+      title: translations.market.trends.audiobook.title,
       value: "$67.58B",
-      description: "Lydbokmarkedet vokser eksplosivt med endrede forbrukervaner mot lyd-først innhold",
-      growth: "+26.5% CAGR",
+      description: translations.market.trends.audiobook.description,
+      growth: translations.market.trends.audiobook.growth,
       color: "bg-gradient-to-br from-[#cdbcff] to-[#b8a6ff]"
     },
     {
       icon: <Globe className="h-6 w-6 text-[#022f36]" />,
-      title: "Digital Utilgjengelighet",
+      title: translations.market.trends.inaccessibility.title,
       value: "96%",
-      description: "Av verdens nettsider oppfyller ikke grunnleggende tilgjengelighetsstandarder",
-      growth: "Markedsmulighet",
+      description: translations.market.trends.inaccessibility.description,
+      growth: translations.market.trends.inaccessibility.growth,
       color: "bg-gradient-to-br from-[#f8ff9b] to-[#f0ff7a]"
     }
   ];
@@ -70,13 +73,12 @@ export const MarketVisualization: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-[42px] text-[#022f36] leading-[50.4px] tracking-[-1.26px] mb-6">
-            <span className="font-medium">Markedets</span>
-            <span className="tracking-[-0.53px]"> konvergens skaper </span>
-            <span className="font-medium">unik mulighet</span>
+            <span className="font-medium">{translations.market.title.part1}</span>
+            <span className="tracking-[-0.53px]">{translations.market.title.part2}</span>
+            <span className="font-medium">{translations.market.title.part3}</span>
           </h2>
           <p className="text-lg text-[#022f36] leading-[25.2px] max-w-[700px] mx-auto">
-            Tre kraftige markedstrender møtes og skaper en perfekt storm for "Lydordbok i Lomma" 
-            sin posisjonering i et multi-milliard dollar marked.
+            {translations.market.subtitle}
           </p>
         </div>
 
@@ -90,17 +92,17 @@ export const MarketVisualization: React.FC = () => {
           <div className="inline-flex items-center gap-4 bg-white rounded-full px-8 py-4 shadow-lg">
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 bg-[#7afcd0] rounded-full"></div>
-              <span className="text-sm text-[#022f36]">TTS Teknologi</span>
+              <span className="text-sm text-[#022f36]">{translations.market.legend.tts}</span>
             </div>
             <div className="w-px h-6 bg-gray-300"></div>
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 bg-[#ffb8d1] rounded-full"></div>
-              <span className="text-sm text-[#022f36]">Tilgjengelighet</span>
+              <span className="text-sm text-[#022f36]">{translations.market.legend.accessibility}</span>
             </div>
             <div className="w-px h-6 bg-gray-300"></div>
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 bg-[#cdbcff] rounded-full"></div>
-              <span className="text-sm text-[#022f36]">Audio-First</span>
+              <span className="text-sm text-[#022f36]">{translations.market.legend.audioFirst}</span>
             </div>
           </div>
         </div>
