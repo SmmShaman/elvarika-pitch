@@ -126,6 +126,11 @@ Changelog:
 - June 14, 2025. Added Navigation component with smooth scrolling
 - June 14, 2025. Added Footer component with investor CTA and contact info
 - June 14, 2025. Complete investor-focused landing page with 9 major sections
+- June 14, 2025. Implemented complete trilingual system (Norwegian, English, Ukrainian)
+- June 14, 2025. Replaced "Lydordbok i Lomma" with "Elvarika" throughout application
+- June 14, 2025. Added language switcher with instant translation capability
+- June 14, 2025. Professional translations for all content (non-Google Translate)
+- June 14, 2025. Persistent language preferences with localStorage
 ```
 
 ## User Preferences
