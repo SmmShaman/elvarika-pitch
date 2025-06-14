@@ -49,6 +49,30 @@ export const AudioPlayer: React.FC = () => {
   const [progress, setProgress] = useState([25]);
   const [volume, setVolume] = useState([75]);
   const [playbackSpeed, setPlaybackSpeed] = useState("1.0");
+  const [isDemo, setIsDemo] = useState(false);
+
+  const handlePlay = () => {
+    if (!isPlaying) {
+      setIsDemo(true);
+      setIsPlaying(true);
+      // Simulate playback progress
+      const interval = setInterval(() => {
+        setProgress(prev => {
+          const newProgress = prev[0] + 2;
+          if (newProgress >= 100) {
+            setIsPlaying(false);
+            setIsDemo(false);
+            clearInterval(interval);
+            return [0];
+          }
+          return [newProgress];
+        });
+      }, 200);
+    } else {
+      setIsPlaying(false);
+      setIsDemo(false);
+    }
+  };
 
   const getTypeIcon = (type: string) => {
     switch (type) {
@@ -132,8 +156,10 @@ export const AudioPlayer: React.FC = () => {
               <Button
                 variant="outline"
                 size="sm"
-                className="w-12 h-12 rounded-full"
-                onClick={() => setIsPlaying(!isPlaying)}
+                className={`w-12 h-12 rounded-full transition-all ${
+                  isDemo ? "bg-[#022f36] text-white border-[#022f36] animate-pulse" : ""
+                }`}
+                onClick={handlePlay}
               >
                 {isPlaying ? (
                   <Pause className="h-5 w-5" />
