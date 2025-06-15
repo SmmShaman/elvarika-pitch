@@ -364,8 +364,8 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
         setStep(2);
         const initialWords: WordAnimation[] = keyWordsData.map((item, index) => ({
           ...item,
-          translation: activeTab === 'uk' ? item.translation_uk : item.translation_en,
-          contextTranslation: activeTab === 'uk' ? item.contextTranslation_uk : item.contextTranslation_en,
+          translation: translationTarget === 'uk' ? item.translation_uk : item.translation_en,
+          contextTranslation: translationTarget === 'uk' ? item.contextTranslation_uk : item.contextTranslation_en,
           id: `word-${index}`,
           isHighlighted: false,
           isExtracting: false,
@@ -442,9 +442,9 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
         const finalPlaylist: PlaylistItem[] = keyWordsData.map((item, index) => ({
           id: `playlist-${index}`,
           word: item.word,
-          translation: activeTab === 'uk' ? item.translation_uk : item.translation_en,
+          translation: translationTarget === 'uk' ? item.translation_uk : item.translation_en,
           context: item.context,
-          contextTranslation: activeTab === 'uk' ? item.contextTranslation_uk : item.contextTranslation_en,
+          contextTranslation: translationTarget === 'uk' ? item.contextTranslation_uk : item.contextTranslation_en,
           audioUrl: `/demo-audio/${item.word}.mp3`,
           duration: "0:03",
           isPlaying: false
@@ -477,8 +477,8 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
         setStep(2);
         const initialWords: WordAnimation[] = keyWordsData.map((item, index) => ({
           ...item,
-          translation: activeTab === 'uk' ? item.translation_uk : item.translation_en,
-          contextTranslation: activeTab === 'uk' ? item.contextTranslation_uk : item.contextTranslation_en,
+          translation: translationTarget === 'uk' ? item.translation_uk : item.translation_en,
+          contextTranslation: translationTarget === 'uk' ? item.contextTranslation_uk : item.contextTranslation_en,
           id: `word-${index}`,
           isHighlighted: false,
           isExtracting: false,
@@ -540,9 +540,9 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
         const finalPlaylist: PlaylistItem[] = keyWordsData.map((item, index) => ({
           id: `playlist-${index}`,
           word: item.word,
-          translation: activeTab === 'uk' ? item.translation_uk : item.translation_en,
+          translation: translationTarget === 'uk' ? item.translation_uk : item.translation_en,
           context: item.context,
-          contextTranslation: activeTab === 'uk' ? item.contextTranslation_uk : item.contextTranslation_en,
+          contextTranslation: translationTarget === 'uk' ? item.contextTranslation_uk : item.contextTranslation_en,
           audioUrl: `/demo-audio/${item.word}.mp3`,
           duration: "0:03",
           isPlaying: false
@@ -927,7 +927,7 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
                       <div className="w-2 h-1.5 bg-blue-400"></div>
                       <div className="w-2 h-1.5 bg-yellow-400"></div>
                       <span className="text-xs font-semibold">
-                        {activeTab === 'uk' ? 'Українська' : 'English'}
+                        {translationTarget === 'uk' ? 'Українська' : 'English'}
                       </span>
                     </div>
                     <div className="space-y-1 max-h-32 overflow-y-auto">
