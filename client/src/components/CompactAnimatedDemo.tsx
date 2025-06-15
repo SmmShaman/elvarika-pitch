@@ -283,11 +283,11 @@ export const CompactAnimatedDemo: React.FC = () => {
              currentLanguage === 'uk' ? 'Спробувати безкоштовну демо' :
              'Try free demo',
     steps: {
-      step1: currentLanguage === 'no' ? 'Tekst' : currentLanguage === 'uk' ? 'Текст' : 'Text',
-      step2: currentLanguage === 'no' ? 'Analyse' : currentLanguage === 'uk' ? 'Аналіз' : 'Analysis', 
-      step3: currentLanguage === 'no' ? 'Kontekst' : currentLanguage === 'uk' ? 'Контекст' : 'Context',
+      step1: currentLanguage === 'no' ? 'Tekstinndata' : currentLanguage === 'uk' ? 'Введення тексту' : 'Text Input',
+      step2: currentLanguage === 'no' ? 'Ordanalyse' : currentLanguage === 'uk' ? 'Аналіз слів' : 'Word Analysis', 
+      step3: currentLanguage === 'no' ? 'Kontekstinnpakning' : currentLanguage === 'uk' ? 'Контекстна обробка' : 'Context Processing',
       step4: currentLanguage === 'no' ? 'Oversettelse' : currentLanguage === 'uk' ? 'Переклад' : 'Translation',
-      step5: currentLanguage === 'no' ? 'Lydordbok' : currentLanguage === 'uk' ? 'Аудіословник' : 'Audio Dictionary'
+      step5: currentLanguage === 'no' ? 'Lydordbok klar' : currentLanguage === 'uk' ? 'Аудіословник готовий' : 'Audio Dictionary Ready'
     },
     readyPlaylist: currentLanguage === 'no' ? 'Klar lydordbok' :
                    currentLanguage === 'uk' ? 'Готовий аудіословник' :
@@ -295,6 +295,49 @@ export const CompactAnimatedDemo: React.FC = () => {
     playAudio: currentLanguage === 'no' ? 'Spill av' : currentLanguage === 'uk' ? 'Відтворити' : 'Play',
     generating: currentLanguage === 'no' ? 'Genererer...' : currentLanguage === 'uk' ? 'Генерую...' : 'Generating...',
     processing: currentLanguage === 'no' ? 'Behandler...' : currentLanguage === 'uk' ? 'Обробляю...' : 'Processing...'
+  };
+
+  const stepExplanations = {
+    step1: {
+      title: currentLanguage === 'no' ? 'Første etappe - Tekstinndata' :
+             currentLanguage === 'uk' ? 'Перший етап - Введення тексту' :
+             'First Stage - Text Input',
+      description: currentLanguage === 'no' ? 'Tekst lastes inn fra enhver format: kopiere og lime inn, skrive, diktere, fotografere eller laste opp dokumenter i ethvert format.' :
+                   currentLanguage === 'uk' ? 'Текст завантажується з будь-якого формату: вставити, друкувати, диктувати, фотографувати або завантажувати документи в будь-якому форматі.' :
+                   'Text is loaded from any format: paste, type, dictate, photograph, or upload documents in any format.'
+    },
+    step2: {
+      title: currentLanguage === 'no' ? 'Andre etappe - Ordanalyse' :
+             currentLanguage === 'uk' ? 'Другий етап - Аналіз слів' :
+             'Second Stage - Word Analysis',
+      description: currentLanguage === 'no' ? 'På denne etappen skjer utvelgelse av nødvendige ord for å arbeide videre med dem. Systemet identifiserer komplekse ord som krever læring.' :
+                   currentLanguage === 'uk' ? 'На цьому етапі відбувається вибір потрібних слів для того, щоб саме з ними працювати далі. Система ідентифікує складні слова, які потребують вивчення.' :
+                   'At this stage, the selection of necessary words takes place to work with them further. The system identifies complex words that require learning.'
+    },
+    step3: {
+      title: currentLanguage === 'no' ? 'Tredje etappe - Kontekstinnpakning' :
+             currentLanguage === 'uk' ? 'Третій етап - Контекстна обробка' :
+             'Third Stage - Context Processing',
+      description: currentLanguage === 'no' ? 'Hvert ord pakkes inn i sin naturlige kontekst fra originalteksten for bedre forståelse og hukommelse.' :
+                   currentLanguage === 'uk' ? 'Кожне слово загортається у свій природний контекст з оригінального тексту для кращого розуміння та запам\'ятовування.' :
+                   'Each word is wrapped in its natural context from the original text for better understanding and memorization.'
+    },
+    step4: {
+      title: currentLanguage === 'no' ? 'Fjerde etappe - Oversettelse' :
+             currentLanguage === 'uk' ? 'Четвертий етап - Переклад' :
+             'Fourth Stage - Translation',
+      description: currentLanguage === 'no' ? 'Ordene oversettes til ønsket språk med sine kontekstuelle setninger for å bevare betydningen.' :
+                   currentLanguage === 'uk' ? 'Слова перекладаються на потрібну мову разом зі своїми контекстуальними реченнями для збереження значення.' :
+                   'Words are translated to the desired language along with their contextual sentences to preserve meaning.'
+    },
+    step5: {
+      title: currentLanguage === 'no' ? 'Femte etappe - Lydordbok klar' :
+             currentLanguage === 'uk' ? 'П\'ятий етап - Аудіословник готовий' :
+             'Fifth Stage - Audio Dictionary Ready',
+      description: currentLanguage === 'no' ? 'Den ferdige lydordboken er klar med alle ord, oversettelser og lydopptak for effektiv læring.' :
+                   currentLanguage === 'uk' ? 'Готовий аудіословник з усіма словами, перекладами та аудіозаписами для ефективного вивчення.' :
+                   'The finished audio dictionary is ready with all words, translations, and audio recordings for effective learning.'
+    }
   };
 
   const clearAllTimeouts = () => {
@@ -412,15 +455,100 @@ export const CompactAnimatedDemo: React.FC = () => {
 
   const pauseDemo = () => {
     setIsPaused(true);
+    setIsAnimating(false);
     clearAllTimeouts();
   };
 
   const resumeDemo = () => {
     setIsPaused(false);
-    // Resume from current step
-    if (step < 5) {
-      startDemo();
+    setIsAnimating(true);
+    
+    // Continue from current step with appropriate timing
+    const newTimeouts: NodeJS.Timeout[] = [];
+    
+    if (step === 1) {
+      // Continue to step 2 immediately
+      const step2Timeout = setTimeout(() => {
+        setStep(2);
+        const initialWords: WordAnimation[] = keyWordsData.map((item, index) => ({
+          ...item,
+          translation: activeTab === 'uk' ? item.translation_uk : item.translation_en,
+          contextTranslation: activeTab === 'uk' ? item.contextTranslation_uk : item.contextTranslation_en,
+          id: `word-${index}`,
+          isHighlighted: false,
+          isExtracting: false,
+          isInContext: false,
+          isTranslating: false,
+          isReady: false
+        }));
+        setWords(initialWords);
+        
+        initialWords.forEach((_, index) => {
+          const highlightTimeout = setTimeout(() => {
+            setWords(prev => prev.map((word, i) => 
+              i === index ? { ...word, isHighlighted: true } : word
+            ));
+          }, index * 300);
+          newTimeouts.push(highlightTimeout);
+        });
+      }, 3000);
+      newTimeouts.push(step2Timeout);
+    } else if (step === 2) {
+      // Continue to step 3
+      const step3Timeout = setTimeout(() => {
+        setStep(3);
+        keyWordsData.forEach((_, index) => {
+          const contextTimeout = setTimeout(() => {
+            setWords(prev => prev.map((word, i) => 
+              i === index ? { ...word, isExtracting: true, isInContext: true } : word
+            ));
+          }, index * 200);
+          newTimeouts.push(contextTimeout);
+        });
+      }, 3000);
+      newTimeouts.push(step3Timeout);
+    } else if (step === 3) {
+      // Continue to step 4
+      const step4Timeout = setTimeout(() => {
+        setStep(4);
+        keyWordsData.forEach((_, index) => {
+          const translateTimeout = setTimeout(() => {
+            setWords(prev => prev.map((word, i) => 
+              i === index ? { ...word, isExtracting: false, isTranslating: true } : word
+            ));
+            
+            const readyTimeout = setTimeout(() => {
+              setWords(prev => prev.map((word, i) => 
+                i === index ? { ...word, isTranslating: false, isReady: true } : word
+              ));
+            }, 800);
+            newTimeouts.push(readyTimeout);
+          }, index * 300);
+          newTimeouts.push(translateTimeout);
+        });
+      }, 3000);
+      newTimeouts.push(step4Timeout);
+    } else if (step === 4) {
+      // Continue to step 5
+      const step5Timeout = setTimeout(() => {
+        setStep(5);
+        const finalPlaylist: PlaylistItem[] = keyWordsData.map((item, index) => ({
+          id: `playlist-${index}`,
+          word: item.word,
+          translation: activeTab === 'uk' ? item.translation_uk : item.translation_en,
+          context: item.context,
+          contextTranslation: activeTab === 'uk' ? item.contextTranslation_uk : item.contextTranslation_en,
+          audioUrl: `/demo-audio/${item.word}.mp3`,
+          duration: "0:03",
+          isPlaying: false
+        }));
+        setPlaylist(finalPlaylist);
+        setIsAnimating(false);
+      }, 3000);
+      newTimeouts.push(step5Timeout);
     }
+    
+    setTimeouts(newTimeouts);
   };
 
   const togglePlayback = (itemId: string) => {
@@ -524,13 +652,57 @@ export const CompactAnimatedDemo: React.FC = () => {
               exit={{ opacity: 0, y: -20 }}
               className="h-full"
             >
-              <div className="bg-white rounded-lg p-3 h-full overflow-y-auto">
-                <h4 className="text-sm font-semibold text-[#022f36] mb-2 flex items-center gap-2">
-                  <Languages className="h-4 w-4" />
-                  {translations.steps.step1}
-                </h4>
-                <div className="text-xs leading-relaxed text-gray-800">
-                  {sourceText}
+              <div className="bg-white rounded-lg p-3 h-full overflow-y-auto space-y-3">
+                <div className="text-center">
+                  <h4 className="text-lg font-bold text-[#022f36] mb-2">
+                    {stepExplanations.step1.title}
+                  </h4>
+                  <p className="text-sm text-gray-700 leading-relaxed mb-3">
+                    {stepExplanations.step1.description}
+                  </p>
+                </div>
+                
+                {/* Input Methods Demo */}
+                <div className="grid grid-cols-2 gap-2 mb-3">
+                  <motion.div 
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 1 }}
+                    className="bg-blue-50 p-2 rounded text-center"
+                  >
+                    <div className="text-xs font-medium">📝 Вставити</div>
+                  </motion.div>
+                  <motion.div 
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 1.5 }}
+                    className="bg-green-50 p-2 rounded text-center"
+                  >
+                    <div className="text-xs font-medium">⌨️ Друкувати</div>
+                  </motion.div>
+                  <motion.div 
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 2 }}
+                    className="bg-purple-50 p-2 rounded text-center"
+                  >
+                    <div className="text-xs font-medium">🎤 Диктувати</div>
+                  </motion.div>
+                  <motion.div 
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 2.5 }}
+                    className="bg-orange-50 p-2 rounded text-center"
+                  >
+                    <div className="text-xs font-medium">📸 Фото</div>
+                  </motion.div>
+                </div>
+
+                <div className="bg-gray-50 rounded p-2">
+                  <div className="text-sm font-medium text-gray-800 mb-1">Завантажений текст:</div>
+                  <div className="text-sm leading-relaxed text-gray-700 max-h-32 overflow-y-auto">
+                    {sourceText}
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -544,35 +716,71 @@ export const CompactAnimatedDemo: React.FC = () => {
               exit={{ opacity: 0 }}
               className="h-full"
             >
-              <div className="bg-white rounded-lg p-3 h-full overflow-y-auto">
-                <h4 className="text-sm font-semibold text-[#022f36] mb-2 flex items-center gap-2">
-                  <Zap className="h-4 w-4 text-yellow-500" />
-                  {translations.steps.step2}
-                </h4>
-                <div className="text-xs leading-relaxed">
-                  {sourceText.split(' ').map((word, index) => {
-                    const cleanWord = word.replace(/[.,:;!?()]/g, '').toLowerCase();
-                    const keyWord = keyWordsData.find(keyData => {
-                      const keyWordLower = keyData.word.toLowerCase();
-                      return keyWordLower === cleanWord || 
-                             cleanWord.startsWith(keyWordLower) ||
-                             keyWordLower.startsWith(cleanWord);
-                    });
-                    
-                    const foundWord = words.find(w => w.word.toLowerCase() === (keyWord?.word.toLowerCase() || ''));
-                    const isHighlighted = foundWord?.isHighlighted && keyWord;
+              <div className="bg-white rounded-lg p-3 h-full overflow-y-auto space-y-3">
+                <div className="text-center">
+                  <h4 className="text-lg font-bold text-[#022f36] mb-2">
+                    {stepExplanations.step2.title}
+                  </h4>
+                  <p className="text-sm text-gray-700 leading-relaxed mb-3">
+                    {stepExplanations.step2.description}
+                  </p>
+                </div>
 
-                    return (
-                      <motion.span
-                        key={index}
-                        className={`transition-all duration-300 ${
-                          isHighlighted ? 'bg-yellow-300 text-black px-0.5 rounded' : 'text-gray-800'
-                        }`}
-                      >
-                        {word}{' '}
-                      </motion.span>
-                    );
-                  })}
+                {/* Analysis Process Demo */}
+                <div className="grid grid-cols-3 gap-1 mb-3">
+                  <motion.div 
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 1 }}
+                    className="bg-yellow-50 p-1.5 rounded text-center"
+                  >
+                    <div className="text-xs font-medium">🔍 Аналіз</div>
+                  </motion.div>
+                  <motion.div 
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 1.5 }}
+                    className="bg-red-50 p-1.5 rounded text-center"
+                  >
+                    <div className="text-xs font-medium">⚡ Складні</div>
+                  </motion.div>
+                  <motion.div 
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 2 }}
+                    className="bg-green-50 p-1.5 rounded text-center"
+                  >
+                    <div className="text-xs font-medium">✨ Виділення</div>
+                  </motion.div>
+                </div>
+
+                <div className="bg-gray-50 rounded p-2">
+                  <div className="text-sm font-medium text-gray-800 mb-1">Аналіз тексту:</div>
+                  <div className="text-sm leading-relaxed max-h-40 overflow-y-auto">
+                    {sourceText.split(' ').map((word, index) => {
+                      const cleanWord = word.replace(/[.,:;!?()]/g, '').toLowerCase();
+                      const keyWord = keyWordsData.find(keyData => {
+                        const keyWordLower = keyData.word.toLowerCase();
+                        return keyWordLower === cleanWord || 
+                               cleanWord.startsWith(keyWordLower) ||
+                               keyWordLower.startsWith(cleanWord);
+                      });
+                      
+                      const foundWord = words.find(w => w.word.toLowerCase() === (keyWord?.word.toLowerCase() || ''));
+                      const isHighlighted = foundWord?.isHighlighted && keyWord;
+
+                      return (
+                        <motion.span
+                          key={index}
+                          className={`transition-all duration-300 ${
+                            isHighlighted ? 'bg-yellow-300 text-black px-0.5 rounded font-medium' : 'text-gray-800'
+                          }`}
+                        >
+                          {word}{' '}
+                        </motion.span>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -586,20 +794,56 @@ export const CompactAnimatedDemo: React.FC = () => {
               exit={{ opacity: 0 }}
               className="h-full"
             >
-              <div className="bg-white rounded-lg p-3 h-full overflow-y-auto">
-                <h4 className="text-sm font-semibold text-[#022f36] mb-2">{translations.steps.step3}</h4>
-                <div className="space-y-1">
-                  {words.filter(w => w.isInContext).slice(0, 12).map((word) => (
+              <div className="bg-white rounded-lg p-3 h-full overflow-y-auto space-y-3">
+                <div className="text-center">
+                  <h4 className="text-lg font-bold text-[#022f36] mb-2">
+                    {stepExplanations.step3.title}
+                  </h4>
+                  <p className="text-sm text-gray-700 leading-relaxed mb-3">
+                    {stepExplanations.step3.description}
+                  </p>
+                </div>
+
+                {/* Context Processing Demo */}
+                <div className="grid grid-cols-3 gap-1 mb-3">
+                  <motion.div 
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 1 }}
+                    className="bg-blue-50 p-1.5 rounded text-center"
+                  >
+                    <div className="text-xs font-medium">📦 Упаковка</div>
+                  </motion.div>
+                  <motion.div 
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 1.5 }}
+                    className="bg-indigo-50 p-1.5 rounded text-center"
+                  >
+                    <div className="text-xs font-medium">🔗 Контекст</div>
+                  </motion.div>
+                  <motion.div 
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 2 }}
+                    className="bg-cyan-50 p-1.5 rounded text-center"
+                  >
+                    <div className="text-xs font-medium">💡 Розуміння</div>
+                  </motion.div>
+                </div>
+
+                <div className="space-y-1 max-h-48 overflow-y-auto">
+                  {words.filter(w => w.isInContext).slice(0, 8).map((word) => (
                     <motion.div
                       key={word.id}
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
                       className="p-2 bg-blue-50 rounded text-xs border-l-2 border-blue-400"
                     >
-                      <div className="font-medium text-blue-800">{word.word}</div>
+                      <div className="font-medium text-blue-800 text-sm">{word.word}</div>
                       <div className="text-blue-600 text-xs mt-0.5 leading-tight">
-                        <div className="mb-1">{word.context}</div>
-                        <div className="text-green-700 italic">{word.contextTranslation}</div>
+                        <div className="mb-1 font-medium">"{word.context}"</div>
+                        <div className="text-green-700 italic">"{word.contextTranslation}"</div>
                       </div>
                     </motion.div>
                   ))}
@@ -616,56 +860,91 @@ export const CompactAnimatedDemo: React.FC = () => {
               exit={{ opacity: 0 }}
               className="h-full"
             >
-              <div className="grid grid-cols-2 gap-2 h-full">
-                {/* Norwegian Column with Context */}
-                <div className="bg-white rounded-lg p-3 overflow-y-auto">
-                  <div className="flex items-center gap-1 mb-2">
-                    <div className="w-2 h-1.5 bg-red-500"></div>
-                    <div className="w-2 h-1.5 bg-white border"></div>
-                    <div className="w-2 h-1.5 bg-blue-600"></div>
-                    <span className="text-xs font-semibold">Norsk + Kontekst</span>
-                  </div>
-                  <div className="space-y-1">
-                    {words.filter(w => w.isTranslating || w.isReady).slice(0, 8).map((word) => (
-                      <motion.div
-                        key={word.id}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        className="p-2 bg-blue-50 rounded text-xs border-l-2 border-blue-400"
-                      >
-                        <div className="font-medium text-blue-800 mb-1">{word.word}</div>
-                        <div className="text-blue-600 text-xs leading-tight italic">
-                          "{word.context}"
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
+              <div className="bg-white rounded-lg p-3 h-full overflow-y-auto space-y-3">
+                <div className="text-center">
+                  <h4 className="text-lg font-bold text-[#022f36] mb-2">
+                    {stepExplanations.step4.title}
+                  </h4>
+                  <p className="text-sm text-gray-700 leading-relaxed mb-3">
+                    {stepExplanations.step4.description}
+                  </p>
                 </div>
-                
-                {/* Translation Column with Context */}
-                <div className="bg-white rounded-lg p-3 overflow-y-auto">
-                  <div className="flex items-center gap-1 mb-2">
-                    <div className="w-2 h-1.5 bg-blue-400"></div>
-                    <div className="w-2 h-1.5 bg-yellow-400"></div>
-                    <span className="text-xs font-semibold">
-                      {activeTab === 'uk' ? 'Українська + Контекст' : 'English + Context'}
-                    </span>
+
+                {/* Translation Process Demo */}
+                <div className="grid grid-cols-3 gap-1 mb-3">
+                  <motion.div 
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 1 }}
+                    className="bg-purple-50 p-1.5 rounded text-center"
+                  >
+                    <div className="text-xs font-medium">🔄 Переклад</div>
+                  </motion.div>
+                  <motion.div 
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 1.5 }}
+                    className="bg-pink-50 p-1.5 rounded text-center"
+                  >
+                    <div className="text-xs font-medium">📝 Значення</div>
+                  </motion.div>
+                  <motion.div 
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 2 }}
+                    className="bg-emerald-50 p-1.5 rounded text-center"
+                  >
+                    <div className="text-xs font-medium">✅ Готово</div>
+                  </motion.div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-2 flex-1">
+                  {/* Norwegian Column */}
+                  <div className="bg-blue-50 rounded p-2">
+                    <div className="flex items-center gap-1 mb-2">
+                      <div className="w-2 h-1.5 bg-red-500"></div>
+                      <div className="w-2 h-1.5 bg-white border"></div>
+                      <div className="w-2 h-1.5 bg-blue-600"></div>
+                      <span className="text-xs font-semibold">Norsk</span>
+                    </div>
+                    <div className="space-y-1 max-h-32 overflow-y-auto">
+                      {words.filter(w => w.isTranslating || w.isReady).slice(0, 5).map((word) => (
+                        <motion.div
+                          key={word.id}
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          className="p-1.5 bg-white rounded text-xs"
+                        >
+                          <div className="font-medium text-blue-800">{word.word}</div>
+                          <div className="text-blue-600 text-xs italic">"{word.context}"</div>
+                        </motion.div>
+                      ))}
+                    </div>
                   </div>
-                  <div className="space-y-1">
-                    {words.filter(w => w.isTranslating || w.isReady).slice(0, 8).map((word) => (
-                      <motion.div
-                        key={word.id}
-                        initial={{ opacity: 0, x: 10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.2 }}
-                        className="p-2 bg-green-50 rounded text-xs border-l-2 border-green-400"
-                      >
-                        <div className="font-medium text-green-800 mb-1">{word.translation}</div>
-                        <div className="text-green-600 text-xs leading-tight italic">
-                          "{word.contextTranslation}"
-                        </div>
-                      </motion.div>
-                    ))}
+                  
+                  {/* Translation Column */}
+                  <div className="bg-green-50 rounded p-2">
+                    <div className="flex items-center gap-1 mb-2">
+                      <div className="w-2 h-1.5 bg-blue-400"></div>
+                      <div className="w-2 h-1.5 bg-yellow-400"></div>
+                      <span className="text-xs font-semibold">
+                        {activeTab === 'uk' ? 'Українська' : 'English'}
+                      </span>
+                    </div>
+                    <div className="space-y-1 max-h-32 overflow-y-auto">
+                      {words.filter(w => w.isTranslating || w.isReady).slice(0, 5).map((word) => (
+                        <motion.div
+                          key={word.id}
+                          initial={{ opacity: 0, x: 10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.2 }}
+                          className="p-1.5 bg-white rounded text-xs"
+                        >
+                          <div className="font-medium text-green-800">{word.translation}</div>
+                          <div className="text-green-600 text-xs italic">"{word.contextTranslation}"</div>
+                        </motion.div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -680,12 +959,57 @@ export const CompactAnimatedDemo: React.FC = () => {
               exit={{ opacity: 0 }}
               className="h-full"
             >
-              <div className="bg-white rounded-lg p-3 h-full overflow-hidden flex flex-col">
-                <h4 className="text-sm font-semibold text-[#022f36] mb-2 flex items-center gap-2">
-                  <Volume2 className="h-4 w-4" />
-                  {translations.readyPlaylist} (25 ord)
-                </h4>
+              <div className="bg-white rounded-lg p-3 h-full overflow-hidden flex flex-col space-y-3">
+                <div className="text-center">
+                  <h4 className="text-lg font-bold text-[#022f36] mb-2">
+                    {stepExplanations.step5.title}
+                  </h4>
+                  <p className="text-sm text-gray-700 leading-relaxed mb-3">
+                    {stepExplanations.step5.description}
+                  </p>
+                </div>
+
+                {/* Final Result Demo */}
+                <div className="grid grid-cols-4 gap-1 mb-3">
+                  <motion.div 
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 1 }}
+                    className="bg-green-50 p-1.5 rounded text-center"
+                  >
+                    <div className="text-xs font-medium">🎯 25 слів</div>
+                  </motion.div>
+                  <motion.div 
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 1.5 }}
+                    className="bg-blue-50 p-1.5 rounded text-center"
+                  >
+                    <div className="text-xs font-medium">🔊 Аудіо</div>
+                  </motion.div>
+                  <motion.div 
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 2 }}
+                    className="bg-purple-50 p-1.5 rounded text-center"
+                  >
+                    <div className="text-xs font-medium">📚 Контекст</div>
+                  </motion.div>
+                  <motion.div 
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 2.5 }}
+                    className="bg-yellow-50 p-1.5 rounded text-center"
+                  >
+                    <div className="text-xs font-medium">✨ Готово</div>
+                  </motion.div>
+                </div>
+
                 <div className="flex-1 overflow-y-auto">
+                  <div className="text-sm font-medium text-[#022f36] mb-2 flex items-center gap-2">
+                    <Volume2 className="h-4 w-4" />
+                    {translations.readyPlaylist} (25 слів)
+                  </div>
                   <div className="grid grid-cols-5 gap-1 text-xs">
                     {playlist.map((item, index) => (
                       <motion.div
@@ -714,7 +1038,8 @@ export const CompactAnimatedDemo: React.FC = () => {
                     ))}
                   </div>
                 </div>
-                <div className="mt-2 pt-2 border-t border-gray-100">
+                
+                <div className="pt-2 border-t border-gray-100">
                   <Button 
                     onClick={resetDemo}
                     variant="outline"
