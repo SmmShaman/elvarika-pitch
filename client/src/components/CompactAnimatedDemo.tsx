@@ -580,7 +580,7 @@ export const CompactAnimatedDemo: React.FC = () => {
     <div className="h-full min-h-[650px] w-full bg-gradient-to-br from-[#0066cc]/5 to-[#00a1e6]/5 rounded-2xl border border-[#0066cc]/10 overflow-hidden flex flex-col">
       {/* Header */}
       <div className="p-6 border-b border-gray-100 bg-white/50 flex-shrink-0">
-        <div className="flex items-center justify-end mb-4">
+        <div className="flex items-center justify-center mb-4">
           <div className="flex items-center gap-3">
             {/* Pause/Play Controls */}
             {(isAnimating || isPaused) && step > 0 && step < 5 && (
@@ -594,16 +594,8 @@ export const CompactAnimatedDemo: React.FC = () => {
                 <span className="ml-2 text-sm">{isPaused ? 'Продовжити' : 'Пауза'}</span>
               </Button>
             )}
-            <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as 'uk' | 'en')} className="w-[240px]">
-              <TabsList className="grid w-full grid-cols-2 h-10">
-                <TabsTrigger value="uk" className="text-sm">🇺🇦 {translations.norwayUkraine}</TabsTrigger>
-                <TabsTrigger value="en" className="text-sm">🇬🇧 {translations.norwayEngland}</TabsTrigger>
-              </TabsList>
-            </Tabs>
           </div>
         </div>
-        
-        <p className="text-lg text-gray-600 mb-4 text-center font-medium">{translations.subtitle}</p>
         
         {/* Progress Steps */}
         <div className="flex justify-center">

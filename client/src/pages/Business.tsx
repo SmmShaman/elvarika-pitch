@@ -554,15 +554,12 @@ export const Business: React.FC = () => {
               {t.hero.subtitle}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-[#022f36] text-white hover:bg-[#033944] px-8 py-3 text-lg">
-                {t.hero.ctaPrimary}
-              </Button>
               <Button 
                 onClick={() => setShowDemo(true)}
                 variant="outline" 
                 className="border-[#022f36] text-[#022f36] hover:bg-[#022f36] hover:text-white px-8 py-3 text-lg"
               >
-                {t.hero.ctaSecondary}
+                See how
               </Button>
             </div>
           </div>
@@ -571,7 +568,7 @@ export const Business: React.FC = () => {
         <section className="pt-20 pb-12 bg-gradient-to-br from-[#defff0] to-[#f0fff4] relative overflow-hidden min-h-screen">
           <div className="container mx-auto px-4 h-full max-w-6xl">
             <div className="flex flex-col h-full space-y-4">
-              {/* Header with back button and title */}
+              {/* Header with back button, title and language switcher */}
               <div className="flex justify-between items-center">
                 <div className="flex items-center gap-6">
                   <Button 
@@ -587,6 +584,39 @@ export const Business: React.FC = () => {
                      'See how Elvarika works'}
                   </h1>
                 </div>
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center bg-white rounded-lg p-1 border">
+                    <button
+                      onClick={() => changeLanguage('uk')}
+                      className={`px-3 py-1 rounded text-sm transition-colors ${
+                        language === 'uk' 
+                          ? 'bg-[#022f36] text-white' 
+                          : 'text-gray-600 hover:text-[#022f36]'
+                      }`}
+                    >
+                      🇺🇦
+                    </button>
+                    <button
+                      onClick={() => changeLanguage('en')}
+                      className={`px-3 py-1 rounded text-sm transition-colors ${
+                        language === 'en' 
+                          ? 'bg-[#022f36] text-white' 
+                          : 'text-gray-600 hover:text-[#022f36]'
+                      }`}
+                    >
+                      🇬🇧
+                    </button>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Subtitle with 30 seconds description */}
+              <div className="text-center">
+                <p className="text-xl text-gray-600 font-medium">
+                  {language === 'no' ? 'Fra norsk tekst til flerspråklig lydordbok på 30 sekunder' :
+                   language === 'uk' ? 'З норвезького тексту до багатомовного аудіословника за 30 секунд' :
+                   'From Norwegian text to multilingual audio dictionary in 30 seconds'}
+                </p>
               </div>
               
               {/* Demo content with increased height */}
