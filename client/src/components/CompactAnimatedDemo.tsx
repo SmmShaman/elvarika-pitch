@@ -54,10 +54,12 @@ export const CompactAnimatedDemo: React.FC = () => {
   const currentLanguage = language;
   const [step, setStep] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
   const [activeTab, setActiveTab] = useState<'uk' | 'en'>('uk');
   const [words, setWords] = useState<WordAnimation[]>([]);
   const [playlist, setPlaylist] = useState<PlaylistItem[]>([]);
   const [playingItem, setPlayingItem] = useState<string | null>(null);
+  const [timeouts, setTimeouts] = useState<NodeJS.Timeout[]>([]);
 
   const sourceText = "Blendingsanordningen reduserer styrken på sollys. Arbeiderne må bruke vernebriller når de arbeider med UV-stråling. Sikkerhetsutstyr er obligatorisk på byggeplassen. Vernehansker beskytter mot kjemiske stoffer. Hørselsvern reduserer støynivået til sikre grenser. Arbeidsgiveren har ansvar for å sikre at alle ansatte har tilgang til riktig verneutstyr. Gassmålere brukes for å oppdage farlige gasser i luft. Fallsikring er nødvendig når man arbeider i høyder over to meter. Brannslukningsapparater må være lett tilgjengelige på alle arbeidsplasser. Første hjelp-utstyr skal alltid være tilgjengelig og oppdatert. Kjemikalier må merkes tydelig med faresymboler. Ventilasjonssystem sørger for ren luft i arbeidsområdet. Støvmaske beskytter lungene mot farlige partikler. Sikkerhetssko med ståltupp beskytter føttene mot tunge gjenstander. Refleksvest gjør arbeiderne synlige i dårlig lys. Arbeidstid begrenses for å unngå utmattelse og ulykker. Risikovurdering må gjennomføres før start på farlige arbeidsoppgaver. Nødutgang må alltid være merket og tilgjengelig. Varselskilt informerer om farer og sikkerhetstiltak. Sikkerhetsinstruks må gis til alle nye ansatte før arbeidsstart.";
 
@@ -295,82 +297,130 @@ export const CompactAnimatedDemo: React.FC = () => {
     processing: currentLanguage === 'no' ? 'Behandler...' : currentLanguage === 'uk' ? 'Обробляю...' : 'Processing...'
   };
 
+  const clearAllTimeouts = () => {
+    timeouts.forEach(timeout => clearTimeout(timeout));
+    setTimeouts([]);
+  };
+
   const startDemo = () => {
+    clearAllTimeouts();
     setIsAnimating(true);
+    setIsPaused(false);
     setStep(1);
     
-    // Step 2: Highlight words (2 seconds)
-    setTimeout(() => {
-      setStep(2);
-      const initialWords: WordAnimation[] = keyWordsData.map((item, index) => ({
-        ...item,
-        translation: activeTab === 'uk' ? item.translation_uk : item.translation_en,
-        contextTranslation: activeTab === 'uk' ? item.contextTranslation_uk : item.contextTranslation_en,
-        id: `word-${index}`,
-        isHighlighted: false,
-        isExtracting: false,
-        isInContext: false,
-        isTranslating: false,
-        isReady: false
-      }));
-      setWords(initialWords);
-      
-      // Highlight words one by one
-      initialWords.forEach((_, index) => {
-        setTimeout(() => {
-          setWords(prev => prev.map((word, i) => 
-            i === index ? { ...word, isHighlighted: true } : word
-          ));
-        }, index * 200);
-      });
-    }, 2000);
+    const newTimeouts: NodeJS.Timeout[] = [];
+    
+    // Step 2: Highlight words (5 seconds)
+    const step2Timeout = setTimeout(() => {
+      if (!isPaused) {
+        setStep(2);
+        const initialWords: WordAnimation[] = keyWordsData.map((item, index) => ({
+          ...item,
+          translation: activeTab === 'uk' ? item.translation_uk : item.translation_en,
+          contextTranslation: activeTab === 'uk' ? item.contextTranslation_uk : item.contextTranslation_en,
+          id: `word-${index}`,
+          isHighlighted: false,
+          isExtracting: false,
+          isInContext: false,
+          isTranslating: false,
+          isReady: false
+        }));
+        setWords(initialWords);
+        
+        // Highlight words one by one
+        initialWords.forEach((_, index) => {
+          const highlightTimeout = setTimeout(() => {
+            if (!isPaused) {
+              setWords(prev => prev.map((word, i) => 
+                i === index ? { ...word, isHighlighted: true } : word
+              ));
+            }
+          }, index * 300);
+          newTimeouts.push(highlightTimeout);
+        });
+      }
+    }, 5000);
+    newTimeouts.push(step2Timeout);
 
-    // Step 3: Context wrapping (4 seconds)
-    setTimeout(() => {
-      setStep(3);
-      words.forEach((_, index) => {
-        setTimeout(() => {
-          setWords(prev => prev.map((word, i) => 
-            i === index ? { ...word, isExtracting: true, isInContext: true } : word
-          ));
-        }, index * 150);
-      });
-    }, 4000);
+    // Step 3: Context wrapping (10 seconds)
+    const step3Timeout = setTimeout(() => {
+      if (!isPaused) {
+        setStep(3);
+        keyWordsData.forEach((_, index) => {
+          const contextTimeout = setTimeout(() => {
+            if (!isPaused) {
+              setWords(prev => prev.map((word, i) => 
+                i === index ? { ...word, isExtracting: true, isInContext: true } : word
+              ));
+            }
+          }, index * 200);
+          newTimeouts.push(contextTimeout);
+        });
+      }
+    }, 10000);
+    newTimeouts.push(step3Timeout);
 
-    // Step 4: Translation (6 seconds)  
-    setTimeout(() => {
-      setStep(4);
-      words.forEach((_, index) => {
-        setTimeout(() => {
-          setWords(prev => prev.map((word, i) => 
-            i === index ? { ...word, isExtracting: false, isTranslating: true } : word
-          ));
-          
-          setTimeout(() => {
-            setWords(prev => prev.map((word, i) => 
-              i === index ? { ...word, isTranslating: false, isReady: true } : word
-            ));
-          }, 500);
-        }, index * 200);
-      });
-    }, 6000);
+    // Step 4: Translation (15 seconds)  
+    const step4Timeout = setTimeout(() => {
+      if (!isPaused) {
+        setStep(4);
+        keyWordsData.forEach((_, index) => {
+          const translateTimeout = setTimeout(() => {
+            if (!isPaused) {
+              setWords(prev => prev.map((word, i) => 
+                i === index ? { ...word, isExtracting: false, isTranslating: true } : word
+              ));
+              
+              const readyTimeout = setTimeout(() => {
+                if (!isPaused) {
+                  setWords(prev => prev.map((word, i) => 
+                    i === index ? { ...word, isTranslating: false, isReady: true } : word
+                  ));
+                }
+              }, 800);
+              newTimeouts.push(readyTimeout);
+            }
+          }, index * 300);
+          newTimeouts.push(translateTimeout);
+        });
+      }
+    }, 15000);
+    newTimeouts.push(step4Timeout);
 
-    // Step 5: Final playlist (8 seconds)
-    setTimeout(() => {
-      setStep(5);
-      const finalPlaylist: PlaylistItem[] = keyWordsData.map((item, index) => ({
-        id: `playlist-${index}`,
-        word: item.word,
-        translation: activeTab === 'uk' ? item.translation_uk : item.translation_en,
-        context: item.context,
-        contextTranslation: activeTab === 'uk' ? item.contextTranslation_uk : item.contextTranslation_en,
-        audioUrl: `/demo-audio/${item.word}.mp3`,
-        duration: "0:03",
-        isPlaying: false
-      }));
-      setPlaylist(finalPlaylist);
-      setIsAnimating(false);
-    }, 8000);
+    // Step 5: Final playlist (20 seconds)
+    const step5Timeout = setTimeout(() => {
+      if (!isPaused) {
+        setStep(5);
+        const finalPlaylist: PlaylistItem[] = keyWordsData.map((item, index) => ({
+          id: `playlist-${index}`,
+          word: item.word,
+          translation: activeTab === 'uk' ? item.translation_uk : item.translation_en,
+          context: item.context,
+          contextTranslation: activeTab === 'uk' ? item.contextTranslation_uk : item.contextTranslation_en,
+          audioUrl: `/demo-audio/${item.word}.mp3`,
+          duration: "0:03",
+          isPlaying: false
+        }));
+        setPlaylist(finalPlaylist);
+        setIsAnimating(false);
+      }
+    }, 20000);
+    newTimeouts.push(step5Timeout);
+    
+    setTimeouts(newTimeouts);
+  };
+
+  const pauseDemo = () => {
+    setIsPaused(true);
+    clearAllTimeouts();
+  };
+
+  const resumeDemo = () => {
+    setIsPaused(false);
+    // Resume from current step
+    if (step < 5) {
+      startDemo();
+    }
   };
 
   const togglePlayback = (itemId: string) => {
@@ -404,12 +454,25 @@ export const CompactAnimatedDemo: React.FC = () => {
       <div className="p-4 border-b border-gray-100 bg-white/50">
         <div className="flex items-center justify-between">
           <h3 className="text-lg font-semibold text-[#022f36]">{translations.title}</h3>
-          <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as 'uk' | 'en')} className="w-[200px]">
-            <TabsList className="grid w-full grid-cols-2 h-8">
-              <TabsTrigger value="uk" className="text-xs">🇺🇦</TabsTrigger>
-              <TabsTrigger value="en" className="text-xs">🇬🇧</TabsTrigger>
-            </TabsList>
-          </Tabs>
+          <div className="flex items-center gap-2">
+            {/* Pause/Play Controls */}
+            {(isAnimating || isPaused) && step > 0 && step < 5 && (
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={isPaused ? resumeDemo : pauseDemo}
+                className="h-8 px-3"
+              >
+                {isPaused ? <Play size={14} /> : <Pause size={14} />}
+              </Button>
+            )}
+            <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as 'uk' | 'en')} className="w-[200px]">
+              <TabsList className="grid w-full grid-cols-2 h-8">
+                <TabsTrigger value="uk" className="text-xs">🇺🇦</TabsTrigger>
+                <TabsTrigger value="en" className="text-xs">🇬🇧</TabsTrigger>
+              </TabsList>
+            </Tabs>
+          </div>
         </div>
         
         {/* Progress Steps */}
@@ -554,38 +617,53 @@ export const CompactAnimatedDemo: React.FC = () => {
               className="h-full"
             >
               <div className="grid grid-cols-2 gap-2 h-full">
+                {/* Norwegian Column with Context */}
                 <div className="bg-white rounded-lg p-3 overflow-y-auto">
                   <div className="flex items-center gap-1 mb-2">
                     <div className="w-2 h-1.5 bg-red-500"></div>
                     <div className="w-2 h-1.5 bg-white border"></div>
                     <div className="w-2 h-1.5 bg-blue-600"></div>
-                    <span className="text-xs font-semibold">Norsk</span>
+                    <span className="text-xs font-semibold">Norsk + Kontekst</span>
                   </div>
                   <div className="space-y-1">
-                    {words.filter(w => w.isTranslating || w.isReady).map((word) => (
-                      <div key={word.id} className="p-2 bg-blue-50 rounded text-xs">
-                        <div className="font-medium text-blue-800">{word.word}</div>
-                      </div>
+                    {words.filter(w => w.isTranslating || w.isReady).slice(0, 8).map((word) => (
+                      <motion.div
+                        key={word.id}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        className="p-2 bg-blue-50 rounded text-xs border-l-2 border-blue-400"
+                      >
+                        <div className="font-medium text-blue-800 mb-1">{word.word}</div>
+                        <div className="text-blue-600 text-xs leading-tight italic">
+                          "{word.context}"
+                        </div>
+                      </motion.div>
                     ))}
                   </div>
                 </div>
+                
+                {/* Translation Column with Context */}
                 <div className="bg-white rounded-lg p-3 overflow-y-auto">
                   <div className="flex items-center gap-1 mb-2">
                     <div className="w-2 h-1.5 bg-blue-400"></div>
                     <div className="w-2 h-1.5 bg-yellow-400"></div>
                     <span className="text-xs font-semibold">
-                      {activeTab === 'uk' ? 'Українська' : 'English'}
+                      {activeTab === 'uk' ? 'Українська + Контекст' : 'English + Context'}
                     </span>
                   </div>
                   <div className="space-y-1">
-                    {words.filter(w => w.isTranslating || w.isReady).map((word) => (
+                    {words.filter(w => w.isTranslating || w.isReady).slice(0, 8).map((word) => (
                       <motion.div
                         key={word.id}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        className="p-2 bg-green-50 rounded text-xs"
+                        initial={{ opacity: 0, x: 10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.2 }}
+                        className="p-2 bg-green-50 rounded text-xs border-l-2 border-green-400"
                       >
-                        <div className="font-medium text-green-800">{word.translation}</div>
+                        <div className="font-medium text-green-800 mb-1">{word.translation}</div>
+                        <div className="text-green-600 text-xs leading-tight italic">
+                          "{word.contextTranslation}"
+                        </div>
                       </motion.div>
                     ))}
                   </div>
