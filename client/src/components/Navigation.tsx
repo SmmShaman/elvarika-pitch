@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { Link, useLocation } from "wouter";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { useLanguage } from "@/hooks/useLanguage";
 import { useBlog } from "@/hooks/useBlog";
 
 export const Navigation: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [location] = useLocation();
   const { language, translations, changeLanguage } = useLanguage();
   const { openBlog } = useBlog();
 
@@ -27,6 +29,16 @@ export const Navigation: React.FC = () => {
             <div className="text-xl font-bold text-[#022f36]">
               {translations.nav.logo}
             </div>
+          </div>
+
+          {/* Version Selector */}
+          <div className="hidden md:flex items-center space-x-2 text-sm">
+            <Link href="/" className={`px-3 py-1 rounded-md transition-colors ${location === '/' ? 'bg-[#022f36] text-white' : 'text-[#022f36] hover:bg-gray-100'}`}>
+              Investor
+            </Link>
+            <Link href="/business" className={`px-3 py-1 rounded-md transition-colors ${location === '/business' ? 'bg-[#022f36] text-white' : 'text-[#022f36] hover:bg-gray-100'}`}>
+              Business
+            </Link>
           </div>
 
           {/* Desktop Menu */}

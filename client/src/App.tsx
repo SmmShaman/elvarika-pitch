@@ -9,12 +9,14 @@ import { BlogContext } from "@/hooks/useBlog";
 import { Blog } from "@/pages/Blog";
 
 import { Font } from "@/pages/Font";
+import { Business } from "@/pages/Business";
 
 function Router() {
   return (
     <Switch>
       {/* Add pages below */}
       <Route path="/" component={Font} />
+      <Route path="/business" component={Business} />
       {/* Fallback to 404 */}
       <Route component={NotFound} />
     </Switch>
