@@ -212,7 +212,7 @@ export const BilingualAudioPlayer: React.FC = () => {
                   : 'bg-white/40 text-slate-700 border-white/50 hover:bg-white/60 hover:shadow-lg'
               }`}
             >
-              🇳🇴 Norsk
+              🇳🇴 {translations.bilingualPlayer.norwegian}
             </Button>
             <Button
               onClick={() => switchLanguage('ukrainian')}
@@ -222,7 +222,7 @@ export const BilingualAudioPlayer: React.FC = () => {
                   : 'bg-white/40 text-slate-700 border-white/50 hover:bg-white/60 hover:shadow-lg'
               }`}
             >
-              🇺🇦 Українська
+              🇺🇦 {translations.bilingualPlayer.ukrainian}
             </Button>
           </div>
         </div>
@@ -265,10 +265,10 @@ export const BilingualAudioPlayer: React.FC = () => {
                     <div className="absolute -top-2 -right-2 text-2xl">🌸</div>
                   </div>
                   <p className="text-slate-700 font-medium mb-2">
-                    YouTube URL mangler for {currentLanguage === 'ukrainian' ? 'ukrainsk' : 'norsk'} versjon
+                    {translations.bilingualPlayer.urlMissing}
                   </p>
                   <p className="text-slate-600 opacity-80">
-                    Legg til YouTube-lenke for å spille av dette dokumentet
+                    {translations.bilingualPlayer.addYouTubeLink}
                   </p>
                 </div>
               )}
@@ -317,7 +317,7 @@ export const BilingualAudioPlayer: React.FC = () => {
 
               {/* Speed Control */}
               <div className="flex items-center justify-center gap-4 mt-6">
-                <span className="text-sm text-slate-600 font-medium">Hastighet:</span>
+                <span className="text-sm text-slate-600 font-medium">{translations.audioPlayer.speed}</span>
                 <select 
                   value={speed} 
                   onChange={(e) => setSpeed(e.target.value)}
@@ -338,7 +338,7 @@ export const BilingualAudioPlayer: React.FC = () => {
           {/* Playlist Section */}
           <div>
             <h3 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
-              <span>🌸</span> Ditt lydbibliotek
+              <span>🌸</span> {translations.bilingualPlayer.yourLibrary}
             </h3>
             <div className="space-y-4">
               {documentsLibrary.map((doc, index) => (
@@ -366,11 +366,11 @@ export const BilingualAudioPlayer: React.FC = () => {
                         <div className="flex gap-4 mt-2">
                           <span className="text-xs text-slate-600 bg-white/40 px-2 py-1 rounded-full">
                             🇳🇴 {doc.norwegian.duration}
-                            {!doc.norwegian.youtubeUrl && ' (URL mangler)'}
+                            {!doc.norwegian.youtubeUrl && ` (${translations.bilingualPlayer.urlMissing.split(' ')[2]})`}
                           </span>
                           <span className="text-xs text-slate-600 bg-white/40 px-2 py-1 rounded-full">
                             🇺🇦 {doc.ukrainian.duration}
-                            {!doc.ukrainian.youtubeUrl && ' (URL mangler)'}
+                            {!doc.ukrainian.youtubeUrl && ` (${translations.bilingualPlayer.urlMissing.split(' ')[2]})`}
                           </span>
                         </div>
                       </div>
