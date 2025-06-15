@@ -71,6 +71,7 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
   const [playbackSpeed, setPlaybackSpeed] = useState(1.0);
   const [showSpeedControl, setShowSpeedControl] = useState(false);
   const [timeouts, setTimeouts] = useState<NodeJS.Timeout[]>([]);
+  const [audioDurations, setAudioDurations] = useState<{[key: string]: string}>({});
   const speedControlRef = useRef<HTMLDivElement>(null);
 
   const sourceText = "Blendingsanordningen reduserer styrken på sollys. Arbeiderne må bruke vernebriller når de arbeider med UV-stråling. Sikkerhetsutstyr er obligatorisk på byggeplassen. Vernehansker beskytter mot kjemiske stoffer. Hørselsvern reduserer støynivået til sikre grenser. Arbeidsgiveren har ansvar for å sikre at alle ansatte har tilgang til riktig verneutstyr. Gassmålere brukes for å oppdage farlige gasser i luft. Fallsikring er nødvendig når man arbeider i høyder over to meter. Brannslukningsapparater må være lett tilgjengelige på alle arbeidsplasser. Første hjelp-utstyr skal alltid være tilgjengelig og oppdatert. Kjemikalier må merkes tydelig med faresymboler. Ventilasjonssystem sørger for ren luft i arbeidsområdet. Støvmaske beskytter lungene mot farlige partikler. Sikkerhetssko med ståltupp beskytter føttene mot tunge gjenstander. Refleksvest gjør arbeiderne synlige i dårlig lys. Arbeidstid begrenses for å unngå utmattelse og ulykker. Risikovurdering må gjennomføres før start på farlige arbeidsoppgaver. Nødutgang må alltid være merket og tilgjengelig. Varselskilt informerer om farer og sikkerhetstiltak. Sikkerhetsinstruks må gis til alle nye ansatte før arbeidsstart.";
@@ -357,6 +358,47 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
     setTimeouts([]);
   };
 
+  // Function to get audio duration
+  const getAudioDuration = (audioUrl: string): Promise<string> => {
+    return new Promise((resolve) => {
+      const audio = new Audio(audioUrl);
+      audio.addEventListener('loadedmetadata', () => {
+        const minutes = Math.floor(audio.duration / 60);
+        const seconds = Math.floor(audio.duration % 60);
+        const formattedDuration = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+        resolve(formattedDuration);
+      });
+      audio.addEventListener('error', () => {
+        // Fallback to default duration if audio fails to load
+        resolve('0:03');
+      });
+    });
+  };
+
+  // Load audio durations when translation target changes
+  useEffect(() => {
+    const loadAudioDurations = async () => {
+      const durations: {[key: string]: string} = {};
+      
+      for (const item of keyWordsData) {
+        const audioUrl = translationTarget === 'uk' 
+          ? `/attached_assets/audio/${item.word}.mp3`
+          : `/attached_assets/audio/en/${item.word}.mp3`;
+        
+        try {
+          const duration = await getAudioDuration(audioUrl);
+          durations[item.word] = duration;
+        } catch (error) {
+          durations[item.word] = '0:03'; // Fallback
+        }
+      }
+      
+      setAudioDurations(durations);
+    };
+
+    loadAudioDurations();
+  }, [translationTarget]);
+
   const changePlaybackSpeed = (speed: number) => {
     setPlaybackSpeed(speed);
     if (currentAudio) {
@@ -540,7 +582,7 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
               audioUrl: translationTarget === 'uk' 
                 ? `/attached_assets/audio/${item.word}.mp3`
                 : `/attached_assets/audio/en/${item.word}.mp3`,
-              duration: "0:03",
+              duration: audioDurations[item.word] || "0:03",
               isPlaying: false
             }));
             setPlaylist(finalPlaylist);

@@ -157,6 +157,9 @@ Changelog:
 - June 15, 2025. Updated Use Cases section with comprehensive investor-focused narratives from attached file
 - June 15, 2025. Expanded all four industry examples (Logistics, Construction, HoReCa, Agriculture) with detailed scenarios
 - June 15, 2025. Added "Result for investor" messaging focusing on measurable business impact and market opportunity
+- June 15, 2025. Fixed demo step pause system with dynamic step scheduling instead of fixed timeouts
+- June 15, 2025. Implemented real audio duration detection replacing template 3-second durations
+- June 15, 2025. Added automatic audio metadata loading for accurate playlist duration display
 ```
 
 ## User Preferences
