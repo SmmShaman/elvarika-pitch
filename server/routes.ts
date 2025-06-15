@@ -2,6 +2,7 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertDemoRequestSchema } from "@shared/schema";
+import { sendVerificationEmail } from "./email";
 import crypto from "crypto";
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -16,15 +17,32 @@ export async function registerRoutes(app: Express): Promise<Server> {
         verificationToken,
       });
 
-      // In real app, send email with verification link here
-      // For demo purposes, return the token (in production, this should be sent via email)
-      res.json({ 
-        success: true, 
-        message: "Demo request submitted. Please check your email for verification.",
-        // Remove this in production - only for demo
-        verificationToken: verificationToken
-      });
+      // Try to send email verification
+      const emailSent = await sendVerificationEmail(
+        validatedData.email,
+        validatedData.name,
+        verificationToken
+      );
+
+      if (emailSent) {
+        res.json({ 
+          success: true, 
+          message: "Demo request submitted. Please check your email for verification.",
+          emailSent: true
+        });
+      } else {
+        // Demo mode - return token for testing
+        res.json({ 
+          success: true, 
+          message: "Demo request submitted. Please check your email for verification.",
+          emailSent: false,
+          // Remove this in production - only for demo when email service is not configured
+          verificationToken: verificationToken,
+          demoNote: "Email service not configured. Use the token above for testing."
+        });
+      }
     } catch (error) {
+      console.error('Demo request error:', error);
       res.status(400).json({ error: "Invalid request data" });
     }
   });

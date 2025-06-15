@@ -95,10 +95,12 @@ export function DemoAccessForm({ onAccessGranted, language }: DemoAccessFormProp
     },
     onSuccess: (data) => {
       setIsSubmitted(true);
-      setVerificationToken(data.verificationToken);
+      if (data.verificationToken) {
+        setVerificationToken(data.verificationToken);
+      }
       toast({
         title: t.submitted,
-        description: t.verificationSent,
+        description: data.emailSent ? t.verificationSent : data.demoNote || t.verificationSent,
       });
     },
     onError: () => {
@@ -180,12 +182,14 @@ export function DemoAccessForm({ onAccessGranted, language }: DemoAccessFormProp
           <p className="text-sm text-blue-700 text-center">{t.verificationSent}</p>
           
           {/* Demo purposes only - show verification token */}
-          <div className="bg-yellow-50 border border-yellow-200 p-3 rounded">
-            <p className="text-xs text-yellow-800 mb-2">{t.demoNote}</p>
-            <div className="bg-white p-2 rounded border font-mono text-xs break-all">
-              {verificationToken}
+          {verificationToken && (
+            <div className="bg-yellow-50 border border-yellow-200 p-3 rounded">
+              <p className="text-xs text-yellow-800 mb-2">{t.demoNote}</p>
+              <div className="bg-white p-2 rounded border font-mono text-xs break-all">
+                {verificationToken}
+              </div>
             </div>
-          </div>
+          )}
           
           <Button 
             onClick={handleVerify}
