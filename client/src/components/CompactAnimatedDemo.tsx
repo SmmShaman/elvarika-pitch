@@ -64,6 +64,8 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
   const [words, setWords] = useState<WordAnimation[]>([]);
   const [playlist, setPlaylist] = useState<PlaylistItem[]>([]);
   const [playingItem, setPlayingItem] = useState<string | null>(null);
+  const [currentAudio, setCurrentAudio] = useState<HTMLAudioElement | null>(null);
+  const [audioIsPaused, setAudioIsPaused] = useState(false);
   const [timeouts, setTimeouts] = useState<NodeJS.Timeout[]>([]);
 
   const sourceText = "Blendingsanordningen reduserer styrken på sollys. Arbeiderne må bruke vernebriller når de arbeider med UV-stråling. Sikkerhetsutstyr er obligatorisk på byggeplassen. Vernehansker beskytter mot kjemiske stoffer. Hørselsvern reduserer støynivået til sikre grenser. Arbeidsgiveren har ansvar for å sikre at alle ansatte har tilgang til riktig verneutstyr. Gassmålere brukes for å oppdage farlige gasser i luft. Fallsikring er nødvendig når man arbeider i høyder over to meter. Brannslukningsapparater må være lett tilgjengelige på alle arbeidsplasser. Første hjelp-utstyr skal alltid være tilgjengelig og oppdatert. Kjemikalier må merkes tydelig med faresymboler. Ventilasjonssystem sørger for ren luft i arbeidsområdet. Støvmaske beskytter lungene mot farlige partikler. Sikkerhetssko med ståltupp beskytter føttene mot tunge gjenstander. Refleksvest gjør arbeiderne synlige i dårlig lys. Arbeidstid begrenses for å unngå utmattelse og ulykker. Risikovurdering må gjennomføres før start på farlige arbeidsoppgaver. Nødutgang må alltid være merket og tilgjengelig. Varselskilt informerer om farer og sikkerhetstiltak. Sikkerhetsinstruks må gis til alle nye ansatte før arbeidsstart.";
@@ -564,23 +566,57 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
     const item = playlist.find(p => p.id === itemId);
     if (!item) return;
 
-    setPlaylist(prev => prev.map(item => ({
-      ...item,
-      isPlaying: item.id === itemId ? !item.isPlaying : false
-    })));
-    
-    if (playingItem !== itemId) {
+    // If this is the currently playing item
+    if (playingItem === itemId) {
+      if (currentAudio) {
+        if (audioIsPaused) {
+          // Resume playback
+          currentAudio.play().catch(err => {
+            console.log('Audio resume failed:', err);
+          });
+          setAudioIsPaused(false);
+          setPlaylist(prev => prev.map(item => ({
+            ...item,
+            isPlaying: item.id === itemId ? true : false
+          })));
+        } else {
+          // Pause playback
+          currentAudio.pause();
+          setAudioIsPaused(true);
+          setPlaylist(prev => prev.map(item => ({
+            ...item,
+            isPlaying: false
+          })));
+        }
+      }
+    } else {
+      // Stop any currently playing audio
+      if (currentAudio) {
+        currentAudio.pause();
+        setCurrentAudio(null);
+      }
+      
+      // Start new audio
       setPlayingItem(itemId);
+      setAudioIsPaused(false);
+      setPlaylist(prev => prev.map(item => ({
+        ...item,
+        isPlaying: item.id === itemId ? true : false
+      })));
       
       // Play the actual audio file
       if (item.audioUrl) {
         try {
           const audio = new Audio(item.audioUrl);
+          setCurrentAudio(audio);
+          
           audio.play().catch(err => {
             console.log('Audio playback failed:', err);
             // Fallback to 3 second timer
             setTimeout(() => {
               setPlayingItem(null);
+              setCurrentAudio(null);
+              setAudioIsPaused(false);
               setPlaylist(prev => prev.map(item => ({ ...item, isPlaying: false })));
             }, 3000);
           });
@@ -588,6 +624,8 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
           // When audio ends, stop the playback indicator
           audio.addEventListener('ended', () => {
             setPlayingItem(null);
+            setCurrentAudio(null);
+            setAudioIsPaused(false);
             setPlaylist(prev => prev.map(item => ({ ...item, isPlaying: false })));
           });
         } catch (err) {
@@ -595,12 +633,12 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
           // Fallback to 3 second timer
           setTimeout(() => {
             setPlayingItem(null);
+            setCurrentAudio(null);
+            setAudioIsPaused(false);
             setPlaylist(prev => prev.map(item => ({ ...item, isPlaying: false })));
           }, 3000);
         }
       }
-    } else {
-      setPlayingItem(null);
     }
   };
 
@@ -1182,10 +1220,12 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
                         <button
                           onClick={() => togglePlayback(item.id)}
                           className={`w-4 h-4 rounded-full flex items-center justify-center mb-1 transition-colors ${
-                            item.isPlaying ? 'bg-blue-600 text-white' : 'bg-gray-300 text-gray-600'
+                            playingItem === item.id && item.isPlaying && !audioIsPaused ? 'bg-blue-600 text-white' : 
+                            playingItem === item.id && audioIsPaused ? 'bg-orange-500 text-white' :
+                            'bg-gray-300 text-gray-600'
                           }`}
                         >
-                          {item.isPlaying ? <Pause size={6} /> : <Play size={6} />}
+                          {playingItem === item.id && !audioIsPaused ? <Pause size={6} /> : <Play size={6} />}
                         </button>
                         <div className="space-y-0.5">
                           <div className="font-medium text-gray-800 text-xs leading-tight truncate">{item.word}</div>
