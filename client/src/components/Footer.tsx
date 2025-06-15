@@ -10,81 +10,27 @@ export const Footer: React.FC = () => {
   return (
     <footer className="w-full bg-[#022f36] text-white py-16">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+        <div className="text-center mb-12">
           {/* Company Info */}
-          <div className="md:col-span-2">
+          <div className="max-w-md mx-auto">
             <h3 className="text-2xl font-bold mb-4">Elvarika</h3>
-            <p className="text-gray-300 mb-6 max-w-md">
+            <p className="text-gray-300 mb-6">
               {translations.footer.description}
             </p>
             <div className="space-y-3">
-              <div className="flex items-center gap-3">
+              <div className="flex items-center justify-center gap-3">
                 <Mail className="h-4 w-4" />
                 <span className="text-gray-300">{translations.footer.contact.email}</span>
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center justify-center gap-3">
                 <Phone className="h-4 w-4" />
                 <span className="text-gray-300">{translations.footer.contact.phone}</span>
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center justify-center gap-3">
                 <MapPin className="h-4 w-4" />
                 <span className="text-gray-300">{translations.footer.contact.location}</span>
               </div>
             </div>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-semibold mb-4">{translations.footer.quickLinks.title}</h4>
-            <ul className="space-y-3">
-              <li>
-                <button className="text-gray-300 hover:text-white transition-colors">
-                  {translations.footer.quickLinks.technology}
-                </button>
-              </li>
-              <li>
-                <button className="text-gray-300 hover:text-white transition-colors">
-                  {translations.footer.quickLinks.marketAnalysis}
-                </button>
-              </li>
-              <li>
-                <button className="text-gray-300 hover:text-white transition-colors">
-                  {translations.footer.quickLinks.advantages}
-                </button>
-              </li>
-              <li>
-                <button className="text-gray-300 hover:text-white transition-colors">
-                  {translations.footer.quickLinks.faq}
-                </button>
-              </li>
-            </ul>
-          </div>
-
-          {/* Investor Info */}
-          <div>
-            <h4 className="font-semibold mb-4">{translations.footer.investor.title}</h4>
-            <ul className="space-y-3">
-              <li>
-                <button className="text-gray-300 hover:text-white transition-colors">
-                  {translations.footer.investor.document}
-                </button>
-              </li>
-              <li>
-                <button className="text-gray-300 hover:text-white transition-colors">
-                  {translations.footer.investor.forecasts}
-                </button>
-              </li>
-              <li>
-                <button className="text-gray-300 hover:text-white transition-colors">
-                  {translations.footer.investor.strategy}
-                </button>
-              </li>
-              <li>
-                <button className="text-gray-300 hover:text-white transition-colors">
-                  {translations.footer.investor.contact}
-                </button>
-              </li>
-            </ul>
           </div>
         </div>
 
