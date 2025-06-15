@@ -1,0 +1,150 @@
+Blendingsanordningen reduserer styrken på sollys. 
+Пристрій захисту від засліплення зменшує силу сонячного світла.  Ось всі рчення: dør – Døren skal aldri blokkeres helt.
+Nødstoppmekanismen er nær døren til høyre.
+
+port – Porten må være bred nok.
+Skyvedører er plassert ved siden av porten.
+
+nødutgang – Nødutgangen må være godt synlig.
+Nødbelysning lyser opp nødutgangen automatisk.
+
+nødbelysning – Nødbelysning er viktig ved strømbrudd.
+Arbeidsplasser i kjeller trenger nødbelysning.
+
+lys – Sterkt lys kan gi blending.
+Lyskilder bør plasseres riktig for sikkerhet.
+
+syn – Godt syn krever riktig belysning.
+Dataskjerm må ikke forstyrre synet ditt.
+
+sikkerhet – Døren må ha et sikkerhetssystem.
+Svingdører uten sikkerhet er farlige.
+
+fare – Utilsiktet lukking utgjør fare.
+Nødstoppmekanisme reduserer fare betraktelig.
+
+arbeidsplass – Hver arbeidsplass trenger dagslys.
+Kontrastforhold forbedrer sikkerheten på arbeidsplassen.
+
+arbeidslokale – Arbeidslokalet må være opplyst.
+Belysning i arbeidslokalet skal tilpasses arbeidet.
+
+dagslys – Vi trenger dagslys i spiserom.
+Utsyn gir også mental sikkerhet.
+
+utsyn – Godt utsyn forebygger ulykker.
+Arbeidstilsynet krever godt utsyn i lokalene.
+
+belysning – Belysning skal ikke gi blending.
+Lysinstallasjoner må kontrolleres jevnlig.
+
+fluktvei – Fluktveier må holdes åpne.
+Nødutgang er også en fluktvei.
+
+blendingsanordning – Vi monterte en blendingsanordning i vinduet.
+Vinduer uten blendingsanordning kan blende skjermen.
+
+vinduer – Vinduer må ikke gi refleks.
+Gjennomsiktige vegger fungerer ofte som vinduer.
+
+reflekslys – Reflekslys gjør skjermen uleselig.
+Dataskjermer er følsomme for reflekslys.
+
+kontrast – Kontrasten må ikke være skadelig.
+Synsforhold påvirkes av dårlig kontrast.
+
+kollisjon – Svingporter skal hindre kollisjon.
+Utforming av porten må forebygge kollisjon.
+
+utforming – Utforming skal unngå farlige situasjoner.
+Svingdører må ha trygg utforming.
+
+maskin – Maskiner må ha tydelig merking.
+Stroboskopvirkning på maskin kan gi fare.
+
+nødstoppmekanisme – Nødstoppmekanisme skal være lett tilgjengelig.
+Sikkerhetssystemer inkluderer ofte nødstoppmekanismer.
+
+merking – Dørene må ha god merking.
+Glassfelt må også merkes tydelig.
+
+arbeidstilsynet – Arbeidstilsynet kontrollerer rømningsveier.
+Forskrift fra arbeidstilsynet er oppdatert.
+
+forskrift – Ny forskrift krever bedre lys.
+Arbeidsplasser må følge forskriftene.
+
+arbeidstaker – Arbeidstakeren trenger trygge omgivelser.
+Sikkerhetssystemer beskytter arbeidstakere effektivt.
+
+sikkerhetssystem – Porten har et innebygd sikkerhetssystem.
+Fare reduseres med moderne sikkerhetssystem.
+
+knusing – Glass må beskyttes mot knusing.
+Gjennomsiktige flater er utsatt for knusing.
+
+gjennomsiktig – Gjennomsiktige porter krever sikkerhetsmerking.
+Glassfelt er vanligvis gjennomsiktige.
+
+glassfelt – Glassfelt må ha varseltape.
+Synsfeltet kan forstyrres av feil plasserte glassfelt.
+
+skyvedør – Skyvedører må ha sikring mot velting.
+Porten er en type skyvedør.
+
+svingdør – Svingdøren må ikke kunne skade noen.
+Kollisjon med svingdør må forhindres.
+
+svingport – Svingporten ble fjernet for sikkerhet.
+Utforming ble endret på svingporten.
+
+mekanisk – Mekaniske porter må testes ofte.
+Manuell åpning av mekanisk dør er viktig.
+
+manuell – Døren skal kunne åpnes manuelt.
+Nødstoppmekanisme kan brukes hvis manuell åpning feiler.
+
+tilgang – Nødstoppmekanisme må ha fri tilgang.
+Atkomstveier skal ikke sperres.
+
+atkomstvei – Atkomstveiene må holdes åpne.
+Transportveier er koblet til atkomstveiene.
+
+transportvei – Transportveien skal være godt belyst.
+Lysinstallasjoner plasseres langs transportveien.
+
+luminans – Høy luminans kan skade øynene.
+Synsfeltet påvirkes av luminansforskjeller.
+
+synsfelt – Synsfeltet må være fritt for refleks.
+Vinduer må ikke blende synsfeltet.
+
+arbeidsstasjon – Arbeidsstasjonen må være ergonomisk og trygg.
+Lyskildene bør justeres for arbeidsstasjonen.
+
+dataskjerm – Dataskjermen må stå riktig vei.
+Reflekslys gjør dataskjermen vanskelig å bruke.
+
+lyskilde – Lyskilden ble byttet for bedre lys.
+Arbeidslokalet trengte sterkere lyskilder.
+
+lyskildeplassering – Lyskildeplassering må ikke gi skygge.
+Blendingsanordning ble montert for bedre lyskildeplassering.
+
+ulykke – Feil belysning førte til ulykke.
+Sikkerhetssystem forhindret ny ulykke senere.
+
+klimatiske forhold – Belysningen må tåle klimatiske forhold.
+Lysinstallasjonene ble valgt for kalde klimatiske forhold.
+
+ulykkesrisiko – Vi fjernet alle kilder til ulykkesrisiko.
+Belysning minsker ulykkesrisiko i mørke rom.
+
+varsling – Varsling må skje automatisk ved brann.
+Fare må utløse visuell varsling.
+
+hindring – Døren må være fri for hindring.
+Fluktveier må ikke ha noen hindring.
+
+styrke – Nødbelysningen må ha nok styrke.
+Blendingsanordningen reduserer styrken på sollys.

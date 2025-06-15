@@ -131,6 +131,11 @@ Changelog:
 - June 14, 2025. Added language switcher with instant translation capability
 - June 14, 2025. Professional translations for all content (non-Google Translate)
 - June 14, 2025. Persistent language preferences with localStorage
+- June 15, 2025. Created comprehensive B2B business landing page based on Ukrainian content structure
+- June 15, 2025. Added dual-version architecture: Investor (/") and Business (/business) versions
+- June 15, 2025. Implemented AnimatedDemo component with 5-step text-to-audio transformation
+- June 15, 2025. Added authentic Norwegian workplace safety vocabulary and contexts
+- June 15, 2025. Created bilingual playlist demonstration (Norwegian → Ukrainian/English)
 ```
 
 ## User Preferences

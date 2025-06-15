@@ -1,0 +1,105 @@
+Гаразд, починаю роботу за затвердженим планом. Це буде великий обсяг інформації, тому я структурував її чітко за темами.
+
+Тема 1: Безпека на роботі (Sikkerhet på arbeidsplassen)
+Артефакт 1: Детальний список (Норвезька – Українська)
+dør – двері. Døren skal aldri blokkeres helt. Двері ніколи не повинні бути повністю заблоковані. Nødstoppmekanismen er nær døren til høyre. Аварійний вимикач розташований праворуч від дверей.
+port – ворота. Porten må være bred nok. Ворота повинні бути достатньо широкими. Skyvedører er plassert ved siden av porten. Розсувні двері розташовані поруч із воротами.
+nødutgang – аварійний вихід. Nødutgangen må være godt synlig. Аварійний вихід повинен бути добре помітним. Nødbelysning lyser opp nødutgangen automatisk. Аварійне освітлення автоматично освітлює аварійний вихід.
+nødbelysning – аварійне освітлення. Nødbelysning er viktig ved strømbrudd. Аварійне освітлення важливе під час відключення електроенергії. Arbeidsplasser i kjeller trenger nødbelysning. Робочі місця в підвалі потребують аварійного освітлення.
+lys – світло. Sterkt lys kan gi blending. Яскраве світло може спричинити відблиски. Lyskilder bør plasseres riktig for sikkerhet. Джерела світла слід розміщувати правильно для безпеки.
+syn – зір. Godt syn krever riktig belysning. Добрий зір вимагає правильного освітлення. Dataskjerm må ikke forstyrre synet ditt. Монітор комп'ютера не повинен заважати вашому зору.
+sikkerhet – безпека. Døren må ha et sikkerhetssystem. Двері повинні мати систему безпеки. Svingdører uten sikkerhet er farlige. Обертові двері без засобів безпеки небезпечні.
+fare – небезпека. Utilsiktet lukking utgjør fare. Ненавмисне закриття становить небезпеку. Nødstoppmekanisme reduserer fare betraktelig. Механізм аварійної зупинки значно зменшує небезпеку.
+arbeidsplass – робоче місце. Hver arbeidsplass trenger dagslys. Кожне робоче місце потребує денного світла. Kontrastforhold forbedrer sikkerheten på arbeidsplassen. Контрастність покращує безпеку на робочому місці.
+arbeidslokale – робоче приміщення. Arbeidslokalet må være opplyst. Робоче приміщення повинно бути освітленим. Belysning i arbeidslokalet skal tilpasses arbeidet. Освітлення в робочому приміщенні повинно відповідати роботі.
+dagslys – денне світло. Vi trenger dagslys i spiserom. Нам потрібне денне світло в їдальні. Utsyn gir også mental sikkerhet. Огляд також забезпечує психологічну безпеку.
+utsyn – огляд. Godt utsyn forebygger ulykker. Добрий огляд запобігає нещасним випадкам. Arbeidstilsynet krever godt utsyn i lokalene. Інспекція праці вимагає доброго огляду в приміщеннях.
+belysning – освітлення. Belysning skal ikke gi blending. Освітлення не повинно створювати відблисків. Lysinstallasjoner må kontrolleres jevnlig. Освітлювальні установки необхідно регулярно перевіряти.
+fluktvei – шлях евакуації. Fluktveier må holdes åpne. Шляхи евакуації повинні бути вільними. Nødutgang er også en fluktvei. Аварійний вихід також є шляхом евакуації.
+blendingsanordning – пристрій проти відблисків. Vi monterte en blendingsanordning i vinduet. Ми встановили пристрій проти відблисків на вікні. Vinduer uten blendingsanordning kan blende skjermen. Вікна без пристрою проти відблисків можуть засліплювати екран.
+vinduer – вікна. Vinduer må ikke gi refleks. Вікна не повинні створювати віддзеркалень. Gjennomsiktige vegger fungerer ofte som vinduer. Прозорі стіни часто слугують вікнами.
+reflekslys – відбите світло. Reflekslys gjør skjermen uleselig. Відбите світло робить екран нечитабельним. Dataskjermer er følsomme for reflekslys. Монітори комп'ютерів чутливі до відбитого світла.
+kontrast – контраст. Kontrasten må ikke være skadelig. Контраст не повинен бути шкідливим. Synsforhold påvirkes av dårlig kontrast. Умови видимості погіршуються через поганий контраст.
+kollisjon – зіткнення. Svingporter skal hindre kollisjon. Орні ворота повинні запобігати зіткненню. Utforming av porten må forebygge kollisjon. Конструкція воріт повинна запобігати зіткненню.
+utforming – конструкція. Utforming skal unngå farlige situasjoner. Конструкція повинна уникати небезпечних ситуацій. Svingdører må ha trygg utforming. Обертові двері повинні мати безпечну конструкцію.
+maskin – машина/верстат. Maskiner må ha tydelig merking. Машини повинні мати чітке маркування. Stroboskopvirkning på maskin kan gi fare. Стробоскопічний ефект на машині може створити небезпеку.
+nødstoppmekanisme – механізм аварійної зупинки. Nødstoppmekanisme skal være lett tilgjengelig. Механізм аварійної зупинки повинен бути легкодоступним. Sikkerhetssystemer inkluderer ofte nødstoppmekanismer. Системи безпеки часто включають механізми аварійної зупинки.
+merking – маркування. Dørene må ha god merking. Двері повинні мати добре маркування. Glassfelt må også merkes tydelig. Скляні панелі також повинні бути чітко марковані.
+arbeidstilsynet – інспекція праці. Arbeidstilsynet kontrollerer rømningsveier. Інспекція праці перевіряє шляхи евакуації. Forskrift fra arbeidstilsynet er oppdatert. Постанова від інспекції праці оновлена.
+forskrift – постанова/правило. Ny forskrift krever bedre lys. Нова постанова вимагає кращого освітлення. Arbeidsplasser må følge forskriftene. Робочі місця повинні дотримуватися постанов.
+arbeidstaker – працівник. Arbeidstakeren trenger trygge omgivelser. Працівник потребує безпечних умов. Sikkerhetssystemer beskytter arbeidstakere effektivt. Системи безпеки ефективно захищають працівників.
+sikkerhetssystem – система безпеки. Porten har et innebygd sikkerhetssystem. Ворота мають вбудовану систему безпеки. Fare reduseres med moderne sikkerhetssystem. Небезпека зменшується завдяки сучасній системі безпеки.
+knusing – розбиття. Glass må beskyttes mot knusing. Скло повинно бути захищене від розбиття. Gjennomsiktige flater er utsatt for knusing. Прозорі поверхні схильні до розбиття.
+gjennomsiktig – прозорий. Gjennomsiktige porter krever sikkerhetsmerking. Прозорі ворота вимагають маркування безпеки. Glassfelt er vanligvis gjennomsiktige. Скляні панелі зазвичай прозорі.
+glassfelt – скляна панель. Glassfelt må ha varseltape. Скляна панель повинна мати попереджувальну стрічку. Synsfeltet kan forstyrres av feil plasserte glassfelt. Поле зору може бути порушене через неправильно розташовані скляні панелі.
+skyvedør – розсувні двері. Skyvedører må ha sikring mot velting. Розсувні двері повинні мати захист від перекидання. Porten er en type skyvedør. Ворота є типом розсувних дверей.
+svingdør – обертові двері. Svingdøren må ikke kunne skade noen. Обертові двері не повинні нікого травмувати. Kollisjon med svingdør må forhindres. Необхідно запобігати зіткненню з обертовими дверима.
+svingport – орні ворота. Svingporten ble fjernet for sikkerhet. Орні ворота були демонтовані з міркувань безпеки. Utforming ble endret på svingporten. Конструкція орних воріт була змінена.
+mekanisk – механічний. Mekaniske porter må testes ofte. Механічні ворота потрібно часто тестувати. Manuell åpning av mekanisk dør er viktig. Важлива можливість ручного відкриття механічних дверей.
+manuell – ручний. Døren skal kunne åpnes manuelt. Двері повинні відкриватися вручну. Nødstoppmekanisme kan brukes hvis manuell åpning feiler. Механізм аварійної зупинки можна використати, якщо ручне відкриття не працює.
+tilgang – доступ. Nødstoppmekanisme må ha fri tilgang. Механізм аварійної зупинки повинен мати вільний доступ. Atkomstveier skal ikke sperres. Під'їзні шляхи не повинні бути заблоковані.
+atkomstvei – під'їзний шлях. Atkomstveiene må holdes åpne. Під'їзні шляхи повинні бути вільними. Transportveier er koblet til atkomstveiene. Транспортні шляхи з'єднані з під'їзними шляхами.
+transportvei – транспортний шлях. Transportveien skal være godt belyst. Транспортний шлях повинен бути добре освітлений. Lysinstallasjoner plasseres langs transportveien. Освітлювальні установки розміщуються вздовж транспортного шляху.
+luminans – яскравість. Høy luminans kan skade øynene. Висока яскравість може пошкодити очі. Synsfeltet påvirkes av luminansforskjeller. Поле зору залежить від різниці в яскравості.
+synsfelt – поле зору. Synsfeltet må være fritt for refleks. Поле зору повинно бути вільним від відблисків. Vinduer må ikke blende synsfeltet. Вікна не повинні засліплювати поле зору.
+arbeidsstasjon – робоча станція. Arbeidsstasjonen må være ergonomisk og trygg. Робоча станція повинна бути ергономічною та безпечною. Lyskildene bør justeres for arbeidsstasjonen. Джерела світла слід налаштувати для робочої станції.
+dataskjerm – монітор комп'ютера. Dataskjermen må stå riktig vei. Монітор комп'ютера повинен стояти правильно. Reflekslys gjør dataskjermen vanskelig å bruke. Відбите світло ускладнює використання монітора.
+lyskilde – джерело світла. Lyskilden ble byttet for bedre lys. Джерело світла замінили для кращого освітлення. Arbeidslokalet trengte sterkere lyskilder. Робоче приміщення потребувало потужніших джерел світла.
+lyskildeplassering – розміщення джерела світла. Lyskildeplassering må ikke gi skygge. Розміщення джерела світла не повинно створювати тіні. Blendingsanordning ble montert for bedre lyskildeplassering. Пристрій проти відблисків встановили для кращого розміщення джерела світла.
+ulykke – нещасний випадок. Feil belysning førte til ulykke. Неправильне освітлення призвело до нещасного випадку. Sikkerhetssystem forhindret ny ulykke senere. Система безпеки запобігла новому нещасному випадку пізніше.
+klimatiske forhold – кліматичні умови. Belysningen må tåle klimatiske forhold. Освітлення повинно витримувати кліматичні умови. Lysinstallasjonene ble valgt for kalde klimatiske forhold. Освітлювальні установки були обрані для холодних кліматичних умов.
+ulykkesrisiko – ризик нещасного випадку. Vi fjernet alle kilder til ulykkesrisiko. Ми усунули всі джерела ризику нещасного випадку. Belysning minsker ulykkesrisiko i mørke rom. Освітлення зменшує ризик нещасного випадку в темних приміщеннях.
+varsling – сповіщення. Varsling må skje automatisk ved brann. Сповіщення при пожежі повинно відбуватися автоматично. Fare må utløse visuell varsling. Небезпека повинна активувати візуальне сповіщення.
+hindring – перешкода. Døren må være fri for hindring. Двері повинні бути вільні від перешкод. Fluktveier må ikke ha noen hindring. Шляхи евакуації не повинні мати жодних перешкод.
+styrke – сила/потужність. Nødbelysningen må ha nok styrke. Аварійне освітлення повинно мати достатню потужність. Blendingsanordningen reduserer styrken på sollys. Пристрій проти відблисків зменшує інтенсивність сонячного світла.
+Артефакт 2: Детальний список (Норвезька – Англійська)
+dør – door. Døren skal aldri blokkeres helt. The door should never be completely blocked. Nødstoppmekanismen er nær døren til høyre. The emergency stop mechanism is near the door to the right.
+port – gate. Porten må være bred nok. The gate must be wide enough. Skyvedører er plassert ved siden av porten. Sliding doors are located next to the gate.
+nødutgang – emergency exit. Nødutgangen må være godt synlig. The emergency exit must be clearly visible. Nødbelysning lyser opp nødutgangen automatisk. Emergency lighting illuminates the emergency exit automatically.
+nødbelysning – emergency lighting. Nødbelysning er viktig ved strømbrudd. Emergency lighting is important during a power outage. Arbeidsplasser i kjeller trenger nødbelysning. Workplaces in the basement need emergency lighting.
+lys – light. Sterkt lys kan gi blending. Strong light can cause glare. Lyskilder bør plasseres riktig for sikkerhet. Light sources should be placed correctly for safety.
+syn – vision. Godt syn krever riktig belysning. Good vision requires proper lighting. Dataskjerm må ikke forstyrre synet ditt. The computer screen must not disturb your vision.
+sikkerhet – safety/security. Døren må ha et sikkerhetssystem. The door must have a security system. Svingdører uten sikkerhet er farlige. Revolving doors without safety features are dangerous.
+fare – danger. Utilsiktet lukking utgjør fare. Unintended closure poses a danger. Nødstoppmekanisme reduserer fare betraktelig. An emergency stop mechanism significantly reduces danger.
+arbeidsplass – workplace. Hver arbeidsplass trenger dagslys. Every workplace needs daylight. Kontrastforhold forbedrer sikkerheten på arbeidsplassen. Contrast conditions improve safety at the workplace.
+arbeidslokale – work premises. Arbeidslokalet må være opplyst. The work premises must be illuminated. Belysning i arbeidslokalet skal tilpasses arbeidet. Lighting in the work premises should be adapted to the work.
+dagslys – daylight. Vi trenger dagslys i spiserom. We need daylight in the dining room. Utsyn gir også mental sikkerhet. A view also provides mental security.
+utsyn – view/visibility. Godt utsyn forebygger ulykker. Good visibility prevents accidents. Arbeidstilsynet krever godt utsyn i lokalene. The labor inspection authority requires good visibility on the premises.
+belysning – lighting. Belysning skal ikke gi blending. Lighting should not cause glare. Lysinstallasjoner må kontrolleres jevnlig. Lighting installations must be checked regularly.
+fluktvei – escape route. Fluktveier må holdes åpne. Escape routes must be kept open. Nødutgang er også en fluktvei. An emergency exit is also an escape route.
+blendingsanordning – anti-glare device. Vi monterte en blendingsanordning i vinduet. We installed an anti-glare device on the window. Vinduer uten blendingsanordning kan blende skjermen. Windows without an anti-glare device can cause glare on the screen.
+vinduer – windows. Vinduer må ikke gi refleks. Windows must not cause reflections. Gjennomsiktige vegger fungerer ofte som vinduer. Transparent walls often function as windows.
+reflekslys – reflected light. Reflekslys gjør skjermen uleselig. Reflected light makes the screen unreadable. Dataskjermer er følsomme for reflekslys. Computer screens are sensitive to reflected light.
+kontrast – contrast. Kontrasten må ikke være skadelig. The contrast must not be harmful. Synsforhold påvirkes av dårlig kontrast. Visual conditions are affected by poor contrast.
+kollisjon – collision. Svingporter skal hindre kollisjon. Swing gates should prevent collision. Utforming av porten må forebygge kollisjon. The design of the gate must prevent collision.
+utforming – design. Utforming skal unngå farlige situasjoner. The design should avoid dangerous situations. Svingdører må ha trygg utforming. Revolving doors must have a safe design.
+maskin – machine. Maskiner må ha tydelig merking. Machines must have clear marking. Stroboskopvirkning på maskin kan gi fare. Stroboscopic effect on a machine can cause danger.
+nødstoppmekanisme – emergency stop mechanism. Nødstoppmekanisme skal være lett tilgjengelig. The emergency stop mechanism must be easily accessible. Sikkerhetssystemer inkluderer ofte nødstoppmekanismer. Safety systems often include emergency stop mechanisms.
+merking – marking. Dørene må ha god merking. The doors must have good marking. Glassfelt må også merkes tydelig. Glass panes must also be clearly marked.
+arbeidstilsynet – labor inspection authority. Arbeidstilsynet kontrollerer rømningsveier. The labor inspection authority checks escape routes. Forskrift fra arbeidstilsynet er oppdatert. Regulations from the labor inspection authority have been updated.
+forskrift – regulation. Ny forskrift krever bedre lys. New regulations require better light. Arbeidsplasser må følge forskriftene. Workplaces must follow the regulations.
+arbeidstaker – employee. Arbeidstakeren trenger trygge omgivelser. The employee needs safe surroundings. Sikkerhetssystemer beskytter arbeidstakere effektivt. Safety systems protect employees effectively.
+sikkerhetssystem – safety system. Porten har et innebygd sikkerhetssystem. The gate has a built-in safety system. Fare reduseres med moderne sikkerhetssystem. Danger is reduced with a modern safety system.
+knusing – shattering/crushing. Glass må beskyttes mot knusing. Glass must be protected against shattering. Gjennomsiktige flater er utsatt for knusing. Transparent surfaces are prone to shattering.
+gjennomsiktig – transparent. Gjennomsiktige porter krever sikkerhetsmerking. Transparent gates require safety marking. Glassfelt er vanligvis gjennomsiktige. Glass panes are usually transparent.
+glassfelt – glass pane. Glassfelt må ha varseltape. Glass panes must have warning tape. Synsfeltet kan forstyrres av feil plasserte glassfelt. The field of vision can be disturbed by incorrectly placed glass panes.
+skyvedør – sliding door. Skyvedører må ha sikring mot velting. Sliding doors must have protection against tipping over. Porten er en type skyvedør. The gate is a type of sliding door.
+svingdør – revolving door. Svingdøren må ikke kunne skade noen. The revolving door must not be able to injure anyone. Kollisjon med svingdør må forhindres. Collision with a revolving door must be prevented.
+svingport – swing gate. Svingporten ble fjernet for sikkerhet. The swing gate was removed for safety. Utforming ble endret på svingporten. The design was changed on the swing gate.
+mekanisk – mechanical. Mekaniske porter må testes ofte. Mechanical gates must be tested often. Manuell åpning av mekanisk dør er viktig. Manual opening of a mechanical door is important.
+manuell – manual. Døren skal kunne åpnes manuelt. The door must be openable manually. Nødstoppmekanisme kan brukes hvis manuell åpning feiler. The emergency stop mechanism can be used if manual opening fails.
+tilgang – access. Nødstoppmekanisme må ha fri tilgang. The emergency stop mechanism must have free access. Atkomstveier skal ikke sperres. Access ways must not be blocked.
+atkomstvei – access way. Atkomstveiene må holdes åpne. The access ways must be kept open. Transportveier er koblet til atkomstveiene. Transport routes are connected to the access ways.
+transportvei – transport route. Transportveien skal være godt belyst. The transport route must be well-lit. Lysinstallasjoner plasseres langs transportveien. Lighting installations are placed along the transport route.
+luminans – luminance. Høy luminans kan skade øynene. High luminance can damage the eyes. Synsfeltet påvirkes av luminansforskjeller. The field of vision is affected by differences in luminance.
+synsfelt – field of vision. Synsfeltet må være fritt for refleks. The field of vision must be free from reflections. Vinduer må ikke blende synsfeltet. Windows must not cause glare in the field of vision.
+arbeidsstasjon – workstation. Arbeidsstasjonen må være ergonomisk og trygg. The workstation must be ergonomic and safe. Lyskildene bør justeres for arbeidsstasjonen. The light sources should be adjusted for the workstation.
+dataskjerm – computer screen. Dataskjermen må stå riktig vei. The computer screen must be positioned correctly. Reflekslys gjør dataskjermen vanskelig å bruke. Reflected light makes the computer screen difficult to use.
+lyskilde – light source. Lyskilden ble byttet for bedre lys. The light source was replaced for better light. Arbeidslokalet trengte sterkere lyskilder. The work premises needed stronger light sources.
+lyskildeplassering – light source placement. Lyskildeplassering må ikke gi skygge. Light source placement must not create shadows. Blendingsanordning ble montert for bedre lyskildeplassering. An anti-glare device was installed for better light source placement.
+ulykke – accident. Feil belysning førte til ulykke. Incorrect lighting led to an accident. Sikkerhetssystem forhindret ny ulykke senere. A safety system prevented a new accident later.
+klimatiske forhold – climatic conditions. Belysningen må tåle klimatiske forhold. The lighting must withstand climatic conditions. Lysinstallasjonene ble valgt for kalde klimatiske forhold. The lighting installations were chosen for cold climatic conditions.
+ulykkesrisiko – accident risk. Vi fjernet alle kilder til ulykkesrisiko. We removed all sources of accident risk. Belysning minsker ulykkesrisiko i mørke rom. Lighting reduces accident risk in dark rooms.
+varsling – notification/alert. Varsling må skje automatisk ved brann. Notification must be automatic in case of fire. Fare må utløse visuell varsling. Danger must trigger a visual alert.
+hindring – obstruction. Døren må være fri for hindring. The door must be free of obstruction. Fluktveier må ikke ha noen hindring. Escape routes must not have any obstruction.
+styrke – strength/intensity. Nødbelysningen må ha nok styrke. The emergency lighting must have enough intensity. Blendingsanordningen reduserer styrken på sollys. The anti-glare device reduces the intensity of sunlight.

@@ -24,6 +24,7 @@ import {
   Coffee,
   Tractor
 } from 'lucide-react';
+import { AnimatedDemo } from '@/components/AnimatedDemo';
 
 interface BusinessTranslations {
   nav: {
@@ -617,7 +618,7 @@ export const Business: React.FC = () => {
           <h2 className="text-4xl font-bold text-[#022f36] text-center mb-12">
             {t.solution.title}
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
             <div className="text-center">
               <div className="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 shadow-lg">
                 <Upload className="h-10 w-10 text-[#022f36]" />
@@ -644,6 +645,9 @@ export const Business: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Animated Demo Section */}
+      <AnimatedDemo />
 
       {/* Features Section */}
       <section className="py-16 bg-white">
