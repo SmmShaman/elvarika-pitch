@@ -387,10 +387,10 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
           newTimeouts.push(highlightTimeout);
         });
       }
-    }, 5000);
+    }, 7000);
     newTimeouts.push(step2Timeout);
 
-    // Step 3: Context wrapping (10 seconds)
+    // Step 3: Context wrapping (12 seconds)
     const step3Timeout = setTimeout(() => {
       if (!isPaused) {
         setStep(3);
@@ -405,10 +405,10 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
           newTimeouts.push(contextTimeout);
         });
       }
-    }, 10000);
+    }, 12000);
     newTimeouts.push(step3Timeout);
 
-    // Step 4: Translation (15 seconds)  
+    // Step 4: Translation (17 seconds)  
     const step4Timeout = setTimeout(() => {
       if (!isPaused) {
         setStep(4);
@@ -432,10 +432,10 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
           newTimeouts.push(translateTimeout);
         });
       }
-    }, 15000);
+    }, 17000);
     newTimeouts.push(step4Timeout);
 
-    // Step 5: Final playlist (20 seconds)
+    // Step 5: Final playlist (22 seconds)
     const step5Timeout = setTimeout(() => {
       if (!isPaused) {
         setStep(5);
@@ -866,15 +866,8 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
             )}
           </div>
           
-          {/* Right side - Language Selection Info */}
+          {/* Right side - Empty for clean layout */}
           <div className="flex items-center gap-3">
-            {step > 0 && (
-              <div className="text-xs text-gray-500">
-                {currentLanguage === 'no' ? 'Klikk på sirkler for å kontrollere' : 
-                 currentLanguage === 'uk' ? 'Натисніть на кружечки для керування' : 
-                 'Click circles to control'}
-              </div>
-            )}
           </div>
         </div>
       </div>
@@ -1072,7 +1065,11 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
                     <Volume2 className="h-6 w-6 text-[#022f36]" />
                     <div>
                       <div className="text-lg font-bold text-[#022f36]">{translations.readyPlaylist}</div>
-                      <div className="text-sm text-gray-600">25 слів • 12 хвилин</div>
+                      <div className="text-sm text-gray-600">
+                        {currentLanguage === 'no' ? '25 ord • 12 minutter' : 
+                         currentLanguage === 'uk' ? '25 слів • 12 хвилин' : 
+                         '25 words • 12 minutes'}
+                      </div>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
