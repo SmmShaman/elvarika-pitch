@@ -9,6 +9,7 @@ export interface Translations {
     market: string;
     advantages: string;
     faq: string;
+    blog: string;
     investor: string;
   };
 
@@ -287,6 +288,7 @@ export const translations: Record<Language, Translations> = {
       market: "Marked",
       advantages: "Fortrinn",
       faq: "FAQ",
+      blog: "Blogg",
       investor: "Investormulighet"
     },
     hero: {
@@ -543,6 +545,7 @@ export const translations: Record<Language, Translations> = {
       market: "Market",
       advantages: "Advantages",
       faq: "FAQ",
+      blog: "Blog",
       investor: "Investment Opportunity"
     },
     hero: {
@@ -799,6 +802,7 @@ export const translations: Record<Language, Translations> = {
       market: "Ринок",
       advantages: "Переваги",
       faq: "FAQ",
+      blog: "Блог",
       investor: "Інвестиційна можливість"
     },
     hero: {
