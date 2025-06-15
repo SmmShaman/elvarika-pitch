@@ -586,7 +586,7 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
       {/* Header with integrated controls and progress */}
       <div className="p-4 border-b border-gray-100 bg-white/50 flex-shrink-0">
         <div className="flex items-center justify-between">
-          {/* Left side - Progress Steps */}
+          {/* Left side - Progress Steps with Result Indicators */}
           <div className="flex items-center space-x-2">
             {[1, 2, 3, 4, 5].map((stepNum) => (
               <div key={stepNum} className="flex items-center">
@@ -598,6 +598,44 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
                 {stepNum < 5 && <ArrowRight className="h-3 w-3 mx-1 text-gray-400" />}
               </div>
             ))}
+            
+            {/* Final Result Indicators - only show on step 5 */}
+            {step === 5 && (
+              <div className="flex items-center gap-2 ml-4 pl-4 border-l border-gray-300">
+                <motion.div 
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 1 }}
+                  className="bg-green-50 px-2 py-1 rounded text-center border border-green-200"
+                >
+                  <div className="text-xs font-medium text-green-700">🎯 25 слів</div>
+                </motion.div>
+                <motion.div 
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 1.2 }}
+                  className="bg-blue-50 px-2 py-1 rounded text-center border border-blue-200"
+                >
+                  <div className="text-xs font-medium text-blue-700">🔊 Аудіо</div>
+                </motion.div>
+                <motion.div 
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 1.4 }}
+                  className="bg-purple-50 px-2 py-1 rounded text-center border border-purple-200"
+                >
+                  <div className="text-xs font-medium text-purple-700">📚 Контекст</div>
+                </motion.div>
+                <motion.div 
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 1.6 }}
+                  className="bg-yellow-50 px-2 py-1 rounded text-center border border-yellow-200"
+                >
+                  <div className="text-xs font-medium text-yellow-700">✨ Готово</div>
+                </motion.div>
+              </div>
+            )}
           </div>
           
           {/* Right side - Controls */}
@@ -969,52 +1007,17 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
               exit={{ opacity: 0 }}
               className="h-full"
             >
-              <div className="bg-white rounded-lg p-6 h-full overflow-hidden flex flex-col space-y-6">
+              <div className="bg-white rounded-lg p-8 h-full overflow-hidden flex flex-col space-y-6">
                 <div className="text-center">
-                  <h4 className="text-3xl font-bold text-[#022f36] mb-4">
+                  <h4 className="text-4xl font-bold text-[#022f36] mb-6">
                     {stepExplanations.step5.title}
                   </h4>
-                  <p className="text-xl text-gray-700 leading-relaxed mb-6 max-w-4xl mx-auto">
+                  <p className="text-2xl text-gray-700 leading-relaxed mb-8 max-w-5xl mx-auto">
                     {stepExplanations.step5.description}
                   </p>
                 </div>
 
-                {/* Final Result Demo */}
-                <div className="grid grid-cols-4 gap-1 mb-3">
-                  <motion.div 
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 1 }}
-                    className="bg-green-50 p-1.5 rounded text-center"
-                  >
-                    <div className="text-xs font-medium">🎯 25 слів</div>
-                  </motion.div>
-                  <motion.div 
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 1.5 }}
-                    className="bg-blue-50 p-1.5 rounded text-center"
-                  >
-                    <div className="text-xs font-medium">🔊 Аудіо</div>
-                  </motion.div>
-                  <motion.div 
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 2 }}
-                    className="bg-purple-50 p-1.5 rounded text-center"
-                  >
-                    <div className="text-xs font-medium">📚 Контекст</div>
-                  </motion.div>
-                  <motion.div 
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 2.5 }}
-                    className="bg-yellow-50 p-1.5 rounded text-center"
-                  >
-                    <div className="text-xs font-medium">✨ Готово</div>
-                  </motion.div>
-                </div>
-
+                {/* Enlarged playlist area */}
                 <div className="flex-1 overflow-y-auto">
                   <div className="text-sm font-medium text-[#022f36] mb-2 flex items-center gap-2">
                     <Volume2 className="h-4 w-4" />
