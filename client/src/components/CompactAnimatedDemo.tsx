@@ -701,9 +701,9 @@ export const CompactAnimatedDemo: React.FC = () => {
                   </motion.div>
                 </div>
 
-                <div className="bg-gray-50 rounded p-2">
+                <div className="bg-gray-50 rounded p-2 flex-1">
                   <div className="text-sm font-medium text-gray-800 mb-1">Завантажений текст:</div>
-                  <div className="text-sm leading-relaxed text-gray-700 max-h-32 overflow-y-auto">
+                  <div className="text-sm leading-relaxed text-gray-700 min-h-[120px] overflow-y-auto">
                     {sourceText}
                   </div>
                 </div>
@@ -757,9 +757,9 @@ export const CompactAnimatedDemo: React.FC = () => {
                   </motion.div>
                 </div>
 
-                <div className="bg-gray-50 rounded p-2">
+                <div className="bg-gray-50 rounded p-2 flex-1">
                   <div className="text-sm font-medium text-gray-800 mb-1">Аналіз тексту:</div>
-                  <div className="text-sm leading-relaxed max-h-40 overflow-y-auto">
+                  <div className="text-sm leading-relaxed min-h-[140px] overflow-y-auto">
                     {sourceText.split(' ').map((word, index) => {
                       const cleanWord = word.replace(/[.,:;!?()]/g, '').toLowerCase();
                       const keyWord = keyWordsData.find(keyData => {
@@ -835,7 +835,7 @@ export const CompactAnimatedDemo: React.FC = () => {
                   </motion.div>
                 </div>
 
-                <div className="space-y-1 max-h-48 overflow-y-auto">
+                <div className="space-y-1 min-h-[180px] overflow-y-auto flex-1">
                   {words.filter(w => w.isInContext).slice(0, 8).map((word) => (
                     <motion.div
                       key={word.id}
@@ -903,14 +903,14 @@ export const CompactAnimatedDemo: React.FC = () => {
 
                 <div className="grid grid-cols-2 gap-2 flex-1">
                   {/* Norwegian Column */}
-                  <div className="bg-blue-50 rounded p-2">
+                  <div className="bg-blue-50 rounded p-2 flex flex-col">
                     <div className="flex items-center gap-1 mb-2">
                       <div className="w-2 h-1.5 bg-red-500"></div>
                       <div className="w-2 h-1.5 bg-white border"></div>
                       <div className="w-2 h-1.5 bg-blue-600"></div>
                       <span className="text-xs font-semibold">Norsk</span>
                     </div>
-                    <div className="space-y-1 max-h-32 overflow-y-auto">
+                    <div className="space-y-1 min-h-[120px] overflow-y-auto flex-1">
                       {words.filter(w => w.isTranslating || w.isReady).slice(0, 5).map((word) => (
                         <motion.div
                           key={word.id}
@@ -926,7 +926,7 @@ export const CompactAnimatedDemo: React.FC = () => {
                   </div>
                   
                   {/* Translation Column */}
-                  <div className="bg-green-50 rounded p-2">
+                  <div className="bg-green-50 rounded p-2 flex flex-col">
                     <div className="flex items-center gap-1 mb-2">
                       <div className="w-2 h-1.5 bg-blue-400"></div>
                       <div className="w-2 h-1.5 bg-yellow-400"></div>
@@ -934,7 +934,7 @@ export const CompactAnimatedDemo: React.FC = () => {
                         {activeTab === 'uk' ? 'Українська' : 'English'}
                       </span>
                     </div>
-                    <div className="space-y-1 max-h-32 overflow-y-auto">
+                    <div className="space-y-1 min-h-[120px] overflow-y-auto flex-1">
                       {words.filter(w => w.isTranslating || w.isReady).slice(0, 5).map((word) => (
                         <motion.div
                           key={word.id}
