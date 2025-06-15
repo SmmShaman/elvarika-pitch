@@ -635,325 +635,6 @@ export const Business: React.FC = () => {
         </section>
       )}
 
-      {/* Problems Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-[#022f36] text-center mb-12 max-w-4xl mx-auto">
-            {t.problems.title}
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <Card className="border-red-200 hover:shadow-lg transition-all">
-              <CardHeader>
-                <AlertTriangle className="h-12 w-12 text-red-500 mb-4" />
-                <CardTitle className="text-xl text-[#022f36]">{t.problems.safety.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">{t.problems.safety.description}</p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-orange-200 hover:shadow-lg transition-all">
-              <CardHeader>
-                <TrendingUp className="h-12 w-12 text-orange-500 mb-4 transform rotate-180" />
-                <CardTitle className="text-xl text-[#022f36]">{t.problems.productivity.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">{t.problems.productivity.description}</p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-yellow-200 hover:shadow-lg transition-all">
-              <CardHeader>
-                <DollarSign className="h-12 w-12 text-yellow-500 mb-4" />
-                <CardTitle className="text-xl text-[#022f36]">{t.problems.costs.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">{t.problems.costs.description}</p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-purple-200 hover:shadow-lg transition-all">
-              <CardHeader>
-                <TrendingUp className="h-12 w-12 text-purple-500 mb-4 transform rotate-180" />
-                <CardTitle className="text-xl text-[#022f36]">{t.problems.sales.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">{t.problems.sales.description}</p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Solution Section */}
-      <section id="demo" className="py-16 bg-gradient-to-br from-[#f8fffe] to-[#f0fff4]">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-[#022f36] text-center mb-12">
-            {t.solution.title}
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
-            <div className="text-center">
-              <div className="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 shadow-lg">
-                <Upload className="h-10 w-10 text-[#022f36]" />
-              </div>
-              <h3 className="text-2xl font-semibold text-[#022f36] mb-4">1. {t.solution.step1.title}</h3>
-              <p className="text-gray-600 leading-relaxed">{t.solution.step1.description}</p>
-            </div>
-
-            <div className="text-center">
-              <div className="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 shadow-lg">
-                <Brain className="h-10 w-10 text-[#022f36]" />
-              </div>
-              <h3 className="text-2xl font-semibold text-[#022f36] mb-4">2. {t.solution.step2.title}</h3>
-              <p className="text-gray-600 leading-relaxed">{t.solution.step2.description}</p>
-            </div>
-
-            <div className="text-center">
-              <div className="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 shadow-lg">
-                <Headphones className="h-10 w-10 text-[#022f36]" />
-              </div>
-              <h3 className="text-2xl font-semibold text-[#022f36] mb-4">3. {t.solution.step3.title}</h3>
-              <p className="text-gray-600 leading-relaxed">{t.solution.step3.description}</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-
-      {/* Features Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-[#022f36] text-center mb-12 max-w-4xl mx-auto">
-            {t.features.title}
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <Card className="hover:shadow-lg transition-all">
-              <CardHeader>
-                <Target className="h-12 w-12 text-blue-500 mb-4" />
-                <CardTitle className="text-xl text-[#022f36]">{t.features.anchor.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">{t.features.anchor.description}</p>
-              </CardContent>
-            </Card>
-
-            <Card className="hover:shadow-lg transition-all">
-              <CardHeader>
-                <Repeat className="h-12 w-12 text-green-500 mb-4" />
-                <CardTitle className="text-xl text-[#022f36]">{t.features.srs.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">{t.features.srs.description}</p>
-              </CardContent>
-            </Card>
-
-            <Card className="hover:shadow-lg transition-all">
-              <CardHeader>
-                <Eye className="h-12 w-12 text-purple-500 mb-4" />
-                <CardTitle className="text-xl text-[#022f36]">{t.features.screenFree.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">{t.features.screenFree.description}</p>
-              </CardContent>
-            </Card>
-
-            <Card className="hover:shadow-lg transition-all">
-              <CardHeader>
-                <BarChart3 className="h-12 w-12 text-orange-500 mb-4" />
-                <CardTitle className="text-xl text-[#022f36]">{t.features.analytics.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">{t.features.analytics.description}</p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Use Cases Section */}
-      <section id="use-cases" className="py-16 bg-gradient-to-br from-[#f8fffe] to-[#f0fff4]">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-[#022f36] text-center mb-12">
-            {t.useCases.title}
-          </h2>
-          <Tabs defaultValue="logistics" className="max-w-6xl mx-auto">
-            <TabsList className="grid w-full grid-cols-4 mb-8">
-              <TabsTrigger value="logistics" className="flex items-center gap-2">
-                <Truck className="h-4 w-4" />
-                {t.useCases.logistics.title}
-              </TabsTrigger>
-              <TabsTrigger value="manufacturing" className="flex items-center gap-2">
-                <HardHat className="h-4 w-4" />
-                {t.useCases.manufacturing.title}
-              </TabsTrigger>
-              <TabsTrigger value="horeca" className="flex items-center gap-2">
-                <Coffee className="h-4 w-4" />
-                {t.useCases.horeca.title}
-              </TabsTrigger>
-              <TabsTrigger value="agriculture" className="flex items-center gap-2">
-                <Tractor className="h-4 w-4" />
-                {t.useCases.agriculture.title}
-              </TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="logistics">
-              <Card className="bg-white">
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-semibold text-[#022f36] mb-4">{t.useCases.logistics.title}</h3>
-                  <p className="text-gray-600 text-lg leading-relaxed">{t.useCases.logistics.description}</p>
-                </CardContent>
-              </Card>
-            </TabsContent>
-
-            <TabsContent value="manufacturing">
-              <Card className="bg-white">
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-semibold text-[#022f36] mb-4">{t.useCases.manufacturing.title}</h3>
-                  <p className="text-gray-600 text-lg leading-relaxed">{t.useCases.manufacturing.description}</p>
-                </CardContent>
-              </Card>
-            </TabsContent>
-
-            <TabsContent value="horeca">
-              <Card className="bg-white">
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-semibold text-[#022f36] mb-4">{t.useCases.horeca.title}</h3>
-                  <p className="text-gray-600 text-lg leading-relaxed">{t.useCases.horeca.description}</p>
-                </CardContent>
-              </Card>
-            </TabsContent>
-
-            <TabsContent value="agriculture">
-              <Card className="bg-white">
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-semibold text-[#022f36] mb-4">{t.useCases.agriculture.title}</h3>
-                  <p className="text-gray-600 text-lg leading-relaxed">{t.useCases.agriculture.description}</p>
-                </CardContent>
-              </Card>
-            </TabsContent>
-          </Tabs>
-        </div>
-      </section>
-
-      {/* Social Proof Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl font-bold text-[#022f36] mb-6">
-              {t.socialProof.title}
-            </h2>
-            <p className="text-xl text-gray-600 mb-6 leading-relaxed">
-              {t.socialProof.description}
-            </p>
-            <div className="bg-gradient-to-br from-[#defff0] to-[#f0fff4] p-8 rounded-lg mb-8">
-              <p className="text-lg text-[#022f36] leading-relaxed">
-                {t.socialProof.ukrainianSupport}
-              </p>
-            </div>
-            <Button className="bg-[#022f36] text-white hover:bg-[#033944] px-8 py-3 text-lg">
-              {t.socialProof.cta}
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing Section */}
-      <section id="pricing" className="py-16 bg-gradient-to-br from-[#f8fffe] to-[#f0fff4]">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-[#022f36] text-center mb-6">
-            {t.pricing.title}
-          </h2>
-          <p className="text-xl text-gray-600 text-center mb-12 max-w-4xl mx-auto leading-relaxed">
-            {t.pricing.description}
-          </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <Card className="bg-white hover:shadow-lg transition-all">
-              <CardHeader>
-                <CardTitle className="text-2xl text-[#022f36]">{t.pricing.team.name}</CardTitle>
-                <div className="text-3xl font-bold text-[#022f36]">{t.pricing.team.price}</div>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-3 mb-6">
-                  <li className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-[#022f36] rounded-full"></div>
-                    {t.pricing.team.users}
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-[#022f36] rounded-full"></div>
-                    {t.pricing.team.credits}
-                  </li>
-                </ul>
-                <p className="text-gray-600 mb-6">{t.pricing.team.description}</p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white hover:shadow-lg transition-all border-2 border-[#022f36]">
-              <CardHeader>
-                <Badge className="bg-[#022f36] text-white mb-2">Mest populær</Badge>
-                <CardTitle className="text-2xl text-[#022f36]">{t.pricing.business.name}</CardTitle>
-                <div className="text-3xl font-bold text-[#022f36]">{t.pricing.business.price}</div>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-3 mb-6">
-                  <li className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-[#022f36] rounded-full"></div>
-                    {t.pricing.business.users}
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-[#022f36] rounded-full"></div>
-                    {t.pricing.business.credits}
-                  </li>
-                </ul>
-                <p className="text-gray-600 mb-6">{t.pricing.business.description}</p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white hover:shadow-lg transition-all">
-              <CardHeader>
-                <CardTitle className="text-2xl text-[#022f36]">{t.pricing.enterprise.name}</CardTitle>
-                <div className="text-3xl font-bold text-[#022f36]">{t.pricing.enterprise.price}</div>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-3 mb-6">
-                  <li className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-[#022f36] rounded-full"></div>
-                    {t.pricing.enterprise.users}
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-[#022f36] rounded-full"></div>
-                    {t.pricing.enterprise.credits}
-                  </li>
-                </ul>
-                <p className="text-gray-600 mb-6">{t.pricing.enterprise.description}</p>
-              </CardContent>
-            </Card>
-          </div>
-          
-          <div className="text-center mt-12">
-            <Button className="bg-[#022f36] text-white hover:bg-[#033944] px-8 py-3 text-lg">
-              {t.pricing.cta}
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA Section */}
-      <section className="py-16 bg-[#022f36] text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-6">
-            {t.finalCta.title}
-          </h2>
-          <p className="text-xl mb-8 max-w-3xl mx-auto leading-relaxed">
-            {t.finalCta.subtitle}
-          </p>
-          <Button className="bg-white text-[#022f36] hover:bg-gray-100 px-8 py-3 text-lg">
-            {t.finalCta.cta}
-          </Button>
-        </div>
-      </section>
-
       {/* Use Cases Section with Tabs */}
       <section className="py-16 bg-gradient-to-br from-blue-50 to-indigo-100">
         <div className="container mx-auto px-4">
@@ -1193,6 +874,264 @@ export const Business: React.FC = () => {
           </Tabs>
         </div>
       </section>
+
+      {/* Problems Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-[#022f36] text-center mb-12 max-w-4xl mx-auto">
+            {t.problems.title}
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <Card className="border-red-200 hover:shadow-lg transition-all">
+              <CardHeader>
+                <AlertTriangle className="h-12 w-12 text-red-500 mb-4" />
+                <CardTitle className="text-xl text-[#022f36]">{t.problems.safety.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600">{t.problems.safety.description}</p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-orange-200 hover:shadow-lg transition-all">
+              <CardHeader>
+                <TrendingUp className="h-12 w-12 text-orange-500 mb-4 transform rotate-180" />
+                <CardTitle className="text-xl text-[#022f36]">{t.problems.productivity.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600">{t.problems.productivity.description}</p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-yellow-200 hover:shadow-lg transition-all">
+              <CardHeader>
+                <DollarSign className="h-12 w-12 text-yellow-500 mb-4" />
+                <CardTitle className="text-xl text-[#022f36]">{t.problems.costs.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600">{t.problems.costs.description}</p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-purple-200 hover:shadow-lg transition-all">
+              <CardHeader>
+                <TrendingUp className="h-12 w-12 text-purple-500 mb-4 transform rotate-180" />
+                <CardTitle className="text-xl text-[#022f36]">{t.problems.sales.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600">{t.problems.sales.description}</p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Solution Section */}
+      <section id="demo" className="py-16 bg-gradient-to-br from-[#f8fffe] to-[#f0fff4]">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-[#022f36] text-center mb-12">
+            {t.solution.title}
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
+            <div className="text-center">
+              <div className="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 shadow-lg">
+                <Upload className="h-10 w-10 text-[#022f36]" />
+              </div>
+              <h3 className="text-2xl font-semibold text-[#022f36] mb-4">1. {t.solution.step1.title}</h3>
+              <p className="text-gray-600 leading-relaxed">{t.solution.step1.description}</p>
+            </div>
+
+            <div className="text-center">
+              <div className="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 shadow-lg">
+                <Brain className="h-10 w-10 text-[#022f36]" />
+              </div>
+              <h3 className="text-2xl font-semibold text-[#022f36] mb-4">2. {t.solution.step2.title}</h3>
+              <p className="text-gray-600 leading-relaxed">{t.solution.step2.description}</p>
+            </div>
+
+            <div className="text-center">
+              <div className="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 shadow-lg">
+                <Headphones className="h-10 w-10 text-[#022f36]" />
+              </div>
+              <h3 className="text-2xl font-semibold text-[#022f36] mb-4">3. {t.solution.step3.title}</h3>
+              <p className="text-gray-600 leading-relaxed">{t.solution.step3.description}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+      {/* Features Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-[#022f36] text-center mb-12 max-w-4xl mx-auto">
+            {t.features.title}
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <Card className="hover:shadow-lg transition-all">
+              <CardHeader>
+                <Target className="h-12 w-12 text-blue-500 mb-4" />
+                <CardTitle className="text-xl text-[#022f36]">{t.features.anchor.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600">{t.features.anchor.description}</p>
+              </CardContent>
+            </Card>
+
+            <Card className="hover:shadow-lg transition-all">
+              <CardHeader>
+                <Repeat className="h-12 w-12 text-green-500 mb-4" />
+                <CardTitle className="text-xl text-[#022f36]">{t.features.srs.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600">{t.features.srs.description}</p>
+              </CardContent>
+            </Card>
+
+            <Card className="hover:shadow-lg transition-all">
+              <CardHeader>
+                <Eye className="h-12 w-12 text-purple-500 mb-4" />
+                <CardTitle className="text-xl text-[#022f36]">{t.features.screenFree.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600">{t.features.screenFree.description}</p>
+              </CardContent>
+            </Card>
+
+            <Card className="hover:shadow-lg transition-all">
+              <CardHeader>
+                <BarChart3 className="h-12 w-12 text-orange-500 mb-4" />
+                <CardTitle className="text-xl text-[#022f36]">{t.features.analytics.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600">{t.features.analytics.description}</p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      
+
+      {/* Social Proof Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-4xl font-bold text-[#022f36] mb-6">
+              {t.socialProof.title}
+            </h2>
+            <p className="text-xl text-gray-600 mb-6 leading-relaxed">
+              {t.socialProof.description}
+            </p>
+            <div className="bg-gradient-to-br from-[#defff0] to-[#f0fff4] p-8 rounded-lg mb-8">
+              <p className="text-lg text-[#022f36] leading-relaxed">
+                {t.socialProof.ukrainianSupport}
+              </p>
+            </div>
+            <Button className="bg-[#022f36] text-white hover:bg-[#033944] px-8 py-3 text-lg">
+              {t.socialProof.cta}
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Section */}
+      <section id="pricing" className="py-16 bg-gradient-to-br from-[#f8fffe] to-[#f0fff4]">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-[#022f36] text-center mb-6">
+            {t.pricing.title}
+          </h2>
+          <p className="text-xl text-gray-600 text-center mb-12 max-w-4xl mx-auto leading-relaxed">
+            {t.pricing.description}
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <Card className="bg-white hover:shadow-lg transition-all">
+              <CardHeader>
+                <CardTitle className="text-2xl text-[#022f36]">{t.pricing.team.name}</CardTitle>
+                <div className="text-3xl font-bold text-[#022f36]">{t.pricing.team.price}</div>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-3 mb-6">
+                  <li className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-[#022f36] rounded-full"></div>
+                    {t.pricing.team.users}
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-[#022f36] rounded-full"></div>
+                    {t.pricing.team.credits}
+                  </li>
+                </ul>
+                <p className="text-gray-600 mb-6">{t.pricing.team.description}</p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white hover:shadow-lg transition-all border-2 border-[#022f36]">
+              <CardHeader>
+                <Badge className="bg-[#022f36] text-white mb-2">Mest populær</Badge>
+                <CardTitle className="text-2xl text-[#022f36]">{t.pricing.business.name}</CardTitle>
+                <div className="text-3xl font-bold text-[#022f36]">{t.pricing.business.price}</div>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-3 mb-6">
+                  <li className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-[#022f36] rounded-full"></div>
+                    {t.pricing.business.users}
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-[#022f36] rounded-full"></div>
+                    {t.pricing.business.credits}
+                  </li>
+                </ul>
+                <p className="text-gray-600 mb-6">{t.pricing.business.description}</p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white hover:shadow-lg transition-all">
+              <CardHeader>
+                <CardTitle className="text-2xl text-[#022f36]">{t.pricing.enterprise.name}</CardTitle>
+                <div className="text-3xl font-bold text-[#022f36]">{t.pricing.enterprise.price}</div>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-3 mb-6">
+                  <li className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-[#022f36] rounded-full"></div>
+                    {t.pricing.enterprise.users}
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-[#022f36] rounded-full"></div>
+                    {t.pricing.enterprise.credits}
+                  </li>
+                </ul>
+                <p className="text-gray-600 mb-6">{t.pricing.enterprise.description}</p>
+              </CardContent>
+            </Card>
+          </div>
+          
+          <div className="text-center mt-12">
+            <Button className="bg-[#022f36] text-white hover:bg-[#033944] px-8 py-3 text-lg">
+              {t.pricing.cta}
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA Section */}
+      <section className="py-16 bg-[#022f36] text-white">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-4xl font-bold mb-6">
+            {t.finalCta.title}
+          </h2>
+          <p className="text-xl mb-8 max-w-3xl mx-auto leading-relaxed">
+            {t.finalCta.subtitle}
+          </p>
+          <Button className="bg-white text-[#022f36] hover:bg-gray-100 px-8 py-3 text-lg">
+            {t.finalCta.cta}
+          </Button>
+        </div>
+      </section>
+
+
 
       <Footer />
     </div>
