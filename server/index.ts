@@ -9,6 +9,10 @@ app.use(express.urlencoded({ extended: false }));
 // Serve attached assets (including audio files)
 app.use('/attached_assets', express.static('attached_assets'));
 
+// Serve English audio files separately 
+app.use('/audio/en', express.static('attached_assets/audio/en'));
+app.use('/audio/uk', express.static('attached_assets/audio'));
+
 app.use((req, res, next) => {
   const start = Date.now();
   const path = req.path;
