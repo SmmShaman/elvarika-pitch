@@ -984,43 +984,40 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
               exit={{ opacity: 0 }}
               className="h-full"
             >
-              <div className="bg-white rounded-lg p-4 h-full overflow-y-auto">
-                {/* Ultra-compact translation grid - all words visible */}
-                <div className="bg-gray-50 rounded-lg p-2 border-2 border-gray-200 h-full">
-                  <div className="h-full overflow-y-auto p-2">
-                    <div className="grid grid-cols-2 gap-1 text-xs">
-                      {words.filter(w => w.isTranslating || w.isReady).map((word) => (
+              <div className="bg-white rounded-lg p-3 h-full overflow-y-auto">
+                {/* Table-style translation list - maximum density */}
+                <div className="bg-gray-50 rounded-lg p-1 border-2 border-gray-200 h-full">
+                  <div className="h-full overflow-y-auto">
+                    <div className="space-y-1">
+                      {words.filter(w => w.isTranslating || w.isReady).map((word, index) => (
                         <motion.div
                           key={word.id}
-                          initial={{ opacity: 0, scale: 0.9 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ delay: 0.05 }}
-                          className="p-2 bg-white rounded border"
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: index * 0.03 }}
+                          className="p-1.5 bg-white rounded border text-xs hover:bg-gray-50"
                         >
-                          {/* Word pair - horizontal compact layout */}
-                          <div className="flex items-center justify-between mb-1">
-                            <div className="flex items-center gap-1">
-                              <div className="w-2 h-1.5 bg-red-500 rounded"></div>
-                              <div className="w-2 h-1.5 bg-white border border-gray-300 rounded"></div>
-                              <div className="w-2 h-1.5 bg-blue-600 rounded"></div>
-                              <span className="font-bold text-blue-800 text-xs truncate">{word.word}</span>
+                          {/* Single line word translation */}
+                          <div className="flex items-center gap-2 mb-1">
+                            <div className="flex items-center gap-1 min-w-0 flex-1">
+                              <div className="w-1.5 h-1 bg-red-500 rounded"></div>
+                              <div className="w-1.5 h-1 bg-white border border-gray-300 rounded"></div>
+                              <div className="w-1.5 h-1 bg-blue-600 rounded"></div>
+                              <span className="font-semibold text-blue-800 text-xs">{word.word}</span>
                             </div>
-                            <span className="text-gray-400 text-xs mx-1">→</span>
-                            <div className="flex items-center gap-1">
-                              <div className="w-2 h-1.5 bg-blue-400 rounded"></div>
-                              <div className="w-2 h-1.5 bg-yellow-400 rounded"></div>
-                              <span className="font-bold text-green-800 text-xs truncate">{word.translation}</span>
+                            <span className="text-gray-400 text-xs">→</span>
+                            <div className="flex items-center gap-1 min-w-0 flex-1">
+                              <div className="w-1.5 h-1 bg-blue-400 rounded"></div>
+                              <div className="w-1.5 h-1 bg-yellow-400 rounded"></div>
+                              <span className="font-semibold text-green-800 text-xs">{word.translation}</span>
                             </div>
                           </div>
                           
-                          {/* Context - vertical stacked */}
-                          <div className="space-y-0.5">
-                            <div className="text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded text-xs leading-tight">
-                              "{word.context}"
-                            </div>
-                            <div className="text-green-600 bg-green-50 px-1.5 py-0.5 rounded text-xs leading-tight">
-                              "{word.contextTranslation}"
-                            </div>
+                          {/* Context line */}
+                          <div className="text-xs leading-tight text-gray-600 px-1">
+                            <span className="text-blue-700">"{word.context}"</span>
+                            <span className="text-gray-400 mx-1">→</span>
+                            <span className="text-green-700">"{word.contextTranslation}"</span>
                           </div>
                         </motion.div>
                       ))}
