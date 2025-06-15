@@ -643,11 +643,19 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
   };
 
   const resetDemo = () => {
+    // Stop any currently playing audio
+    if (currentAudio) {
+      currentAudio.pause();
+      setCurrentAudio(null);
+    }
+    
     setStep(0);
     setIsAnimating(false);
     setWords([]);
     setPlaylist([]);
     setPlayingItem(null);
+    setAudioIsPaused(false);
+    clearAllTimeouts();
   };
 
   return (
