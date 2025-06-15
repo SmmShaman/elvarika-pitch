@@ -445,7 +445,9 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
           translation: translationTarget === 'uk' ? item.translation_uk : item.translation_en,
           context: item.context,
           contextTranslation: translationTarget === 'uk' ? item.contextTranslation_uk : item.contextTranslation_en,
-          audioUrl: `/attached_assets/audio/${item.word}.mp3`,
+          audioUrl: translationTarget === 'uk' 
+            ? `/attached_assets/audio/${item.word}.mp3`
+            : `/attached_assets/audio/en/${item.word}.mp3`,
           duration: "0:03",
           isPlaying: false
         }));
@@ -543,7 +545,9 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
           translation: translationTarget === 'uk' ? item.translation_uk : item.translation_en,
           context: item.context,
           contextTranslation: translationTarget === 'uk' ? item.contextTranslation_uk : item.contextTranslation_en,
-          audioUrl: `/attached_assets/audio/${item.word}.mp3`,
+          audioUrl: translationTarget === 'uk' 
+            ? `/attached_assets/audio/${item.word}.mp3`
+            : `/attached_assets/audio/en/${item.word}.mp3`,
           duration: "0:03",
           isPlaying: false
         }));
