@@ -571,16 +571,22 @@ export const Business: React.FC = () => {
         <section className="pt-20 pb-12 bg-gradient-to-br from-[#defff0] to-[#f0fff4] relative overflow-hidden min-h-screen">
           <div className="container mx-auto px-4 h-full max-w-6xl">
             <div className="flex flex-col h-full space-y-4">
-              {/* Header with back button and language switcher */}
+              {/* Header with back button and title */}
               <div className="flex justify-between items-center">
-                <Button 
-                  onClick={() => setShowDemo(false)}
-                  variant="outline" 
-                  className="border-[#022f36] text-[#022f36] hover:bg-[#022f36] hover:text-white text-lg px-6 py-2"
-                >
-                  ← Назад до головної
-                </Button>
-                <LanguageSwitcher currentLanguage={language} onLanguageChange={changeLanguage} />
+                <div className="flex items-center gap-6">
+                  <Button 
+                    onClick={() => setShowDemo(false)}
+                    variant="outline" 
+                    className="border-[#022f36] text-[#022f36] hover:bg-[#022f36] hover:text-white text-lg px-6 py-2"
+                  >
+                    ← Назад до головної
+                  </Button>
+                  <h1 className="text-3xl font-bold text-[#022f36]">
+                    {language === 'no' ? 'Se hvordan Elvarika fungerer' : 
+                     language === 'uk' ? 'Подивіться, як працює Elvarika' : 
+                     'See how Elvarika works'}
+                  </h1>
+                </div>
               </div>
               
               {/* Demo content with increased height */}

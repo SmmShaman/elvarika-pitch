@@ -580,8 +580,7 @@ export const CompactAnimatedDemo: React.FC = () => {
     <div className="h-full min-h-[650px] w-full bg-gradient-to-br from-[#0066cc]/5 to-[#00a1e6]/5 rounded-2xl border border-[#0066cc]/10 overflow-hidden flex flex-col">
       {/* Header */}
       <div className="p-6 border-b border-gray-100 bg-white/50 flex-shrink-0">
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-2xl font-bold text-[#022f36]">{translations.title}</h3>
+        <div className="flex items-center justify-end mb-4">
           <div className="flex items-center gap-3">
             {/* Pause/Play Controls */}
             {(isAnimating || isPaused) && step > 0 && step < 5 && (
@@ -604,7 +603,7 @@ export const CompactAnimatedDemo: React.FC = () => {
           </div>
         </div>
         
-        <p className="text-base text-gray-600 mb-4">{translations.subtitle}</p>
+        <p className="text-lg text-gray-600 mb-4 text-center font-medium">{translations.subtitle}</p>
         
         {/* Progress Steps */}
         <div className="flex justify-center">
@@ -655,12 +654,12 @@ export const CompactAnimatedDemo: React.FC = () => {
               exit={{ opacity: 0, y: -20 }}
               className="h-full"
             >
-              <div className="bg-white rounded-lg p-3 h-full overflow-y-auto space-y-3">
+              <div className="bg-white rounded-lg p-6 h-full overflow-y-auto space-y-6">
                 <div className="text-center">
-                  <h4 className="text-lg font-bold text-[#022f36] mb-2">
+                  <h4 className="text-3xl font-bold text-[#022f36] mb-4">
                     {stepExplanations.step1.title}
                   </h4>
-                  <p className="text-sm text-gray-700 leading-relaxed mb-3">
+                  <p className="text-xl text-gray-700 leading-relaxed mb-6 max-w-4xl mx-auto">
                     {stepExplanations.step1.description}
                   </p>
                 </div>
@@ -719,12 +718,12 @@ export const CompactAnimatedDemo: React.FC = () => {
               exit={{ opacity: 0 }}
               className="h-full"
             >
-              <div className="bg-white rounded-lg p-3 h-full overflow-y-auto space-y-3">
+              <div className="bg-white rounded-lg p-6 h-full overflow-y-auto space-y-6">
                 <div className="text-center">
-                  <h4 className="text-lg font-bold text-[#022f36] mb-2">
+                  <h4 className="text-3xl font-bold text-[#022f36] mb-4">
                     {stepExplanations.step2.title}
                   </h4>
-                  <p className="text-sm text-gray-700 leading-relaxed mb-3">
+                  <p className="text-xl text-gray-700 leading-relaxed mb-6 max-w-4xl mx-auto">
                     {stepExplanations.step2.description}
                   </p>
                 </div>
@@ -797,12 +796,12 @@ export const CompactAnimatedDemo: React.FC = () => {
               exit={{ opacity: 0 }}
               className="h-full"
             >
-              <div className="bg-white rounded-lg p-3 h-full overflow-y-auto space-y-3">
+              <div className="bg-white rounded-lg p-6 h-full overflow-y-auto space-y-6">
                 <div className="text-center">
-                  <h4 className="text-lg font-bold text-[#022f36] mb-2">
+                  <h4 className="text-3xl font-bold text-[#022f36] mb-4">
                     {stepExplanations.step3.title}
                   </h4>
-                  <p className="text-sm text-gray-700 leading-relaxed mb-3">
+                  <p className="text-xl text-gray-700 leading-relaxed mb-6 max-w-4xl mx-auto">
                     {stepExplanations.step3.description}
                   </p>
                 </div>
@@ -863,12 +862,12 @@ export const CompactAnimatedDemo: React.FC = () => {
               exit={{ opacity: 0 }}
               className="h-full"
             >
-              <div className="bg-white rounded-lg p-3 h-full overflow-y-auto space-y-3">
+              <div className="bg-white rounded-lg p-6 h-full overflow-y-auto space-y-6">
                 <div className="text-center">
-                  <h4 className="text-lg font-bold text-[#022f36] mb-2">
+                  <h4 className="text-3xl font-bold text-[#022f36] mb-4">
                     {stepExplanations.step4.title}
                   </h4>
-                  <p className="text-sm text-gray-700 leading-relaxed mb-3">
+                  <p className="text-xl text-gray-700 leading-relaxed mb-6 max-w-4xl mx-auto">
                     {stepExplanations.step4.description}
                   </p>
                 </div>
@@ -962,12 +961,12 @@ export const CompactAnimatedDemo: React.FC = () => {
               exit={{ opacity: 0 }}
               className="h-full"
             >
-              <div className="bg-white rounded-lg p-3 h-full overflow-hidden flex flex-col space-y-3">
+              <div className="bg-white rounded-lg p-6 h-full overflow-hidden flex flex-col space-y-6">
                 <div className="text-center">
-                  <h4 className="text-lg font-bold text-[#022f36] mb-2">
+                  <h4 className="text-3xl font-bold text-[#022f36] mb-4">
                     {stepExplanations.step5.title}
                   </h4>
-                  <p className="text-sm text-gray-700 leading-relaxed mb-3">
+                  <p className="text-xl text-gray-700 leading-relaxed mb-6 max-w-4xl mx-auto">
                     {stepExplanations.step5.description}
                   </p>
                 </div>
