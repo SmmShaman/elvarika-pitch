@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -525,6 +525,7 @@ const businessTranslations: Record<string, BusinessTranslations> = {
 export const Business: React.FC = () => {
   const { language, translations: _, changeLanguage } = useLanguage();
   const t = businessTranslations[language] || businessTranslations['en'];
+  const [showDemo, setShowDemo] = useState(false);
 
   return (
     <div className="min-h-screen bg-white">
@@ -542,25 +543,46 @@ export const Business: React.FC = () => {
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="pt-24 pb-16 bg-gradient-to-br from-[#defff0] to-[#f0fff4] relative overflow-hidden">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-[#022f36] mb-6 leading-tight">
-            {t.hero.title}
-          </h1>
-          <p className="text-xl text-[#022f36] max-w-4xl mx-auto mb-8 leading-relaxed">
-            {t.hero.subtitle}
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button className="bg-[#022f36] text-white hover:bg-[#033944] px-8 py-3 text-lg">
-              {t.hero.ctaPrimary}
-            </Button>
-            <Button variant="outline" className="border-[#022f36] text-[#022f36] hover:bg-[#022f36] hover:text-white px-8 py-3 text-lg">
-              {t.hero.ctaSecondary}
-            </Button>
+      {/* Hero Section / Demo Section */}
+      {!showDemo ? (
+        <section className="pt-24 pb-16 bg-gradient-to-br from-[#defff0] to-[#f0fff4] relative overflow-hidden min-h-[600px] flex items-center">
+          <div className="container mx-auto px-4 text-center">
+            <h1 className="text-5xl md:text-6xl font-bold text-[#022f36] mb-6 leading-tight">
+              {t.hero.title}
+            </h1>
+            <p className="text-xl text-[#022f36] max-w-4xl mx-auto mb-8 leading-relaxed">
+              {t.hero.subtitle}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button className="bg-[#022f36] text-white hover:bg-[#033944] px-8 py-3 text-lg">
+                {t.hero.ctaPrimary}
+              </Button>
+              <Button 
+                onClick={() => setShowDemo(true)}
+                variant="outline" 
+                className="border-[#022f36] text-[#022f36] hover:bg-[#022f36] hover:text-white px-8 py-3 text-lg"
+              >
+                {t.hero.ctaSecondary}
+              </Button>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : (
+        <section className="pt-24 pb-16 bg-gradient-to-br from-[#defff0] to-[#f0fff4] relative overflow-hidden min-h-[600px]">
+          <div className="container mx-auto px-4 h-full">
+            <div className="mb-6 text-center">
+              <Button 
+                onClick={() => setShowDemo(false)}
+                variant="outline" 
+                className="border-[#022f36] text-[#022f36] hover:bg-[#022f36] hover:text-white"
+              >
+                ← Назад до головної
+              </Button>
+            </div>
+            <AnimatedDemo />
+          </div>
+        </section>
+      )}
 
       {/* Problems Section */}
       <section className="py-16 bg-white">
@@ -646,8 +668,7 @@ export const Business: React.FC = () => {
         </div>
       </section>
 
-      {/* Animated Demo Section */}
-      <AnimatedDemo />
+
 
       {/* Features Section */}
       <section className="py-16 bg-white">
