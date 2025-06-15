@@ -26,9 +26,9 @@ export const Navigation: React.FC = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <div className="text-xl font-bold text-[#022f36]">
-              {translations.nav.logo}
-            </div>
+            <Link href="/" className="text-xl font-bold text-[#022f36] hover:text-[#033944] transition-colors">
+              Elvarika
+            </Link>
           </div>
 
           {/* Version Selector */}

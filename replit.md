@@ -141,6 +141,12 @@ Changelog:
 - June 15, 2025. Audio system fully operational for Norwegian-Ukrainian language pairs
 - June 15, 2025. Updated contact information in footer with authentic details from Vitalii Berbeha CV
 - June 15, 2025. Added comprehensive audio playback speed control with visual tempo indicators
+- June 15, 2025. Fixed email verification unhandled rejection errors with comprehensive error handling
+- June 15, 2025. Integrated NodeMailer with Gmail for free email service (unlimited with App Password)
+- June 15, 2025. Added floating navigation with "Elvarika" logo linking to homepage
+- June 15, 2025. Expanded Use Cases section with detailed industry-specific content and challenges
+- June 15, 2025. Created production setup guide with multiple free email service options
+- June 15, 2025. Enhanced demo/production system with fallback modes and proper error handling
 ```
 
 ## User Preferences

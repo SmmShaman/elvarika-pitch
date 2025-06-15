@@ -177,19 +177,37 @@ export const Business: React.FC = () => {
                     'Ян керує великим логістичним терміналом в Осло з 60% іноземних працівників. Мовні бар\'єри призводять до пошкодженого вантажу та 50 000 крон компенсаційних позовів через неправильно зрозуміну інструкцію.' :
                     'Jan manages a large logistics terminal in Oslo with 60% foreign workers. Language barriers lead to damaged cargo and 50,000 kroner in compensation claims from misunderstood temperature-critical handling instructions.'}
                 </p>
+                
+                <div className="bg-blue-50 p-3 rounded-lg">
+                  <h5 className="font-semibold text-blue-800 mb-2 text-sm">
+                    {language === 'no' ? 'Typiske utfordringer:' :
+                     language === 'uk' ? 'Типові виклики:' :
+                     'Typical challenges:'}
+                  </h5>
+                  <ul className="text-blue-700 text-xs space-y-1">
+                    <li>• {language === 'no' ? 'Gaffeltruck sikkerhet og manøvrering' : language === 'uk' ? 'Безпека та маневрування навантажувачів' : 'Forklift safety and maneuvering'}</li>
+                    <li>• {language === 'no' ? 'Lagrings- og temperaturkrav' : language === 'uk' ? 'Вимоги до зберігання та температури' : 'Storage and temperature requirements'}</li>
+                    <li>• {language === 'no' ? 'Håndtering av farlig gods' : language === 'uk' ? 'Поводження з небезпечними вантажами' : 'Dangerous goods handling'}</li>
+                    <li>• {language === 'no' ? 'Nødprosedyrer og evakuering' : language === 'uk' ? 'Аварійні процедури та евакуація' : 'Emergency procedures and evacuation'}</li>
+                  </ul>
+                </div>
+
                 <div className="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
                   <h4 className="font-semibold text-green-800 mb-2">
                     {language === 'no' ? 'Elvarika-løsning:' :
                      language === 'uk' ? 'Рішення Elvarika:' :
                      'Elvarika Solution:'}
                   </h4>
-                  <p className="text-green-700 text-sm">
+                  <p className="text-green-700 text-sm mb-2">
                     {language === 'no' ?
                       'PDF instruksjoner blir til personaliserte lydleksjoner på 5 minutter. Nye arbeidere hører på ukrainsk: "Temperaturfølsom last må holdes mellom 2-8 grader."' :
                      language === 'uk' ?
                       'PDF інструкції перетворюються на персоналізовані аудіоуроки за 5 хвилин. Нові працівники чують українською: "Температурочутливий вантаж повинен зберігатися при 2-8 градусах."' :
                       'PDF instructions become personalized audio lessons in 5 minutes. New workers hear in Ukrainian: "Temperature-sensitive cargo must be kept between 2-8 degrees."'}
                   </p>
+                  <div className="text-green-600 text-xs">
+                    <strong>{language === 'no' ? 'Resultat:' : language === 'uk' ? 'Результат:' : 'Result:'}</strong> {language === 'no' ? 'Redusert skade med 75%, bedre sikkerhet, raskere onboarding' : language === 'uk' ? 'Зменшення пошкоджень на 75%, покращена безпека, швидша адаптація' : 'Reduced damage by 75%, improved safety, faster onboarding'}
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -213,19 +231,37 @@ export const Business: React.FC = () => {
                     'Анна, HSE-менеджер, керує багатонаціональним будівельним проектом. Литовський робітник неправильно зрозумів процедури пневматики, що призвело до 150 000 крон штрафів та трьох днів зупинки проекту.' :
                     'Anna, HSE manager, handles a multinational construction project. A Lithuanian worker misunderstood pneumatic procedures, resulting in 150,000 kroner in fines and three days of project shutdown.'}
                 </p>
+                
+                <div className="bg-orange-50 p-3 rounded-lg">
+                  <h5 className="font-semibold text-orange-800 mb-2 text-sm">
+                    {language === 'no' ? 'Kritiske områder:' :
+                     language === 'uk' ? 'Критичні області:' :
+                     'Critical areas:'}
+                  </h5>
+                  <ul className="text-orange-700 text-xs space-y-1">
+                    <li>• {language === 'no' ? 'Personlig verneutstyr (PVU) krav' : language === 'uk' ? 'Вимоги до засобів індивідуального захисту' : 'Personal protective equipment (PPE) requirements'}</li>
+                    <li>• {language === 'no' ? 'Maskinbetjening og vedlikehold' : language === 'uk' ? 'Експлуатація та обслуговування техніки' : 'Equipment operation and maintenance'}</li>
+                    <li>• {language === 'no' ? 'Arbeid i høyden prosedyrer' : language === 'uk' ? 'Процедури роботи на висоті' : 'Working at height procedures'}</li>
+                    <li>• {language === 'no' ? 'Håndtering av farlige stoffer' : language === 'uk' ? 'Поводження з небезпечними речовинами' : 'Hazardous substances handling'}</li>
+                  </ul>
+                </div>
+
                 <div className="bg-orange-50 p-4 rounded-lg border-l-4 border-orange-500">
                   <h4 className="font-semibold text-orange-800 mb-2">
                     {language === 'no' ? 'Elvarika-løsning:' :
                      language === 'uk' ? 'Рішення Elvarika:' :
                      'Elvarika Solution:'}
                   </h4>
-                  <p className="text-orange-700 text-sm">
+                  <p className="text-orange-700 text-sm mb-2">
                     {language === 'no' ?
                       'Sikkerhetsinstruksjoner blir til målrettede lydguider. Arbeidere hører: "Sjekk at trykket ikke overstiger 6 bar. Bruk alltid sikkerhetsutstyr."' :
                      language === 'uk' ?
                       'Інструкції безпеки стають цільовими аудіогідами. Робітники чують: "Перевірте, що тиск не перевищує 6 бар. Завжди використовуйте засоби захисту."' :
                       'Safety instructions become targeted audio guides. Workers hear: "Check that pressure does not exceed 6 bar. Always use safety equipment."'}
                   </p>
+                  <div className="text-orange-600 text-xs">
+                    <strong>{language === 'no' ? 'Resultat:' : language === 'uk' ? 'Результат:' : 'Result:'}</strong> {language === 'no' ? 'Null arbeidsulykker siste år, 90% færre HMS-brudd' : language === 'uk' ? 'Нуль виробничих травм останній рік, на 90% менше порушень безпеки' : 'Zero workplace injuries last year, 90% fewer safety violations'}
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -247,19 +283,37 @@ export const Business: React.FC = () => {
                     'Давід володіє готельною мережею. Офіціантка неправильно зрозуміла запит про алергію на глютен, що призвело до серйозної алергічної реакції та негативної реклами в ЗМІ.' :
                     'David owns a hotel chain. A waitress misunderstood a gluten allergy request, leading to a serious allergic reaction and negative media coverage.'}
                 </p>
+                
+                <div className="bg-purple-50 p-3 rounded-lg">
+                  <h5 className="font-semibold text-purple-800 mb-2 text-sm">
+                    {language === 'no' ? 'Kritiske kommunikasjonsområder:' :
+                     language === 'uk' ? 'Критичні області комунікації:' :
+                     'Critical communication areas:'}
+                  </h5>
+                  <ul className="text-purple-700 text-xs space-y-1">
+                    <li>• {language === 'no' ? 'Allergeninformasjon og spesialkost' : language === 'uk' ? 'Інформація про алергени та спеціальне харчування' : 'Allergen information and special diets'}</li>
+                    <li>• {language === 'no' ? 'Romservice og gjestehjelp' : language === 'uk' ? 'Обслуговування номерів та допомога гостям' : 'Room service and guest assistance'}</li>
+                    <li>• {language === 'no' ? 'Oppgjør og betalingsprosedyrer' : language === 'uk' ? 'Розрахунки та процедури оплати' : 'Billing and payment procedures'}</li>
+                    <li>• {language === 'no' ? 'Nødprosedyrer og sikkerhet' : language === 'uk' ? 'Аварійні процедури та безпека' : 'Emergency procedures and security'}</li>
+                  </ul>
+                </div>
+
                 <div className="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-500">
                   <h4 className="font-semibold text-purple-800 mb-2">
                     {language === 'no' ? 'Elvarika-løsning:' :
                      language === 'uk' ? 'Рішення Elvarika:' :
                      'Elvarika Solution:'}
                   </h4>
-                  <p className="text-purple-700 text-sm">
+                  <p className="text-purple-700 text-sm mb-2">
                     {language === 'no' ?
                       'Menyer og allergenlister blir til kontekstuelle lydguider. Ansatte lærer: "Kunden spør om gluten. Sjekk ingredienslisten. Informer kjøkkenet."' :
                      language === 'uk' ?
                       'Меню та списки алергенів стають контекстуальними аудіогідами. Співробітники вивчають: "Клієнт питає про глютен. Перевірте інгредієнти. Повідомте кухню."' :
                       'Menus and allergen lists become contextual audio guides. Staff learn: "Customer asks about gluten. Check ingredients. Inform kitchen."'}
                   </p>
+                  <div className="text-purple-600 text-xs">
+                    <strong>{language === 'no' ? 'Resultat:' : language === 'uk' ? 'Результат:' : 'Result:'}</strong> {language === 'no' ? 'Null allergenincidenter siste år, økt kundetilfredshet 40%' : language === 'uk' ? 'Нуль інцидентів з алергенами останній рік, підвищення задоволеності клієнтів на 40%' : 'Zero allergen incidents last year, 40% increase in customer satisfaction'}
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -283,19 +337,37 @@ export const Business: React.FC = () => {
                     'Ларс керує рибопереробною фабрикою. Польський робітник неправильно зрозумів температурний контроль лосося, що призвело до знищення 2 тонн риби вартістю 400 000 крон.' :
                     'Lars manages a fish processing factory. A Polish worker misunderstood salmon temperature control, resulting in destruction of 2 tons of fish worth 400,000 kroner.'}
                 </p>
+                
+                <div className="bg-green-50 p-3 rounded-lg">
+                  <h5 className="font-semibold text-green-800 mb-2 text-sm">
+                    {language === 'no' ? 'Nøkkelområder i landbruk:' :
+                     language === 'uk' ? 'Ключові сфери в сільському господарстві:' :
+                     'Key areas in agriculture:'}
+                  </h5>
+                  <ul className="text-green-700 text-xs space-y-1">
+                    <li>• {language === 'no' ? 'Matvaresikkerhet og HACCP-prosedyrer' : language === 'uk' ? 'Безпека харчових продуктів та HACCP процедури' : 'Food safety and HACCP procedures'}</li>
+                    <li>• {language === 'no' ? 'Maskindrift og vedlikehold' : language === 'uk' ? 'Експлуатація та обслуговування техніки' : 'Equipment operation and maintenance'}</li>
+                    <li>• {language === 'no' ? 'Lagring og transport av produkter' : language === 'uk' ? 'Зберігання та транспортування продукції' : 'Product storage and transportation'}</li>
+                    <li>• {language === 'no' ? 'Arbeidssikkerhet på gård' : language === 'uk' ? 'Безпека праці на фермі' : 'Farm workplace safety'}</li>
+                  </ul>
+                </div>
+
                 <div className="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
                   <h4 className="font-semibold text-green-800 mb-2">
                     {language === 'no' ? 'Elvarika-løsning:' :
                      language === 'uk' ? 'Рішення Elvarika:' :
                      'Elvarika Solution:'}
                   </h4>
-                  <p className="text-green-700 text-sm">
+                  <p className="text-green-700 text-sm mb-2">
                     {language === 'no' ?
                       'Daglige instruksjoner fra 2-minutters talemelding. Arbeidere hører: "Fersk laks må holdes konstant mellom 0-2 grader. Sjekk temperatur hver time."' :
                      language === 'uk' ?
                       'Денні інструкції з 2-хвилинного голосового повідомлення. Робітники чують: "Свіжий лосось повинен зберігатися при 0-2 градусах. Перевіряйте температуру щогодини."' :
                       'Daily instructions from 2-minute voice message. Workers hear: "Fresh salmon must be kept constantly between 0-2 degrees. Check temperature every hour."'}
                   </p>
+                  <div className="text-green-600 text-xs">
+                    <strong>{language === 'no' ? 'Resultat:' : language === 'uk' ? 'Результат:' : 'Result:'}</strong> {language === 'no' ? 'Redusert svinn med 85%, forbedret HACCP-overholdelse' : language === 'uk' ? 'Зменшення відходів на 85%, покращення дотримання HACCP' : 'Reduced waste by 85%, improved HACCP compliance'}
+                  </div>
                 </div>
               </CardContent>
             </Card>
