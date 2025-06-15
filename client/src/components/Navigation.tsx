@@ -3,11 +3,12 @@ import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { useLanguage } from "@/hooks/useLanguage";
-import { Blog } from "@/pages/Blog";
+import { useBlog } from "@/hooks/useBlog";
 
 export const Navigation: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { language, translations, changeLanguage } = useLanguage();
+  const { openBlog } = useBlog();
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -59,6 +60,12 @@ export const Navigation: React.FC = () => {
               className="text-[#022f36] hover:text-[#033944] transition-colors"
             >
               {translations.nav.faq}
+            </button>
+            <button
+              onClick={openBlog}
+              className="text-[#022f36] hover:text-[#033944] transition-colors"
+            >
+              {translations.nav.blog}
             </button>
             <Button
               onClick={() => scrollToSection('investor')}
@@ -117,6 +124,12 @@ export const Navigation: React.FC = () => {
                 className="text-left text-[#022f36] hover:text-[#033944] transition-colors"
               >
                 {translations.nav.faq}
+              </button>
+              <button
+                onClick={openBlog}
+                className="text-left text-[#022f36] hover:text-[#033944] transition-colors"
+              >
+                {translations.nav.blog}
               </button>
               <Button
                 onClick={() => scrollToSection('investor')}
