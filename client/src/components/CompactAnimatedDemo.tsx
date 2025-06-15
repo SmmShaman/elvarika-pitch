@@ -590,11 +590,26 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
           <div className="flex items-center space-x-2">
             {[1, 2, 3, 4, 5].map((stepNum) => (
               <div key={stepNum} className="flex items-center">
-                <div className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-medium transition-all ${
-                  step >= stepNum ? 'bg-[#022f36] text-white' : 'bg-gray-200 text-gray-600'
-                }`}>
+                <button
+                  onClick={() => {
+                    // Allow going to previous steps only when paused and the step is completed
+                    if (isPaused && stepNum <= step) {
+                      setStep(stepNum);
+                    }
+                  }}
+                  disabled={!isPaused || stepNum > step}
+                  className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-medium transition-all ${
+                    step >= stepNum ? 'bg-[#022f36] text-white' : 'bg-gray-200 text-gray-600'
+                  } ${
+                    isPaused && stepNum <= step 
+                      ? 'hover:bg-[#033d46] cursor-pointer' 
+                      : isPaused && stepNum > step 
+                        ? 'cursor-not-allowed opacity-50' 
+                        : 'cursor-default'
+                  }`}
+                >
                   {step > stepNum ? <CheckCircle className="h-3 w-3" /> : stepNum}
-                </div>
+                </button>
                 {stepNum < 5 && <ArrowRight className="h-3 w-3 mx-1 text-gray-400" />}
               </div>
             ))}
