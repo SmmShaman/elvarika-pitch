@@ -945,55 +945,49 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
               exit={{ opacity: 0 }}
               className="h-full"
             >
-              <div className="bg-white rounded-lg p-8 h-full overflow-y-auto">
-                {/* Maximum space for translation comparison */}
-                <div className="h-full grid grid-cols-2 gap-6">
-                  {/* Norwegian Column */}
-                  <div className="bg-blue-50 rounded-lg p-6 h-full border-2 border-blue-200">
-                    <div className="flex items-center gap-3 mb-6">
-                      <div className="w-4 h-3 bg-red-500 rounded"></div>
-                      <div className="w-4 h-3 bg-white border border-gray-300 rounded"></div>
-                      <div className="w-4 h-3 bg-blue-600 rounded"></div>
-                      <span className="text-lg font-bold text-blue-800">Norsk</span>
-                    </div>
-                    <div className="space-y-4 h-full overflow-y-auto">
-                      {words.filter(w => w.isTranslating || w.isReady).slice(0, 8).map((word) => (
-                        <motion.div
-                          key={word.id}
-                          initial={{ opacity: 0, x: -10 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          className="p-4 bg-white rounded-lg border shadow-sm"
-                        >
-                          <div className="font-bold text-blue-800 text-base mb-2">{word.word}</div>
-                          <div className="text-blue-600 text-sm italic bg-blue-50 p-2 rounded">"{word.context}"</div>
-                        </motion.div>
-                      ))}
-                    </div>
-                  </div>
-                  
-                  {/* Translation Column */}
-                  <div className="bg-green-50 rounded-lg p-6 h-full border-2 border-green-200">
-                    <div className="flex items-center gap-3 mb-6">
-                      <div className="w-4 h-3 bg-blue-400 rounded"></div>
-                      <div className="w-4 h-3 bg-yellow-400 rounded"></div>
-                      <span className="text-lg font-bold text-green-800">
-                        {translationTarget === 'uk' ? 'Українська' : 'English'}
-                      </span>
-                    </div>
-                    <div className="space-y-4 h-full overflow-y-auto">
-                      {words.filter(w => w.isTranslating || w.isReady).slice(0, 8).map((word) => (
-                        <motion.div
-                          key={word.id}
-                          initial={{ opacity: 0, x: 10 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 0.2 }}
-                          className="p-4 bg-white rounded-lg border shadow-sm"
-                        >
-                          <div className="font-bold text-green-800 text-base mb-2">{word.translation}</div>
-                          <div className="text-green-600 text-sm italic bg-green-50 p-2 rounded">"{word.contextTranslation}"</div>
-                        </motion.div>
-                      ))}
-                    </div>
+              <div className="bg-white rounded-lg p-4 h-full overflow-y-auto">
+                {/* Compact translation comparison - combined format */}
+                <div className="bg-gray-50 rounded-lg p-2 border-2 border-gray-200 h-full">
+                  <div className="space-y-2 h-full overflow-y-auto p-4">
+                    {words.filter(w => w.isTranslating || w.isReady).slice(0, 12).map((word) => (
+                      <motion.div
+                        key={word.id}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.1 }}
+                        className="p-3 bg-white rounded-lg border shadow-sm"
+                      >
+                        {/* Word pair with flags */}
+                        <div className="flex items-start gap-3 mb-2">
+                          <div className="flex items-center gap-2 flex-1">
+                            <div className="w-3 h-2 bg-red-500 rounded"></div>
+                            <div className="w-3 h-2 bg-white border border-gray-300 rounded"></div>
+                            <div className="w-3 h-2 bg-blue-600 rounded"></div>
+                            <span className="font-bold text-blue-800 text-sm">{word.word}</span>
+                          </div>
+                          <span className="text-gray-400 text-sm">→</span>
+                          <div className="flex items-center gap-2 flex-1">
+                            <div className="w-3 h-2 bg-blue-400 rounded"></div>
+                            <div className="w-3 h-2 bg-yellow-400 rounded"></div>
+                            <span className="font-bold text-green-800 text-sm">{word.translation}</span>
+                          </div>
+                        </div>
+                        
+                        {/* Context comparison */}
+                        <div className="text-xs leading-relaxed">
+                          <div className="mb-1">
+                            <span className="text-blue-600 bg-blue-50 px-2 py-1 rounded">
+                              "{word.context}"
+                            </span>
+                          </div>
+                          <div>
+                            <span className="text-green-600 bg-green-50 px-2 py-1 rounded">
+                              "{word.contextTranslation}"
+                            </span>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
                   </div>
                 </div>
               </div>
