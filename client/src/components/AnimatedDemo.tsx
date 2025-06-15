@@ -114,7 +114,7 @@ const demoTranslations: Record<string, DemoTranslations> = {
   }
 };
 
-const sourceText = `Blendingsanordningen reduserer styrken på sollys. Døren skal aldri blokkeres helt. Nødstoppmekanismen er nær døren til høyre. Porten må være bred nok. Skyvedører er plassert ved siden av porten. Nødutgangen må være godt synlig. Nødbelysning lyser opp nødutgangen automatisk. Sterkt lys kan gi blending. Lyskilder bør plasseres riktig for sikkerhet.`;
+const sourceText = `Blendingsanordningen reduserer styrken på sollys. Døren skal aldri blokkeres helt. Nødstoppmekanismen er nær døren til høyre. Porten må være bred nok. Skyvedører er plassert ved siden av porten. Nødutgangen må være godt synlig. Nødbelysning lyser opp nødutgangen automatisk. Nødbelysning er viktig ved strømbrudd. Arbeidsplasser i kjeller trenger nødbelysning. Sterkt lys kan gi blending. Lyskilder bør plasseres riktig for sikkerhet. Godt syn krever riktig belysning. Dataskjerm må ikke forstyrre synet ditt. Døren må ha et sikkerhetssystem. Svingdører uten sikkerhet er farlige. Utilsiktet lukking utgjør fare. Nødstoppmekanisme reduserer fare betraktelig. Hver arbeidsplass trenger dagslys. Kontrastforhold forbedrer sikkerheten på arbeidsplassen. Arbeidslokalet må være opplyst. Belysning i arbeidslokalet skal tilpasses arbeidet. Vi trenger dagslys i spiserom. Utsyn gir også mental sikkerhet. Godt utsyn forebygger ulykker. Arbeidstilsynet krever godt utsyn i lokalene. Belysning skal ikke gi blending. Lysinstallasjoner må kontrolleres jevnlig. Fluktveier må holdes åpne. Nødutgang er også en fluktvei.`;
 
 const keyWordsData = [
   {
@@ -150,6 +150,14 @@ const keyWordsData = [
     contextTranslation_en: "The gate must be wide enough."
   },
   {
+    word: "skyvedører",
+    translation_uk: "розсувні двері",
+    translation_en: "sliding doors",
+    context: "Skyvedører må ha sikring mot velting.",
+    contextTranslation_uk: "Розсувні двері повинні мати захист від перекидання.",
+    contextTranslation_en: "Sliding doors must have protection against tipping over."
+  },
+  {
     word: "nødutgang",
     translation_uk: "аварійний вихід",
     translation_en: "emergency exit",
@@ -166,6 +174,14 @@ const keyWordsData = [
     contextTranslation_en: "Emergency lighting is important during a power outage."
   },
   {
+    word: "arbeidsplasser",
+    translation_uk: "робочі місця",
+    translation_en: "workplaces",
+    context: "Arbeidsplasser i kjeller trenger nødbelysning.",
+    contextTranslation_uk: "Робочі місця в підвалі потребують аварійного освітлення.",
+    contextTranslation_en: "Workplaces in the basement need emergency lighting."
+  },
+  {
     word: "lys",
     translation_uk: "світло",
     translation_en: "light",
@@ -174,12 +190,132 @@ const keyWordsData = [
     contextTranslation_en: "Strong light can cause glare."
   },
   {
-    word: "sikkerhet",
-    translation_uk: "безпека",
-    translation_en: "safety",
+    word: "lyskilder",
+    translation_uk: "джерела світла",
+    translation_en: "light sources",
     context: "Lyskilder bør plasseres riktig for sikkerhet.",
     contextTranslation_uk: "Джерела світла слід розміщувати правильно для безпеки.",
     contextTranslation_en: "Light sources should be placed correctly for safety."
+  },
+  {
+    word: "syn",
+    translation_uk: "зір",
+    translation_en: "vision",
+    context: "Godt syn krever riktig belysning.",
+    contextTranslation_uk: "Добрий зір вимагає правильного освітлення.",
+    contextTranslation_en: "Good vision requires proper lighting."
+  },
+  {
+    word: "dataskjerm",
+    translation_uk: "монітор комп'ютера",
+    translation_en: "computer screen",
+    context: "Dataskjerm må ikke forstyrre synet ditt.",
+    contextTranslation_uk: "Монітор комп'ютера не повинен заважати вашому зору.",
+    contextTranslation_en: "The computer screen must not disturb your vision."
+  },
+  {
+    word: "sikkerhetssystem",
+    translation_uk: "система безпеки",
+    translation_en: "security system",
+    context: "Døren må ha et sikkerhetssystem.",
+    contextTranslation_uk: "Двері повинні мати систему безпеки.",
+    contextTranslation_en: "The door must have a security system."
+  },
+  {
+    word: "svingdører",
+    translation_uk: "обертові двері",
+    translation_en: "revolving doors",
+    context: "Svingdører uten sikkerhet er farlige.",
+    contextTranslation_uk: "Обертові двері без засобів безпеки небезпечні.",
+    contextTranslation_en: "Revolving doors without safety features are dangerous."
+  },
+  {
+    word: "fare",
+    translation_uk: "небезпека",
+    translation_en: "danger",
+    context: "Utilsiktet lukking utgjør fare.",
+    contextTranslation_uk: "Ненавмисне закриття становить небезпеку.",
+    contextTranslation_en: "Unintended closure poses a danger."
+  },
+  {
+    word: "arbeidsplass",
+    translation_uk: "робоче місце",
+    translation_en: "workplace",
+    context: "Hver arbeidsplass trenger dagslys.",
+    contextTranslation_uk: "Кожне робоче місце потребує денного світла.",
+    contextTranslation_en: "Every workplace needs daylight."
+  },
+  {
+    word: "kontrastforhold",
+    translation_uk: "контрастність",
+    translation_en: "contrast conditions",
+    context: "Kontrastforhold forbedrer sikkerheten på arbeidsplassen.",
+    contextTranslation_uk: "Контрастність покращує безпеку на робочому місці.",
+    contextTranslation_en: "Contrast conditions improve safety at the workplace."
+  },
+  {
+    word: "arbeidslokalet",
+    translation_uk: "робоче приміщення",
+    translation_en: "work premises",
+    context: "Arbeidslokalet må være opplyst.",
+    contextTranslation_uk: "Робоче приміщення повинно бути освітленим.",
+    contextTranslation_en: "The work premises must be illuminated."
+  },
+  {
+    word: "belysning",
+    translation_uk: "освітлення",
+    translation_en: "lighting",
+    context: "Belysning i arbeidslokalet skal tilpasses arbeidet.",
+    contextTranslation_uk: "Освітлення в робочому приміщенні повинно відповідати роботі.",
+    contextTranslation_en: "Lighting in the work premises should be adapted to the work."
+  },
+  {
+    word: "dagslys",
+    translation_uk: "денне світло",
+    translation_en: "daylight",
+    context: "Vi trenger dagslys i spiserom.",
+    contextTranslation_uk: "Нам потрібне денне світло в їдальні.",
+    contextTranslation_en: "We need daylight in the dining room."
+  },
+  {
+    word: "utsyn",
+    translation_uk: "огляд",
+    translation_en: "view",
+    context: "Utsyn gir også mental sikkerhet.",
+    contextTranslation_uk: "Огляд також забезпечує психологічну безпеку.",
+    contextTranslation_en: "A view also provides mental security."
+  },
+  {
+    word: "arbeidstilsynet",
+    translation_uk: "інспекція праці",
+    translation_en: "labor inspection authority",
+    context: "Arbeidstilsynet krever godt utsyn i lokalene.",
+    contextTranslation_uk: "Інспекція праці вимагає доброго огляду в приміщеннях.",
+    contextTranslation_en: "The labor inspection authority requires good visibility on the premises."
+  },
+  {
+    word: "lysinstallasjoner",
+    translation_uk: "освітлювальні установки",
+    translation_en: "lighting installations",
+    context: "Lysinstallasjoner må kontrolleres jevnlig.",
+    contextTranslation_uk: "Освітлювальні установки необхідно регулярно перевіряти.",
+    contextTranslation_en: "Lighting installations must be checked regularly."
+  },
+  {
+    word: "fluktveier",
+    translation_uk: "шляхи евакуації",
+    translation_en: "escape routes",
+    context: "Fluktveier må holdes åpne.",
+    contextTranslation_uk: "Шляхи евакуації повинні бути вільними.",
+    contextTranslation_en: "Escape routes must be kept open."
+  },
+  {
+    word: "fluktvei",
+    translation_uk: "шлях евакуації",
+    translation_en: "escape route",
+    context: "Nødutgang er også en fluktvei.",
+    contextTranslation_uk: "Аварійний вихід також є шляхом евакуації.",
+    contextTranslation_en: "An emergency exit is also an escape route."
   }
 ];
 
@@ -374,11 +510,13 @@ export const AnimatedDemo: React.FC = () => {
                   <CardTitle className="text-xl">Norsk tekst om sikkerhet</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="relative p-4 bg-gray-50 rounded-lg min-h-[200px]">
+                  <div className="relative p-4 bg-gray-50 rounded-lg min-h-[300px]">
                     <div className="text-sm leading-relaxed">
                       {sourceText.split(' ').map((word, index) => {
-                        const cleanWord = word.replace(/[.,]/g, '');
-                        const foundWord = words.find(w => w.word === cleanWord);
+                        const cleanWord = word.replace(/[.,:;!?()]/g, '').toLowerCase();
+                        const foundWord = words.find(w => w.word.toLowerCase() === cleanWord || 
+                          cleanWord.includes(w.word.toLowerCase()) || 
+                          w.word.toLowerCase().includes(cleanWord));
                         const isHighlighted = foundWord?.isHighlighted;
                         const isExtracting = foundWord?.isExtracting;
                         
@@ -386,9 +524,9 @@ export const AnimatedDemo: React.FC = () => {
                           <span
                             key={index}
                             className={`inline-block transition-all duration-500 ${
-                              isHighlighted ? 'bg-yellow-200 font-medium' : ''
+                              isHighlighted ? 'bg-yellow-300 font-medium rounded px-1' : ''
                             } ${
-                              isExtracting ? 'transform scale-110 bg-blue-200 animate-pulse' : ''
+                              isExtracting ? 'transform scale-110 bg-blue-300 animate-pulse rounded px-1' : ''
                             }`}
                           >
                             {word}{' '}
