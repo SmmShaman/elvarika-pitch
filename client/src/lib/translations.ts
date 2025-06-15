@@ -39,6 +39,29 @@ export interface Translations {
     library: string;
   };
 
+  // Bilingual Audio Player
+  bilingualPlayer: {
+    title: string;
+    subtitle: string;
+    norwegian: string;
+    ukrainian: string;
+    urlMissing: string;
+    addYouTubeLink: string;
+    yourLibrary: string;
+    addYouTubeLinks: string;
+    activatePlayback: string;
+  };
+
+  // Interactive Demo
+  interactiveDemo: {
+    title: string;
+    subtitle: string;
+    sampleText: string;
+    translateTo: string;
+    startDemo: string;
+    spanish: string;
+  };
+
   // Tech Showcase
   techShowcase: {
     title: {
@@ -313,6 +336,25 @@ export const translations: Record<Language, Translations> = {
       clickToPlay: "Klikk play for å høre kvaliteten på våre AI-stemmer",
       library: "Ditt lydbibliotek"
     },
+    bilingualPlayer: {
+      title: "Se hvordan \"Elvarika\" fungerer i praksis",
+      subtitle: "Bygg ditt personlige lydbibliotek fra enhver tekst. Hvert dokument er tilgjengelig på både ukrainsk og norsk.",
+      norwegian: "Norsk",
+      ukrainian: "Українська", 
+      urlMissing: "YouTube URL mangler for norsk versjon",
+      addYouTubeLink: "Legg til YouTube-lenke for å spille av dette dokumentet",
+      yourLibrary: "Ditt lydbibliotek",
+      addYouTubeLinks: "Legg til dine YouTube-lenker",
+      activatePlayback: "For å aktivere avspilling, legg til YouTube-lenker for hvert dokument i både norsk og ukrainsk versjon."
+    },
+    interactiveDemo: {
+      title: "Interactive Demo - Se Elvarika i aksjon",
+      subtitle: "Opplev vår 4-trinns transformasjonsprosess: Fra tekst til organisert lydspilleliste på sekunder.",
+      sampleText: "Kunstig intelligens revolusjonerer måten vi jobber på. Maskinlæring gjør det mulig for datamaskiner å lære av data uten eksplisitt programmering. Nevrale nettverk etterligner hjernens struktur for å løse komplekse problemer. Automatisering reduserer behovet for manuelt arbeid og øker effektiviteten.",
+      translateTo: "Oversett til:",
+      startDemo: "Start interaktiv demo",
+      spanish: "Spansk"
+    },
     techShowcase: {
       title: {
         part1: "Banebrytende",
@@ -570,6 +612,25 @@ export const translations: Record<Language, Translations> = {
       clickToPlay: "Click play to hear the quality of our AI voices",
       library: "Your Audio Library"
     },
+    bilingualPlayer: {
+      title: "See how \"Elvarika\" works in practice",
+      subtitle: "Build your personal audio library from any text. Each document is available in both Ukrainian and Norwegian.",
+      norwegian: "Norwegian",
+      ukrainian: "Українська", 
+      urlMissing: "YouTube URL missing for Norwegian version",
+      addYouTubeLink: "Add YouTube link to play this document",
+      yourLibrary: "Your Audio Library",
+      addYouTubeLinks: "Add your YouTube links",
+      activatePlayback: "To activate playback, add YouTube links for each document in both Norwegian and Ukrainian versions."
+    },
+    interactiveDemo: {
+      title: "Interactive Demo - See Elvarika in Action",
+      subtitle: "Experience our 4-step transformation process: From text to organized audio playlist in seconds.",
+      sampleText: "Artificial intelligence is revolutionizing the way we work. Machine learning enables computers to learn from data without explicit programming. Neural networks mimic the brain's structure to solve complex problems. Automation reduces the need for manual labor and increases efficiency.",
+      translateTo: "Translate to:",
+      startDemo: "Start Interactive Demo",
+      spanish: "Spanish"
+    },
     techShowcase: {
       title: {
         part1: "Groundbreaking",
@@ -826,6 +887,25 @@ export const translations: Record<Language, Translations> = {
       voice: "Голос:",
       clickToPlay: "Натисніть play, щоб почути якість наших ІІ-голосів",
       library: "Ваша аудіо бібліотека"
+    },
+    bilingualPlayer: {
+      title: "Подивіться як \"Elvarika\" працює на практиці",
+      subtitle: "Створюйте персональну аудіо бібліотеку з будь-якого тексту. Кожен документ доступний українською та норвезькою мовами.",
+      norwegian: "Норвезька",
+      ukrainian: "Українська", 
+      urlMissing: "YouTube URL відсутня для норвезької версії",
+      addYouTubeLink: "Додайте YouTube посилання для відтворення цього документа",
+      yourLibrary: "Ваша аудіо бібліотека",
+      addYouTubeLinks: "Додайте ваші YouTube посилання",
+      activatePlayback: "Для активації відтворення додайте YouTube посилання для кожного документа українською та норвезькою мовами."
+    },
+    interactiveDemo: {
+      title: "Інтерактивне демо - Подивіться Elvarika в дії",
+      subtitle: "Відчуйте наш 4-крокований процес трансформації: Від тексту до організованого аудіо плейлиста за секунди.",
+      sampleText: "Штучний інтелект революціонізує спосіб нашої роботи. Машинне навчання дозволяє комп'ютерам вчитися з даних без явного програмування. Нейронні мережі імітують структуру мозку для вирішення складних проблем. Автоматизація зменшує потребу в ручній праці та підвищує ефективність.",
+      translateTo: "Перекласти на:",
+      startDemo: "Почати інтерактивне демо",
+      spanish: "Іспанська"
     },
     techShowcase: {
       title: {

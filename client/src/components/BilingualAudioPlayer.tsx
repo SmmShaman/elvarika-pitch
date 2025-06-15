@@ -195,10 +195,10 @@ export const BilingualAudioPlayer: React.FC = () => {
         <div className="relative bg-gradient-to-br from-blue-50/90 via-white/95 to-green-50/90 backdrop-blur-sm p-8">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold bg-gradient-to-r from-emerald-600 via-blue-600 to-purple-600 bg-clip-text text-transparent mb-3">
-              Se hvordan "Elvarika" fungerer i praksis
+              {translations.bilingualPlayer.title}
             </h2>
             <p className="text-slate-700 opacity-90 text-lg">
-              Bygg ditt personlige lydbibliotek fra enhver tekst. Hvert dokument er tilgjengelig på både ukrainsk og norsk.
+              {translations.bilingualPlayer.subtitle}
             </p>
           </div>
 
