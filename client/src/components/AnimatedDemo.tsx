@@ -514,11 +514,20 @@ export const AnimatedDemo: React.FC = () => {
                     <div className="text-sm leading-relaxed whitespace-pre-wrap">
                       {sourceText.split(' ').map((word, index) => {
                         const cleanWord = word.replace(/[.,:;!?()]/g, '').toLowerCase();
-                        const foundWord = words.find(w => w.word.toLowerCase() === cleanWord || 
-                          cleanWord.includes(w.word.toLowerCase()) || 
-                          w.word.toLowerCase().includes(cleanWord));
-                        const isHighlighted = foundWord?.isHighlighted;
-                        const isExtracting = foundWord?.isExtracting;
+                        
+                        // Точне збігання з ключовими словами для плейлиста
+                        const keyWord = keyWordsData.find(keyData => {
+                          const keyWordLower = keyData.word.toLowerCase();
+                          return keyWordLower === cleanWord || 
+                                 (keyWordLower.endsWith('er') && cleanWord === keyWordLower.slice(0, -2)) ||
+                                 (cleanWord.endsWith('er') && keyWordLower === cleanWord.slice(0, -2)) ||
+                                 (keyWordLower.endsWith('e') && cleanWord === keyWordLower.slice(0, -1)) ||
+                                 (cleanWord.endsWith('e') && keyWordLower === cleanWord.slice(0, -1));
+                        });
+                        
+                        const foundWord = words.find(w => w.word.toLowerCase() === (keyWord?.word.toLowerCase() || ''));
+                        const isHighlighted = foundWord?.isHighlighted && keyWord;
+                        const isExtracting = foundWord?.isExtracting && keyWord;
                         
                         return (
                           <span key={index}>
