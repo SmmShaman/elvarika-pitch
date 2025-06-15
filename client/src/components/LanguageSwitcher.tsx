@@ -20,20 +20,17 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
   return (
     <div className="flex items-center gap-2">
       {languages.map((lang) => (
-        <Button
+        <div
           key={lang.code}
-          variant={currentLanguage === lang.code ? "default" : "ghost"}
-          size="sm"
           onClick={() => onLanguageChange(lang.code)}
-          className={`h-8 px-3 transition-all ${
+          className={`cursor-pointer px-2 py-1 rounded transition-all ${
             currentLanguage === lang.code
               ? "bg-[#022f36] text-white"
               : "text-[#022f36] hover:bg-[#defff0]"
           }`}
         >
-          <span className="mr-1">{lang.flag}</span>
-          <span className="text-xs font-medium">{lang.name}</span>
-        </Button>
+          <span className="text-lg">{lang.flag}</span>
+        </div>
       ))}
     </div>
   );
