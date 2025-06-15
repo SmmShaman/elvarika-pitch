@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, Pause, CheckCircle, ArrowRight, Zap, Languages, Volume2, RotateCcw, Gauge, Settings, ChevronDown } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -70,6 +70,7 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
   const [playbackSpeed, setPlaybackSpeed] = useState(1.0);
   const [showSpeedControl, setShowSpeedControl] = useState(false);
   const [timeouts, setTimeouts] = useState<NodeJS.Timeout[]>([]);
+  const speedControlRef = useRef<HTMLDivElement>(null);
 
   const sourceText = "Blendingsanordningen reduserer styrken på sollys. Arbeiderne må bruke vernebriller når de arbeider med UV-stråling. Sikkerhetsutstyr er obligatorisk på byggeplassen. Vernehansker beskytter mot kjemiske stoffer. Hørselsvern reduserer støynivået til sikre grenser. Arbeidsgiveren har ansvar for å sikre at alle ansatte har tilgang til riktig verneutstyr. Gassmålere brukes for å oppdage farlige gasser i luft. Fallsikring er nødvendig når man arbeider i høyder over to meter. Brannslukningsapparater må være lett tilgjengelige på alle arbeidsplasser. Første hjelp-utstyr skal alltid være tilgjengelig og oppdatert. Kjemikalier må merkes tydelig med faresymboler. Ventilasjonssystem sørger for ren luft i arbeidsområdet. Støvmaske beskytter lungene mot farlige partikler. Sikkerhetssko med ståltupp beskytter føttene mot tunge gjenstander. Refleksvest gjør arbeiderne synlige i dårlig lys. Arbeidstid begrenses for å unngå utmattelse og ulykker. Risikovurdering må gjennomføres før start på farlige arbeidsoppgaver. Nødutgang må alltid være merket og tilgjengelig. Varselskilt informerer om farer og sikkerhetstiltak. Sikkerhetsinstruks må gis til alle nye ansatte før arbeidsstart.";
 
@@ -371,6 +372,51 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
     if (speed === 2.0) return "2x (Very Fast)";
     return `${speed}x`;
   };
+
+  // Click outside to close speed control
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (speedControlRef.current && !speedControlRef.current.contains(event.target as Node)) {
+        setShowSpeedControl(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  // Keyboard shortcuts for speed control
+  useEffect(() => {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      if (!currentAudio) return;
+      
+      switch (event.key) {
+        case '-':
+        case '_':
+          event.preventDefault();
+          const slower = playbackSpeed > 0.5 ? Math.max(0.5, playbackSpeed - 0.25) : 0.5;
+          changePlaybackSpeed(slower);
+          break;
+        case '+':
+        case '=':
+          event.preventDefault();
+          const faster = playbackSpeed < 2.0 ? Math.min(2.0, playbackSpeed + 0.25) : 2.0;
+          changePlaybackSpeed(faster);
+          break;
+        case '1':
+          event.preventDefault();
+          changePlaybackSpeed(1.0);
+          break;
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyPress);
+    return () => {
+      document.removeEventListener('keydown', handleKeyPress);
+    };
+  }, [playbackSpeed, currentAudio]);
 
   const startDemo = () => {
     clearAllTimeouts();
@@ -677,6 +723,7 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
     setPlayingItem(null);
     setAudioIsPaused(false);
     setIsPlaylistPlaying(false);
+    setShowSpeedControl(false);
     clearAllTimeouts();
   };
 
@@ -1161,7 +1208,23 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
                 {/* Playlist header with controls */}
                 <div className="flex items-center justify-between mb-6 p-4 bg-gray-50 rounded-lg border">
                   <div className="flex items-center gap-3">
-                    <Volume2 className="h-6 w-6 text-[#022f36]" />
+                    <div className="relative">
+                      <Volume2 className="h-6 w-6 text-[#022f36]" />
+                      {(isPlaylistPlaying || playingItem) && !audioIsPaused && (
+                        <div className="flex gap-1 absolute -top-1 -right-2">
+                          {[0, 1, 2].map((i) => (
+                            <div
+                              key={i}
+                              className="w-1 h-3 bg-[#022f36] rounded-full animate-pulse"
+                              style={{
+                                animationDelay: `${i * (0.2 / playbackSpeed)}s`,
+                                animationDuration: `${0.8 / playbackSpeed}s`
+                              }}
+                            />
+                          ))}
+                        </div>
+                      )}
+                    </div>
                     <div>
                       <div className="text-lg font-bold text-[#022f36]">{translations.readyPlaylist}</div>
                       <div className="text-sm text-gray-600">
@@ -1173,14 +1236,24 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
                   </div>
                   <div className="flex items-center gap-3">
                     {/* Speed Control */}
-                    <div className="relative">
+                    <div className="relative" ref={speedControlRef}>
                       <Button
                         variant="outline"
                         size="sm"
                         onClick={() => setShowSpeedControl(!showSpeedControl)}
                         className="flex items-center gap-2 bg-white/80 hover:bg-white border-[#022f36]/20"
                       >
-                        <Gauge className="h-4 w-4" />
+                        <div className="relative">
+                          <Gauge className="h-4 w-4" />
+                          {(isPlaylistPlaying || playingItem) && !audioIsPaused && (
+                            <div 
+                              className="absolute inset-0 rounded-full border-2 border-[#022f36] animate-ping opacity-30"
+                              style={{
+                                animationDuration: `${2 / playbackSpeed}s`
+                              }}
+                            />
+                          )}
+                        </div>
                         <span className="font-medium">{getSpeedLabel(playbackSpeed)}</span>
                         <ChevronDown className={`h-3 w-3 transition-transform ${showSpeedControl ? 'rotate-180' : ''}`} />
                       </Button>
