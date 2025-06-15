@@ -139,6 +139,9 @@ Changelog:
 - June 15, 2025. Integrated real audio file system with automatic Norwegian word recognition
 - June 15, 2025. Configured server for audio file serving from attached_assets/audio/
 - June 15, 2025. Audio system active: 2/25 files uploaded (blendingsanordning, førstehjelp)
+- June 15, 2025. Fixed demo with authentic Norwegian words from user files
+- June 15, 2025. Replaced old words with correct Norwegian-Ukrainian pairs (dør-двері, port-ворота, etc.)
+- June 15, 2025. Restored original demo structure while updating vocabulary to authentic workplace safety terms
 ```
 
 ## User Preferences
