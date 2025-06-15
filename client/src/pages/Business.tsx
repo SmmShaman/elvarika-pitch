@@ -24,7 +24,7 @@ import {
   Coffee,
   Tractor
 } from 'lucide-react';
-import { AnimatedDemo } from '@/components/AnimatedDemo';
+import { CompactAnimatedDemo } from '@/components/CompactAnimatedDemo';
 
 interface BusinessTranslations {
   nav: {
@@ -579,7 +579,7 @@ export const Business: React.FC = () => {
                 ← Назад до головної
               </Button>
             </div>
-            <AnimatedDemo />
+            <CompactAnimatedDemo />
           </div>
         </section>
       )}
