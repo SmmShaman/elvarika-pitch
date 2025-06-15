@@ -577,43 +577,46 @@ export const CompactAnimatedDemo: React.FC = () => {
   };
 
   return (
-    <div className="h-[500px] w-full bg-gradient-to-br from-[#0066cc]/5 to-[#00a1e6]/5 rounded-2xl border border-[#0066cc]/10 overflow-hidden flex flex-col">
+    <div className="h-full min-h-[650px] w-full bg-gradient-to-br from-[#0066cc]/5 to-[#00a1e6]/5 rounded-2xl border border-[#0066cc]/10 overflow-hidden flex flex-col">
       {/* Header */}
-      <div className="p-4 border-b border-gray-100 bg-white/50">
-        <div className="flex items-center justify-between">
-          <h3 className="text-lg font-semibold text-[#022f36]">{translations.title}</h3>
-          <div className="flex items-center gap-2">
+      <div className="p-6 border-b border-gray-100 bg-white/50 flex-shrink-0">
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-2xl font-bold text-[#022f36]">{translations.title}</h3>
+          <div className="flex items-center gap-3">
             {/* Pause/Play Controls */}
             {(isAnimating || isPaused) && step > 0 && step < 5 && (
               <Button
-                size="sm"
+                size="default"
                 variant="outline"
                 onClick={isPaused ? resumeDemo : pauseDemo}
-                className="h-8 px-3"
+                className="h-10 px-4"
               >
-                {isPaused ? <Play size={14} /> : <Pause size={14} />}
+                {isPaused ? <Play size={16} /> : <Pause size={16} />}
+                <span className="ml-2 text-sm">{isPaused ? 'Продовжити' : 'Пауза'}</span>
               </Button>
             )}
-            <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as 'uk' | 'en')} className="w-[200px]">
-              <TabsList className="grid w-full grid-cols-2 h-8">
-                <TabsTrigger value="uk" className="text-xs">🇺🇦</TabsTrigger>
-                <TabsTrigger value="en" className="text-xs">🇬🇧</TabsTrigger>
+            <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as 'uk' | 'en')} className="w-[240px]">
+              <TabsList className="grid w-full grid-cols-2 h-10">
+                <TabsTrigger value="uk" className="text-sm">🇺🇦 {translations.norwayUkraine}</TabsTrigger>
+                <TabsTrigger value="en" className="text-sm">🇬🇧 {translations.norwayEngland}</TabsTrigger>
               </TabsList>
             </Tabs>
           </div>
         </div>
         
+        <p className="text-base text-gray-600 mb-4">{translations.subtitle}</p>
+        
         {/* Progress Steps */}
-        <div className="flex justify-center mt-3">
-          <div className="flex items-center space-x-2">
+        <div className="flex justify-center">
+          <div className="flex items-center space-x-3">
             {[1, 2, 3, 4, 5].map((stepNum) => (
               <div key={stepNum} className="flex items-center">
-                <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-medium transition-all ${
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-all ${
                   step >= stepNum ? 'bg-[#022f36] text-white' : 'bg-gray-200 text-gray-600'
                 }`}>
-                  {step > stepNum ? <CheckCircle className="h-3 w-3" /> : stepNum}
+                  {step > stepNum ? <CheckCircle className="h-4 w-4" /> : stepNum}
                 </div>
-                {stepNum < 5 && <ArrowRight className="h-3 w-3 mx-1 text-gray-400" />}
+                {stepNum < 5 && <ArrowRight className="h-4 w-4 mx-2 text-gray-400" />}
               </div>
             ))}
           </div>
@@ -621,7 +624,7 @@ export const CompactAnimatedDemo: React.FC = () => {
       </div>
 
       {/* Content Area */}
-      <div className="flex-1 p-4 overflow-hidden">
+      <div className="flex-1 p-6 overflow-hidden min-h-[450px]">
         <AnimatePresence mode="wait">
           {step === 0 && (
             <motion.div

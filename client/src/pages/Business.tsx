@@ -568,18 +568,26 @@ export const Business: React.FC = () => {
           </div>
         </section>
       ) : (
-        <section className="pt-24 pb-16 bg-gradient-to-br from-[#defff0] to-[#f0fff4] relative overflow-hidden min-h-[600px]">
-          <div className="container mx-auto px-4 h-full">
-            <div className="mb-6 text-center">
-              <Button 
-                onClick={() => setShowDemo(false)}
-                variant="outline" 
-                className="border-[#022f36] text-[#022f36] hover:bg-[#022f36] hover:text-white"
-              >
-                ← Назад до головної
-              </Button>
+        <section className="pt-20 pb-12 bg-gradient-to-br from-[#defff0] to-[#f0fff4] relative overflow-hidden min-h-screen">
+          <div className="container mx-auto px-4 h-full max-w-6xl">
+            <div className="flex flex-col h-full space-y-4">
+              {/* Header with back button and language switcher */}
+              <div className="flex justify-between items-center">
+                <Button 
+                  onClick={() => setShowDemo(false)}
+                  variant="outline" 
+                  className="border-[#022f36] text-[#022f36] hover:bg-[#022f36] hover:text-white text-lg px-6 py-2"
+                >
+                  ← Назад до головної
+                </Button>
+                <LanguageSwitcher currentLanguage={language} onLanguageChange={changeLanguage} />
+              </div>
+              
+              {/* Demo content with increased height */}
+              <div className="flex-1 min-h-[700px]">
+                <CompactAnimatedDemo />
+              </div>
             </div>
-            <CompactAnimatedDemo />
           </div>
         </section>
       )}
