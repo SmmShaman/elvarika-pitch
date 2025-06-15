@@ -83,11 +83,15 @@ export function DemoAccessForm({ onAccessGranted, language }: DemoAccessFormProp
 
   const submitRequest = useMutation({
     mutationFn: async (data: typeof formData) => {
-      return apiRequest('/api/demo-request', {
+      const response = await fetch('/api/demo-request', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
       });
+      if (!response.ok) {
+        throw new Error('Failed to submit request');
+      }
+      return response.json();
     },
     onSuccess: (data) => {
       setIsSubmitted(true);
@@ -108,7 +112,11 @@ export function DemoAccessForm({ onAccessGranted, language }: DemoAccessFormProp
 
   const verifyEmail = useMutation({
     mutationFn: async (token: string) => {
-      return apiRequest(`/api/verify/${token}`);
+      const response = await fetch(`/api/verify/${token}`);
+      if (!response.ok) {
+        throw new Error('Verification failed');
+      }
+      return response.json();
     },
     onSuccess: () => {
       setIsVerified(true);
