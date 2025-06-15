@@ -163,6 +163,8 @@ Changelog:
 - June 15, 2025. Implemented cookie-based verification system for persistent demo access
 - June 15, 2025. Added automatic access checking on component load via cookies
 - June 15, 2025. Users now stay verified for 30 days without re-entering email
+- June 15, 2025. Fixed demo step timing: each step now has proper animation duration + 5 second pause
+- June 15, 2025. Improved step scheduling to account for individual animation completion times
 ```
 
 ## User Preferences

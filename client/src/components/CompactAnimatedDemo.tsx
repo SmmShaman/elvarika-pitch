@@ -466,7 +466,7 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
     
     switch (currentStep) {
       case 1:
-        // Add 2 second pause before Step 2
+        // Step 1 to Step 2: Wait 5 seconds after step 1 display
         const step2Timeout = setTimeout(() => {
           if (!isPaused) {
             setStep(2);
@@ -495,18 +495,19 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
               newTimeouts.push(highlightTimeout);
             });
             
-            // Schedule next step after highlighting is done
+            // Schedule next step after highlighting animation completes + 5 seconds
+            const highlightingDuration = initialWords.length * 300; // Time for all highlights
             const nextStepTimeout = setTimeout(() => {
               scheduleNextStep(2);
-            }, initialWords.length * 300 + 2000); // Add 2 second pause
+            }, highlightingDuration + 5000); // Animation time + 5 second pause
             newTimeouts.push(nextStepTimeout);
           }
-        }, 2000); // 2 second pause
+        }, 5000); // 5 second pause after step 1
         newTimeouts.push(step2Timeout);
         break;
         
       case 2:
-        // Add 2 second pause before Step 3
+        // Step 2 to Step 3: Context wrapping animation + 5 second pause
         const step3Timeout = setTimeout(() => {
           if (!isPaused) {
             setStep(3);
@@ -521,18 +522,19 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
               newTimeouts.push(contextTimeout);
             });
             
-            // Schedule next step
+            // Schedule next step after context animation completes + 5 seconds
+            const contextAnimationDuration = keyWordsData.length * 200; // Time for all context animations
             const nextStepTimeout = setTimeout(() => {
               scheduleNextStep(3);
-            }, keyWordsData.length * 200 + 2000); // Add 2 second pause
+            }, contextAnimationDuration + 5000); // Animation time + 5 second pause
             newTimeouts.push(nextStepTimeout);
           }
-        }, 2000); // 2 second pause
+        }, 5000); // 5 second pause after step 2
         newTimeouts.push(step3Timeout);
         break;
         
       case 3:
-        // Add 2 second pause before Step 4
+        // Step 3 to Step 4: Translation animation + 5 second pause
         const step4Timeout = setTimeout(() => {
           if (!isPaused) {
             setStep(4);
@@ -556,18 +558,19 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
               newTimeouts.push(translateTimeout);
             });
             
-            // Schedule next step
+            // Schedule next step after translation animation completes + 5 seconds
+            const translationAnimationDuration = keyWordsData.length * 300 + 800; // Time for all translations + ready state
             const nextStepTimeout = setTimeout(() => {
               scheduleNextStep(4);
-            }, keyWordsData.length * 300 + 800 + 2000); // Add 2 second pause
+            }, translationAnimationDuration + 5000); // Animation time + 5 second pause
             newTimeouts.push(nextStepTimeout);
           }
-        }, 2000); // 2 second pause
+        }, 5000); // 5 second pause after step 3
         newTimeouts.push(step4Timeout);
         break;
         
       case 4:
-        // Add 2 second pause before Step 5
+        // Step 4 to Step 5: Final playlist creation + 5 second pause
         const step5Timeout = setTimeout(() => {
           if (!isPaused) {
             setStep(5);
@@ -586,7 +589,7 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
             setPlaylist(finalPlaylist);
             setIsAnimating(false);
           }
-        }, 2000); // 2 second pause
+        }, 5000); // 5 second pause after step 4 completes
         newTimeouts.push(step5Timeout);
         break;
     }
