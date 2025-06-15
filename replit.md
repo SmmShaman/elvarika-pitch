@@ -160,6 +160,9 @@ Changelog:
 - June 15, 2025. Fixed demo step pause system with dynamic step scheduling instead of fixed timeouts
 - June 15, 2025. Implemented real audio duration detection replacing template 3-second durations
 - June 15, 2025. Added automatic audio metadata loading for accurate playlist duration display
+- June 15, 2025. Implemented cookie-based verification system for persistent demo access
+- June 15, 2025. Added automatic access checking on component load via cookies
+- June 15, 2025. Users now stay verified for 30 days without re-entering email
 ```
 
 ## User Preferences

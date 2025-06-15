@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -202,6 +202,20 @@ export function DemoAccessForm({ onAccessGranted, language }: DemoAccessFormProp
   const handleAccessDemo = () => {
     onAccessGranted();
   };
+
+  // Show loading while checking existing access
+  if (isCheckingAccess) {
+    return (
+      <Card className="w-full max-w-md mx-auto">
+        <CardContent className="pt-6">
+          <div className="flex flex-col items-center justify-center py-8">
+            <Loader2 className="h-8 w-8 animate-spin text-[#0066cc] mb-4" />
+            <p className="text-gray-600">Checking access...</p>
+          </div>
+        </CardContent>
+      </Card>
+    );
+  }
 
   if (isVerified) {
     return (
