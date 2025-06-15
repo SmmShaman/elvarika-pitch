@@ -684,7 +684,7 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
                       transition={{ delay: 1 }}
                       className="bg-yellow-50 px-2 py-1 rounded text-center border border-yellow-200"
                     >
-                      <div className="text-xs font-medium text-yellow-700">🔍 Аналіз</div>
+                      <div className="text-xs font-medium text-yellow-700">📋 Аналіз тексту</div>
                     </motion.div>
                     <motion.div 
                       initial={{ scale: 0.8, opacity: 0 }}
@@ -713,7 +713,7 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
                       transition={{ delay: 1 }}
                       className="bg-blue-50 px-2 py-1 rounded text-center border border-blue-200"
                     >
-                      <div className="text-xs font-medium text-blue-700">📦 Упаковка</div>
+                      <div className="text-xs font-medium text-blue-700">🔍 Контекстуальний аналіз</div>
                     </motion.div>
                     <motion.div 
                       initial={{ scale: 0.8, opacity: 0 }}
@@ -872,14 +872,10 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
               exit={{ opacity: 0 }}
               className="h-full"
             >
-              <div className="bg-white rounded-lg p-8 h-full overflow-y-auto">
-                {/* Maximum space for analyzed text */}
-                <div className="bg-gray-50 rounded-lg p-8 border-2 border-gray-200 min-h-[400px] h-full">
-                  <div className="text-2xl font-semibold text-gray-800 mb-6 flex items-center gap-3">
-                    <div className="w-4 h-4 bg-yellow-500 rounded-full animate-pulse"></div>
-                    Аналіз тексту:
-                  </div>
-                  <div className="text-lg leading-relaxed h-full overflow-y-auto bg-white p-6 rounded border text-justify">
+              <div className="bg-white rounded-lg p-4 h-full overflow-y-auto">
+                {/* Maximum space for analyzed text - removed header to increase content area */}
+                <div className="bg-gray-50 rounded-lg p-2 border-2 border-gray-200 h-full">
+                  <div className="text-lg leading-relaxed h-full overflow-y-auto bg-white p-8 rounded border text-justify">
                     {sourceText.split(' ').map((word, index) => {
                       const cleanWord = word.replace(/[.,:;!?()]/g, '').toLowerCase();
                       const keyWord = keyWordsData.find(keyData => {
@@ -917,14 +913,10 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
               exit={{ opacity: 0 }}
               className="h-full"
             >
-              <div className="bg-white rounded-lg p-8 h-full overflow-y-auto">
-                {/* Maximum space for context processing */}
-                <div className="bg-gray-50 rounded-lg p-8 border-2 border-gray-200 min-h-[400px] h-full">
-                  <div className="text-2xl font-semibold text-gray-800 mb-6 flex items-center gap-3">
-                    <div className="w-4 h-4 bg-blue-500 rounded-full animate-pulse"></div>
-                    Контекстуальний аналіз:
-                  </div>
-                  <div className="space-y-3 h-full overflow-y-auto">
+              <div className="bg-white rounded-lg p-4 h-full overflow-y-auto">
+                {/* Maximum space for context processing - removed header to increase content area */}
+                <div className="bg-gray-50 rounded-lg p-2 border-2 border-gray-200 h-full">
+                  <div className="space-y-3 h-full overflow-y-auto p-6">
                     {words.filter(w => w.isInContext).slice(0, 12).map((word) => (
                       <motion.div
                         key={word.id}
