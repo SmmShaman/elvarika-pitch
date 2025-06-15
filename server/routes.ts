@@ -57,6 +57,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(404).json({ error: "Invalid or expired verification token" });
       }
 
+      // Set verification cookie that expires in 30 days
+      res.cookie('demo_verified', verifiedRequest.email, {
+        maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax'
+      });
+
       res.json({ 
         success: true, 
         message: "Email verified successfully. You can now access the demo.",
@@ -67,7 +75,44 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Check demo access by email
+  // Check demo access by cookie
+  app.get("/api/check-demo-access", async (req, res) => {
+    try {
+      const verifiedEmail = req.cookies?.demo_verified;
+      
+      if (!verifiedEmail) {
+        return res.json({ 
+          hasAccess: false,
+          verified: false,
+          needsVerification: true
+        });
+      }
+
+      // Double-check that the email is still verified in our database
+      const verifiedRequest = await storage.getDemoRequestByEmail(verifiedEmail);
+      
+      if (!verifiedRequest?.isVerified) {
+        // Clear invalid cookie
+        res.clearCookie('demo_verified');
+        return res.json({ 
+          hasAccess: false,
+          verified: false,
+          needsVerification: true
+        });
+      }
+
+      res.json({ 
+        hasAccess: true,
+        verified: true,
+        needsVerification: false,
+        email: verifiedEmail
+      });
+    } catch (error) {
+      res.status(500).json({ error: "Access check failed" });
+    }
+  });
+
+  // Check demo access by email (fallback method)
   app.post("/api/check-demo-access", async (req, res) => {
     try {
       const { email } = req.body;

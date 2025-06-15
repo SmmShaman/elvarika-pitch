@@ -23,6 +23,7 @@ export function DemoAccessForm({ onAccessGranted, language }: DemoAccessFormProp
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [verificationToken, setVerificationToken] = useState<string>('');
   const [isVerified, setIsVerified] = useState(false);
+  const [isCheckingAccess, setIsCheckingAccess] = useState(true);
   const { toast } = useToast();
 
   const texts = {
@@ -81,6 +82,32 @@ export function DemoAccessForm({ onAccessGranted, language }: DemoAccessFormProp
 
   const t = texts[language];
 
+  // Check if user already has access via cookie on component mount
+  useEffect(() => {
+    const checkExistingAccess = async () => {
+      try {
+        const response = await fetch('/api/check-demo-access', {
+          method: 'GET',
+          credentials: 'include', // Include cookies
+        });
+        const data = await response.json();
+        
+        if (data.hasAccess && data.verified) {
+          // User already has access, grant it immediately
+          setIsVerified(true);
+          onAccessGranted();
+        }
+      } catch (error) {
+        console.log('Access check failed:', error);
+        // Continue with normal flow if check fails
+      } finally {
+        setIsCheckingAccess(false);
+      }
+    };
+
+    checkExistingAccess();
+  }, [onAccessGranted]);
+
   const submitRequest = useMutation({
     mutationFn: async (data: typeof formData) => {
       try {
@@ -126,7 +153,9 @@ export function DemoAccessForm({ onAccessGranted, language }: DemoAccessFormProp
   const verifyEmail = useMutation({
     mutationFn: async (token: string) => {
       try {
-        const response = await fetch(`/api/verify/${token}`);
+        const response = await fetch(`/api/verify/${token}`, {
+          credentials: 'include' // Include cookies for verification
+        });
         if (!response.ok) {
           const errorData = await response.json().catch(() => ({}));
           throw new Error(errorData.error || 'Verification failed');
