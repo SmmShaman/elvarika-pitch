@@ -49,13 +49,18 @@ interface CompactDemoTranslations {
   processing: string;
 }
 
-export const CompactAnimatedDemo: React.FC = () => {
+interface CompactAnimatedDemoProps {
+  translationTarget?: 'uk' | 'en';
+}
+
+export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({ 
+  translationTarget = 'uk' 
+}) => {
   const { language } = useLanguage();
   const currentLanguage = language;
   const [step, setStep] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
-  const [activeTab, setActiveTab] = useState<'uk' | 'en'>('uk');
   const [words, setWords] = useState<WordAnimation[]>([]);
   const [playlist, setPlaylist] = useState<PlaylistItem[]>([]);
   const [playingItem, setPlayingItem] = useState<string | null>(null);

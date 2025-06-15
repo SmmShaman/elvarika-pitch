@@ -526,6 +526,7 @@ export const Business: React.FC = () => {
   const { language, translations: _, changeLanguage } = useLanguage();
   const t = businessTranslations[language] || businessTranslations['en'];
   const [showDemo, setShowDemo] = useState(false);
+  const [demoTranslationTarget, setDemoTranslationTarget] = useState<'uk' | 'en'>('uk');
 
   return (
     <div className="min-h-screen bg-white">
@@ -586,10 +587,11 @@ export const Business: React.FC = () => {
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="flex items-center bg-white rounded-lg p-1 border">
+                    <span className="text-xs text-gray-500 px-2">Переклад на:</span>
                     <button
-                      onClick={() => changeLanguage('uk')}
+                      onClick={() => setDemoTranslationTarget('uk')}
                       className={`px-3 py-1 rounded text-sm transition-colors ${
-                        language === 'uk' 
+                        demoTranslationTarget === 'uk' 
                           ? 'bg-[#022f36] text-white' 
                           : 'text-gray-600 hover:text-[#022f36]'
                       }`}
@@ -597,9 +599,9 @@ export const Business: React.FC = () => {
                       🇺🇦
                     </button>
                     <button
-                      onClick={() => changeLanguage('en')}
+                      onClick={() => setDemoTranslationTarget('en')}
                       className={`px-3 py-1 rounded text-sm transition-colors ${
-                        language === 'en' 
+                        demoTranslationTarget === 'en' 
                           ? 'bg-[#022f36] text-white' 
                           : 'text-gray-600 hover:text-[#022f36]'
                       }`}
@@ -621,7 +623,7 @@ export const Business: React.FC = () => {
               
               {/* Demo content with increased height */}
               <div className="flex-1 min-h-[700px]">
-                <CompactAnimatedDemo />
+                <CompactAnimatedDemo translationTarget={demoTranslationTarget} />
               </div>
             </div>
           </div>
