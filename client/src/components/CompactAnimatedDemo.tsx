@@ -1152,12 +1152,36 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
                   <div className="flex items-center gap-3">
                     <Button
                       onClick={() => {
-                        // Toggle play all playlist
-                        const allPlaying = playlist.every(item => item.isPlaying);
-                        setPlaylist(prev => prev.map(item => ({
-                          ...item,
-                          isPlaying: !allPlaying
-                        })));
+                        // Play full playlist audio file
+                        const playlistUrl = translationTarget === 'uk' 
+                          ? '/attached_assets/audio/playlist/uk/full_playlist.mp3'
+                          : '/attached_assets/audio/playlist/en/full_playlist.mp3';
+                        
+                        if (currentAudio) {
+                          currentAudio.pause();
+                          setCurrentAudio(null);
+                        }
+                        
+                        try {
+                          const audio = new Audio(playlistUrl);
+                          setCurrentAudio(audio);
+                          audio.play().catch(err => {
+                            console.log('Playlist playback failed:', err);
+                          });
+                          
+                          // Mark all items as playing
+                          setPlaylist(prev => prev.map(item => ({
+                            ...item,
+                            isPlaying: true
+                          })));
+                          
+                          audio.addEventListener('ended', () => {
+                            setCurrentAudio(null);
+                            setPlaylist(prev => prev.map(item => ({ ...item, isPlaying: false })));
+                          });
+                        } catch (err) {
+                          console.log('Playlist audio creation failed:', err);
+                        }
                       }}
                       className="bg-[#022f36] hover:bg-[#033d46] text-white px-6 py-2 flex items-center gap-2"
                     >
@@ -1179,25 +1203,17 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
                     </Button>
                     <Button
                       onClick={() => {
-                        // Download playlist functionality
-                        const playlistData = {
-                          name: "Elvarika Workplace Safety Dictionary",
-                          language: translationTarget === 'uk' ? 'Ukrainian' : 'English',
-                          words: playlist.map(item => ({
-                            word: item.word,
-                            translation: item.translation,
-                            context: item.context,
-                            contextTranslation: item.contextTranslation,
-                            audioUrl: item.audioUrl
-                          }))
-                        };
-                        const blob = new Blob([JSON.stringify(playlistData, null, 2)], { type: 'application/json' });
-                        const url = URL.createObjectURL(blob);
+                        // Download full playlist audio file
+                        const playlistUrl = translationTarget === 'uk' 
+                          ? '/attached_assets/audio/playlist/uk/full_playlist.mp3'
+                          : '/attached_assets/audio/playlist/en/full_playlist.mp3';
+                        
                         const a = document.createElement('a');
-                        a.href = url;
-                        a.download = 'elvarika-dictionary.json';
+                        a.href = playlistUrl;
+                        a.download = translationTarget === 'uk' 
+                          ? 'elvarika-ukrainian-dictionary.mp3'
+                          : 'elvarika-english-dictionary.mp3';
                         a.click();
-                        URL.revokeObjectURL(url);
                       }}
                       variant="outline"
                       className="border-[#022f36] text-[#022f36] hover:bg-[#022f36] hover:text-white px-6 py-2 flex items-center gap-2"
