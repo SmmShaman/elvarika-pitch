@@ -525,8 +525,8 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
               contextCharsRevealed: 0
             })));
             
-            // Use only first 2 context sentences for animation
-            const contextsToAnimate = keyWordsData.slice(0, 2);
+            // Use all context sentences for animation
+            const contextsToAnimate = keyWordsData;
             const maxContextLength = Math.max(...contextsToAnimate.map(item => item.context.length));
             
             // Animate character by character for all contexts simultaneously
@@ -534,13 +534,11 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
               const charTimeout = setTimeout(() => {
                 if (!isPaused) {
                   setWords(prev => prev.map((word, wordIndex) => {
-                    if (wordIndex < 2) { // Only animate first 2 words
-                      return {
-                        ...word,
-                        contextCharsRevealed: Math.min(charIndex + 1, word.context.length)
-                      };
-                    }
-                    return word;
+                    // Animate all words
+                    return {
+                      ...word,
+                      contextCharsRevealed: Math.min(charIndex + 1, word.context.length)
+                    };
                   }));
                 }
               }, charIndex * 50); // 50ms per character
@@ -1171,60 +1169,62 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
               className="h-full"
             >
               <div className="bg-white rounded-lg p-4 h-full overflow-y-auto">
-                {/* Context wrapping animation - show only first 2 words */}
-                <div className="bg-gray-50 rounded-lg p-4 border-2 border-gray-200 h-full">
-                  <div className="h-full overflow-y-auto space-y-6">
-                    {words.filter(w => w.isShowingContext).slice(0, 2).map((word, index) => (
-                      <motion.div
-                        key={word.id}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: index * 0.1 }}
-                        className="space-y-3"
-                      >
-                        {/* Target word - always visible */}
-                        <div className="text-center">
-                          <span className="text-2xl font-bold text-blue-800 bg-blue-50 px-4 py-2 rounded-lg border-2 border-blue-200">
-                            {word.word}
-                          </span>
-                        </div>
-                        
-                        {/* Context sentence with character-by-character reveal */}
-                        <div className="bg-white p-4 rounded-lg border">
-                          <div className="text-lg leading-relaxed text-gray-800">
-                            {word.context.split('').map((char, charIndex) => {
-                              const isRevealed = charIndex < word.contextCharsRevealed;
-                              const targetWord = word.word.toLowerCase();
-                              const contextLower = word.context.toLowerCase();
-                              
-                              // Find if this character is part of the target word
-                              let isTargetWordChar = false;
-                              if (isRevealed) {
-                                const wordStart = contextLower.indexOf(targetWord);
-                                if (wordStart !== -1 && charIndex >= wordStart && charIndex < wordStart + targetWord.length) {
-                                  isTargetWordChar = true;
-                                }
-                              }
-                              
-                              return (
-                                <motion.span
-                                  key={charIndex}
-                                  initial={{ opacity: 0 }}
-                                  animate={{ opacity: isRevealed ? 1 : 0 }}
-                                  className={`${
-                                    isTargetWordChar 
-                                      ? 'text-red-600 font-bold bg-red-100 px-0.5 rounded' 
-                                      : 'text-gray-800'
-                                  }`}
-                                >
-                                  {isRevealed ? char : ''}
-                                </motion.span>
-                              );
-                            })}
+                {/* Context wrapping animation - show all words */}
+                <div className="bg-gray-50 rounded-lg p-2 border-2 border-gray-200 h-full">
+                  <div className="h-full overflow-y-auto">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 text-sm">
+                      {words.filter(w => w.isShowingContext).map((word, index) => (
+                        <motion.div
+                          key={word.id}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: index * 0.05 }}
+                          className="space-y-2"
+                        >
+                          {/* Target word - always visible */}
+                          <div className="text-center">
+                            <span className="text-lg font-bold text-blue-800 bg-blue-50 px-3 py-1 rounded border border-blue-200">
+                              {word.word}
+                            </span>
                           </div>
-                        </div>
-                      </motion.div>
-                    ))}
+                          
+                          {/* Context sentence with character-by-character reveal */}
+                          <div className="bg-white p-3 rounded border">
+                            <div className="text-sm leading-relaxed text-gray-800">
+                              {word.context.split('').map((char, charIndex) => {
+                                const isRevealed = charIndex < word.contextCharsRevealed;
+                                const targetWord = word.word.toLowerCase();
+                                const contextLower = word.context.toLowerCase();
+                                
+                                // Find if this character is part of the target word
+                                let isTargetWordChar = false;
+                                if (isRevealed) {
+                                  const wordStart = contextLower.indexOf(targetWord);
+                                  if (wordStart !== -1 && charIndex >= wordStart && charIndex < wordStart + targetWord.length) {
+                                    isTargetWordChar = true;
+                                  }
+                                }
+                                
+                                return (
+                                  <motion.span
+                                    key={charIndex}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: isRevealed ? 1 : 0 }}
+                                    className={`${
+                                      isTargetWordChar 
+                                        ? 'text-red-600 font-bold bg-red-100 px-0.5 rounded' 
+                                        : 'text-gray-800'
+                                    }`}
+                                  >
+                                    {isRevealed ? char : ''}
+                                  </motion.span>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
