@@ -12,12 +12,14 @@ import { TechShowcase } from "@/components/TechShowcase";
 import { CompetitiveAdvantage } from "@/components/CompetitiveAdvantage";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
+import { PageNavigation } from "@/components/PageNavigation";
 
 export const Font = (): JSX.Element => {
   return (
     <div className="bg-white flex flex-row justify-center w-full">
       <div className="bg-white w-full max-w-[1920px] relative">
         <Navigation />
+        <PageNavigation />
         <div className="pt-16">
           <HeroSection />
           <div id="demo">

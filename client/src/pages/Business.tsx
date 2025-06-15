@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
+import { PageNavigation } from '@/components/PageNavigation';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { 
   Shield, 
