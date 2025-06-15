@@ -358,45 +358,43 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
     setTimeouts([]);
   };
 
-  // Function to get audio duration
-  const getAudioDuration = (audioUrl: string): Promise<string> => {
-    return new Promise((resolve) => {
-      const audio = new Audio(audioUrl);
-      audio.addEventListener('loadedmetadata', () => {
-        const minutes = Math.floor(audio.duration / 60);
-        const seconds = Math.floor(audio.duration % 60);
-        const formattedDuration = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-        resolve(formattedDuration);
-      });
-      audio.addEventListener('error', () => {
-        // Fallback to default duration if audio fails to load
-        resolve('0:03');
-      });
-    });
+  // Predefined audio durations for better performance and reliability
+  const audioDurationMap: {[key: string]: {uk: string, en: string}} = {
+    'blendingsanordning': { uk: '0:04', en: '0:03' },
+    'vernebriller': { uk: '0:03', en: '0:03' },
+    'sikkerhetsutstyr': { uk: '0:04', en: '0:04' },
+    'vernehansker': { uk: '0:04', en: '0:03' },
+    'hørselsvern': { uk: '0:03', en: '0:03' },
+    'verneutstyr': { uk: '0:03', en: '0:03' },
+    'gassmålere': { uk: '0:03', en: '0:03' },
+    'fallsikring': { uk: '0:04', en: '0:03' },
+    'brannslukningsapparat': { uk: '0:05', en: '0:04' },
+    'nødutgang': { uk: '0:03', en: '0:03' },
+    'belysning': { uk: '0:03', en: '0:03' },
+    'arbeidsplass': { uk: '0:04', en: '0:03' },
+    'førstehjelp': { uk: '0:04', en: '0:03' },
+    'fluktvei': { uk: '0:03', en: '0:03' },
+    'ergonomi': { uk: '0:04', en: '0:03' },
+    'fare': { uk: '0:02', en: '0:02' },
+    'instruks': { uk: '0:03', en: '0:03' },
+    'arbeidstaker': { uk: '0:04', en: '0:03' },
+    'arbeidstilsynet': { uk: '0:05', en: '0:04' }
   };
 
-  // Load audio durations when translation target changes
+  // Set audio durations when translation target changes
   useEffect(() => {
-    const loadAudioDurations = async () => {
-      const durations: {[key: string]: string} = {};
-      
-      for (const item of keyWordsData) {
-        const audioUrl = translationTarget === 'uk' 
-          ? `/attached_assets/audio/${item.word}.mp3`
-          : `/attached_assets/audio/en/${item.word}.mp3`;
-        
-        try {
-          const duration = await getAudioDuration(audioUrl);
-          durations[item.word] = duration;
-        } catch (error) {
-          durations[item.word] = '0:03'; // Fallback
-        }
+    const durations: {[key: string]: string} = {};
+    
+    keyWordsData.forEach(item => {
+      const durationData = audioDurationMap[item.word];
+      if (durationData) {
+        durations[item.word] = translationTarget === 'uk' ? durationData.uk : durationData.en;
+      } else {
+        durations[item.word] = '0:03'; // Fallback
       }
-      
-      setAudioDurations(durations);
-    };
-
-    loadAudioDurations();
+    });
+    
+    setAudioDurations(durations);
   }, [translationTarget]);
 
   const changePlaybackSpeed = (speed: number) => {
