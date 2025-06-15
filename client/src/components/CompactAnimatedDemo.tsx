@@ -742,7 +742,9 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
                       transition={{ delay: 1 }}
                       className="bg-purple-50 px-2 py-1 rounded text-center border border-purple-200"
                     >
-                      <div className="text-xs font-medium text-purple-700">🔄 Переклад</div>
+                      <div className="text-xs font-medium text-purple-700">
+                        🔄 {currentLanguage === 'no' ? 'Oversettelse' : currentLanguage === 'uk' ? 'Переклад' : 'Translation'}
+                      </div>
                     </motion.div>
                     <motion.div 
                       initial={{ scale: 0.8, opacity: 0 }}
@@ -750,7 +752,9 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
                       transition={{ delay: 1.2 }}
                       className="bg-pink-50 px-2 py-1 rounded text-center border border-pink-200"
                     >
-                      <div className="text-xs font-medium text-pink-700">📝 Значення</div>
+                      <div className="text-xs font-medium text-pink-700">
+                        📝 {currentLanguage === 'no' ? 'Betydning' : currentLanguage === 'uk' ? 'Значення' : 'Meaning'}
+                      </div>
                     </motion.div>
                     <motion.div 
                       initial={{ scale: 0.8, opacity: 0 }}
@@ -758,7 +762,9 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
                       transition={{ delay: 1.4 }}
                       className="bg-emerald-50 px-2 py-1 rounded text-center border border-emerald-200"
                     >
-                      <div className="text-xs font-medium text-emerald-700">✅ Готово</div>
+                      <div className="text-xs font-medium text-emerald-700">
+                        ✅ {currentLanguage === 'no' ? 'Ferdig' : currentLanguage === 'uk' ? 'Готово' : 'Ready'}
+                      </div>
                     </motion.div>
                   </div>
                 )}
@@ -771,7 +777,9 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
                       transition={{ delay: 1 }}
                       className="bg-green-50 px-2 py-1 rounded text-center border border-green-200"
                     >
-                      <div className="text-xs font-medium text-green-700">🎯 25 слів</div>
+                      <div className="text-xs font-medium text-green-700">
+                        🎯 {currentLanguage === 'no' ? '25 ord' : currentLanguage === 'uk' ? '25 слів' : '25 words'}
+                      </div>
                     </motion.div>
                     <motion.div 
                       initial={{ scale: 0.8, opacity: 0 }}
@@ -779,7 +787,9 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
                       transition={{ delay: 1.2 }}
                       className="bg-blue-50 px-2 py-1 rounded text-center border border-blue-200"
                     >
-                      <div className="text-xs font-medium text-blue-700">🔊 Аудіо</div>
+                      <div className="text-xs font-medium text-blue-700">
+                        🔊 {currentLanguage === 'no' ? 'Lyd' : currentLanguage === 'uk' ? 'Аудіо' : 'Audio'}
+                      </div>
                     </motion.div>
                     <motion.div 
                       initial={{ scale: 0.8, opacity: 0 }}
@@ -787,7 +797,9 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
                       transition={{ delay: 1.4 }}
                       className="bg-purple-50 px-2 py-1 rounded text-center border border-purple-200"
                     >
-                      <div className="text-xs font-medium text-purple-700">📚 Контекст</div>
+                      <div className="text-xs font-medium text-purple-700">
+                        📚 {currentLanguage === 'no' ? 'Kontekst' : currentLanguage === 'uk' ? 'Контекст' : 'Context'}
+                      </div>
                     </motion.div>
                     <motion.div 
                       initial={{ scale: 0.8, opacity: 0 }}
@@ -795,7 +807,9 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
                       transition={{ delay: 1.6 }}
                       className="bg-yellow-50 px-2 py-1 rounded text-center border border-yellow-200"
                     >
-                      <div className="text-xs font-medium text-yellow-700">✨ Готово</div>
+                      <div className="text-xs font-medium text-yellow-700">
+                        ✨ {currentLanguage === 'no' ? 'Ferdig' : currentLanguage === 'uk' ? 'Готово' : 'Ready'}
+                      </div>
                     </motion.div>
                   </div>
                 )}
@@ -814,7 +828,12 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
                 className="h-8 px-3"
               >
                 {isPaused ? <Play size={14} /> : <Pause size={14} />}
-                <span className="ml-1 text-xs">{isPaused ? 'Продовжити' : 'Пауза'}</span>
+                <span className="ml-1 text-xs">
+                  {isPaused ? 
+                    (currentLanguage === 'no' ? 'Fortsett' : currentLanguage === 'uk' ? 'Продовжити' : 'Continue') : 
+                    (currentLanguage === 'no' ? 'Pause' : currentLanguage === 'uk' ? 'Пауза' : 'Pause')
+                  }
+                </span>
               </Button>
             )}
           </div>
