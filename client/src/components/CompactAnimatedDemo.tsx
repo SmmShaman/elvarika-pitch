@@ -586,7 +586,7 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
       {/* Header with integrated controls and progress */}
       <div className="p-4 border-b border-gray-100 bg-white/50 flex-shrink-0">
         <div className="flex items-center justify-between">
-          {/* Left side - Progress Steps with Result Indicators */}
+          {/* Left side - Progress Steps with Current Step Info */}
           <div className="flex items-center space-x-2">
             {[1, 2, 3, 4, 5].map((stepNum) => (
               <div key={stepNum} className="flex items-center">
@@ -599,61 +599,191 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
               </div>
             ))}
             
-            {/* Final Result Indicators with Title - only show on step 5 */}
-            {step === 5 && (
+            {/* Current Step Info */}
+            {step > 0 && step <= 5 && (
               <div className="flex items-center gap-3 ml-4 pl-4 border-l border-gray-300">
                 <div className="flex flex-col">
                   <motion.div 
+                    key={`title-${step}`}
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.5 }}
                     className="text-sm font-bold text-[#022f36] whitespace-nowrap"
                   >
-                    {stepExplanations.step5.title}
+                    {stepExplanations[`step${step}` as keyof typeof stepExplanations].title}
                   </motion.div>
                   <motion.div 
+                    key={`desc-${step}`}
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.7 }}
-                    className="text-xs text-gray-600 max-w-xs"
+                    className="text-xs text-gray-600 max-w-md"
                   >
-                    {stepExplanations.step5.description}
+                    {stepExplanations[`step${step}` as keyof typeof stepExplanations].description}
                   </motion.div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <motion.div 
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 1 }}
-                    className="bg-green-50 px-2 py-1 rounded text-center border border-green-200"
-                  >
-                    <div className="text-xs font-medium text-green-700">🎯 25 слів</div>
-                  </motion.div>
-                  <motion.div 
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 1.2 }}
-                    className="bg-blue-50 px-2 py-1 rounded text-center border border-blue-200"
-                  >
-                    <div className="text-xs font-medium text-blue-700">🔊 Аудіо</div>
-                  </motion.div>
-                  <motion.div 
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 1.4 }}
-                    className="bg-purple-50 px-2 py-1 rounded text-center border border-purple-200"
-                  >
-                    <div className="text-xs font-medium text-purple-700">📚 Контекст</div>
-                  </motion.div>
-                  <motion.div 
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 1.6 }}
-                    className="bg-yellow-50 px-2 py-1 rounded text-center border border-yellow-200"
-                  >
-                    <div className="text-xs font-medium text-yellow-700">✨ Готово</div>
-                  </motion.div>
-                </div>
+                
+                {/* Step-specific indicators */}
+                {step === 1 && (
+                  <div className="flex items-center gap-2">
+                    <motion.div 
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ delay: 1 }}
+                      className="bg-blue-50 px-2 py-1 rounded text-center border border-blue-200"
+                    >
+                      <div className="text-xs font-medium text-blue-700">📝 Вставити</div>
+                    </motion.div>
+                    <motion.div 
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ delay: 1.2 }}
+                      className="bg-green-50 px-2 py-1 rounded text-center border border-green-200"
+                    >
+                      <div className="text-xs font-medium text-green-700">⌨️ Друкувати</div>
+                    </motion.div>
+                    <motion.div 
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ delay: 1.4 }}
+                      className="bg-purple-50 px-2 py-1 rounded text-center border border-purple-200"
+                    >
+                      <div className="text-xs font-medium text-purple-700">🎤 Диктувати</div>
+                    </motion.div>
+                    <motion.div 
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ delay: 1.6 }}
+                      className="bg-orange-50 px-2 py-1 rounded text-center border border-orange-200"
+                    >
+                      <div className="text-xs font-medium text-orange-700">📸 Фото</div>
+                    </motion.div>
+                  </div>
+                )}
+                
+                {step === 2 && (
+                  <div className="flex items-center gap-2">
+                    <motion.div 
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ delay: 1 }}
+                      className="bg-yellow-50 px-2 py-1 rounded text-center border border-yellow-200"
+                    >
+                      <div className="text-xs font-medium text-yellow-700">🔍 Аналіз</div>
+                    </motion.div>
+                    <motion.div 
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ delay: 1.2 }}
+                      className="bg-red-50 px-2 py-1 rounded text-center border border-red-200"
+                    >
+                      <div className="text-xs font-medium text-red-700">⚡ Складні</div>
+                    </motion.div>
+                    <motion.div 
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ delay: 1.4 }}
+                      className="bg-green-50 px-2 py-1 rounded text-center border border-green-200"
+                    >
+                      <div className="text-xs font-medium text-green-700">✨ Виділення</div>
+                    </motion.div>
+                  </div>
+                )}
+                
+                {step === 3 && (
+                  <div className="flex items-center gap-2">
+                    <motion.div 
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ delay: 1 }}
+                      className="bg-blue-50 px-2 py-1 rounded text-center border border-blue-200"
+                    >
+                      <div className="text-xs font-medium text-blue-700">📦 Упаковка</div>
+                    </motion.div>
+                    <motion.div 
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ delay: 1.2 }}
+                      className="bg-indigo-50 px-2 py-1 rounded text-center border border-indigo-200"
+                    >
+                      <div className="text-xs font-medium text-indigo-700">🔗 Контекст</div>
+                    </motion.div>
+                    <motion.div 
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ delay: 1.4 }}
+                      className="bg-cyan-50 px-2 py-1 rounded text-center border border-cyan-200"
+                    >
+                      <div className="text-xs font-medium text-cyan-700">💡 Розуміння</div>
+                    </motion.div>
+                  </div>
+                )}
+                
+                {step === 4 && (
+                  <div className="flex items-center gap-2">
+                    <motion.div 
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ delay: 1 }}
+                      className="bg-purple-50 px-2 py-1 rounded text-center border border-purple-200"
+                    >
+                      <div className="text-xs font-medium text-purple-700">🔄 Переклад</div>
+                    </motion.div>
+                    <motion.div 
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ delay: 1.2 }}
+                      className="bg-pink-50 px-2 py-1 rounded text-center border border-pink-200"
+                    >
+                      <div className="text-xs font-medium text-pink-700">📝 Значення</div>
+                    </motion.div>
+                    <motion.div 
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ delay: 1.4 }}
+                      className="bg-emerald-50 px-2 py-1 rounded text-center border border-emerald-200"
+                    >
+                      <div className="text-xs font-medium text-emerald-700">✅ Готово</div>
+                    </motion.div>
+                  </div>
+                )}
+                
+                {step === 5 && (
+                  <div className="flex items-center gap-2">
+                    <motion.div 
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ delay: 1 }}
+                      className="bg-green-50 px-2 py-1 rounded text-center border border-green-200"
+                    >
+                      <div className="text-xs font-medium text-green-700">🎯 25 слів</div>
+                    </motion.div>
+                    <motion.div 
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ delay: 1.2 }}
+                      className="bg-blue-50 px-2 py-1 rounded text-center border border-blue-200"
+                    >
+                      <div className="text-xs font-medium text-blue-700">🔊 Аудіо</div>
+                    </motion.div>
+                    <motion.div 
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ delay: 1.4 }}
+                      className="bg-purple-50 px-2 py-1 rounded text-center border border-purple-200"
+                    >
+                      <div className="text-xs font-medium text-purple-700">📚 Контекст</div>
+                    </motion.div>
+                    <motion.div 
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ delay: 1.6 }}
+                      className="bg-yellow-50 px-2 py-1 rounded text-center border border-yellow-200"
+                    >
+                      <div className="text-xs font-medium text-yellow-700">✨ Готово</div>
+                    </motion.div>
+                  </div>
+                )}
               </div>
             )}
           </div>
@@ -708,67 +838,14 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
               exit={{ opacity: 0, y: -20 }}
               className="h-full"
             >
-              <div className="bg-white rounded-lg p-8 h-full overflow-y-auto space-y-8">
-                <div className="text-center">
-                  <h4 className="text-4xl font-bold text-[#022f36] mb-6">
-                    {stepExplanations.step1.title}
-                  </h4>
-                  <p className="text-2xl text-gray-700 leading-relaxed mb-8 max-w-5xl mx-auto">
-                    {stepExplanations.step1.description}
-                  </p>
-                </div>
-                
-                {/* Input Methods Demo - Full width row */}
-                <div className="grid grid-cols-4 gap-4 mb-8">
-                  <motion.div 
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 1 }}
-                    className="bg-blue-50 p-4 rounded-lg text-center border border-blue-200 hover:bg-blue-100 transition-colors"
-                  >
-                    <div className="text-3xl mb-2">📝</div>
-                    <div className="text-sm font-medium text-blue-800">Вставити</div>
-                    <div className="text-xs text-blue-600 mt-1">Copy & Paste</div>
-                  </motion.div>
-                  <motion.div 
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 1.5 }}
-                    className="bg-green-50 p-4 rounded-lg text-center border border-green-200 hover:bg-green-100 transition-colors"
-                  >
-                    <div className="text-3xl mb-2">⌨️</div>
-                    <div className="text-sm font-medium text-green-800">Друкувати</div>
-                    <div className="text-xs text-green-600 mt-1">Type text</div>
-                  </motion.div>
-                  <motion.div 
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 2 }}
-                    className="bg-purple-50 p-4 rounded-lg text-center border border-purple-200 hover:bg-purple-100 transition-colors"
-                  >
-                    <div className="text-3xl mb-2">🎤</div>
-                    <div className="text-sm font-medium text-purple-800">Диктувати</div>
-                    <div className="text-xs text-purple-600 mt-1">Voice input</div>
-                  </motion.div>
-                  <motion.div 
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 2.5 }}
-                    className="bg-orange-50 p-4 rounded-lg text-center border border-orange-200 hover:bg-orange-100 transition-colors"
-                  >
-                    <div className="text-3xl mb-2">📸</div>
-                    <div className="text-sm font-medium text-orange-800">Фото</div>
-                    <div className="text-xs text-orange-600 mt-1">Photo OCR</div>
-                  </motion.div>
-                </div>
-
-                {/* Enlarged text display window */}
-                <div className="bg-gray-50 rounded-lg p-6 border-2 border-gray-200 min-h-[200px]">
-                  <div className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
-                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+              <div className="bg-white rounded-lg p-8 h-full overflow-y-auto">
+                {/* Maximum space for text display */}
+                <div className="bg-gray-50 rounded-lg p-8 border-2 border-gray-200 min-h-[400px] h-full">
+                  <div className="text-2xl font-semibold text-gray-800 mb-6 flex items-center gap-3">
+                    <div className="w-4 h-4 bg-green-500 rounded-full"></div>
                     Завантажений текст:
                   </div>
-                  <div className="text-base leading-relaxed text-gray-700 max-h-48 overflow-y-auto bg-white p-4 rounded border">
+                  <div className="text-lg leading-relaxed text-gray-700 h-full overflow-y-auto bg-white p-6 rounded border text-justify">
                     {sourceText}
                   </div>
                 </div>
@@ -784,47 +861,14 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
               exit={{ opacity: 0 }}
               className="h-full"
             >
-              <div className="bg-white rounded-lg p-6 h-full overflow-y-auto space-y-6">
-                <div className="text-center">
-                  <h4 className="text-3xl font-bold text-[#022f36] mb-4">
-                    {stepExplanations.step2.title}
-                  </h4>
-                  <p className="text-xl text-gray-700 leading-relaxed mb-6 max-w-4xl mx-auto">
-                    {stepExplanations.step2.description}
-                  </p>
-                </div>
-
-                {/* Analysis Process Demo */}
-                <div className="grid grid-cols-3 gap-1 mb-3">
-                  <motion.div 
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 1 }}
-                    className="bg-yellow-50 p-1.5 rounded text-center"
-                  >
-                    <div className="text-xs font-medium">🔍 Аналіз</div>
-                  </motion.div>
-                  <motion.div 
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 1.5 }}
-                    className="bg-red-50 p-1.5 rounded text-center"
-                  >
-                    <div className="text-xs font-medium">⚡ Складні</div>
-                  </motion.div>
-                  <motion.div 
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 2 }}
-                    className="bg-green-50 p-1.5 rounded text-center"
-                  >
-                    <div className="text-xs font-medium">✨ Виділення</div>
-                  </motion.div>
-                </div>
-
-                <div className="bg-gray-50 rounded p-2">
-                  <div className="text-sm font-medium text-gray-800 mb-1">Аналіз тексту:</div>
-                  <div className="text-sm leading-relaxed max-h-40 overflow-y-auto">
+              <div className="bg-white rounded-lg p-8 h-full overflow-y-auto">
+                {/* Maximum space for analyzed text */}
+                <div className="bg-gray-50 rounded-lg p-8 border-2 border-gray-200 min-h-[400px] h-full">
+                  <div className="text-2xl font-semibold text-gray-800 mb-6 flex items-center gap-3">
+                    <div className="w-4 h-4 bg-yellow-500 rounded-full animate-pulse"></div>
+                    Аналіз тексту:
+                  </div>
+                  <div className="text-lg leading-relaxed h-full overflow-y-auto bg-white p-6 rounded border text-justify">
                     {sourceText.split(' ').map((word, index) => {
                       const cleanWord = word.replace(/[.,:;!?()]/g, '').toLowerCase();
                       const keyWord = keyWordsData.find(keyData => {
@@ -841,7 +885,7 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
                         <motion.span
                           key={index}
                           className={`transition-all duration-300 ${
-                            isHighlighted ? 'bg-yellow-300 text-black px-0.5 rounded font-medium' : 'text-gray-800'
+                            isHighlighted ? 'bg-yellow-300 text-black px-1 rounded font-medium' : 'text-gray-800'
                           }`}
                         >
                           {word}{' '}
@@ -862,59 +906,29 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
               exit={{ opacity: 0 }}
               className="h-full"
             >
-              <div className="bg-white rounded-lg p-6 h-full overflow-y-auto space-y-6">
-                <div className="text-center">
-                  <h4 className="text-3xl font-bold text-[#022f36] mb-4">
-                    {stepExplanations.step3.title}
-                  </h4>
-                  <p className="text-xl text-gray-700 leading-relaxed mb-6 max-w-4xl mx-auto">
-                    {stepExplanations.step3.description}
-                  </p>
-                </div>
-
-                {/* Context Processing Demo */}
-                <div className="grid grid-cols-3 gap-1 mb-3">
-                  <motion.div 
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 1 }}
-                    className="bg-blue-50 p-1.5 rounded text-center"
-                  >
-                    <div className="text-xs font-medium">📦 Упаковка</div>
-                  </motion.div>
-                  <motion.div 
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 1.5 }}
-                    className="bg-indigo-50 p-1.5 rounded text-center"
-                  >
-                    <div className="text-xs font-medium">🔗 Контекст</div>
-                  </motion.div>
-                  <motion.div 
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 2 }}
-                    className="bg-cyan-50 p-1.5 rounded text-center"
-                  >
-                    <div className="text-xs font-medium">💡 Розуміння</div>
-                  </motion.div>
-                </div>
-
-                <div className="space-y-1 max-h-48 overflow-y-auto">
-                  {words.filter(w => w.isInContext).slice(0, 8).map((word) => (
-                    <motion.div
-                      key={word.id}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      className="p-2 bg-blue-50 rounded text-xs border-l-2 border-blue-400"
-                    >
-                      <div className="font-medium text-blue-800 text-sm">{word.word}</div>
-                      <div className="text-blue-600 text-xs mt-0.5 leading-tight">
-                        <div className="mb-1 font-medium">"{word.context}"</div>
-                        <div className="text-green-700 italic">"{word.contextTranslation}"</div>
-                      </div>
-                    </motion.div>
-                  ))}
+              <div className="bg-white rounded-lg p-8 h-full overflow-y-auto">
+                {/* Maximum space for context processing */}
+                <div className="bg-gray-50 rounded-lg p-8 border-2 border-gray-200 min-h-[400px] h-full">
+                  <div className="text-2xl font-semibold text-gray-800 mb-6 flex items-center gap-3">
+                    <div className="w-4 h-4 bg-blue-500 rounded-full animate-pulse"></div>
+                    Контекстуальний аналіз:
+                  </div>
+                  <div className="space-y-3 h-full overflow-y-auto">
+                    {words.filter(w => w.isInContext).slice(0, 12).map((word) => (
+                      <motion.div
+                        key={word.id}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        className="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-400"
+                      >
+                        <div className="font-bold text-blue-800 text-lg mb-2">{word.word}</div>
+                        <div className="text-blue-600 leading-relaxed">
+                          <div className="mb-2 font-medium text-base bg-white p-2 rounded">"{word.context}"</div>
+                          <div className="text-green-700 italic text-base bg-green-50 p-2 rounded">"{word.contextTranslation}"</div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -928,88 +942,52 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
               exit={{ opacity: 0 }}
               className="h-full"
             >
-              <div className="bg-white rounded-lg p-6 h-full overflow-y-auto space-y-6">
-                <div className="text-center">
-                  <h4 className="text-3xl font-bold text-[#022f36] mb-4">
-                    {stepExplanations.step4.title}
-                  </h4>
-                  <p className="text-xl text-gray-700 leading-relaxed mb-6 max-w-4xl mx-auto">
-                    {stepExplanations.step4.description}
-                  </p>
-                </div>
-
-                {/* Translation Process Demo */}
-                <div className="grid grid-cols-3 gap-1 mb-3">
-                  <motion.div 
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 1 }}
-                    className="bg-purple-50 p-1.5 rounded text-center"
-                  >
-                    <div className="text-xs font-medium">🔄 Переклад</div>
-                  </motion.div>
-                  <motion.div 
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 1.5 }}
-                    className="bg-pink-50 p-1.5 rounded text-center"
-                  >
-                    <div className="text-xs font-medium">📝 Значення</div>
-                  </motion.div>
-                  <motion.div 
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 2 }}
-                    className="bg-emerald-50 p-1.5 rounded text-center"
-                  >
-                    <div className="text-xs font-medium">✅ Готово</div>
-                  </motion.div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-2 flex-1">
+              <div className="bg-white rounded-lg p-8 h-full overflow-y-auto">
+                {/* Maximum space for translation comparison */}
+                <div className="h-full grid grid-cols-2 gap-6">
                   {/* Norwegian Column */}
-                  <div className="bg-blue-50 rounded p-2">
-                    <div className="flex items-center gap-1 mb-2">
-                      <div className="w-2 h-1.5 bg-red-500"></div>
-                      <div className="w-2 h-1.5 bg-white border"></div>
-                      <div className="w-2 h-1.5 bg-blue-600"></div>
-                      <span className="text-xs font-semibold">Norsk</span>
+                  <div className="bg-blue-50 rounded-lg p-6 h-full border-2 border-blue-200">
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="w-4 h-3 bg-red-500 rounded"></div>
+                      <div className="w-4 h-3 bg-white border border-gray-300 rounded"></div>
+                      <div className="w-4 h-3 bg-blue-600 rounded"></div>
+                      <span className="text-lg font-bold text-blue-800">Norsk</span>
                     </div>
-                    <div className="space-y-1 max-h-32 overflow-y-auto">
-                      {words.filter(w => w.isTranslating || w.isReady).slice(0, 5).map((word) => (
+                    <div className="space-y-4 h-full overflow-y-auto">
+                      {words.filter(w => w.isTranslating || w.isReady).slice(0, 8).map((word) => (
                         <motion.div
                           key={word.id}
                           initial={{ opacity: 0, x: -10 }}
                           animate={{ opacity: 1, x: 0 }}
-                          className="p-1.5 bg-white rounded text-xs"
+                          className="p-4 bg-white rounded-lg border shadow-sm"
                         >
-                          <div className="font-medium text-blue-800">{word.word}</div>
-                          <div className="text-blue-600 text-xs italic">"{word.context}"</div>
+                          <div className="font-bold text-blue-800 text-base mb-2">{word.word}</div>
+                          <div className="text-blue-600 text-sm italic bg-blue-50 p-2 rounded">"{word.context}"</div>
                         </motion.div>
                       ))}
                     </div>
                   </div>
                   
                   {/* Translation Column */}
-                  <div className="bg-green-50 rounded p-2">
-                    <div className="flex items-center gap-1 mb-2">
-                      <div className="w-2 h-1.5 bg-blue-400"></div>
-                      <div className="w-2 h-1.5 bg-yellow-400"></div>
-                      <span className="text-xs font-semibold">
+                  <div className="bg-green-50 rounded-lg p-6 h-full border-2 border-green-200">
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="w-4 h-3 bg-blue-400 rounded"></div>
+                      <div className="w-4 h-3 bg-yellow-400 rounded"></div>
+                      <span className="text-lg font-bold text-green-800">
                         {translationTarget === 'uk' ? 'Українська' : 'English'}
                       </span>
                     </div>
-                    <div className="space-y-1 max-h-32 overflow-y-auto">
-                      {words.filter(w => w.isTranslating || w.isReady).slice(0, 5).map((word) => (
+                    <div className="space-y-4 h-full overflow-y-auto">
+                      {words.filter(w => w.isTranslating || w.isReady).slice(0, 8).map((word) => (
                         <motion.div
                           key={word.id}
                           initial={{ opacity: 0, x: 10 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: 0.2 }}
-                          className="p-1.5 bg-white rounded text-xs"
+                          className="p-4 bg-white rounded-lg border shadow-sm"
                         >
-                          <div className="font-medium text-green-800">{word.translation}</div>
-                          <div className="text-green-600 text-xs italic">"{word.contextTranslation}"</div>
+                          <div className="font-bold text-green-800 text-base mb-2">{word.translation}</div>
+                          <div className="text-green-600 text-sm italic bg-green-50 p-2 rounded">"{word.contextTranslation}"</div>
                         </motion.div>
                       ))}
                     </div>
