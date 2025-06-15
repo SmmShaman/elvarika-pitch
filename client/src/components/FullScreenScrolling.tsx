@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
+import { Navigation } from './Navigation';
 
 interface FullScreenScrollingProps {
   children: React.ReactNode[];
@@ -100,6 +101,7 @@ export function FullScreenScrolling({ children, onSectionChange }: FullScreenScr
 
   return (
     <div className="fixed inset-0 overflow-hidden">
+      <Navigation />
       <div
         ref={containerRef}
         className="transition-transform duration-700 ease-in-out"

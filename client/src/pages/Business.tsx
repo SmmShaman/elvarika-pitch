@@ -170,12 +170,12 @@ export const Business: React.FC = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-600 leading-relaxed text-sm">
                   {language === 'no' ? 
-                    'Jan leder en stor logistikkterminal i Oslo med 60% utenlandske arbeidere. Språkbarrierer fører til skadet last og 50 000 kroner i erstatningskrav fra en misforstått instruksjon om temperaturkritisk håndtering.' :
+                    'Jan leder stor logistikkterminal i Oslo. 60% utenlandske arbeidere. Språkbarrierer fører til skadet last - 50 000 kroner erstatning fra misforstått temperaturhåndtering.' :
                    language === 'uk' ?
-                    'Ян керує великим логістичним терміналом в Осло з 60% іноземних працівників. Мовні бар\'єри призводять до пошкодженого вантажу та 50 000 крон компенсаційних позовів через неправильно зрозуміну інструкцію.' :
-                    'Jan manages a large logistics terminal in Oslo with 60% foreign workers. Language barriers lead to damaged cargo and 50,000 kroner in compensation claims from misunderstood temperature-critical handling instructions.'}
+                    'Ян керує логістичним терміналом в Осло. 60% іноземних працівників. Мовні бар\'єри - пошкоджений вантаж і 50 000 крон компенсацій.' :
+                    'Jan manages logistics terminal in Oslo. 60% foreign workers. Language barriers cause damaged cargo - 50,000 kroner compensation claims.'}
                 </p>
                 
                 <div className="bg-blue-50 p-3 rounded-lg">
@@ -198,12 +198,12 @@ export const Business: React.FC = () => {
                      language === 'uk' ? 'Рішення Elvarika:' :
                      'Elvarika Solution:'}
                   </h4>
-                  <p className="text-green-700 text-sm mb-2">
+                  <p className="text-green-700 text-xs mb-2">
                     {language === 'no' ?
-                      'PDF instruksjoner blir til personaliserte lydleksjoner på 5 minutter. Nye arbeidere hører på ukrainsk: "Temperaturfølsom last må holdes mellom 2-8 grader."' :
+                      'PDF → 5-min lydleksjon. Arbeidere hører: "Temperaturfølsom last 2-8 grader."' :
                      language === 'uk' ?
-                      'PDF інструкції перетворюються на персоналізовані аудіоуроки за 5 хвилин. Нові працівники чують українською: "Температурочутливий вантаж повинен зберігатися при 2-8 градусах."' :
-                      'PDF instructions become personalized audio lessons in 5 minutes. New workers hear in Ukrainian: "Temperature-sensitive cargo must be kept between 2-8 degrees."'}
+                      'PDF → 5-хв аудіоурок. Працівники чують: "Температурочутливий вантаж 2-8 градусів."' :
+                      'PDF → 5-min audio lesson. Workers hear: "Temperature-sensitive cargo 2-8 degrees."'}
                   </p>
                   <div className="text-green-600 text-xs">
                     <strong>{language === 'no' ? 'Resultat:' : language === 'uk' ? 'Результат:' : 'Result:'}</strong> {language === 'no' ? 'Redusert skade med 75%, bedre sikkerhet, raskere onboarding' : language === 'uk' ? 'Зменшення пошкоджень на 75%, покращена безпека, швидша адаптація' : 'Reduced damage by 75%, improved safety, faster onboarding'}
@@ -224,12 +224,12 @@ export const Business: React.FC = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-600 leading-relaxed text-sm">
                   {language === 'no' ?
-                    'Anna, HSE-manager, håndterer et multinasjonalt byggeprosjekt. En litauisk arbeider misforsto trykkluftprosedyrer, noe som resulterte i 150 000 kroner i bøter og tre dagers prosjektstopp.' :
+                    'Anna, HSE-manager på byggeprosjekt. Litauisk arbeider misforsto trykkluftprosedyrer → 150 000 kr bøter + 3 dagers stopp.' :
                    language === 'uk' ?
-                    'Анна, HSE-менеджер, керує багатонаціональним будівельним проектом. Литовський робітник неправильно зрозумів процедури пневматики, що призвело до 150 000 крон штрафів та трьох днів зупинки проекту.' :
-                    'Anna, HSE manager, handles a multinational construction project. A Lithuanian worker misunderstood pneumatic procedures, resulting in 150,000 kroner in fines and three days of project shutdown.'}
+                    'Анна, HSE-менеджер будівельного проекту. Литовський робітник неправильно зрозумів пневматику → 150 000 крон штрафів + 3 дні зупинки.' :
+                    'Anna, HSE manager construction project. Lithuanian worker misunderstood pneumatics → 150,000 kroner fines + 3-day shutdown.'}
                 </p>
                 
                 <div className="bg-orange-50 p-3 rounded-lg">
@@ -616,6 +616,167 @@ export const Business: React.FC = () => {
               </p>
             </CardContent>
           </Card>
+        </div>
+      </div>
+    </section>,
+
+    // Contact and Terms Section
+    <section key="contact" className="h-screen flex items-center justify-center bg-gradient-to-br from-[#022f36] to-[#034a54] py-16 overflow-y-auto">
+      <div className="container mx-auto px-4 max-w-6xl w-full">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold text-white mb-6">
+            {language === 'no' ? 'Kontakt oss og vilkår' :
+             language === 'uk' ? 'Зв\'яжіться з нами та умови' :
+             'Contact us and Terms'}
+          </h2>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            {language === 'no' ? 'Klar til å transformere din organisasjons språkopplæring? La oss diskutere hvordan Elvarika kan løse dine spesifikke utfordringer.' :
+             language === 'uk' ? 'Готові трансформувати мовне навчання вашої організації? Давайте обговоримо, як Elvarika може вирішити ваші специфічні виклики.' :
+             'Ready to transform your organization\'s language learning? Let\'s discuss how Elvarika can solve your specific challenges.'}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* Contact Information */}
+          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/20">
+            <h3 className="text-2xl font-semibold text-white mb-6">
+              {language === 'no' ? 'Kontaktinformasjon' :
+               language === 'uk' ? 'Контактна інформація' :
+               'Contact Information'}
+            </h3>
+            
+            <div className="space-y-6">
+              <div className="flex items-start space-x-4">
+                <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
+                  <div className="text-white text-xl">👨‍💼</div>
+                </div>
+                <div>
+                  <h4 className="text-white font-semibold">Vitalii Berbeha</h4>
+                  <p className="text-gray-300 text-sm">
+                    {language === 'no' ? 'Grunder og CEO' :
+                     language === 'uk' ? 'Засновник та CEO' :
+                     'Founder & CEO'}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-4">
+                <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
+                  <div className="text-white text-xl">📧</div>
+                </div>
+                <div>
+                  <h4 className="text-white font-semibold">Email</h4>
+                  <p className="text-gray-300 text-sm">vitalii.berbeha@elvarika.com</p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-4">
+                <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
+                  <div className="text-white text-xl">📱</div>
+                </div>
+                <div>
+                  <h4 className="text-white font-semibold">
+                    {language === 'no' ? 'Telefon' :
+                     language === 'uk' ? 'Телефон' :
+                     'Phone'}
+                  </h4>
+                  <p className="text-gray-300 text-sm">+47 xxx xxx xxx</p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-4">
+                <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
+                  <div className="text-white text-xl">🌐</div>
+                </div>
+                <div>
+                  <h4 className="text-white font-semibold">LinkedIn</h4>
+                  <p className="text-gray-300 text-sm">linkedin.com/in/vitalii-berbeha</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Terms and Conditions */}
+          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/20">
+            <h3 className="text-2xl font-semibold text-white mb-6">
+              {language === 'no' ? 'Vilkår og betingelser' :
+               language === 'uk' ? 'Умови та положення' :
+               'Terms and Conditions'}
+            </h3>
+            
+            <div className="space-y-4 text-gray-300 text-sm">
+              <div>
+                <h4 className="text-white font-semibold mb-2">
+                  {language === 'no' ? 'Datavern og personvern' :
+                   language === 'uk' ? 'Захист даних та приватність' :
+                   'Data Protection & Privacy'}
+                </h4>
+                <p className="leading-relaxed">
+                  {language === 'no' ? 'Elvarika følger GDPR og norsk personvernlov. Alle lydopptak og tekstdata behandles konfidensielt og lagres sikkert i Norge.' :
+                   language === 'uk' ? 'Elvarika дотримується GDPR та норвезького законодавства про приватність. Всі аудіозаписи та текстові дані обробляються конфіденційно та зберігаються безпечно в Норвегії.' :
+                   'Elvarika complies with GDPR and Norwegian privacy law. All audio recordings and text data are processed confidentially and stored securely in Norway.'}
+                </p>
+              </div>
+
+              <div>
+                <h4 className="text-white font-semibold mb-2">
+                  {language === 'no' ? 'Tjenesteavtale' :
+                   language === 'uk' ? 'Угода про послуги' :
+                   'Service Agreement'}
+                </h4>
+                <p className="leading-relaxed">
+                  {language === 'no' ? 'Månedsabonnement med 30 dagers oppsigelsesfrist. Inkluderer teknisk support, oppdateringer og ubegrenset bruk for registrerte brukere.' :
+                   language === 'uk' ? 'Місячна підписка з 30-денним періодом скасування. Включає технічну підтримку, оновлення та необмежене використання для зареєстрованих користувачів.' :
+                   'Monthly subscription with 30-day cancellation period. Includes technical support, updates, and unlimited use for registered users.'}
+                </p>
+              </div>
+
+              <div>
+                <h4 className="text-white font-semibold mb-2">
+                  {language === 'no' ? 'Sikkerhet' :
+                   language === 'uk' ? 'Безпека' :
+                   'Security'}
+                </h4>
+                <p className="leading-relaxed">
+                  {language === 'no' ? 'End-til-ende kryptering, regelmessige sikkerhetsmålinger og backup av alle data. ISO 27001 sertifisert infrastruktur.' :
+                   language === 'uk' ? 'Наскрізне шифрування, регулярні аудити безпеки та резервне копіювання всіх даних. Інфраструктура сертифікована ISO 27001.' :
+                   'End-to-end encryption, regular security audits, and backup of all data. ISO 27001 certified infrastructure.'}
+                </p>
+              </div>
+
+              <div className="border-t border-white/20 pt-4 mt-6">
+                <p className="text-xs text-gray-400">
+                  {language === 'no' ? 'Ved å bruke Elvarika aksepterer du våre vilkår og betingelser. For fullstendig tekst, besøk vår nettside.' :
+                   language === 'uk' ? 'Використовуючи Elvarika, ви приймаєте наші умови та положення. Для повного тексту відвідайте наш веб-сайт.' :
+                   'By using Elvarika, you accept our terms and conditions. For full text, visit our website.'}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Call to Action */}
+        <div className="text-center mt-12">
+          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/20 max-w-2xl mx-auto">
+            <h3 className="text-2xl font-semibold text-white mb-4">
+              {language === 'no' ? 'Klar til å starte?' :
+               language === 'uk' ? 'Готові почати?' :
+               'Ready to get started?'}
+            </h3>
+            <p className="text-gray-300 mb-6">
+              {language === 'no' ? 'Book en gratis konsultasjon og se hvordan Elvarika kan transformere din organisasjon.' :
+               language === 'uk' ? 'Забронюйте безкоштовну консультацію та подивіться, як Elvarika може трансформувати вашу організацію.' :
+               'Book a free consultation and see how Elvarika can transform your organization.'}
+            </p>
+            <Button 
+              onClick={() => window.open('mailto:vitalii.berbeha@elvarika.com?subject=Elvarika Business Inquiry', '_blank')}
+              className="bg-white text-[#022f36] hover:bg-gray-100 px-8 py-3 text-lg font-semibold"
+            >
+              {language === 'no' ? 'Book konsultasjon' :
+               language === 'uk' ? 'Забронювати консультацію' :
+               'Book Consultation'}
+            </Button>
+          </div>
         </div>
       </div>
     </section>
