@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/hooks/useLanguage";
+import { DynamicImageCarousel } from "@/components/DynamicImageCarousel";
 
 // Define partner logos data for the carousel
 const partnerLogos = [
@@ -180,7 +181,7 @@ export const HeroSection = (): JSX.Element => {
           </div>
 
           <div className="w-full md:w-1/2 max-w-[507px]">
-            <div className="h-[376px] bg-[url(/figmaAssets/clip-path-group.png)] bg-[100%_100%]" />
+            <DynamicImageCarousel />
           </div>
         </div>
       </div>
