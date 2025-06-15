@@ -17,8 +17,7 @@ function Router() {
   return (
     <Switch>
       {/* Add pages below */}
-      <Route path="/" component={Font} />
-      <Route path="/business" component={Business} />
+      <Route path="/" component={Business} />
       <Route path="/gradient" component={GradientGenerator} />
       <Route path="/pronunciation" component={PronunciationPage} />
       {/* Fallback to 404 */}
