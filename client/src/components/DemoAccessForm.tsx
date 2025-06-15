@@ -83,27 +83,38 @@ export function DemoAccessForm({ onAccessGranted, language }: DemoAccessFormProp
 
   const submitRequest = useMutation({
     mutationFn: async (data: typeof formData) => {
-      const response = await fetch('/api/demo-request', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
-      if (!response.ok) {
-        throw new Error('Failed to submit request');
+      try {
+        const response = await fetch('/api/demo-request', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => ({}));
+          throw new Error(errorData.error || 'Failed to submit request');
+        }
+        return response.json();
+      } catch (error) {
+        console.error('Submit request error:', error);
+        throw error;
       }
-      return response.json();
     },
     onSuccess: (data) => {
-      setIsSubmitted(true);
-      if (data.verificationToken) {
-        setVerificationToken(data.verificationToken);
+      if (data?.success) {
+        setIsSubmitted(true);
+        if (data.verificationToken) {
+          setVerificationToken(data.verificationToken);
+        }
+        toast({
+          title: t.submitted,
+          description: data.emailSent ? t.verificationSent : data.demoNote || t.verificationSent,
+        });
+      } else {
+        throw new Error('Request submission failed');
       }
-      toast({
-        title: t.submitted,
-        description: data.emailSent ? t.verificationSent : data.demoNote || t.verificationSent,
-      });
     },
-    onError: () => {
+    onError: (error) => {
+      console.error('Submit mutation error:', error);
       toast({
         title: 'Error',
         description: 'Failed to submit request. Please try again.',
@@ -114,20 +125,31 @@ export function DemoAccessForm({ onAccessGranted, language }: DemoAccessFormProp
 
   const verifyEmail = useMutation({
     mutationFn: async (token: string) => {
-      const response = await fetch(`/api/verify/${token}`);
-      if (!response.ok) {
-        throw new Error('Verification failed');
+      try {
+        const response = await fetch(`/api/verify/${token}`);
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => ({}));
+          throw new Error(errorData.error || 'Verification failed');
+        }
+        return response.json();
+      } catch (error) {
+        console.error('Verification error:', error);
+        throw error;
       }
-      return response.json();
     },
-    onSuccess: () => {
-      setIsVerified(true);
-      toast({
-        title: t.verified,
-        description: '',
-      });
+    onSuccess: (data) => {
+      if (data?.success) {
+        setIsVerified(true);
+        toast({
+          title: t.verified,
+          description: '',
+        });
+      } else {
+        throw new Error('Verification response invalid');
+      }
     },
-    onError: () => {
+    onError: (error) => {
+      console.error('Verification mutation error:', error);
       toast({
         title: 'Verification Failed',
         description: 'Invalid or expired verification token.',
