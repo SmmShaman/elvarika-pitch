@@ -1,26 +1,24 @@
 import { useState, useEffect } from 'react';
-import { Language, getTranslation, Translations } from '@/lib/translations';
+import { Language, Translations } from '@/lib/translations';
+import { languageStore } from '@/lib/languageStore';
 
 export const useLanguage = () => {
-  const [language, setLanguage] = useState<Language>(() => {
-    // Get language from localStorage or default to Norwegian
-    const saved = localStorage.getItem('elvarika-language') as Language;
-    return saved && ['no', 'en', 'uk'].includes(saved) ? saved : 'no';
-  });
-
-  const [translations, setTranslations] = useState<Translations>(() => 
-    getTranslation(language)
-  );
+  const [language, setLanguage] = useState<Language>(languageStore.getLanguage());
+  const [translations, setTranslations] = useState<Translations>(languageStore.getTranslations());
 
   useEffect(() => {
-    // Update translations when language changes
-    setTranslations(getTranslation(language));
-    // Save to localStorage
-    localStorage.setItem('elvarika-language', language);
-  }, [language]);
+    // Subscribe to language changes
+    const unsubscribe = languageStore.subscribe((newLanguage, newTranslations) => {
+      setLanguage(newLanguage);
+      setTranslations(newTranslations);
+    });
+
+    // Cleanup subscription on unmount
+    return unsubscribe;
+  }, []);
 
   const changeLanguage = (newLanguage: Language) => {
-    setLanguage(newLanguage);
+    languageStore.changeLanguage(newLanguage);
   };
 
   return {
