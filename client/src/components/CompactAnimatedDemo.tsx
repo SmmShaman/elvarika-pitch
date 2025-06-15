@@ -66,6 +66,7 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
   const [playingItem, setPlayingItem] = useState<string | null>(null);
   const [currentAudio, setCurrentAudio] = useState<HTMLAudioElement | null>(null);
   const [audioIsPaused, setAudioIsPaused] = useState(false);
+  const [isPlaylistPlaying, setIsPlaylistPlaying] = useState(false);
   const [timeouts, setTimeouts] = useState<NodeJS.Timeout[]>([]);
 
   const sourceText = "Blendingsanordningen reduserer styrken på sollys. Arbeiderne må bruke vernebriller når de arbeider med UV-stråling. Sikkerhetsutstyr er obligatorisk på byggeplassen. Vernehansker beskytter mot kjemiske stoffer. Hørselsvern reduserer støynivået til sikre grenser. Arbeidsgiveren har ansvar for å sikre at alle ansatte har tilgang til riktig verneutstyr. Gassmålere brukes for å oppdage farlige gasser i luft. Fallsikring er nødvendig når man arbeider i høyder over to meter. Brannslukningsapparater må være lett tilgjengelige på alle arbeidsplasser. Første hjelp-utstyr skal alltid være tilgjengelig og oppdatert. Kjemikalier må merkes tydelig med faresymboler. Ventilasjonssystem sørger for ren luft i arbeidsområdet. Støvmaske beskytter lungene mot farlige partikler. Sikkerhetssko med ståltupp beskytter føttene mot tunge gjenstander. Refleksvest gjør arbeiderne synlige i dårlig lys. Arbeidstid begrenses for å unngå utmattelse og ulykker. Risikovurdering må gjennomføres før start på farlige arbeidsoppgaver. Nødutgang må alltid være merket og tilgjengelig. Varselskilt informerer om farer og sikkerhetstiltak. Sikkerhetsinstruks må gis til alle nye ansatte før arbeidsstart.";
@@ -655,6 +656,7 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
     setPlaylist([]);
     setPlayingItem(null);
     setAudioIsPaused(false);
+    setIsPlaylistPlaying(false);
     clearAllTimeouts();
   };
 
@@ -1152,40 +1154,63 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
                   <div className="flex items-center gap-3">
                     <Button
                       onClick={() => {
-                        // Play full playlist audio file
-                        const playlistUrl = translationTarget === 'uk' 
-                          ? '/attached_assets/audio/playlist/uk/full_playlist.mp3'
-                          : '/attached_assets/audio/playlist/en/full_playlist.mp3';
-                        
-                        if (currentAudio) {
-                          currentAudio.pause();
-                          setCurrentAudio(null);
-                        }
-                        
-                        try {
-                          const audio = new Audio(playlistUrl);
-                          setCurrentAudio(audio);
-                          audio.play().catch(err => {
-                            console.log('Playlist playback failed:', err);
-                          });
-                          
-                          // Mark all items as playing
-                          setPlaylist(prev => prev.map(item => ({
-                            ...item,
-                            isPlaying: true
-                          })));
-                          
-                          audio.addEventListener('ended', () => {
-                            setCurrentAudio(null);
+                        if (isPlaylistPlaying && currentAudio) {
+                          if (audioIsPaused) {
+                            // Resume playlist
+                            currentAudio.play().catch(err => {
+                              console.log('Playlist resume failed:', err);
+                            });
+                            setAudioIsPaused(false);
+                            setPlaylist(prev => prev.map(item => ({ ...item, isPlaying: true })));
+                          } else {
+                            // Pause playlist
+                            currentAudio.pause();
+                            setAudioIsPaused(true);
                             setPlaylist(prev => prev.map(item => ({ ...item, isPlaying: false })));
-                          });
-                        } catch (err) {
-                          console.log('Playlist audio creation failed:', err);
+                          }
+                        } else {
+                          // Start new playlist
+                          const playlistUrl = translationTarget === 'uk' 
+                            ? '/attached_assets/audio/playlist/uk/full_playlist.mp3'
+                            : '/attached_assets/audio/playlist/en/full_playlist.mp3';
+                          
+                          if (currentAudio) {
+                            currentAudio.pause();
+                            setCurrentAudio(null);
+                          }
+                          
+                          try {
+                            const audio = new Audio(playlistUrl);
+                            setCurrentAudio(audio);
+                            setIsPlaylistPlaying(true);
+                            setAudioIsPaused(false);
+                            setPlayingItem('playlist');
+                            
+                            audio.play().catch(err => {
+                              console.log('Playlist playback failed:', err);
+                            });
+                            
+                            // Mark all items as playing
+                            setPlaylist(prev => prev.map(item => ({
+                              ...item,
+                              isPlaying: true
+                            })));
+                            
+                            audio.addEventListener('ended', () => {
+                              setCurrentAudio(null);
+                              setIsPlaylistPlaying(false);
+                              setAudioIsPaused(false);
+                              setPlayingItem(null);
+                              setPlaylist(prev => prev.map(item => ({ ...item, isPlaying: false })));
+                            });
+                          } catch (err) {
+                            console.log('Playlist audio creation failed:', err);
+                          }
                         }
                       }}
                       className="bg-[#022f36] hover:bg-[#033d46] text-white px-6 py-2 flex items-center gap-2"
                     >
-                      {playlist.some(item => item.isPlaying) ? (
+                      {isPlaylistPlaying && !audioIsPaused ? (
                         <>
                           <Pause className="h-4 w-4" />
                           {currentLanguage === 'no' ? 'Pause alle' : 
