@@ -427,7 +427,7 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
     
     const newTimeouts: NodeJS.Timeout[] = [];
     
-    // Step 2: Highlight words (5 seconds)
+    // Step 2: Highlight words (with 2 second pause)
     const step2Timeout = setTimeout(() => {
       if (!isPaused) {
         setStep(2);
@@ -456,10 +456,10 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
           newTimeouts.push(highlightTimeout);
         });
       }
-    }, 7000);
+    }, 9000); // збільшено з 7000 до 9000 (додалось 2 секунди)
     newTimeouts.push(step2Timeout);
 
-    // Step 3: Context wrapping (12 seconds)
+    // Step 3: Context wrapping (with 2 second pause)
     const step3Timeout = setTimeout(() => {
       if (!isPaused) {
         setStep(3);
@@ -474,10 +474,10 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
           newTimeouts.push(contextTimeout);
         });
       }
-    }, 12000);
+    }, 14000); // збільшено з 12000 до 14000 (додалось 2 секунди)
     newTimeouts.push(step3Timeout);
 
-    // Step 4: Translation (17 seconds)  
+    // Step 4: Translation (with 2 second pause)
     const step4Timeout = setTimeout(() => {
       if (!isPaused) {
         setStep(4);
@@ -501,7 +501,7 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
           newTimeouts.push(translateTimeout);
         });
       }
-    }, 17000);
+    }, 19000); // збільшено з 17000 до 19000 (додалось 2 секунди)
     newTimeouts.push(step4Timeout);
 
     // Step 5: Final playlist (22 seconds)
@@ -523,7 +523,7 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
         setPlaylist(finalPlaylist);
         setIsAnimating(false);
       }
-    }, 20000);
+    }, 22000); // збільшено з 20000 до 22000 (додалось 2 секунди)
     newTimeouts.push(step5Timeout);
     
     setTimeouts(newTimeouts);
@@ -752,7 +752,7 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
                       // Start demo if not started
                       startDemo();
                     } else if (stepNum === step && isAnimating) {
-                      // Pause current step
+                      // Pause current step and stay on it
                       pauseDemo();
                     } else if (stepNum === step && isPaused) {
                       // Resume current step
@@ -763,6 +763,12 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
                     } else if (step === 5 && stepNum === 1) {
                       // Restart demo from step 1 when completed
                       resetDemo();
+                    } else if (isAnimating) {
+                      // Stop on clicked step if demo is running
+                      clearAllTimeouts();
+                      setStep(stepNum);
+                      setIsAnimating(false);
+                      setIsPaused(true);
                     }
                   }}
                   className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-medium transition-all ${
@@ -1021,25 +1027,31 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
             )}
           </div>
           
-          {/* Right side - Language Pair Selector */}
+          {/* Right side - Language Pair Selector - disabled during demo */}
           <div className="flex items-center gap-3">
             <div className="flex items-center bg-white rounded-lg border border-gray-200 p-1">
               <button
                 onClick={() => changeTranslationTarget('uk')}
+                disabled={step > 0 && step < 5}
                 className={`px-3 py-1 rounded text-xs font-medium transition-all ${
-                  translationTarget === 'uk' 
-                    ? 'bg-[#022f36] text-white' 
-                    : 'text-gray-600 hover:bg-gray-100'
+                  step > 0 && step < 5 
+                    ? 'opacity-50 cursor-not-allowed text-gray-400'
+                    : translationTarget === 'uk' 
+                      ? 'bg-[#022f36] text-white' 
+                      : 'text-gray-600 hover:bg-gray-100'
                 }`}
               >
                 🇳🇴 → 🇺🇦
               </button>
               <button
                 onClick={() => changeTranslationTarget('en')}
+                disabled={step > 0 && step < 5}
                 className={`px-3 py-1 rounded text-xs font-medium transition-all ${
-                  translationTarget === 'en' 
-                    ? 'bg-[#022f36] text-white' 
-                    : 'text-gray-600 hover:bg-gray-100'
+                  step > 0 && step < 5 
+                    ? 'opacity-50 cursor-not-allowed text-gray-400'
+                    : translationTarget === 'en' 
+                      ? 'bg-[#022f36] text-white' 
+                      : 'text-gray-600 hover:bg-gray-100'
                 }`}
               >
                 🇳🇴 → 🇬🇧

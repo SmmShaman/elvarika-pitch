@@ -151,6 +151,9 @@ Changelog:
 - June 15, 2025. Simplified navigation to only Elvarika logo (scrolls to top) and language switcher
 - June 15, 2025. Updated contact information with authentic data from Vitalii Berbeha CV
 - June 15, 2025. Contact details: info@vitalii.no, +47 925 64 334, Hagegata 8 Lena 2850 Norge
+- June 15, 2025. Enhanced demo controls: 2-second pauses between steps, click-to-pause on step circles
+- June 15, 2025. Language pair selector disabled during demo playback, only active at start/end
+- June 15, 2025. Improved step navigation with pause/resume functionality
 ```
 
 ## User Preferences
