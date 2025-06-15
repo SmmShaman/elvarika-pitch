@@ -954,6 +954,178 @@ export const Business: React.FC = () => {
         </div>
       </section>
 
+      {/* Investor Case Studies */}
+      <section className="py-16 bg-gradient-to-br from-blue-50 to-indigo-100">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-[#022f36] text-center mb-12">
+            {language === 'no' ? 'Investor Case Studies' :
+             language === 'uk' ? 'Інвестиційні кейси' :
+             'Investor Case Studies'}
+          </h2>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Case 1: Logistics and Warehousing */}
+            <Card className="hover:shadow-lg transition-all">
+              <CardHeader>
+                <CardTitle className="text-xl text-[#022f36] flex items-center gap-3">
+                  <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                  {language === 'no' ? 'Logistikk og lagerhold' :
+                   language === 'uk' ? 'Логістика та складське господарство' :
+                   'Logistics and Warehousing'}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <p className="text-gray-600 leading-relaxed">
+                  {language === 'no' ? 
+                    'Forestill deg Jan, leder av en stor logistikkterminal i Oslo. Teamet hans består av 60% utenlandske arbeidere fra Polen, Litauen og Ukraina. Daglig møter han økonomiske tap på grunn av språkbarrierer: skadet last på grunn av misforståelser...' :
+                   language === 'uk' ?
+                    'Уявіть собі Яна, керівника великого логістичного термінала в Осло. Його команда на 60% складається з іноземних працівників з Польщі, Литви та України. Щодня він стикається з фінансовими втратами через мовні бар\'єри: пошкоджені вантажі через неправильне розуміння...' :
+                    'Imagine Jan, manager of a large logistics terminal in Oslo. His team consists of 60% foreign workers from Poland, Lithuania and Ukraine. Daily he faces financial losses due to language barriers: damaged cargo due to misunderstandings...'}
+                </p>
+                <div className="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                  <p className="text-sm font-semibold text-green-800 mb-2">
+                    {language === 'no' ? 'Elvarika-løsning:' :
+                     language === 'uk' ? 'Рішення Elvarika:' :
+                     'Elvarika Solution:'}
+                  </p>
+                  <p className="text-green-700 text-sm">
+                    {language === 'no' ?
+                      'Jan laster opp standard sikkerhetsinstruksjoner (PDF, 10 sider). På 5 minutter genererer Elvarika personaliserte lydleksjoner for hele teamet.' :
+                     language === 'uk' ?
+                      'Ян завантажує стандартну інструкцію з техніки безпеки (PDF, 10 сторінок). За 5 хвилин Elvarika генерує персоналізований аудіоурок для всієї команди.' :
+                      'Jan uploads standard safety instructions (PDF, 10 pages). In 5 minutes, Elvarika generates personalized audio lessons for the entire team.'}
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Case 2: Manufacturing and Construction */}
+            <Card className="hover:shadow-lg transition-all">
+              <CardHeader>
+                <CardTitle className="text-xl text-[#022f36] flex items-center gap-3">
+                  <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
+                  {language === 'no' ? 'Produksjon og bygg og anlegg' :
+                   language === 'uk' ? 'Виробництво та будівництво' :
+                   'Manufacturing and Construction'}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <p className="text-gray-600 leading-relaxed">
+                  {language === 'no' ?
+                    'Betrakt Anna, HSE-manager på et stort byggeprosjekt. Hun er ansvarlig for sikkerheten til et multinasjonalt team. Nylig skjedde det en hendelse på grunn av språkmisforståelser om terminologi for høytrykksutstyr...' :
+                   language === 'uk' ?
+                    'Розглянемо Анну, HSE-менеджера на великому будівельному об\'єкті. Вона відповідає за безпеку багатонаціональної команди. Нещодавно через мовне непорозуміння щодо термінології роботи з обладнанням під високим тиском стався інцидент...' :
+                    'Consider Anna, HSE manager at a large construction site. She is responsible for the safety of a multinational team. Recently, an incident occurred due to language misunderstandings about high-pressure equipment terminology...'}
+                </p>
+                <div className="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                  <p className="text-sm font-semibold text-green-800 mb-2">
+                    {language === 'no' ? 'Elvarika-løsning:' :
+                     language === 'uk' ? 'Рішення Elvarika:' :
+                     'Elvarika Solution:'}
+                  </p>
+                  <p className="text-green-700 text-sm">
+                    {language === 'no' ?
+                      'Anna fotograferer instruksjoner for nytt utstyr og laster det opp til Elvarika. Hun gjennomgår listen over kandidatord og legger til spesifikke termer.' :
+                     language === 'uk' ?
+                      'Анна фотографує інструкцію до нового обладнання та завантажує її в Elvarika. Вона переглядає список слів-кандидатів і додає специфічні терміни.' :
+                      'Anna photographs instructions for new equipment and uploads them to Elvarika. She reviews the candidate word list and adds specific terms.'}
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Case 3: HoReCa and Services */}
+            <Card className="hover:shadow-lg transition-all">
+              <CardHeader>
+                <CardTitle className="text-xl text-[#022f36] flex items-center gap-3">
+                  <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
+                  {language === 'no' ? 'HoReCa og tjenesteyting' :
+                   language === 'uk' ? 'HoReCa та сфера послуг' :
+                   'HoReCa and Services'}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <p className="text-gray-600 leading-relaxed">
+                  {language === 'no' ?
+                    'David, eier av en hotell- og restaurantkjede, møter høy turnover og servicekvalitetsproblemer. En ny servitør fra Spania misforsto en kundes allergiforespørsel og serverte mat med skjulte allergener...' :
+                   language === 'uk' ?
+                    'Давід, власник мережі готелів та ресторанів, стикається з високою плинністю кадрів. Нова офіціантка з Іспанії неправильно зрозуміла запит клієнта щодо алергії на глютен...' :
+                    'David, owner of a hotel and restaurant chain, faces high turnover and service quality issues. A new waitress from Spain misunderstood a customer\'s allergy request and served food with hidden allergens...'}
+                </p>
+                <div className="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                  <p className="text-sm font-semibold text-green-800 mb-2">
+                    {language === 'no' ? 'Elvarika-løsning:' :
+                     language === 'uk' ? 'Рішення Elvarika:' :
+                     'Elvarika Solution:'}
+                  </p>
+                  <p className="text-green-700 text-sm">
+                    {language === 'no' ?
+                      'David laster opp servicestandarder, meny og allergenliste til Elvarika. Plattformen genererer automatisk korte lydleksjoner som nye ansatte kan høre på vei til jobb.' :
+                     language === 'uk' ?
+                      'Давід завантажує стандарти обслуговування, меню та список алергенів. Платформа генерує короткі аудіоуроки, які співробітниці слухають дорогою на роботу.' :
+                      'David uploads service standards, menu and allergen list to Elvarika. The platform automatically generates short audio lessons that new employees can listen to on their way to work.'}
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Case 4: Agriculture and Fishing */}
+            <Card className="hover:shadow-lg transition-all">
+              <CardHeader>
+                <CardTitle className="text-xl text-[#022f36] flex items-center gap-3">
+                  <div className="w-3 h-3 bg-green-600 rounded-full"></div>
+                  {language === 'no' ? 'Landbruk og fiskeri' :
+                   language === 'uk' ? 'Сільське господарство та рибальство' :
+                   'Agriculture and Fishing'}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <p className="text-gray-600 leading-relaxed">
+                  {language === 'no' ?
+                    'Lars leder en stor fiskeprosesseringsfabrikk hvor over 100 arbeidere fra ulike land jobber i sesongen. Kvalitet og produktsikkerhet er hans hovedprioritet. Misforståelser av sanitærnormer kan føre til ødeleggelse av hele partier...' :
+                   language === 'uk' ?
+                    'Ларс керує великою рибопереробною фабрикою, де в сезон працює понад 100 робітників з різних країн. Неправильне розуміння санітарних норм може призвести до псування цілих партій...' :
+                    'Lars manages a large fish processing factory where over 100 workers from different countries work during the season. Misunderstandings of sanitary standards can lead to spoilage of entire batches...'}
+                </p>
+                <div className="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                  <p className="text-sm font-semibold text-green-800 mb-2">
+                    {language === 'no' ? 'Elvarika-løsning:' :
+                     language === 'uk' ? 'Рішення Elvarika:' :
+                     'Elvarika Solution:'}
+                  </p>
+                  <p className="text-green-700 text-sm">
+                    {language === 'no' ?
+                      'Lars tar opp 2-minutters talemelding med dagens nøkkelinstruksjoner og laster det opp til Elvarika. Systemet gjenkjenner språket, identifiserer termer og oversetter dem til arbeidernes morsmål.' :
+                     language === 'uk' ?
+                      'Ларс записує 2-хвилинне голосове повідомлення з інструкціями дня і завантажує в Elvarika. Система розпізнає мову, виділяє терміни та озвучує їх рідними мовами працівників.' :
+                      'Lars records a 2-minute voice message with the day\'s key instructions and uploads it to Elvarika. The system recognizes the language, identifies terms and voices them in workers\' native languages.'}
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="mt-12 text-center">
+            <Card className="bg-gradient-to-r from-[#022f36] to-[#033d46] text-white max-w-4xl mx-auto">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold mb-4">
+                  {language === 'no' ? 'Resultat for investorer' :
+                   language === 'uk' ? 'Результат для інвесторів' :
+                   'Result for Investors'}
+                </h3>
+                <p className="text-lg leading-relaxed">
+                  {language === 'no' ?
+                    'Elvarika er ikke et "vitamin", det er "aspirin" mot akutt smerte. Vi tilbyr målbar reduksjon av økonomiske tap, redusert risiko for bøter og økt operasjonell effektivitet. Vi forvandler uker med ineffektiv onboarding til timer med målrettet læring.' :
+                   language === 'uk' ?
+                    'Elvarika – це не "вітамін", це "аспірин" від гострого болю. Ми пропонуємо вимірюване зниження фінансових втрат, зменшення ризику штрафів та підвищення операційної ефективності. Ми перетворюємо тижні неефективного онбордингу на години цільового навчання.' :
+                    'Elvarika is not a "vitamin", it\'s "aspirin" for acute pain. We offer measurable reduction of financial losses, reduced risk of fines and increased operational efficiency. We transform weeks of ineffective onboarding into hours of targeted learning.'}
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </div>
   );
