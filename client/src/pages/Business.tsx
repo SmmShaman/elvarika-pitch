@@ -8,7 +8,11 @@ import {
   Truck,
   HardHat,
   Coffee,
-  Tractor
+  Tractor,
+  Shield,
+  TrendingUp,
+  Target,
+  BarChart3
 } from 'lucide-react';
 import { CompactAnimatedDemo } from '@/components/CompactAnimatedDemo';
 import { FullScreenScrolling } from '@/components/FullScreenScrolling';
@@ -297,6 +301,250 @@ export const Business: React.FC = () => {
             </Card>
           </TabsContent>
         </Tabs>
+      </div>
+    </section>,
+
+    // Problems Section
+    <section key="problems" className="h-screen flex items-center justify-center bg-white py-16">
+      <div className="container mx-auto px-4">
+        <h2 className="text-4xl font-bold text-[#022f36] text-center mb-12 max-w-4xl mx-auto">
+          {language === 'no' ? 'Språkbarrierer er mer enn bare misforståelser. De er målbare forretningsrisikoer.' :
+           language === 'uk' ? 'Мовний бар\'єр – це більше, ніж просто нерозуміння. Це вимірювані бізнес-ризики.' :
+           'Language barriers are more than just misunderstandings. They are measurable business risks.'}
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <Card className="border-red-200 hover:shadow-lg transition-all">
+            <CardHeader>
+              <div className="h-12 w-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+                <Shield className="h-6 w-6 text-red-500" />
+              </div>
+              <CardTitle className="text-xl text-[#022f36]">
+                {language === 'no' ? 'Sikkerhetsrisikoer' :
+                 language === 'uk' ? 'Ризики для безпеки' :
+                 'Safety risks'}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-600">
+                {language === 'no' ? 'Misforståelse av sikkerhetsinstruksjoner fører til arbeidsulykker, bøter og omdømmetap. Arbeidstilsynet peker på dette som en betydelig risikofaktor.' :
+                 language === 'uk' ? 'Нерозуміння інструкцій з техніки безпеки призводить до виробничого травматизму, штрафів та репутаційних втрат. Норвезька інспекція праці вказує на це як на суттєвий фактор ризику.' :
+                 'Misunderstanding safety instructions leads to workplace injuries, fines and reputational damage. The Norwegian Labour Inspection Authority points to this as a significant risk factor.'}
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="border-orange-200 hover:shadow-lg transition-all">
+            <CardHeader>
+              <div className="h-12 w-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
+                <TrendingUp className="h-6 w-6 text-orange-500 transform rotate-180" />
+              </div>
+              <CardTitle className="text-xl text-[#022f36]">
+                {language === 'no' ? 'Redusert produktivitet' :
+                 language === 'uk' ? 'Знижена продуктивність' :
+                 'Reduced productivity'}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-600">
+                {language === 'no' ? 'Feil i oppgaveutførelse, skade på utstyr og forlenget onboarding av nye ansatte påvirker direkte den operasjonelle effektiviteten.' :
+                 language === 'uk' ? 'Помилки у виконанні завдань, пошкодження обладнання та затягнуте адаптування нових співробітників безпосередньо впливають на операційну ефективність.' :
+                 'Errors in task execution, equipment damage and prolonged onboarding of new employees directly impact operational efficiency.'}
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="border-yellow-200 hover:shadow-lg transition-all">
+            <CardHeader>
+              <div className="h-12 w-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
+                <Target className="h-6 w-6 text-yellow-500" />
+              </div>
+              <CardTitle className="text-xl text-[#022f36]">
+                {language === 'no' ? 'Høye kostnader' :
+                 language === 'uk' ? 'Високі витрати' :
+                 'High costs'}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-600">
+                {language === 'no' ? 'Å sende hundrevis av arbeidere på generelle språkkurs er dyrt, tidkrevende og ineffektivt for å lære spesialisert arbeidsvokabular "her og nå".' :
+                 language === 'uk' ? 'Відправляти сотні працівників на загальні мовні курси дорого, довго та неефективно для вивчення спеціалізованої робочої лексики "тут і зараз".' :
+                 'Sending hundreds of workers to general language courses is expensive, time-consuming and ineffective for learning specialized work vocabulary "here and now".'}
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="border-purple-200 hover:shadow-lg transition-all">
+            <CardHeader>
+              <div className="h-12 w-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                <BarChart3 className="h-6 w-6 text-purple-500 transform rotate-180" />
+              </div>
+              <CardTitle className="text-xl text-[#022f36]">
+                {language === 'no' ? 'Tapt salg' :
+                 language === 'uk' ? 'Втрачені продажі' :
+                 'Lost sales'}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-600">
+                {language === 'no' ? 'I kundeservice fører manglende evne til å forstå kundebehov til tapte salg og negative anmeldelser.' :
+                 language === 'uk' ? 'У сфері обслуговування клієнтів нездатність зрозуміти потреби клієнтів призводить до втрачених продажів та негативних відгуків.' :
+                 'In customer service, inability to understand customer needs leads to lost sales and negative reviews.'}
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </section>,
+
+    // Solution Section
+    <section key="solution" className="h-screen flex items-center justify-center bg-gradient-to-br from-[#f8fffe] to-[#f0fff4] py-16">
+      <div className="container mx-auto px-4">
+        <h2 className="text-4xl font-bold text-[#022f36] text-center mb-12">
+          {language === 'no' ? 'Hvordan Elvarika fungerer: Din personlige språklige prosessor' :
+           language === 'uk' ? 'Як працює Elvarika: Ваш персональний лінгвістичний процесор' :
+           'How Elvarika works: Your personal linguistic processor'}
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="text-center">
+            <div className="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 shadow-lg">
+              <div className="h-10 w-10 text-[#022f36] flex items-center justify-center font-bold text-xl">📄</div>
+            </div>
+            <h3 className="text-2xl font-semibold text-[#022f36] mb-4">
+              1. {language === 'no' ? 'Last opp innhold' :
+                   language === 'uk' ? 'Завантажте контент' :
+                   'Upload content'}
+            </h3>
+            <p className="text-gray-600 leading-relaxed">
+              {language === 'no' ? 'Gi systemet et tekstdokument, bilde av instruksjoner eller til og med en talemelding.' :
+               language === 'uk' ? 'Надайте системі текстовий документ, фото інструкцій або навіть голосове повідомлення.' :
+               'Provide the system with a text document, photo of instructions or even a voice message.'}
+            </p>
+          </div>
+
+          <div className="text-center">
+            <div className="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 shadow-lg">
+              <div className="h-10 w-10 text-[#022f36] flex items-center justify-center font-bold text-xl">🧠</div>
+            </div>
+            <h3 className="text-2xl font-semibold text-[#022f36] mb-4">
+              2. {language === 'no' ? 'Elvarika genererer lydleksjon' :
+                   language === 'uk' ? 'Elvarika генерує аудіоурок' :
+                   'Elvarika generates audio lesson'}
+            </h3>
+            <p className="text-gray-600 leading-relaxed">
+              {language === 'no' ? 'Vår unike pedagogiske motor identifiserer automatisk nøkkelterminologi, skaper "Anker Kontekst" fra dokumentet ditt for standardisert kunnskap, oversetter og produserer høykvalitets lyd.' :
+               language === 'uk' ? 'Наша унікальна педагогічна система автоматично виявляє ключову термінологію, створює "Контекст-якір" з вашого документа для стандартизованих знань, перекладає та генерує якісне аудіо.' :
+               'Our unique pedagogical engine automatically identifies key terminology, creates "Anchor Context" from your document for standardized knowledge, translates and produces high-quality audio.'}
+            </p>
+          </div>
+
+          <div className="text-center">
+            <div className="bg-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 shadow-lg">
+              <div className="h-10 w-10 text-[#022f36] flex items-center justify-center font-bold text-xl">🎧</div>
+            </div>
+            <h3 className="text-2xl font-semibold text-[#022f36] mb-4">
+              3. {language === 'no' ? 'Team lærer effektivt' :
+                   language === 'uk' ? 'Команда вчиться ефективно' :
+                   'Team learns effectively'}
+            </h3>
+            <p className="text-gray-600 leading-relaxed">
+              {language === 'no' ? 'Ansatte hører på ferdige spillelister, mens den innebygde algoritmen for spaced repetition (SRS) sikrer langsiktig kunnskapsretensjon.' :
+               language === 'uk' ? 'Співробітники слухають готові плейлисти, а вбудований алгоритм інтервального повторення (SRS) забезпечує довготривале засвоєння знань.' :
+               'Employees listen to ready playlists, while the built-in spaced repetition algorithm (SRS) ensures long-term retention.'}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>,
+
+    // Features Section
+    <section key="features" className="h-screen flex items-center justify-center bg-white py-16 overflow-y-auto">
+      <div className="container mx-auto px-4">
+        <h2 className="text-4xl font-bold text-[#022f36] text-center mb-12 max-w-4xl mx-auto">
+          {language === 'no' ? 'Funksjoner som skiller Elvarika fra tradisjonell språkopplæring' :
+           language === 'uk' ? 'Функції, що відрізняють Elvarika від традиційного мовного навчання' :
+           'Features that distinguish Elvarika from traditional language learning'}
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <Card className="hover:shadow-lg transition-all">
+            <CardHeader>
+              <div className="h-12 w-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                <Target className="h-6 w-6 text-blue-500" />
+              </div>
+              <CardTitle className="text-xl text-[#022f36]">
+                {language === 'no' ? '"Anker Kontekst"' :
+                 language === 'uk' ? '"Контекст-якір"' :
+                 '"Anchor Context"'}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-600">
+                {language === 'no' ? 'I stedet for abstrakte ord bruker systemet setninger fra ditt originale dokument. Dette garanterer at hele teamet forstår kritisk informasjon enhetlig og utvetydig.' :
+                 language === 'uk' ? 'Замість абстрактних слів система використовує речення з вашого оригінального документа. Це гарантує, що вся команда розуміє критичну інформацію однозначно та недвозначно.' :
+                 'Instead of abstract words, the system uses sentences from your original document. This guarantees that the entire team understands critical information uniformly and unambiguously.'}
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="hover:shadow-lg transition-all">
+            <CardHeader>
+              <div className="h-12 w-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                <div className="h-6 w-6 text-green-500 flex items-center justify-center font-bold">🔄</div>
+              </div>
+              <CardTitle className="text-xl text-[#022f36]">
+                {language === 'no' ? 'Intelligent repetisjon (SRS)' :
+                 language === 'uk' ? 'Розумне повторення (SRS)' :
+                 'Intelligent repetition (SRS)'}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-600">
+                {language === 'no' ? 'Systemet lager automatisk nye setninger for repetisjon og vever inn ord som eleven begynner å glemme. Dette er en vitenskapelig bevist metode for maksimal læringseffektivitet.' :
+                 language === 'uk' ? 'Система автоматично створює нові речення для повторення, вплітаючи слова, які учень починає забувати. Це науково доведений метод для максимальної ефективності навчання.' :
+                 'The system automatically creates new sentences for repetition, weaving in words that the learner begins to forget. This is a scientifically proven method for maximum learning efficiency.'}
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="hover:shadow-lg transition-all">
+            <CardHeader>
+              <div className="h-12 w-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                <div className="h-6 w-6 text-purple-500 flex items-center justify-center font-bold">👁️</div>
+              </div>
+              <CardTitle className="text-xl text-[#022f36]">
+                {language === 'no' ? '"Skjermfri" læring' :
+                 language === 'uk' ? 'Навчання "без екрана"' :
+                 '"Screen-free" learning'}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-600">
+                {language === 'no' ? 'Passivt lydformat gjør det mulig å integrere læring i arbeidsprosesser eller daglige oppgaver uten tidstap. Perfekt for travle voksne.' :
+                 language === 'uk' ? 'Пасивний аудіоформат дозволяє інтегрувати навчання в робочі процеси або щоденні завдання без втрати часу. Ідеально для зайнятих дорослих.' :
+                 'Passive audio format allows integrating learning into work processes or daily tasks without time loss. Perfect for busy adults.'}
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="hover:shadow-lg transition-all">
+            <CardHeader>
+              <div className="h-12 w-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
+                <BarChart3 className="h-6 w-6 text-orange-500" />
+              </div>
+              <CardTitle className="text-xl text-[#022f36]">
+                {language === 'no' ? 'HR-analytikk' :
+                 language === 'uk' ? 'HR-аналітика' :
+                 'HR analytics'}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-600">
+                {language === 'no' ? 'Administrasjonspanelet gir ledere data om teamets læringsfremgang. Evaluer investeringseffektivitet og overvåk kunnskapsoppbygging.' :
+                 language === 'uk' ? 'Адміністративна панель надає менеджерам дані про прогрес навчання команди. Оцінюйте ефективність інвестицій та відстежуйте накопичення знань.' :
+                 'The admin panel provides managers with data on team learning progress. Evaluate investment effectiveness and monitor knowledge acquisition.'}
+              </p>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </section>
   ];
