@@ -8,18 +8,13 @@ import NotFound from "@/pages/not-found";
 import { BlogContext } from "@/hooks/useBlog";
 import { Blog } from "@/pages/Blog";
 
-import { Font } from "@/pages/Font";
 import { Business } from "@/pages/Business";
-import { GradientGenerator } from "@/pages/GradientGenerator";
-import { PronunciationPage } from "@/pages/PronunciationPage";
 
 function Router() {
   return (
     <Switch>
-      {/* Add pages below */}
+      {/* Business page as main page */}
       <Route path="/" component={Business} />
-      <Route path="/gradient" component={GradientGenerator} />
-      <Route path="/pronunciation" component={PronunciationPage} />
       {/* Fallback to 404 */}
       <Route component={NotFound} />
     </Switch>
