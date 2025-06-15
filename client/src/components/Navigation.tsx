@@ -39,6 +39,9 @@ export const Navigation: React.FC = () => {
             <Link href="/business" className={`px-3 py-1 rounded-md transition-colors ${location === '/business' ? 'bg-[#022f36] text-white' : 'text-[#022f36] hover:bg-gray-100'}`}>
               Business
             </Link>
+            <Link href="/pronunciation" className={`px-3 py-1 rounded-md transition-colors ${location === '/pronunciation' ? 'bg-[#022f36] text-white' : 'text-[#022f36] hover:bg-gray-100'}`}>
+              Pronunciation
+            </Link>
             <Link href="/gradient" className={`px-3 py-1 rounded-md transition-colors ${location === '/gradient' ? 'bg-[#022f36] text-white' : 'text-[#022f36] hover:bg-gray-100'}`}>
               Gradient
             </Link>
