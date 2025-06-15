@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Play, Pause, CheckCircle, ArrowRight, Zap, Languages, Volume2 } from 'lucide-react';
+import { Play, Pause, CheckCircle, ArrowRight, Zap, Languages, Volume2, RotateCcw } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -592,23 +592,52 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
               <div key={stepNum} className="flex items-center">
                 <button
                   onClick={() => {
-                    // Allow going to previous steps only when paused and the step is completed
-                    if (isPaused && stepNum <= step) {
+                    // Control playback directly from step circles
+                    if (step === 0) {
+                      // Start demo if not started
+                      startDemo();
+                    } else if (stepNum === step && isAnimating) {
+                      // Pause current step
+                      pauseDemo();
+                    } else if (stepNum === step && isPaused) {
+                      // Resume current step
+                      resumeDemo();
+                    } else if (isPaused && stepNum <= step) {
+                      // Jump to previous step when paused
                       setStep(stepNum);
+                    } else if (step === 5 && stepNum === 1) {
+                      // Restart demo from step 1 when completed
+                      resetDemo();
                     }
                   }}
-                  disabled={!isPaused || stepNum > step}
                   className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-medium transition-all ${
                     step >= stepNum ? 'bg-[#022f36] text-white' : 'bg-gray-200 text-gray-600'
                   } ${
-                    isPaused && stepNum <= step 
-                      ? 'hover:bg-[#033d46] cursor-pointer' 
-                      : isPaused && stepNum > step 
-                        ? 'cursor-not-allowed opacity-50' 
-                        : 'cursor-default'
+                    stepNum === step && (isAnimating || isPaused) 
+                      ? 'hover:bg-[#033d46] cursor-pointer ring-2 ring-blue-300' 
+                      : isPaused && stepNum < step 
+                        ? 'hover:bg-[#033d46] cursor-pointer' 
+                        : step === 5 && stepNum === 1
+                          ? 'hover:bg-[#033d46] cursor-pointer ring-2 ring-green-300'
+                          : step === 0 && stepNum === 1
+                            ? 'hover:bg-[#033d46] cursor-pointer ring-2 ring-blue-300'
+                            : 'cursor-default'
                   }`}
                 >
-                  {step > stepNum ? <CheckCircle className="h-3 w-3" /> : stepNum}
+                  {/* Show different icons based on state */}
+                  {step === 0 && stepNum === 1 ? (
+                    <Play className="h-3 w-3" />
+                  ) : step === 5 && stepNum === 1 ? (
+                    <RotateCcw className="h-3 w-3" />
+                  ) : stepNum === step && isAnimating ? (
+                    <Pause className="h-3 w-3" />
+                  ) : stepNum === step && isPaused ? (
+                    <Play className="h-3 w-3" />
+                  ) : step > stepNum ? (
+                    <CheckCircle className="h-3 w-3" />
+                  ) : (
+                    stepNum
+                  )}
                 </button>
                 {stepNum < 5 && <ArrowRight className="h-3 w-3 mx-1 text-gray-400" />}
               </div>
@@ -837,24 +866,14 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
             )}
           </div>
           
-          {/* Right side - Controls */}
+          {/* Right side - Language Selection Info */}
           <div className="flex items-center gap-3">
-            {/* Pause/Play Controls */}
-            {(isAnimating || isPaused) && step > 0 && step < 5 && (
-              <Button
-                size="sm"
-                variant="outline"
-                onClick={isPaused ? resumeDemo : pauseDemo}
-                className="h-8 px-3"
-              >
-                {isPaused ? <Play size={14} /> : <Pause size={14} />}
-                <span className="ml-1 text-xs">
-                  {isPaused ? 
-                    (currentLanguage === 'no' ? 'Fortsett' : currentLanguage === 'uk' ? 'Продовжити' : 'Continue') : 
-                    (currentLanguage === 'no' ? 'Pause' : currentLanguage === 'uk' ? 'Пауза' : 'Pause')
-                  }
-                </span>
-              </Button>
+            {step > 0 && (
+              <div className="text-xs text-gray-500">
+                {currentLanguage === 'no' ? 'Klikk på sirkler for å kontrollere' : 
+                 currentLanguage === 'uk' ? 'Натисніть на кружечки для керування' : 
+                 'Click circles to control'}
+              </div>
             )}
           </div>
         </div>
