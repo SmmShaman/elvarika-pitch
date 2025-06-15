@@ -10,6 +10,7 @@ import { Blog } from "@/pages/Blog";
 
 import { Font } from "@/pages/Font";
 import { Business } from "@/pages/Business";
+import { GradientGenerator } from "@/pages/GradientGenerator";
 
 function Router() {
   return (
@@ -17,6 +18,7 @@ function Router() {
       {/* Add pages below */}
       <Route path="/" component={Font} />
       <Route path="/business" component={Business} />
+      <Route path="/gradient" component={GradientGenerator} />
       {/* Fallback to 404 */}
       <Route component={NotFound} />
     </Switch>
