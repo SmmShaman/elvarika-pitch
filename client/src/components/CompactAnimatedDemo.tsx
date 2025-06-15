@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Play, Pause, CheckCircle, ArrowRight, Zap, Languages, Volume2, RotateCcw } from 'lucide-react';
+import { Play, Pause, CheckCircle, ArrowRight, Zap, Languages, Volume2, RotateCcw, Gauge, Settings, ChevronDown } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -67,6 +67,8 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
   const [currentAudio, setCurrentAudio] = useState<HTMLAudioElement | null>(null);
   const [audioIsPaused, setAudioIsPaused] = useState(false);
   const [isPlaylistPlaying, setIsPlaylistPlaying] = useState(false);
+  const [playbackSpeed, setPlaybackSpeed] = useState(1.0);
+  const [showSpeedControl, setShowSpeedControl] = useState(false);
   const [timeouts, setTimeouts] = useState<NodeJS.Timeout[]>([]);
 
   const sourceText = "Blendingsanordningen reduserer styrken på sollys. Arbeiderne må bruke vernebriller når de arbeider med UV-stråling. Sikkerhetsutstyr er obligatorisk på byggeplassen. Vernehansker beskytter mot kjemiske stoffer. Hørselsvern reduserer støynivået til sikre grenser. Arbeidsgiveren har ansvar for å sikre at alle ansatte har tilgang til riktig verneutstyr. Gassmålere brukes for å oppdage farlige gasser i luft. Fallsikring er nødvendig når man arbeider i høyder over to meter. Brannslukningsapparater må være lett tilgjengelige på alle arbeidsplasser. Første hjelp-utstyr skal alltid være tilgjengelig og oppdatert. Kjemikalier må merkes tydelig med faresymboler. Ventilasjonssystem sørger for ren luft i arbeidsområdet. Støvmaske beskytter lungene mot farlige partikler. Sikkerhetssko med ståltupp beskytter føttene mot tunge gjenstander. Refleksvest gjør arbeiderne synlige i dårlig lys. Arbeidstid begrenses for å unngå utmattelse og ulykker. Risikovurdering må gjennomføres før start på farlige arbeidsoppgaver. Nødutgang må alltid være merket og tilgjengelig. Varselskilt informerer om farer og sikkerhetstiltak. Sikkerhetsinstruks må gis til alle nye ansatte før arbeidsstart.";
@@ -353,6 +355,23 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
     setTimeouts([]);
   };
 
+  const changePlaybackSpeed = (speed: number) => {
+    setPlaybackSpeed(speed);
+    if (currentAudio) {
+      currentAudio.playbackRate = speed;
+    }
+  };
+
+  const getSpeedLabel = (speed: number) => {
+    if (speed === 0.5) return "0.5x (Slow)";
+    if (speed === 0.75) return "0.75x";
+    if (speed === 1.0) return "1x (Normal)";
+    if (speed === 1.25) return "1.25x";
+    if (speed === 1.5) return "1.5x (Fast)";
+    if (speed === 2.0) return "2x (Very Fast)";
+    return `${speed}x`;
+  };
+
   const startDemo = () => {
     clearAllTimeouts();
     setIsAnimating(true);
@@ -609,6 +628,7 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
       if (item.audioUrl) {
         try {
           const audio = new Audio(item.audioUrl);
+          audio.playbackRate = playbackSpeed;
           setCurrentAudio(audio);
           
           audio.play().catch(err => {
@@ -1152,6 +1172,40 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
+                    {/* Speed Control */}
+                    <div className="relative">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setShowSpeedControl(!showSpeedControl)}
+                        className="flex items-center gap-2 bg-white/80 hover:bg-white border-[#022f36]/20"
+                      >
+                        <Gauge className="h-4 w-4" />
+                        <span className="font-medium">{getSpeedLabel(playbackSpeed)}</span>
+                        <ChevronDown className={`h-3 w-3 transition-transform ${showSpeedControl ? 'rotate-180' : ''}`} />
+                      </Button>
+                      
+                      {showSpeedControl && (
+                        <div className="absolute top-full left-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg z-10 min-w-[160px]">
+                          {[0.5, 0.75, 1.0, 1.25, 1.5, 2.0].map((speed) => (
+                            <button
+                              key={speed}
+                              onClick={() => {
+                                changePlaybackSpeed(speed);
+                                setShowSpeedControl(false);
+                              }}
+                              className={`w-full px-4 py-2 text-left hover:bg-gray-50 first:rounded-t-lg last:rounded-b-lg flex items-center justify-between ${
+                                playbackSpeed === speed ? 'bg-[#022f36]/5 text-[#022f36] font-medium' : 'text-gray-700'
+                              }`}
+                            >
+                              <span>{getSpeedLabel(speed)}</span>
+                              {playbackSpeed === speed && <CheckCircle className="h-4 w-4" />}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+
                     <Button
                       onClick={() => {
                         if (isPlaylistPlaying && currentAudio) {
@@ -1181,6 +1235,7 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
                           
                           try {
                             const audio = new Audio(playlistUrl);
+                            audio.playbackRate = playbackSpeed;
                             setCurrentAudio(audio);
                             setIsPlaylistPlaying(true);
                             setAudioIsPaused(false);
