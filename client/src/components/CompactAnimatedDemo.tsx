@@ -645,17 +645,17 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
                       initial={{ scale: 0.8, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
                       transition={{ delay: 1 }}
-                      className="bg-blue-50 px-2 py-1 rounded text-center border border-blue-200"
+                      className="bg-green-50 px-2 py-1 rounded text-center border border-green-200"
                     >
-                      <div className="text-xs font-medium text-blue-700">📝 Вставити</div>
+                      <div className="text-xs font-medium text-green-700">📄 Завантажений текст</div>
                     </motion.div>
                     <motion.div 
                       initial={{ scale: 0.8, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
                       transition={{ delay: 1.2 }}
-                      className="bg-green-50 px-2 py-1 rounded text-center border border-green-200"
+                      className="bg-blue-50 px-2 py-1 rounded text-center border border-blue-200"
                     >
-                      <div className="text-xs font-medium text-green-700">⌨️ Друкувати</div>
+                      <div className="text-xs font-medium text-blue-700">📝 Вставити</div>
                     </motion.div>
                     <motion.div 
                       initial={{ scale: 0.8, opacity: 0 }}
@@ -853,14 +853,10 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
               exit={{ opacity: 0, y: -20 }}
               className="h-full"
             >
-              <div className="bg-white rounded-lg p-8 h-full overflow-y-auto">
-                {/* Maximum space for text display */}
-                <div className="bg-gray-50 rounded-lg p-8 border-2 border-gray-200 min-h-[400px] h-full">
-                  <div className="text-2xl font-semibold text-gray-800 mb-6 flex items-center gap-3">
-                    <div className="w-4 h-4 bg-green-500 rounded-full"></div>
-                    Завантажений текст:
-                  </div>
-                  <div className="text-lg leading-relaxed text-gray-700 h-full overflow-y-auto bg-white p-6 rounded border text-justify">
+              <div className="bg-white rounded-lg p-4 h-full overflow-y-auto">
+                {/* Maximum space for text display - removed header to increase text area */}
+                <div className="bg-gray-50 rounded-lg p-2 border-2 border-gray-200 h-full">
+                  <div className="text-lg leading-relaxed text-gray-700 h-full overflow-y-auto bg-white p-8 rounded border text-justify">
                     {sourceText}
                   </div>
                 </div>
