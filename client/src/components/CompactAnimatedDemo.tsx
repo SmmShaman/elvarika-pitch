@@ -445,7 +445,7 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
           translation: translationTarget === 'uk' ? item.translation_uk : item.translation_en,
           context: item.context,
           contextTranslation: translationTarget === 'uk' ? item.contextTranslation_uk : item.contextTranslation_en,
-          audioUrl: `/demo-audio/${item.word}.mp3`,
+          audioUrl: `/attached_assets/audio/${item.word}.mp3`,
           duration: "0:03",
           isPlaying: false
         }));
@@ -543,7 +543,7 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
           translation: translationTarget === 'uk' ? item.translation_uk : item.translation_en,
           context: item.context,
           contextTranslation: translationTarget === 'uk' ? item.contextTranslation_uk : item.contextTranslation_en,
-          audioUrl: `/demo-audio/${item.word}.mp3`,
+          audioUrl: `/attached_assets/audio/${item.word}.mp3`,
           duration: "0:03",
           isPlaying: false
         }));
@@ -557,6 +557,9 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
   };
 
   const togglePlayback = (itemId: string) => {
+    const item = playlist.find(p => p.id === itemId);
+    if (!item) return;
+
     setPlaylist(prev => prev.map(item => ({
       ...item,
       isPlaying: item.id === itemId ? !item.isPlaying : false
@@ -564,10 +567,34 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
     
     if (playingItem !== itemId) {
       setPlayingItem(itemId);
-      setTimeout(() => {
-        setPlayingItem(null);
-        setPlaylist(prev => prev.map(item => ({ ...item, isPlaying: false })));
-      }, 3000);
+      
+      // Play the actual audio file
+      if (item.audioUrl) {
+        try {
+          const audio = new Audio(item.audioUrl);
+          audio.play().catch(err => {
+            console.log('Audio playback failed:', err);
+            // Fallback to 3 second timer
+            setTimeout(() => {
+              setPlayingItem(null);
+              setPlaylist(prev => prev.map(item => ({ ...item, isPlaying: false })));
+            }, 3000);
+          });
+          
+          // When audio ends, stop the playback indicator
+          audio.addEventListener('ended', () => {
+            setPlayingItem(null);
+            setPlaylist(prev => prev.map(item => ({ ...item, isPlaying: false })));
+          });
+        } catch (err) {
+          console.log('Audio creation failed:', err);
+          // Fallback to 3 second timer
+          setTimeout(() => {
+            setPlayingItem(null);
+            setPlaylist(prev => prev.map(item => ({ ...item, isPlaying: false })));
+          }, 3000);
+        }
+      }
     } else {
       setPlayingItem(null);
     }
