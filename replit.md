@@ -136,6 +136,9 @@ Changelog:
 - June 15, 2025. Implemented AnimatedDemo component with 5-step text-to-audio transformation
 - June 15, 2025. Added authentic Norwegian workplace safety vocabulary and contexts
 - June 15, 2025. Created bilingual playlist demonstration (Norwegian → Ukrainian/English)
+- June 15, 2025. Integrated real audio file system with automatic Norwegian word recognition
+- June 15, 2025. Configured server for audio file serving from attached_assets/audio/
+- June 15, 2025. Audio system active: 2/25 files uploaded (blendingsanordning, førstehjelp)
 ```
 
 ## User Preferences
