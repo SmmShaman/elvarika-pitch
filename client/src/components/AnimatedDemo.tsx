@@ -511,7 +511,7 @@ export const AnimatedDemo: React.FC = () => {
                 </CardHeader>
                 <CardContent>
                   <div className="relative p-4 bg-gray-50 rounded-lg min-h-[300px]">
-                    <div className="text-sm leading-relaxed">
+                    <div className="text-sm leading-relaxed whitespace-pre-wrap">
                       {sourceText.split(' ').map((word, index) => {
                         const cleanWord = word.replace(/[.,:;!?()]/g, '').toLowerCase();
                         const foundWord = words.find(w => w.word.toLowerCase() === cleanWord || 
@@ -521,15 +521,17 @@ export const AnimatedDemo: React.FC = () => {
                         const isExtracting = foundWord?.isExtracting;
                         
                         return (
-                          <span
-                            key={index}
-                            className={`inline-block transition-all duration-500 ${
-                              isHighlighted ? 'bg-yellow-300 font-medium rounded px-1' : ''
-                            } ${
-                              isExtracting ? 'transform scale-110 bg-blue-300 animate-pulse rounded px-1' : ''
-                            }`}
-                          >
-                            {word}{' '}
+                          <span key={index}>
+                            <span
+                              className={`transition-all duration-500 ${
+                                isHighlighted ? 'bg-yellow-300 font-medium rounded px-1' : ''
+                              } ${
+                                isExtracting ? 'transform scale-110 bg-blue-300 animate-pulse rounded px-1' : ''
+                              }`}
+                            >
+                              {word}
+                            </span>
+                            {index < sourceText.split(' ').length - 1 && ' '}
                           </span>
                         );
                       })}
