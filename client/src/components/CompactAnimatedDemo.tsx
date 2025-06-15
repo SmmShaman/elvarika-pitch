@@ -54,10 +54,11 @@ interface CompactAnimatedDemoProps {
 }
 
 export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({ 
-  translationTarget = 'uk' 
+  translationTarget: initialTarget = 'uk' 
 }) => {
   const { language } = useLanguage();
   const currentLanguage = language;
+  const [translationTarget, setTranslationTarget] = useState<'uk' | 'en'>(initialTarget);
   const [step, setStep] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
@@ -727,6 +728,14 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
     clearAllTimeouts();
   };
 
+  const changeTranslationTarget = (newTarget: 'uk' | 'en') => {
+    if (newTarget !== translationTarget) {
+      setTranslationTarget(newTarget);
+      // Reset demo when changing language pair
+      resetDemo();
+    }
+  };
+
   return (
     <div className="h-full min-h-[650px] w-full bg-gradient-to-br from-[#0066cc]/5 to-[#00a1e6]/5 rounded-2xl border border-[#0066cc]/10 overflow-hidden flex flex-col">
       {/* Header with integrated controls and progress */}
@@ -1012,8 +1021,30 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
             )}
           </div>
           
-          {/* Right side - Empty for clean layout */}
+          {/* Right side - Language Pair Selector */}
           <div className="flex items-center gap-3">
+            <div className="flex items-center bg-white rounded-lg border border-gray-200 p-1">
+              <button
+                onClick={() => changeTranslationTarget('uk')}
+                className={`px-3 py-1 rounded text-xs font-medium transition-all ${
+                  translationTarget === 'uk' 
+                    ? 'bg-[#022f36] text-white' 
+                    : 'text-gray-600 hover:bg-gray-100'
+                }`}
+              >
+                🇳🇴 → 🇺🇦
+              </button>
+              <button
+                onClick={() => changeTranslationTarget('en')}
+                className={`px-3 py-1 rounded text-xs font-medium transition-all ${
+                  translationTarget === 'en' 
+                    ? 'bg-[#022f36] text-white' 
+                    : 'text-gray-600 hover:bg-gray-100'
+                }`}
+              >
+                🇳🇴 → 🇬🇧
+              </button>
+            </div>
           </div>
         </div>
       </div>
