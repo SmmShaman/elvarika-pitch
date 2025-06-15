@@ -139,6 +139,8 @@ Changelog:
 - June 15, 2025. Processed 49 Norwegian workplace safety audio files with Ukrainian translations
 - June 15, 2025. Configured Express server to serve audio files from /attached_assets/audio/
 - June 15, 2025. Audio system fully operational for Norwegian-Ukrainian language pairs
+- June 15, 2025. Updated contact information in footer with authentic details from Vitalii Berbeha CV
+- June 15, 2025. Added comprehensive audio playback speed control with visual tempo indicators
 ```
 
 ## User Preferences

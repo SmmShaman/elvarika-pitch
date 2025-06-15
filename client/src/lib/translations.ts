@@ -534,9 +534,9 @@ export const translations: Record<Language, Translations> = {
     footer: {
       description: "Revolusjonerende text-til-tale teknologi som gjør informasjon tilgjengelig for alle. Bygg ditt personlige lydbibliotek med AI-stemmer som låter naturlige.",
       contact: {
-        email: "kontakt@elvarika.no",
-        phone: "+47 123 45 678",
-        location: "Oslo, Norge"
+        email: "info@vitalii.no",
+        phone: "+47 925 64 334",
+        location: "Hagegata 8, Lena, 2850, Norge"
       },
       quickLinks: {
         title: "Hurtiglenker",
@@ -810,9 +810,9 @@ export const translations: Record<Language, Translations> = {
     footer: {
       description: "Revolutionary text-to-speech technology that makes information accessible to everyone. Build your personal audio library with AI voices that sound natural.",
       contact: {
-        email: "contact@elvarika.com",
-        phone: "+47 123 45 678",
-        location: "Oslo, Norway"
+        email: "info@vitalii.no",
+        phone: "+47 925 64 334",
+        location: "Hagegata 8, Lena, 2850, Norge"
       },
       quickLinks: {
         title: "Quick Links",
@@ -1086,9 +1086,9 @@ export const translations: Record<Language, Translations> = {
     footer: {
       description: "Революційна text-to-speech технологія, що робить інформацію доступною для всіх. Створюйте персональну аудіо бібліотеку з ІІ-голосами, що звучать природно.",
       contact: {
-        email: "contact@elvarika.ua",
-        phone: "+47 123 45 678",
-        location: "Осло, Норвегія"
+        email: "info@vitalii.no",
+        phone: "+47 925 64 334",
+        location: "Hagegata 8, Lena, 2850, Norge"
       },
       quickLinks: {
         title: "Швидкі посилання",
