@@ -569,25 +569,38 @@ export const Business: React.FC = () => {
         <section className="pt-20 pb-12 bg-gradient-to-br from-[#defff0] to-[#f0fff4] relative overflow-hidden min-h-screen">
           <div className="container mx-auto px-4 h-full max-w-6xl">
             <div className="flex flex-col h-full space-y-4">
-              {/* Header with back button, title and language switcher */}
-              <div className="flex justify-between items-center">
-                <div className="flex items-center gap-6">
-                  <Button 
-                    onClick={() => setShowDemo(false)}
-                    variant="outline" 
-                    className="border-[#022f36] text-[#022f36] hover:bg-[#022f36] hover:text-white text-lg px-6 py-2"
-                  >
-                    ← Назад до головної
-                  </Button>
-                  <h1 className="text-3xl font-bold text-[#022f36]">
+              {/* Header with back button, centered title and language switcher */}
+              <div className="flex items-center justify-between">
+                <Button 
+                  onClick={() => setShowDemo(false)}
+                  variant="outline" 
+                  className="border-[#022f36] text-[#022f36] hover:bg-[#022f36] hover:text-white text-lg px-6 py-2"
+                >
+                  {language === 'no' ? '← Tilbake til hovedside' :
+                   language === 'uk' ? '← Назад до головної' :
+                   '← Back to main'}
+                </Button>
+                
+                <div className="flex flex-col items-center">
+                  <h1 className="text-3xl font-bold text-[#022f36] mb-2">
                     {language === 'no' ? 'Se hvordan Elvarika fungerer' : 
                      language === 'uk' ? 'Подивіться, як працює Elvarika' : 
                      'See how Elvarika works'}
                   </h1>
+                  <p className="text-xl text-gray-600 font-medium">
+                    {language === 'no' ? 'Fra norsk tekst til flerspråklig lydordbok på 30 sekunder' :
+                     language === 'uk' ? 'З норвезького тексту до багатомовного аудіословника за 30 секунд' :
+                     'From Norwegian text to multilingual audio dictionary in 30 seconds'}
+                  </p>
                 </div>
+                
                 <div className="flex items-center gap-3">
                   <div className="flex items-center bg-white rounded-lg p-1 border">
-                    <span className="text-xs text-gray-500 px-2">Переклад на:</span>
+                    <span className="text-xs text-gray-500 px-2">
+                      {language === 'no' ? 'Oversett til:' :
+                       language === 'uk' ? 'Переклад на:' :
+                       'Translate to:'}
+                    </span>
                     <button
                       onClick={() => setDemoTranslationTarget('uk')}
                       className={`px-3 py-1 rounded text-sm transition-colors ${
@@ -610,15 +623,6 @@ export const Business: React.FC = () => {
                     </button>
                   </div>
                 </div>
-              </div>
-              
-              {/* Subtitle with 30 seconds description */}
-              <div className="text-center">
-                <p className="text-xl text-gray-600 font-medium">
-                  {language === 'no' ? 'Fra norsk tekst til flerspråklig lydordbok på 30 sekunder' :
-                   language === 'uk' ? 'З норвезького тексту до багатомовного аудіословника за 30 секунд' :
-                   'From Norwegian text to multilingual audio dictionary in 30 seconds'}
-                </p>
               </div>
               
               {/* Demo content with increased height */}

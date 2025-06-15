@@ -1006,12 +1006,80 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
               className="h-full"
             >
               <div className="bg-white rounded-lg p-8 h-full overflow-hidden flex flex-col">
-                {/* Maximum space for playlist area */}
-                <div className="flex-1 overflow-y-auto">
-                  <div className="text-sm font-medium text-[#022f36] mb-2 flex items-center gap-2">
-                    <Volume2 className="h-4 w-4" />
-                    {translations.readyPlaylist} (25 слів)
+                {/* Playlist header with controls */}
+                <div className="flex items-center justify-between mb-6 p-4 bg-gray-50 rounded-lg border">
+                  <div className="flex items-center gap-3">
+                    <Volume2 className="h-6 w-6 text-[#022f36]" />
+                    <div>
+                      <div className="text-lg font-bold text-[#022f36]">{translations.readyPlaylist}</div>
+                      <div className="text-sm text-gray-600">25 слів • 12 хвилин</div>
+                    </div>
                   </div>
+                  <div className="flex items-center gap-3">
+                    <Button
+                      onClick={() => {
+                        // Toggle play all playlist
+                        const allPlaying = playlist.every(item => item.isPlaying);
+                        setPlaylist(prev => prev.map(item => ({
+                          ...item,
+                          isPlaying: !allPlaying
+                        })));
+                      }}
+                      className="bg-[#022f36] hover:bg-[#033d46] text-white px-6 py-2 flex items-center gap-2"
+                    >
+                      {playlist.some(item => item.isPlaying) ? (
+                        <>
+                          <Pause className="h-4 w-4" />
+                          {currentLanguage === 'no' ? 'Pause alle' : 
+                           currentLanguage === 'uk' ? 'Пауза всіх' : 
+                           'Pause all'}
+                        </>
+                      ) : (
+                        <>
+                          <Play className="h-4 w-4" />
+                          {currentLanguage === 'no' ? 'Spill alle' : 
+                           currentLanguage === 'uk' ? 'Грати всі' : 
+                           'Play all'}
+                        </>
+                      )}
+                    </Button>
+                    <Button
+                      onClick={() => {
+                        // Download playlist functionality
+                        const playlistData = {
+                          name: "Elvarika Workplace Safety Dictionary",
+                          language: translationTarget === 'uk' ? 'Ukrainian' : 'English',
+                          words: playlist.map(item => ({
+                            word: item.word,
+                            translation: item.translation,
+                            context: item.context,
+                            contextTranslation: item.contextTranslation,
+                            audioUrl: item.audioUrl
+                          }))
+                        };
+                        const blob = new Blob([JSON.stringify(playlistData, null, 2)], { type: 'application/json' });
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = 'elvarika-dictionary.json';
+                        a.click();
+                        URL.revokeObjectURL(url);
+                      }}
+                      variant="outline"
+                      className="border-[#022f36] text-[#022f36] hover:bg-[#022f36] hover:text-white px-6 py-2 flex items-center gap-2"
+                    >
+                      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
+                      {currentLanguage === 'no' ? 'Last ned' : 
+                       currentLanguage === 'uk' ? 'Скачати' : 
+                       'Download'}
+                    </Button>
+                  </div>
+                </div>
+                
+                {/* Playlist content */}
+                <div className="flex-1 overflow-y-auto">
                   <div className="grid grid-cols-5 gap-1 text-xs">
                     {playlist.map((item, index) => (
                       <motion.div
