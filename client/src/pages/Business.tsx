@@ -172,10 +172,10 @@ export const Business: React.FC = () => {
               <CardContent className="space-y-4">
                 <p className="text-gray-600 leading-relaxed text-sm">
                   {language === 'no' ? 
-                    'Jan leder stor logistikkterminal i Oslo. 60% utenlandske arbeidere. Språkbarrierer fører til skadet last - 50 000 kroner erstatning fra misforstått temperaturhåndtering.' :
+                    'Jan leder stor logistikkterminal i Oslo. Hans team består av 60% utenlandske arbeidere fra Polen, Litauen og Ukraina. Daglig står han overfor økonomiske tap grunnet språkbarrierer: skadet last fra misforståtte temperaturinstruksjoner førte til 50 000 kroner i erstatning bare forrige måned.' :
                    language === 'uk' ?
-                    'Ян керує логістичним терміналом в Осло. 60% іноземних працівників. Мовні бар\'єри - пошкоджений вантаж і 50 000 крон компенсацій.' :
-                    'Jan manages logistics terminal in Oslo. 60% foreign workers. Language barriers cause damaged cargo - 50,000 kroner compensation claims.'}
+                    'Уявіть собі Яна, керівника великого логістичного термінала в Осло. Його команда на 60% складається з іноземних працівників з Польщі, Литви та України. Щодня він стикається з фінансовими втратами через мовні бар\'єри: пошкоджені вантажі через неправильне розуміння інструкцій з температурного режиму призвели до компенсації у розмірі 50 000 крон лише минулого місяця.' :
+                    'Imagine Jan, the manager of a large logistics terminal in Oslo. His team consists of 60% foreign workers from Poland, Lithuania, and Ukraine. Daily he faces financial losses due to language barriers: damaged cargo from misunderstood temperature handling instructions led to 50,000 kroner compensation just last month.'}
                 </p>
                 
                 <div className="bg-blue-50 p-3 rounded-lg">
@@ -200,13 +200,13 @@ export const Business: React.FC = () => {
                   </h4>
                   <p className="text-green-700 text-xs mb-2">
                     {language === 'no' ?
-                      'PDF → 5-min lydleksjon. Arbeidere hører: "Temperaturfølsom last 2-8 grader."' :
+                      'Jan laster opp standard lagerinstruksjoner (PDF, 10 sider). På 5 minutter genererer Elvarika personaliserte lydleksjoner for hele teamet. En ny ukrainsk arbeider hører i hodetelefonene: "Ved arbeid med temperaturfølsom last, hold 2-8 grader. Sjekk avlesninger hver 30. minutt."' :
                      language === 'uk' ?
-                      'PDF → 5-хв аудіоурок. Працівники чують: "Температурочутливий вантаж 2-8 градусів."' :
-                      'PDF → 5-min audio lesson. Workers hear: "Temperature-sensitive cargo 2-8 degrees."'}
+                      'Ян завантажує в систему стандартну інструкцію з техніки безпеки на складі (PDF, 10 сторінок). За 5 хвилин Elvarika генерує персоналізований аудіоурок для всієї команди. Новий працівник з України, ще не розпакувавши валізи, вже слухає у навушниках: «Під час роботи з температурочутливими вантажами дотримуйтесь режиму 2-8 градусів. Перевіряйте показники кожні 30 хвилин.»' :
+                      'Jan uploads standard warehouse safety instructions (PDF, 10 pages) into the system. Within 5 minutes, Elvarika generates a personalized audio lesson for the entire team. A new worker from Ukraine, before even unpacking their luggage, is already listening through headphones: "When working with temperature-sensitive cargo, maintain 2-8 degrees. Check readings every 30 minutes."'}
                   </p>
                   <div className="text-green-600 text-xs">
-                    <strong>{language === 'no' ? 'Resultat:' : language === 'uk' ? 'Результат:' : 'Result:'}</strong> {language === 'no' ? 'Redusert skade med 75%, bedre sikkerhet, raskere onboarding' : language === 'uk' ? 'Зменшення пошкоджень на 75%, покращена безпека, швидша адаптація' : 'Reduced damage by 75%, improved safety, faster onboarding'}
+                    <strong>{language === 'no' ? 'Resultat for investor:' : language === 'uk' ? 'Результат для інвестора:' : 'Result for investor:'}</strong> {language === 'no' ? 'Elvarika er ikke "vitamin", det er "aspirin" mot akutt smerte. Vi tilbyr målbar reduksjon av økonomiske tap, redusert risiko for bøter og økt operasjonell effektivitet. Logistikkmarkedet i Norge er enormt og har høy vekst.' : language === 'uk' ? 'Elvarika – це не "вітамін", це "аспірин" від гострого болю. Ми пропонуємо вимірюване зниження фінансових втрат, зменшення ризику штрафів та підвищення операційної ефективності. Ринок логістики в Норвегії величезний і має високе зростання.' : 'Elvarika is not a "vitamin", it\'s "aspirin" for acute pain. We offer measurable reduction of financial losses, reduced risk of fines and increased operational efficiency. Norway\'s logistics market is enormous and has high growth.'}
                   </div>
                 </div>
               </CardContent>
@@ -226,10 +226,10 @@ export const Business: React.FC = () => {
               <CardContent className="space-y-4">
                 <p className="text-gray-600 leading-relaxed text-sm">
                   {language === 'no' ?
-                    'Anna, HSE-manager på byggeprosjekt. Litauisk arbeider misforsto trykkluftprosedyrer → 150 000 kr bøter + 3 dagers stopp.' :
+                    'Anna er HSE-manager på stort byggeprosjekt. Hun er ansvarlig for sikkerheten til det flernasjonale teamet. Nylig oppstod en hendelse grunnet språklige misforståelser angående terminologi for arbeid med høytrykksutstyr, som førte til prosjektstopp og bøter på 150 000 kroner.' :
                    language === 'uk' ?
-                    'Анна, HSE-менеджер будівельного проекту. Литовський робітник неправильно зрозумів пневматику → 150 000 крон штрафів + 3 дні зупинки.' :
-                    'Anna, HSE manager construction project. Lithuanian worker misunderstood pneumatics → 150,000 kroner fines + 3-day shutdown.'}
+                    'Розглянемо Анну, HSE-менеджера на великому будівельному об\'єкті. Вона відповідає за безпеку багатонаціональної команди. Нещодавно через мовне непорозуміння щодо термінології роботи з обладнанням під високим тиском стався інцидент, що призвів до зупинки проекту та штрафів у розмірі 150 000 крон.' :
+                    'Consider Anna, HSE manager on a large construction site. She is responsible for the safety of a multinational team. Recently, due to language misunderstanding regarding terminology for working with high-pressure equipment, an incident occurred that led to project shutdown and fines of 150,000 kroner.'}
                 </p>
                 
                 <div className="bg-orange-50 p-3 rounded-lg">
@@ -254,13 +254,13 @@ export const Business: React.FC = () => {
                   </h4>
                   <p className="text-orange-700 text-sm mb-2">
                     {language === 'no' ?
-                      'Sikkerhetsinstruksjoner blir til målrettede lydguider. Arbeidere hører: "Sjekk at trykket ikke overstiger 6 bar. Bruk alltid sikkerhetsutstyr."' :
+                      'Anna fotograferer instruksjonen til nytt utstyr og laster det opp i Elvarika. Før generering av leksjonen gjennomgår hun listen over ordkandidater systemet foreslår, og legger til noen spesifikke termer hun vil fokusere på. Systemet produserer målrettede lydguider på 3 minutter. Arbeidere hører: "Ved arbeid med høytrykksluft, sjekk at trykket ikke overstiger 6 bar. Bruk alltid sikkerhetsbriller og hørselsvern."' :
                      language === 'uk' ?
-                      'Інструкції безпеки стають цільовими аудіогідами. Робітники чують: "Перевірте, що тиск не перевищує 6 бар. Завжди використовуйте засоби захисту."' :
-                      'Safety instructions become targeted audio guides. Workers hear: "Check that pressure does not exceed 6 bar. Always use safety equipment."'}
+                      'Анна фотографує інструкцію до нового обладнання та завантажує її в Elvarika. Перед генерацією уроку вона переглядає список слів-кандидатів, що запропонувала система, і додає декілька специфічних термінів, на яких хоче зробити акцент. Система продукує цільові аудіогіди за 3 хвилини. Робітники чують: "При роботі з повітрям під високим тиском перевіряйте, що тиск не перевищує 6 бар. Завжди використовуйте захисні окуляри та засоби захисту слуху."' :
+                      'Anna photographs the instruction for new equipment and uploads it to Elvarika. Before generating the lesson, she reviews the list of word candidates the system suggests and adds several specific terms she wants to focus on. The system produces targeted audio guides in 3 minutes. Workers hear: "When working with high-pressure air, check that pressure does not exceed 6 bar. Always use safety glasses and hearing protection."'}
                   </p>
                   <div className="text-orange-600 text-xs">
-                    <strong>{language === 'no' ? 'Resultat:' : language === 'uk' ? 'Результат:' : 'Result:'}</strong> {language === 'no' ? 'Null arbeidsulykker siste år, 90% færre HMS-brudd' : language === 'uk' ? 'Нуль виробничих травм останній рік, на 90% менше порушень безпеки' : 'Zero workplace injuries last year, 90% fewer safety violations'}
+                    <strong>{language === 'no' ? 'Resultat for investor:' : language === 'uk' ? 'Результат для інвестора:' : 'Result for investor:'}</strong> {language === 'no' ? 'Elvarika tilbyr unik hastighet til verdi (Time-to-Value). Vi forvandler uker med ineffektiv onboarding til timer med målrettet opplæring. For bygge- og produksjonsbedrifter betyr dette direkte kostnadsbesparelser og redusert risiko for regulatoriske sanksjoner.' : language === 'uk' ? 'Elvarika пропонує унікальну швидкість виходу на цінність (Time-to-Value). Ми перетворюємо тижні неефективного онбордингу на години цільового навчання. Для будівельних та виробничих компаній це означає пряму економію коштів та зниження ризику регуляторних санкцій.' : 'Elvarika offers unique Time-to-Value speed. We transform weeks of ineffective onboarding into hours of targeted training. For construction and manufacturing companies, this means direct cost savings and reduced risk of regulatory sanctions.'}
                   </div>
                 </div>
               </CardContent>
@@ -278,10 +278,10 @@ export const Business: React.FC = () => {
               <CardContent className="space-y-4">
                 <p className="text-gray-600 leading-relaxed">
                   {language === 'no' ?
-                    'David eier en hotellkjede. En servitør misforsto glutenallergi-forespørsel, noe som førte til alvorlig allergisk reaksjon og negativ medieomtale.' :
+                    'David eier en hotell- og restaurantkjede og opplever høy gjennomtrekk av ansatte og problemer med servicekvalitet. En ny servitør fra Spania forsto ikke kundens forespørsel om glutenallergi godt nok og serverte en rett med skjulte allergener. Dette førte til alvorlig allergisk reaksjon, negativ medieomtale og tap av tillit fra gjester.' :
                    language === 'uk' ?
-                    'Давід володіє готельною мережею. Офіціантка неправильно зрозуміла запит про алергію на глютен, що призвело до серйозної алергічної реакції та негативної реклами в ЗМІ.' :
-                    'David owns a hotel chain. A waitress misunderstood a gluten allergy request, leading to a serious allergic reaction and negative media coverage.'}
+                    'Давід, власник мережі готелів та ресторанів, стикається з високою плинністю кадрів та проблемою якості обслуговування. Нова офіціантка з Іспанії, недостатньо добре зрозумівши запит клієнта щодо алергії на глютен, приносить страву, що містить приховані алергени. Це призводить до серйозної алергічної реакції, негативних відгуків у ЗМІ та втрати довіри гостей.' :
+                    'David, owner of a hotel and restaurant chain, faces high staff turnover and service quality issues. A new waitress from Spain, not understanding the customer\'s gluten allergy request well enough, served a dish containing hidden allergens. This led to a serious allergic reaction, negative media coverage and loss of guest trust.'}
                 </p>
                 
                 <div className="bg-purple-50 p-3 rounded-lg">
