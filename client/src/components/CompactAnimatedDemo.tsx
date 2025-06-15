@@ -419,114 +419,149 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
     };
   }, [playbackSpeed, currentAudio]);
 
+  const scheduleNextStep = (currentStep: number) => {
+    if (isPaused) return;
+    
+    const newTimeouts: NodeJS.Timeout[] = [];
+    
+    switch (currentStep) {
+      case 1:
+        // Add 2 second pause before Step 2
+        const step2Timeout = setTimeout(() => {
+          if (!isPaused) {
+            setStep(2);
+            const initialWords: WordAnimation[] = keyWordsData.map((item, index) => ({
+              ...item,
+              translation: translationTarget === 'uk' ? item.translation_uk : item.translation_en,
+              contextTranslation: translationTarget === 'uk' ? item.contextTranslation_uk : item.contextTranslation_en,
+              id: `word-${index}`,
+              isHighlighted: false,
+              isExtracting: false,
+              isInContext: false,
+              isTranslating: false,
+              isReady: false
+            }));
+            setWords(initialWords);
+            
+            // Highlight words one by one
+            initialWords.forEach((_, index) => {
+              const highlightTimeout = setTimeout(() => {
+                if (!isPaused) {
+                  setWords(prev => prev.map((word, i) => 
+                    i === index ? { ...word, isHighlighted: true } : word
+                  ));
+                }
+              }, index * 300);
+              newTimeouts.push(highlightTimeout);
+            });
+            
+            // Schedule next step after highlighting is done
+            const nextStepTimeout = setTimeout(() => {
+              scheduleNextStep(2);
+            }, initialWords.length * 300 + 2000); // Add 2 second pause
+            newTimeouts.push(nextStepTimeout);
+          }
+        }, 2000); // 2 second pause
+        newTimeouts.push(step2Timeout);
+        break;
+        
+      case 2:
+        // Add 2 second pause before Step 3
+        const step3Timeout = setTimeout(() => {
+          if (!isPaused) {
+            setStep(3);
+            keyWordsData.forEach((_, index) => {
+              const contextTimeout = setTimeout(() => {
+                if (!isPaused) {
+                  setWords(prev => prev.map((word, i) => 
+                    i === index ? { ...word, isExtracting: true, isInContext: true } : word
+                  ));
+                }
+              }, index * 200);
+              newTimeouts.push(contextTimeout);
+            });
+            
+            // Schedule next step
+            const nextStepTimeout = setTimeout(() => {
+              scheduleNextStep(3);
+            }, keyWordsData.length * 200 + 2000); // Add 2 second pause
+            newTimeouts.push(nextStepTimeout);
+          }
+        }, 2000); // 2 second pause
+        newTimeouts.push(step3Timeout);
+        break;
+        
+      case 3:
+        // Add 2 second pause before Step 4
+        const step4Timeout = setTimeout(() => {
+          if (!isPaused) {
+            setStep(4);
+            keyWordsData.forEach((_, index) => {
+              const translateTimeout = setTimeout(() => {
+                if (!isPaused) {
+                  setWords(prev => prev.map((word, i) => 
+                    i === index ? { ...word, isExtracting: false, isTranslating: true } : word
+                  ));
+                  
+                  const readyTimeout = setTimeout(() => {
+                    if (!isPaused) {
+                      setWords(prev => prev.map((word, i) => 
+                        i === index ? { ...word, isTranslating: false, isReady: true } : word
+                      ));
+                    }
+                  }, 800);
+                  newTimeouts.push(readyTimeout);
+                }
+              }, index * 300);
+              newTimeouts.push(translateTimeout);
+            });
+            
+            // Schedule next step
+            const nextStepTimeout = setTimeout(() => {
+              scheduleNextStep(4);
+            }, keyWordsData.length * 300 + 800 + 2000); // Add 2 second pause
+            newTimeouts.push(nextStepTimeout);
+          }
+        }, 2000); // 2 second pause
+        newTimeouts.push(step4Timeout);
+        break;
+        
+      case 4:
+        // Add 2 second pause before Step 5
+        const step5Timeout = setTimeout(() => {
+          if (!isPaused) {
+            setStep(5);
+            const finalPlaylist: PlaylistItem[] = keyWordsData.map((item, index) => ({
+              id: `playlist-${index}`,
+              word: item.word,
+              translation: translationTarget === 'uk' ? item.translation_uk : item.translation_en,
+              context: item.context,
+              contextTranslation: translationTarget === 'uk' ? item.contextTranslation_uk : item.contextTranslation_en,
+              audioUrl: translationTarget === 'uk' 
+                ? `/attached_assets/audio/${item.word}.mp3`
+                : `/attached_assets/audio/en/${item.word}.mp3`,
+              duration: "0:03",
+              isPlaying: false
+            }));
+            setPlaylist(finalPlaylist);
+            setIsAnimating(false);
+          }
+        }, 2000); // 2 second pause
+        newTimeouts.push(step5Timeout);
+        break;
+    }
+    
+    setTimeouts(prev => [...prev, ...newTimeouts]);
+  };
+
   const startDemo = () => {
     clearAllTimeouts();
     setIsAnimating(true);
     setIsPaused(false);
     setStep(1);
     
-    const newTimeouts: NodeJS.Timeout[] = [];
-    
-    // Step 2: Highlight words (with 2 second pause)
-    const step2Timeout = setTimeout(() => {
-      if (!isPaused) {
-        setStep(2);
-        const initialWords: WordAnimation[] = keyWordsData.map((item, index) => ({
-          ...item,
-          translation: translationTarget === 'uk' ? item.translation_uk : item.translation_en,
-          contextTranslation: translationTarget === 'uk' ? item.contextTranslation_uk : item.contextTranslation_en,
-          id: `word-${index}`,
-          isHighlighted: false,
-          isExtracting: false,
-          isInContext: false,
-          isTranslating: false,
-          isReady: false
-        }));
-        setWords(initialWords);
-        
-        // Highlight words one by one
-        initialWords.forEach((_, index) => {
-          const highlightTimeout = setTimeout(() => {
-            if (!isPaused) {
-              setWords(prev => prev.map((word, i) => 
-                i === index ? { ...word, isHighlighted: true } : word
-              ));
-            }
-          }, index * 300);
-          newTimeouts.push(highlightTimeout);
-        });
-      }
-    }, 9000); // збільшено з 7000 до 9000 (додалось 2 секунди)
-    newTimeouts.push(step2Timeout);
-
-    // Step 3: Context wrapping (with 2 second pause)
-    const step3Timeout = setTimeout(() => {
-      if (!isPaused) {
-        setStep(3);
-        keyWordsData.forEach((_, index) => {
-          const contextTimeout = setTimeout(() => {
-            if (!isPaused) {
-              setWords(prev => prev.map((word, i) => 
-                i === index ? { ...word, isExtracting: true, isInContext: true } : word
-              ));
-            }
-          }, index * 200);
-          newTimeouts.push(contextTimeout);
-        });
-      }
-    }, 14000); // збільшено з 12000 до 14000 (додалось 2 секунди)
-    newTimeouts.push(step3Timeout);
-
-    // Step 4: Translation (with 2 second pause)
-    const step4Timeout = setTimeout(() => {
-      if (!isPaused) {
-        setStep(4);
-        keyWordsData.forEach((_, index) => {
-          const translateTimeout = setTimeout(() => {
-            if (!isPaused) {
-              setWords(prev => prev.map((word, i) => 
-                i === index ? { ...word, isExtracting: false, isTranslating: true } : word
-              ));
-              
-              const readyTimeout = setTimeout(() => {
-                if (!isPaused) {
-                  setWords(prev => prev.map((word, i) => 
-                    i === index ? { ...word, isTranslating: false, isReady: true } : word
-                  ));
-                }
-              }, 800);
-              newTimeouts.push(readyTimeout);
-            }
-          }, index * 300);
-          newTimeouts.push(translateTimeout);
-        });
-      }
-    }, 19000); // збільшено з 17000 до 19000 (додалось 2 секунди)
-    newTimeouts.push(step4Timeout);
-
-    // Step 5: Final playlist (22 seconds)
-    const step5Timeout = setTimeout(() => {
-      if (!isPaused) {
-        setStep(5);
-        const finalPlaylist: PlaylistItem[] = keyWordsData.map((item, index) => ({
-          id: `playlist-${index}`,
-          word: item.word,
-          translation: translationTarget === 'uk' ? item.translation_uk : item.translation_en,
-          context: item.context,
-          contextTranslation: translationTarget === 'uk' ? item.contextTranslation_uk : item.contextTranslation_en,
-          audioUrl: translationTarget === 'uk' 
-            ? `/attached_assets/audio/${item.word}.mp3`
-            : `/attached_assets/audio/en/${item.word}.mp3`,
-          duration: "0:03",
-          isPlaying: false
-        }));
-        setPlaylist(finalPlaylist);
-        setIsAnimating(false);
-      }
-    }, 22000); // збільшено з 20000 до 22000 (додалось 2 секунди)
-    newTimeouts.push(step5Timeout);
-    
-    setTimeouts(newTimeouts);
+    // Start the chain reaction
+    scheduleNextStep(1);
   };
 
   const pauseDemo = () => {
@@ -539,94 +574,8 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
     setIsPaused(false);
     setIsAnimating(true);
     
-    // Continue from current step with appropriate timing
-    const newTimeouts: NodeJS.Timeout[] = [];
-    
-    if (step === 1) {
-      // Continue to step 2 immediately
-      const step2Timeout = setTimeout(() => {
-        setStep(2);
-        const initialWords: WordAnimation[] = keyWordsData.map((item, index) => ({
-          ...item,
-          translation: translationTarget === 'uk' ? item.translation_uk : item.translation_en,
-          contextTranslation: translationTarget === 'uk' ? item.contextTranslation_uk : item.contextTranslation_en,
-          id: `word-${index}`,
-          isHighlighted: false,
-          isExtracting: false,
-          isInContext: false,
-          isTranslating: false,
-          isReady: false
-        }));
-        setWords(initialWords);
-        
-        initialWords.forEach((_, index) => {
-          const highlightTimeout = setTimeout(() => {
-            setWords(prev => prev.map((word, i) => 
-              i === index ? { ...word, isHighlighted: true } : word
-            ));
-          }, index * 300);
-          newTimeouts.push(highlightTimeout);
-        });
-      }, 5000); // збільшено з 3000 до 5000 (додано 2 секунди паузи)
-      newTimeouts.push(step2Timeout);
-    } else if (step === 2) {
-      // Continue to step 3
-      const step3Timeout = setTimeout(() => {
-        setStep(3);
-        keyWordsData.forEach((_, index) => {
-          const contextTimeout = setTimeout(() => {
-            setWords(prev => prev.map((word, i) => 
-              i === index ? { ...word, isExtracting: true, isInContext: true } : word
-            ));
-          }, index * 200);
-          newTimeouts.push(contextTimeout);
-        });
-      }, 5000); // збільшено з 3000 до 5000 (додано 2 секунди паузи)
-      newTimeouts.push(step3Timeout);
-    } else if (step === 3) {
-      // Continue to step 4
-      const step4Timeout = setTimeout(() => {
-        setStep(4);
-        keyWordsData.forEach((_, index) => {
-          const translateTimeout = setTimeout(() => {
-            setWords(prev => prev.map((word, i) => 
-              i === index ? { ...word, isExtracting: false, isTranslating: true } : word
-            ));
-            
-            const readyTimeout = setTimeout(() => {
-              setWords(prev => prev.map((word, i) => 
-                i === index ? { ...word, isTranslating: false, isReady: true } : word
-              ));
-            }, 800);
-            newTimeouts.push(readyTimeout);
-          }, index * 300);
-          newTimeouts.push(translateTimeout);
-        });
-      }, 5000); // збільшено з 3000 до 5000 (додано 2 секунди паузи)
-      newTimeouts.push(step4Timeout);
-    } else if (step === 4) {
-      // Continue to step 5
-      const step5Timeout = setTimeout(() => {
-        setStep(5);
-        const finalPlaylist: PlaylistItem[] = keyWordsData.map((item, index) => ({
-          id: `playlist-${index}`,
-          word: item.word,
-          translation: translationTarget === 'uk' ? item.translation_uk : item.translation_en,
-          context: item.context,
-          contextTranslation: translationTarget === 'uk' ? item.contextTranslation_uk : item.contextTranslation_en,
-          audioUrl: translationTarget === 'uk' 
-            ? `/attached_assets/audio/${item.word}.mp3`
-            : `/attached_assets/audio/en/${item.word}.mp3`,
-          duration: "0:03",
-          isPlaying: false
-        }));
-        setPlaylist(finalPlaylist);
-        setIsAnimating(false);
-      }, 5000); // збільшено з 3000 до 5000 (додано 2 секунди паузи)
-      newTimeouts.push(step5Timeout);
-    }
-    
-    setTimeouts(newTimeouts);
+    // Continue from current step with consistent 2-second pauses
+    scheduleNextStep(step);
   };
 
   const togglePlayback = (itemId: string) => {
