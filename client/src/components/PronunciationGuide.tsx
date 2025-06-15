@@ -170,36 +170,36 @@ export const PronunciationGuide: React.FC<PronunciationGuideProps> = ({ words })
 
   // Audio visualization
   useEffect(() => {
-    if (isPlaying && canvasRef.current) {
+    if (isPlaying && canvasRef.current && waveform.length > 0) {
       const canvas = canvasRef.current;
       const ctx = canvas.getContext('2d');
       if (!ctx) return;
 
       const animate = () => {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        // Draw waveform
-        ctx.strokeStyle = '#0066cc';
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        
-        const barWidth = canvas.width / waveform.length;
-        waveform.forEach((amplitude, i) => {
-          const x = i * barWidth;
-          const height = amplitude * canvas.height * 0.8;
-          const y = (canvas.height - height) / 2;
+        try {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
           
-          // Animate based on current time
-          const progress = (currentTime / duration) * waveform.length;
-          const opacity = i < progress ? 1 : 0.3;
+          // Draw waveform
+          const barWidth = canvas.width / waveform.length;
+          waveform.forEach((amplitude, i) => {
+            const x = i * barWidth;
+            const height = Math.max(amplitude * canvas.height * 0.8, 2);
+            const y = (canvas.height - height) / 2;
+            
+            // Animate based on current time
+            const progress = duration > 0 ? (currentTime / duration) * waveform.length : 0;
+            const opacity = i < progress ? 1 : 0.3;
+            
+            ctx.globalAlpha = opacity;
+            ctx.fillStyle = `rgba(0, 102, 204, ${opacity})`;
+            ctx.fillRect(x, y, Math.max(barWidth - 1, 1), height);
+          });
           
-          ctx.globalAlpha = opacity;
-          ctx.fillStyle = `rgba(0, 102, 204, ${opacity})`;
-          ctx.fillRect(x, y, barWidth - 1, height);
-        });
-        
-        if (isPlaying) {
-          animationRef.current = requestAnimationFrame(animate);
+          if (isPlaying && !isNaN(currentTime) && !isNaN(duration)) {
+            animationRef.current = requestAnimationFrame(animate);
+          }
+        } catch (error) {
+          console.warn('Canvas animation error:', error);
         }
       };
       
@@ -235,17 +235,24 @@ export const PronunciationGuide: React.FC<PronunciationGuideProps> = ({ words })
 
   const startRecording = async () => {
     try {
+      if (!navigator.mediaDevices?.getUserMedia) {
+        console.warn('Media devices not supported');
+        return;
+      }
+      
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       const mediaRecorder = new MediaRecorder(stream);
       mediaRecorderRef.current = mediaRecorder;
       
       const chunks: BlobPart[] = [];
       mediaRecorder.ondataavailable = (event) => {
-        chunks.push(event.data);
+        if (event.data.size > 0) {
+          chunks.push(event.data);
+        }
       };
       
       mediaRecorder.onstop = () => {
-        const blob = new Blob(chunks, { type: 'audio/wav' });
+        const blob = new Blob(chunks, { type: 'audio/webm' });
         setUserRecording(blob);
         stream.getTracks().forEach(track => track.stop());
       };
@@ -253,7 +260,7 @@ export const PronunciationGuide: React.FC<PronunciationGuideProps> = ({ words })
       mediaRecorder.start();
       setIsRecording(true);
     } catch (error) {
-      console.error('Error accessing microphone:', error);
+      console.warn('Microphone access denied or not available:', error);
     }
   };
 
