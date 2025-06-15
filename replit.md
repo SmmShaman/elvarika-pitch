@@ -154,6 +154,9 @@ Changelog:
 - June 15, 2025. Enhanced demo controls: 2-second pauses between steps, click-to-pause on step circles
 - June 15, 2025. Language pair selector disabled during demo playback, only active at start/end
 - June 15, 2025. Improved step navigation with pause/resume functionality
+- June 15, 2025. Updated Use Cases section with comprehensive investor-focused narratives from attached file
+- June 15, 2025. Expanded all four industry examples (Logistics, Construction, HoReCa, Agriculture) with detailed scenarios
+- June 15, 2025. Added "Result for investor" messaging focusing on measurable business impact and market opportunity
 ```
 
 ## User Preferences

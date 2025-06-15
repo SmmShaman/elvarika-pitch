@@ -306,13 +306,13 @@ export const Business: React.FC = () => {
                   </h4>
                   <p className="text-purple-700 text-sm mb-2">
                     {language === 'no' ?
-                      'Menyer og allergenlister blir til kontekstuelle lydguider. Ansatte lærer: "Kunden spør om gluten. Sjekk ingredienslisten. Informer kjøkkenet."' :
+                      'David laster opp servicestandarder, menyer og allergenlister i Elvarika. Plattformen genererer automatisk korte lydleksjoner. Den nye ansatte hører dem på vei til jobb. Hun hører ikke bare ord, men hele setninger i kontekst: "Når en kunde spør om glutenallergi, svarer du: La meg sjekke ingredienslisten med kjøkkenet for å sikre at retten er trygg for deg."' :
                      language === 'uk' ?
-                      'Меню та списки алергенів стають контекстуальними аудіогідами. Співробітники вивчають: "Клієнт питає про глютен. Перевірте інгредієнти. Повідомте кухню."' :
-                      'Menus and allergen lists become contextual audio guides. Staff learn: "Customer asks about gluten. Check ingredients. Inform kitchen."'}
+                      'Давід завантажує в Elvarika стандарти обслуговування, меню та список алергенів. Платформа автоматично генерує короткі аудіоуроки. Нова співробітниця слухає їх дорогою на роботу. Вона чує не просто слова, а цілі фрази в контексті: "Коли клієнт питає про алергію на глютен, відповідайте: Дозвольте мені перевірити список інгредієнтів з кухнею, щоб переконатися, що страва для вас безпечна."' :
+                      'David uploads service standards, menus and allergen lists to Elvarika. The platform automatically generates short audio lessons. The new employee listens to them on the way to work. She hears not just words, but complete phrases in context: "When a customer asks about gluten allergy, respond: Let me check the ingredient list with the kitchen to ensure the dish is safe for you."'}
                   </p>
                   <div className="text-purple-600 text-xs">
-                    <strong>{language === 'no' ? 'Resultat:' : language === 'uk' ? 'Результат:' : 'Result:'}</strong> {language === 'no' ? 'Null allergenincidenter siste år, økt kundetilfredshet 40%' : language === 'uk' ? 'Нуль інцидентів з алергенами останній рік, підвищення задоволеності клієнтів на 40%' : 'Zero allergen incidents last year, 40% increase in customer satisfaction'}
+                    <strong>{language === 'no' ? 'Resultat for investor:' : language === 'uk' ? 'Результат для інвестора:' : 'Result for investor:'}</strong> {language === 'no' ? 'Elvarika påvirker kundens inntekt direkte. Forbedret personalkommunikasjon øker gjennomsnittlig regning, øker antall positive anmeldelser og bringer kunder tilbake. Vi tilbyr et verktøy som raskt tilpasser personalet, reduserer risikoer og øker lønnsomheten.' : language === 'uk' ? 'Elvarika напряму впливає на дохід клієнта. Покращення комунікації персоналу підвищує середній чек, збільшує кількість позитивних відгуків та повертає клієнтів знову. Ми пропонуємо інструмент, що швидко адаптує персонал, знижує ризики та підвищує прибутковість.' : 'Elvarika directly impacts customer revenue. Improved staff communication increases average bill, increases positive reviews and brings customers back. We offer a tool that quickly adapts staff, reduces risks and increases profitability.'}
                   </div>
                 </div>
               </CardContent>
@@ -332,10 +332,10 @@ export const Business: React.FC = () => {
               <CardContent className="space-y-4">
                 <p className="text-gray-600 leading-relaxed">
                   {language === 'no' ?
-                    'Lars leder en fiskeprosesseringsfabrikk. En polsk arbeider misforsto temperaturkontroll for laks, som resulterte i ødeleggelse av 2 tonn fisk til en verdi av 400 000 kroner.' :
+                    'Lars leder en stor fiskeprosesseringsfabrikk der over 100 arbeidere fra forskjellige land jobber i sesongen. Kvalitet og sikkerhet av produktene er hans hovedprioritet. Feil forståelse av sanitære normer eller prosedyrer for håndtering av råvarer kan føre til ødeleggelse av hele partier med fisk, store økonomiske tap og tap av tillit fra kunder.' :
                    language === 'uk' ?
-                    'Ларс керує рибопереробною фабрикою. Польський робітник неправильно зрозумів температурний контроль лосося, що призвело до знищення 2 тонн риби вартістю 400 000 крон.' :
-                    'Lars manages a fish processing factory. A Polish worker misunderstood salmon temperature control, resulting in destruction of 2 tons of fish worth 400,000 kroner.'}
+                    'Ларс керує великою рибопереробною фабрикою, де в сезон працює понад 100 робітників з різних країн. Якість та безпека продукції – його головний пріоритет. Неправильне розуміння санітарних норм чи процедури поводження з сировиною може призвести до псування цілих партій риби, великих фінансових втрат та втрати довіри клієнтів.' :
+                    'Lars manages a large fish processing factory where over 100 workers from different countries work during the season. Quality and safety of products is his main priority. Misunderstanding of sanitary norms or procedures for handling raw materials can lead to spoilage of entire batches of fish, large financial losses and loss of customer trust.'}
                 </p>
                 
                 <div className="bg-green-50 p-3 rounded-lg">
@@ -360,13 +360,13 @@ export const Business: React.FC = () => {
                   </h4>
                   <p className="text-green-700 text-sm mb-2">
                     {language === 'no' ?
-                      'Daglige instruksjoner fra 2-minutters talemelding. Arbeidere hører: "Fersk laks må holdes konstant mellom 0-2 grader. Sjekk temperatur hver time."' :
+                      'Lars tar rett og slett opp en 2-minutters talemelding på telefonen med dagens nøkkelinstruksjoner og laster den opp i Elvarika. Systemet gjenkjenner språket, identifiserer termer, oversetter og uttaler dem på arbeidernes morsmål. Før morgenskiftet hører teamet: "I dag jobber vi med fersk laks. Temperatur må holdes mellom 0-2 grader konstant. Sjekk termometeret hver 30. minutt. Ved avvik, rapporter umiddelbart til vaktleder."' :
                      language === 'uk' ?
-                      'Денні інструкції з 2-хвилинного голосового повідомлення. Робітники чують: "Свіжий лосось повинен зберігатися при 0-2 градусах. Перевіряйте температуру щогодини."' :
-                      'Daily instructions from 2-minute voice message. Workers hear: "Fresh salmon must be kept constantly between 0-2 degrees. Check temperature every hour."'}
+                      'Ларс просто записує на телефон 2-хвилинне голосове повідомлення з ключовими інструкціями дня і завантажує його в Elvarika. Система розпізнає мову, виділяє терміни, перекладає та озвучує їх на рідні мови працівників. Перед початком зміни команда чує: "Сьогодні ми працюємо зі свіжим лососем. Температура повинна підтримуватися між 0-2 градусами постійно. Перевіряйте термометр кожні 30 хвилин. При відхиленні негайно повідомляйте керівника зміни."' :
+                      'Lars simply records a 2-minute voice message on his phone with key daily instructions and uploads it to Elvarika. The system recognizes the language, identifies terms, translates and voices them in workers\' native languages. Before the shift starts, the team hears: "Today we work with fresh salmon. Temperature must be maintained between 0-2 degrees constantly. Check thermometer every 30 minutes. If deviation occurs, report immediately to shift supervisor."'}
                   </p>
                   <div className="text-green-600 text-xs">
-                    <strong>{language === 'no' ? 'Resultat:' : language === 'uk' ? 'Результат:' : 'Result:'}</strong> {language === 'no' ? 'Redusert svinn med 85%, forbedret HACCP-overholdelse' : language === 'uk' ? 'Зменшення відходів на 85%, покращення дотримання HACCP' : 'Reduced waste by 85%, improved HACCP compliance'}
+                    <strong>{language === 'no' ? 'Resultat for investor:' : language === 'uk' ? 'Результат для інвестора:' : 'Result for investor:'}</strong> {language === 'no' ? 'For landbruk og fiskeri, der arbeid har sesongkarakter, er Elvarika et uunnværlig verktøy for rask utplassering og opplæring av midlertidige team. Vi tilbyr klientene radikal reduksjon av risiko for produktødeleggelse og økt operasjonell fleksibilitet.' : language === 'uk' ? 'Для агросектору та рибальства, де робота має сезонний характер, Elvarika є незамінним інструментом для швидкого розгортання та навчання тимчасових команд. Ми пропонуємо клієнтам радикальне зниження ризиків псування продукції та підвищення операційної гнучкості.' : 'For agriculture and fishing, where work is seasonal, Elvarika is an indispensable tool for rapid deployment and training of temporary teams. We offer clients radical reduction of product spoilage risks and increased operational flexibility.'}
                   </div>
                 </div>
               </CardContent>
