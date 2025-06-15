@@ -952,24 +952,34 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
               exit={{ opacity: 0 }}
               className="h-full"
             >
-              <div className="bg-white rounded-lg p-4 h-full overflow-y-auto">
-                {/* Maximum space for context processing - removed header to increase content area */}
-                <div className="bg-gray-50 rounded-lg p-2 border-2 border-gray-200 h-full">
-                  <div className="space-y-3 h-full overflow-y-auto p-6">
-                    {words.filter(w => w.isInContext).slice(0, 12).map((word) => (
-                      <motion.div
-                        key={word.id}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        className="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-400"
-                      >
-                        <div className="font-bold text-blue-800 text-lg mb-2">{word.word}</div>
-                        <div className="text-blue-600 leading-relaxed">
-                          <div className="mb-2 font-medium text-base bg-white p-2 rounded">"{word.context}"</div>
-                          <div className="text-green-700 italic text-base bg-green-50 p-2 rounded">"{word.contextTranslation}"</div>
-                        </div>
-                      </motion.div>
-                    ))}
+              <div className="bg-white rounded-lg p-3 h-full overflow-y-auto">
+                {/* Compact context grid - all words visible */}
+                <div className="bg-gray-50 rounded-lg p-1 border-2 border-gray-200 h-full">
+                  <div className="h-full overflow-y-auto p-2">
+                    <div className="grid grid-cols-2 gap-1 text-xs">
+                      {words.filter(w => w.isInContext).map((word, index) => (
+                        <motion.div
+                          key={word.id}
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ delay: index * 0.04 }}
+                          className="p-2 bg-blue-50 rounded border-l-2 border-blue-400"
+                        >
+                          {/* Word header */}
+                          <div className="font-bold text-blue-800 text-sm mb-1 truncate">{word.word}</div>
+                          
+                          {/* Context sections */}
+                          <div className="space-y-1">
+                            <div className="text-blue-700 bg-white p-1.5 rounded text-xs leading-tight">
+                              "{word.context}"
+                            </div>
+                            <div className="text-green-700 bg-green-50 p-1.5 rounded text-xs leading-tight italic">
+                              "{word.contextTranslation}"
+                            </div>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
