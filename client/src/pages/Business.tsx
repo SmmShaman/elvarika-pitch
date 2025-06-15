@@ -531,6 +531,7 @@ export const Business: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <PageNavigation />
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b border-gray-200 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">

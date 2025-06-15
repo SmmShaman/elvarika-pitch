@@ -2,6 +2,7 @@ import React from 'react';
 import { PronunciationGuide } from '@/components/PronunciationGuide';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
+import { PageNavigation } from '@/components/PageNavigation';
 import { useLanguage } from '@/hooks/useLanguage';
 
 export const PronunciationPage: React.FC = () => {
@@ -18,6 +19,7 @@ export const PronunciationPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#defff0] to-[#f0fff4]">
       <Navigation />
+      <PageNavigation />
       
       <main className="pt-20 pb-16">
         <div className="container mx-auto px-4">

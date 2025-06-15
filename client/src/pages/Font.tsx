@@ -13,6 +13,7 @@ import { CompetitiveAdvantage } from "@/components/CompetitiveAdvantage";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { PageNavigation } from "@/components/PageNavigation";
+import { PageGuide } from "@/components/PageGuide";
 
 export const Font = (): JSX.Element => {
   return (
@@ -20,6 +21,7 @@ export const Font = (): JSX.Element => {
       <div className="bg-white w-full max-w-[1920px] relative">
         <Navigation />
         <PageNavigation />
+        <PageGuide />
         <div className="pt-16">
           <HeroSection />
           <div id="demo">
