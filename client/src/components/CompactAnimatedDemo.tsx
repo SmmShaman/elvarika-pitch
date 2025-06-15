@@ -583,38 +583,37 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
 
   return (
     <div className="h-full min-h-[650px] w-full bg-gradient-to-br from-[#0066cc]/5 to-[#00a1e6]/5 rounded-2xl border border-[#0066cc]/10 overflow-hidden flex flex-col">
-      {/* Header */}
-      <div className="p-6 border-b border-gray-100 bg-white/50 flex-shrink-0">
-        <div className="flex items-center justify-center mb-4">
+      {/* Header with integrated controls and progress */}
+      <div className="p-4 border-b border-gray-100 bg-white/50 flex-shrink-0">
+        <div className="flex items-center justify-between">
+          {/* Left side - Progress Steps */}
+          <div className="flex items-center space-x-2">
+            {[1, 2, 3, 4, 5].map((stepNum) => (
+              <div key={stepNum} className="flex items-center">
+                <div className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-medium transition-all ${
+                  step >= stepNum ? 'bg-[#022f36] text-white' : 'bg-gray-200 text-gray-600'
+                }`}>
+                  {step > stepNum ? <CheckCircle className="h-3 w-3" /> : stepNum}
+                </div>
+                {stepNum < 5 && <ArrowRight className="h-3 w-3 mx-1 text-gray-400" />}
+              </div>
+            ))}
+          </div>
+          
+          {/* Right side - Controls */}
           <div className="flex items-center gap-3">
             {/* Pause/Play Controls */}
             {(isAnimating || isPaused) && step > 0 && step < 5 && (
               <Button
-                size="default"
+                size="sm"
                 variant="outline"
                 onClick={isPaused ? resumeDemo : pauseDemo}
-                className="h-10 px-4"
+                className="h-8 px-3"
               >
-                {isPaused ? <Play size={16} /> : <Pause size={16} />}
-                <span className="ml-2 text-sm">{isPaused ? 'Продовжити' : 'Пауза'}</span>
+                {isPaused ? <Play size={14} /> : <Pause size={14} />}
+                <span className="ml-1 text-xs">{isPaused ? 'Продовжити' : 'Пауза'}</span>
               </Button>
             )}
-          </div>
-        </div>
-        
-        {/* Progress Steps */}
-        <div className="flex justify-center">
-          <div className="flex items-center space-x-3">
-            {[1, 2, 3, 4, 5].map((stepNum) => (
-              <div key={stepNum} className="flex items-center">
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-all ${
-                  step >= stepNum ? 'bg-[#022f36] text-white' : 'bg-gray-200 text-gray-600'
-                }`}>
-                  {step > stepNum ? <CheckCircle className="h-4 w-4" /> : stepNum}
-                </div>
-                {stepNum < 5 && <ArrowRight className="h-4 w-4 mx-2 text-gray-400" />}
-              </div>
-            ))}
           </div>
         </div>
       </div>
@@ -651,55 +650,67 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
               exit={{ opacity: 0, y: -20 }}
               className="h-full"
             >
-              <div className="bg-white rounded-lg p-6 h-full overflow-y-auto space-y-6">
+              <div className="bg-white rounded-lg p-8 h-full overflow-y-auto space-y-8">
                 <div className="text-center">
-                  <h4 className="text-3xl font-bold text-[#022f36] mb-4">
+                  <h4 className="text-4xl font-bold text-[#022f36] mb-6">
                     {stepExplanations.step1.title}
                   </h4>
-                  <p className="text-xl text-gray-700 leading-relaxed mb-6 max-w-4xl mx-auto">
+                  <p className="text-2xl text-gray-700 leading-relaxed mb-8 max-w-5xl mx-auto">
                     {stepExplanations.step1.description}
                   </p>
                 </div>
                 
-                {/* Input Methods Demo */}
-                <div className="grid grid-cols-2 gap-2 mb-3">
+                {/* Input Methods Demo - Full width row */}
+                <div className="grid grid-cols-4 gap-4 mb-8">
                   <motion.div 
                     initial={{ scale: 0.8, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ delay: 1 }}
-                    className="bg-blue-50 p-2 rounded text-center"
+                    className="bg-blue-50 p-4 rounded-lg text-center border border-blue-200 hover:bg-blue-100 transition-colors"
                   >
-                    <div className="text-xs font-medium">📝 Вставити</div>
+                    <div className="text-3xl mb-2">📝</div>
+                    <div className="text-sm font-medium text-blue-800">Вставити</div>
+                    <div className="text-xs text-blue-600 mt-1">Copy & Paste</div>
                   </motion.div>
                   <motion.div 
                     initial={{ scale: 0.8, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ delay: 1.5 }}
-                    className="bg-green-50 p-2 rounded text-center"
+                    className="bg-green-50 p-4 rounded-lg text-center border border-green-200 hover:bg-green-100 transition-colors"
                   >
-                    <div className="text-xs font-medium">⌨️ Друкувати</div>
+                    <div className="text-3xl mb-2">⌨️</div>
+                    <div className="text-sm font-medium text-green-800">Друкувати</div>
+                    <div className="text-xs text-green-600 mt-1">Type text</div>
                   </motion.div>
                   <motion.div 
                     initial={{ scale: 0.8, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ delay: 2 }}
-                    className="bg-purple-50 p-2 rounded text-center"
+                    className="bg-purple-50 p-4 rounded-lg text-center border border-purple-200 hover:bg-purple-100 transition-colors"
                   >
-                    <div className="text-xs font-medium">🎤 Диктувати</div>
+                    <div className="text-3xl mb-2">🎤</div>
+                    <div className="text-sm font-medium text-purple-800">Диктувати</div>
+                    <div className="text-xs text-purple-600 mt-1">Voice input</div>
                   </motion.div>
                   <motion.div 
                     initial={{ scale: 0.8, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ delay: 2.5 }}
-                    className="bg-orange-50 p-2 rounded text-center"
+                    className="bg-orange-50 p-4 rounded-lg text-center border border-orange-200 hover:bg-orange-100 transition-colors"
                   >
-                    <div className="text-xs font-medium">📸 Фото</div>
+                    <div className="text-3xl mb-2">📸</div>
+                    <div className="text-sm font-medium text-orange-800">Фото</div>
+                    <div className="text-xs text-orange-600 mt-1">Photo OCR</div>
                   </motion.div>
                 </div>
 
-                <div className="bg-gray-50 rounded p-2">
-                  <div className="text-sm font-medium text-gray-800 mb-1">Завантажений текст:</div>
-                  <div className="text-sm leading-relaxed text-gray-700 max-h-32 overflow-y-auto">
+                {/* Enlarged text display window */}
+                <div className="bg-gray-50 rounded-lg p-6 border-2 border-gray-200 min-h-[200px]">
+                  <div className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                    Завантажений текст:
+                  </div>
+                  <div className="text-base leading-relaxed text-gray-700 max-h-48 overflow-y-auto bg-white p-4 rounded border">
                     {sourceText}
                   </div>
                 </div>
