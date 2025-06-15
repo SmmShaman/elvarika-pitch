@@ -518,11 +518,38 @@ export const AnimatedDemo: React.FC = () => {
                         // Точне збігання з ключовими словами для плейлиста
                         const keyWord = keyWordsData.find(keyData => {
                           const keyWordLower = keyData.word.toLowerCase();
-                          return keyWordLower === cleanWord || 
-                                 (keyWordLower.endsWith('er') && cleanWord === keyWordLower.slice(0, -2)) ||
-                                 (cleanWord.endsWith('er') && keyWordLower === cleanWord.slice(0, -2)) ||
-                                 (keyWordLower.endsWith('e') && cleanWord === keyWordLower.slice(0, -1)) ||
-                                 (cleanWord.endsWith('e') && keyWordLower === cleanWord.slice(0, -1));
+                          
+                          // Точне збігання
+                          if (keyWordLower === cleanWord) return true;
+                          
+                          // Збігання основи слова (без закінчень)
+                          if (cleanWord.startsWith(keyWordLower) || keyWordLower.startsWith(cleanWord)) {
+                            const diff = Math.abs(cleanWord.length - keyWordLower.length);
+                            return diff <= 3; // дозволяємо різницю до 3 символів (закінчення)
+                          }
+                          
+                          // Спеціальні випадки для норвезьких закінчень
+                          const endings = ['en', 'et', 'er', 'e', 'ne', 'ene', 'a', 'ane'];
+                          
+                          for (const ending of endings) {
+                            // Якщо cleanWord має закінчення, перевіряємо без нього
+                            if (cleanWord.endsWith(ending) && cleanWord.length > ending.length + 2) {
+                              const wordWithoutEnding = cleanWord.slice(0, -ending.length);
+                              if (keyWordLower === wordWithoutEnding || keyWordLower.startsWith(wordWithoutEnding)) {
+                                return true;
+                              }
+                            }
+                            
+                            // Якщо keyWord має закінчення, перевіряємо без нього
+                            if (keyWordLower.endsWith(ending) && keyWordLower.length > ending.length + 2) {
+                              const keyWithoutEnding = keyWordLower.slice(0, -ending.length);
+                              if (cleanWord === keyWithoutEnding || cleanWord.startsWith(keyWithoutEnding)) {
+                                return true;
+                              }
+                            }
+                          }
+                          
+                          return false;
                         });
                         
                         const foundWord = words.find(w => w.word.toLowerCase() === (keyWord?.word.toLowerCase() || ''));
