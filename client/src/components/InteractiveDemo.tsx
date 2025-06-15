@@ -173,12 +173,10 @@ export const InteractiveDemo: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-[42px] text-[#022f36] leading-[50.4px] tracking-[-1.26px] mb-6">
-            <span className="font-medium">Interactive Demo</span>
-            <span className="tracking-[-0.53px]"> - See </span>
-            <span className="font-medium">Elvarika in Action</span>
+            {translations.interactiveDemo.title}
           </h2>
           <p className="text-lg text-[#022f36] leading-[25.2px] max-w-[700px] mx-auto">
-            Experience our 4-step transformation process: From text to organized audio playlist in seconds.
+            {translations.interactiveDemo.subtitle}
           </p>
         </div>
 
@@ -192,7 +190,7 @@ export const InteractiveDemo: React.FC = () => {
                   <div className="relative">
                     <textarea
                       className="w-full h-32 p-4 border border-gray-200 rounded-lg resize-none"
-                      value="Artificial intelligence is revolutionizing the way we work. Machine learning enables computers to learn from data without explicit programming. Neural networks mimic the brain's structure to solve complex problems. Automation reduces the need for manual labor and increases efficiency."
+                      value={translations.interactiveDemo.sampleText}
                       readOnly
                     />
                     {highlightedSentences.length > 0 && (
@@ -211,9 +209,9 @@ export const InteractiveDemo: React.FC = () => {
                   </div>
                   
                   <div className="mt-4 flex items-center gap-4">
-                    <span className="text-sm text-gray-600">Translate to:</span>
+                    <span className="text-sm text-gray-600">{translations.interactiveDemo.translateTo}</span>
                     <select className="px-3 py-2 border border-gray-300 rounded-lg">
-                      <option>Spanish</option>
+                      <option>{translations.interactiveDemo.spanish}</option>
                     </select>
                   </div>
 
@@ -223,7 +221,7 @@ export const InteractiveDemo: React.FC = () => {
                       className="w-full mt-6 bg-[#022f36] text-white hover:bg-[#033944] h-12"
                     >
                       <Sparkles className="mr-2 h-4 w-4" />
-                      Start Interactive Demo
+                      {translations.interactiveDemo.startDemo}
                     </Button>
                   )}
 
