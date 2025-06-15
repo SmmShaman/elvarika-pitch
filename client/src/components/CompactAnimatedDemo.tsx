@@ -595,6 +595,12 @@ export const CompactAnimatedDemo: React.FC = () => {
                 <span className="ml-2 text-sm">{isPaused ? 'Продовжити' : 'Пауза'}</span>
               </Button>
             )}
+            <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as 'uk' | 'en')} className="w-[240px]">
+              <TabsList className="grid w-full grid-cols-2 h-10">
+                <TabsTrigger value="uk" className="text-sm">🇺🇦 {translations.norwayUkraine}</TabsTrigger>
+                <TabsTrigger value="en" className="text-sm">🇬🇧 {translations.norwayEngland}</TabsTrigger>
+              </TabsList>
+            </Tabs>
           </div>
         </div>
         
