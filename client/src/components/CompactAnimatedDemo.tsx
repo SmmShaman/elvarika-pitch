@@ -567,7 +567,7 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
           }, index * 300);
           newTimeouts.push(highlightTimeout);
         });
-      }, 3000);
+      }, 5000); // збільшено з 3000 до 5000 (додано 2 секунди паузи)
       newTimeouts.push(step2Timeout);
     } else if (step === 2) {
       // Continue to step 3
@@ -581,7 +581,7 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
           }, index * 200);
           newTimeouts.push(contextTimeout);
         });
-      }, 3000);
+      }, 5000); // збільшено з 3000 до 5000 (додано 2 секунди паузи)
       newTimeouts.push(step3Timeout);
     } else if (step === 3) {
       // Continue to step 4
@@ -602,7 +602,7 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
           }, index * 300);
           newTimeouts.push(translateTimeout);
         });
-      }, 3000);
+      }, 5000); // збільшено з 3000 до 5000 (додано 2 секунди паузи)
       newTimeouts.push(step4Timeout);
     } else if (step === 4) {
       // Continue to step 5
@@ -622,7 +622,7 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
         }));
         setPlaylist(finalPlaylist);
         setIsAnimating(false);
-      }, 3000);
+      }, 5000); // збільшено з 3000 до 5000 (додано 2 секунди паузи)
       newTimeouts.push(step5Timeout);
     }
     
