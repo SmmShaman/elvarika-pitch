@@ -147,6 +147,10 @@ Changelog:
 - June 15, 2025. Expanded Use Cases section with detailed industry-specific content and challenges
 - June 15, 2025. Created production setup guide with multiple free email service options
 - June 15, 2025. Enhanced demo/production system with fallback modes and proper error handling
+- June 15, 2025. Made Business page the main homepage instead of investor version
+- June 15, 2025. Simplified navigation to only Elvarika logo (scrolls to top) and language switcher
+- June 15, 2025. Updated contact information with authentic data from Vitalii Berbeha CV
+- June 15, 2025. Contact details: info@vitalii.no, +47 925 64 334, Hagegata 8 Lena 2850 Norge
 ```
 
 ## User Preferences

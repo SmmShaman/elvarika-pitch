@@ -666,7 +666,7 @@ export const Business: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="text-white font-semibold">Email</h4>
-                  <p className="text-gray-300 text-sm">vitalii.berbeha@elvarika.com</p>
+                  <p className="text-gray-300 text-sm">info@vitalii.no</p>
                 </div>
               </div>
 
@@ -680,7 +680,7 @@ export const Business: React.FC = () => {
                      language === 'uk' ? 'Телефон' :
                      'Phone'}
                   </h4>
-                  <p className="text-gray-300 text-sm">+47 xxx xxx xxx</p>
+                  <p className="text-gray-300 text-sm">+47 925 64 334</p>
                 </div>
               </div>
 
@@ -689,8 +689,22 @@ export const Business: React.FC = () => {
                   <div className="text-white text-xl">🌐</div>
                 </div>
                 <div>
-                  <h4 className="text-white font-semibold">LinkedIn</h4>
-                  <p className="text-gray-300 text-sm">linkedin.com/in/vitalii-berbeha</p>
+                  <h4 className="text-white font-semibold">Website</h4>
+                  <p className="text-gray-300 text-sm">www.vitalii.no</p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-4">
+                <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
+                  <div className="text-white text-xl">📍</div>
+                </div>
+                <div>
+                  <h4 className="text-white font-semibold">
+                    {language === 'no' ? 'Adresse' :
+                     language === 'uk' ? 'Адреса' :
+                     'Address'}
+                  </h4>
+                  <p className="text-gray-300 text-sm">Hagegata 8, Lena, 2850, Norge</p>
                 </div>
               </div>
             </div>
@@ -769,7 +783,7 @@ export const Business: React.FC = () => {
                'Book a free consultation and see how Elvarika can transform your organization.'}
             </p>
             <Button 
-              onClick={() => window.open('mailto:vitalii.berbeha@elvarika.com?subject=Elvarika Business Inquiry', '_blank')}
+              onClick={() => window.open('mailto:info@vitalii.no?subject=Elvarika Business Inquiry', '_blank')}
               className="bg-white text-[#022f36] hover:bg-gray-100 px-8 py-3 text-lg font-semibold"
             >
               {language === 'no' ? 'Book konsultasjon' :
