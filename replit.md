@@ -165,6 +165,12 @@ Changelog:
 - June 15, 2025. Users now stay verified for 30 days without re-entering email
 - June 15, 2025. Fixed demo step timing: each step now has proper animation duration + 5 second pause
 - June 15, 2025. Improved step scheduling to account for individual animation completion times
+- June 18, 2025. Enhanced Stage 3 context animation with character-by-character reveal for all words
+- June 18, 2025. Implemented red highlighting of target words during context animation
+- June 18, 2025. Configured Gmail email service with App Password for production email verification
+- June 18, 2025. Fixed verification link generation to use proper Replit domains instead of localhost
+- June 18, 2025. Added automatic redirect to homepage after email verification with success toast
+- June 18, 2025. Moved language pair selector buttons to top header next to back button for better UX
 ```
 
 ## User Preferences

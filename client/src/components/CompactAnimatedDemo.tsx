@@ -1042,37 +1042,7 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
             )}
           </div>
           
-          {/* Right side - Language Pair Selector - disabled during demo */}
-          <div className="flex items-center gap-3">
-            <div className="flex items-center bg-white rounded-lg border border-gray-200 p-1">
-              <button
-                onClick={() => changeTranslationTarget('uk')}
-                disabled={step > 0 && step < 5}
-                className={`px-3 py-1 rounded text-xs font-medium transition-all ${
-                  step > 0 && step < 5 
-                    ? 'opacity-50 cursor-not-allowed text-gray-400'
-                    : translationTarget === 'uk' 
-                      ? 'bg-[#022f36] text-white' 
-                      : 'text-gray-600 hover:bg-gray-100'
-                }`}
-              >
-                🇳🇴 → 🇺🇦
-              </button>
-              <button
-                onClick={() => changeTranslationTarget('en')}
-                disabled={step > 0 && step < 5}
-                className={`px-3 py-1 rounded text-xs font-medium transition-all ${
-                  step > 0 && step < 5 
-                    ? 'opacity-50 cursor-not-allowed text-gray-400'
-                    : translationTarget === 'en' 
-                      ? 'bg-[#022f36] text-white' 
-                      : 'text-gray-600 hover:bg-gray-100'
-                }`}
-              >
-                🇳🇴 → 🇬🇧
-              </button>
-            </div>
-          </div>
+
         </div>
       </div>
 

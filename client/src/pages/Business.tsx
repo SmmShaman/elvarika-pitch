@@ -833,7 +833,7 @@ export const Business: React.FC = () => {
   if (showDemo && hasAccessToDemo) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-[#defff0] to-[#f0fff4]">
-        <div className="p-6">
+        <div className="p-6 flex justify-between items-center">
           <Button 
             onClick={() => {
               setShowDemo(false);
@@ -846,6 +846,37 @@ export const Business: React.FC = () => {
              language === 'uk' ? '← Назад до головної' :
              '← Back to main'}
           </Button>
+          
+          {/* Language Pair Selector */}
+          <div className="flex items-center gap-3">
+            <span className="text-sm text-[#022f36] font-medium">
+              {language === 'no' ? 'Oversettelsesretning:' :
+               language === 'uk' ? 'Напрямок перекладу:' :
+               'Translation direction:'}
+            </span>
+            <div className="flex items-center bg-white rounded-lg border border-gray-200 p-1">
+              <button
+                onClick={() => setDemoTranslationTarget('uk')}
+                className={`px-3 py-1 rounded text-xs font-medium transition-all ${
+                  demoTranslationTarget === 'uk' 
+                    ? 'bg-[#022f36] text-white' 
+                    : 'text-gray-600 hover:bg-gray-100'
+                }`}
+              >
+                🇳🇴 → 🇺🇦
+              </button>
+              <button
+                onClick={() => setDemoTranslationTarget('en')}
+                className={`px-3 py-1 rounded text-xs font-medium transition-all ${
+                  demoTranslationTarget === 'en' 
+                    ? 'bg-[#022f36] text-white' 
+                    : 'text-gray-600 hover:bg-gray-100'
+                }`}
+              >
+                🇳🇴 → 🇬🇧
+              </button>
+            </div>
+          </div>
         </div>
         <div className="container mx-auto px-4 max-w-6xl">
           <h1 className="text-3xl font-bold text-[#022f36] mb-8 text-center">
