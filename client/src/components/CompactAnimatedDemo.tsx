@@ -38,6 +38,13 @@ interface CompactDemoTranslations {
   norwayUkraine: string;
   norwayEngland: string;
   tryDemo: string;
+  stepLabels: {
+    step1: string;
+    step2: string;
+    step3: string;
+    step4: string;
+    step5: string;
+  };
   steps: {
     step1: string;
     step2: string;
@@ -294,9 +301,16 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
     norwayEngland: currentLanguage === 'no' ? 'Norsk → Engelsk' :
                    currentLanguage === 'uk' ? 'Норвезька → Англійська' :
                    'Norwegian → English',
-    tryDemo: currentLanguage === 'no' ? 'Prøv gratis demo' :
-             currentLanguage === 'uk' ? 'Спробувати безкоштовну демо' :
-             'Try free demo',
+    tryDemo: currentLanguage === 'no' ? 'Se hvordan det fungerer' :
+             currentLanguage === 'uk' ? 'Подивись як це працює' :
+             'See how it works',
+    stepLabels: {
+      step1: currentLanguage === 'no' ? 'Tekst' : currentLanguage === 'uk' ? 'Текст' : 'Text',
+      step2: currentLanguage === 'no' ? 'Analyse' : currentLanguage === 'uk' ? 'Аналіз' : 'Analysis',
+      step3: currentLanguage === 'no' ? 'Kontekst' : currentLanguage === 'uk' ? 'Контекст' : 'Context',
+      step4: currentLanguage === 'no' ? 'Oversett' : currentLanguage === 'uk' ? 'Переклад' : 'Translate',
+      step5: currentLanguage === 'no' ? 'Lyd' : currentLanguage === 'uk' ? 'Аудіо' : 'Audio'
+    },
     steps: {
       step1: currentLanguage === 'no' ? 'Tekstinndata' : currentLanguage === 'uk' ? 'Введення тексту' : 'Text Input',
       step2: currentLanguage === 'no' ? 'Ordanalyse' : currentLanguage === 'uk' ? 'Аналіз слів' : 'Word Analysis', 
@@ -760,62 +774,68 @@ export const CompactAnimatedDemo: React.FC<CompactAnimatedDemoProps> = ({
           <div className="flex items-center space-x-2">
             {[1, 2, 3, 4, 5].map((stepNum) => (
               <div key={stepNum} className="flex items-center">
-                <button
-                  onClick={() => {
-                    // Control playback directly from step circles
-                    if (step === 0) {
-                      // Start demo if not started
-                      startDemo();
-                    } else if (stepNum === step && isAnimating) {
-                      // Pause current step and stay on it
-                      pauseDemo();
-                    } else if (stepNum === step && isPaused) {
-                      // Resume current step
-                      resumeDemo();
-                    } else if (isPaused && stepNum <= step) {
-                      // Jump to previous step when paused
-                      setStep(stepNum);
-                    } else if (step === 5 && stepNum === 1) {
-                      // Restart demo from step 1 when completed
-                      resetDemo();
-                    } else if (isAnimating) {
-                      // Stop on clicked step if demo is running
-                      clearAllTimeouts();
-                      setStep(stepNum);
-                      setIsAnimating(false);
-                      setIsPaused(true);
-                    }
-                  }}
-                  className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-medium transition-all ${
-                    step >= stepNum ? 'bg-[#022f36] text-white' : 'bg-gray-200 text-gray-600'
-                  } ${
-                    stepNum === step && (isAnimating || isPaused) 
-                      ? 'hover:bg-[#033d46] cursor-pointer ring-2 ring-blue-300' 
-                      : isPaused && stepNum < step 
-                        ? 'hover:bg-[#033d46] cursor-pointer' 
-                        : step === 5 && stepNum === 1
-                          ? 'hover:bg-[#033d46] cursor-pointer ring-2 ring-green-300'
-                          : step === 0 && stepNum === 1
-                            ? 'hover:bg-[#033d46] cursor-pointer ring-2 ring-blue-300'
-                            : 'cursor-default'
-                  }`}
-                >
-                  {/* Show different icons based on state */}
-                  {step === 0 && stepNum === 1 ? (
-                    <Play className="h-3 w-3" />
-                  ) : step === 5 && stepNum === 1 ? (
-                    <RotateCcw className="h-3 w-3" />
-                  ) : stepNum === step && isAnimating ? (
-                    <Pause className="h-3 w-3" />
-                  ) : stepNum === step && isPaused ? (
-                    <Play className="h-3 w-3" />
-                  ) : step > stepNum ? (
-                    <CheckCircle className="h-3 w-3" />
-                  ) : (
-                    stepNum
-                  )}
-                </button>
-                {stepNum < 5 && <ArrowRight className="h-3 w-3 mx-1 text-gray-400" />}
+                <div className="flex flex-col items-center">
+                  <button
+                    onClick={() => {
+                      // Control playback directly from step circles
+                      if (step === 0) {
+                        // Start demo if not started
+                        startDemo();
+                      } else if (stepNum === step && isAnimating) {
+                        // Pause current step and stay on it
+                        pauseDemo();
+                      } else if (stepNum === step && isPaused) {
+                        // Resume current step
+                        resumeDemo();
+                      } else if (isPaused && stepNum <= step) {
+                        // Jump to previous step when paused
+                        setStep(stepNum);
+                      } else if (step === 5 && stepNum === 1) {
+                        // Restart demo from step 1 when completed
+                        resetDemo();
+                      } else if (isAnimating) {
+                        // Stop on clicked step if demo is running
+                        clearAllTimeouts();
+                        setStep(stepNum);
+                        setIsAnimating(false);
+                        setIsPaused(true);
+                      }
+                    }}
+                    className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-medium transition-all ${
+                      step >= stepNum ? 'bg-[#022f36] text-white' : 'bg-gray-200 text-gray-600'
+                    } ${
+                      stepNum === step && (isAnimating || isPaused) 
+                        ? 'hover:bg-[#033d46] cursor-pointer ring-2 ring-blue-300' 
+                        : isPaused && stepNum < step 
+                          ? 'hover:bg-[#033d46] cursor-pointer' 
+                          : step === 5 && stepNum === 1
+                            ? 'hover:bg-[#033d46] cursor-pointer ring-2 ring-green-300'
+                            : step === 0 && stepNum === 1
+                              ? 'hover:bg-[#033d46] cursor-pointer ring-2 ring-blue-300'
+                              : 'cursor-default'
+                    }`}
+                  >
+                    {/* Show different icons based on state */}
+                    {step === 0 && stepNum === 1 ? (
+                      <Play className="h-3 w-3" />
+                    ) : step === 5 && stepNum === 1 ? (
+                      <RotateCcw className="h-3 w-3" />
+                    ) : stepNum === step && isAnimating ? (
+                      <Pause className="h-3 w-3" />
+                    ) : stepNum === step && isPaused ? (
+                      <Play className="h-3 w-3" />
+                    ) : step > stepNum ? (
+                      <CheckCircle className="h-3 w-3" />
+                    ) : (
+                      stepNum
+                    )}
+                  </button>
+                  {/* Step label under button */}
+                  <div className="text-xs text-gray-600 mt-1 text-center whitespace-nowrap">
+                    {translations.stepLabels[`step${stepNum}` as keyof typeof translations.stepLabels]}
+                  </div>
+                </div>
+                {stepNum < 5 && <ArrowRight className="h-3 w-3 mx-2 text-gray-400" />}
               </div>
             ))}
             

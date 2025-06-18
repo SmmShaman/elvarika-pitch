@@ -171,6 +171,9 @@ Changelog:
 - June 18, 2025. Fixed verification link generation to use proper Replit domains instead of localhost
 - June 18, 2025. Added automatic redirect to homepage after email verification with success toast
 - June 18, 2025. Moved language pair selector buttons to top header next to back button for better UX
+- June 18, 2025. Changed demo button text to "Подивись як це працює" (See how it works)
+- June 18, 2025. Added step labels under demo progress circles showing complete process: Текст → Аналіз → Контекст → Переклад → Аудіо
+- June 18, 2025. Enhanced visual clarity with trilingual step labels (Norwegian, Ukrainian, English) visible before demo starts
 ```
 
 ## User Preferences
