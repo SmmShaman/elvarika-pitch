@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
+import { useToast } from '@/hooks/use-toast';
 import { 
   Truck,
   HardHat,
@@ -80,11 +81,34 @@ const businessTranslations: Record<string, BusinessTranslations> = {
 
 export const Business: React.FC = () => {
   const { language, changeLanguage } = useLanguage();
+  const { toast } = useToast();
   const t = businessTranslations[language] || businessTranslations['en'];
   const [showDemo, setShowDemo] = useState(false);
   const [demoTranslationTarget, setDemoTranslationTarget] = useState<'uk' | 'en'>('uk');
   const [hasAccessToDemo, setHasAccessToDemo] = useState(false);
   const [currentSection, setCurrentSection] = useState(0);
+
+  // Check for verification success parameter
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('verified') === 'true') {
+      toast({
+        title: language === 'no' ? 'Email bekreftet!' : 
+               language === 'uk' ? 'Email підтверджено!' : 
+               'Email verified!',
+        description: language === 'no' ? 'Du har nå tilgang til demoen.' :
+                     language === 'uk' ? 'Тепер у вас є доступ до демо.' :
+                     'You now have access to the demo.',
+        variant: 'default',
+      });
+      
+      // Clean URL
+      window.history.replaceState({}, '', window.location.pathname);
+      
+      // Set demo access
+      setHasAccessToDemo(true);
+    }
+  }, [language, toast]);
 
   const handleDemoAccess = () => {
     setHasAccessToDemo(true);

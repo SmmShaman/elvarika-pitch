@@ -65,11 +65,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         sameSite: 'lax'
       });
 
-      res.json({ 
-        success: true, 
-        message: "Email verified successfully. You can now access the demo.",
-        verified: true
-      });
+      // Redirect to home page with success message
+      res.redirect('/?verified=true');
     } catch (error) {
       res.status(500).json({ error: "Verification failed" });
     }
