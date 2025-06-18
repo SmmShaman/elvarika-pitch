@@ -29,7 +29,12 @@ export const sendVerificationEmail = async (
     return false; // Return false to indicate demo mode
   }
 
-  const verificationUrl = `${process.env.BASE_URL || 'http://localhost:5000'}/api/verify/${verificationToken}`;
+  // Use Replit domain or fallback to localhost for development
+  const baseUrl = process.env.REPLIT_DOMAINS 
+    ? `https://${process.env.REPLIT_DOMAINS.split(',')[0]}` 
+    : (process.env.BASE_URL || 'http://localhost:5000');
+  
+  const verificationUrl = `${baseUrl}/api/verify/${verificationToken}`;
   
   const mailOptions = {
     from: process.env.GMAIL_EMAIL,
