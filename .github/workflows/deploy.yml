@@ -1,0 +1,33 @@
+name: Deploy to Google Cloud
+
+on:
+  push:
+    branches: [ main ]
+
+env:
+  PROJECT_ID: pitch-elvarika
+  REGION: us-central1
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Google Cloud
+      uses: google-github-actions/setup-gcloud@v1
+      with:
+        service_account_key: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+        project_id: pitch-elvarika
+        
+    - name: Configure Docker
+      run: gcloud auth configure-docker
+      
+    - name: Build and Deploy Backend
+      run: |
+        cd server
+        gcloud run deploy elvarika-backend \
+          --source . \
+          --region us-central1 \
+          --allow-unauthenticated
