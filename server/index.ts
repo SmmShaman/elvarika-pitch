@@ -79,4 +79,14 @@ app.use((req, res, next) => {
       log(`serving on port ${port}`);
     },
   );
+  server.listen(
+    {
+      port,
+      host: "0.0.0.0",
+      reusePort: true,
+    },
+    () => {
+      log(`serving on port ${port}`);
+    },
+  );
 })();
