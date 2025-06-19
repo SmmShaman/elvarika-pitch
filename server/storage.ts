@@ -1,5 +1,11 @@
-import { users, demoRequests, type User, type InsertUser, type DemoRequest, type InsertDemoRequest } from "@shared/schema";
-
+import {
+  users,
+  demoRequests,
+  type User,
+  type InsertUser,
+  type DemoRequest,
+  type InsertDemoRequest,
+} from "../shared/schema.js";
 // modify the interface with any CRUD methods
 // you might need
 
@@ -7,7 +13,9 @@ export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
-  createDemoRequest(demoRequest: InsertDemoRequest & { verificationToken: string }): Promise<DemoRequest>;
+  createDemoRequest(
+    demoRequest: InsertDemoRequest & { verificationToken: string },
+  ): Promise<DemoRequest>;
   getDemoRequestByToken(token: string): Promise<DemoRequest | undefined>;
   verifyDemoRequest(token: string): Promise<DemoRequest | undefined>;
   getDemoRequestByEmail(email: string): Promise<DemoRequest | undefined>;
@@ -43,7 +51,9 @@ export class MemStorage implements IStorage {
     return user;
   }
 
-  async createDemoRequest(demoRequest: InsertDemoRequest & { verificationToken: string }): Promise<DemoRequest> {
+  async createDemoRequest(
+    demoRequest: InsertDemoRequest & { verificationToken: string },
+  ): Promise<DemoRequest> {
     const id = this.currentDemoId++;
     const request: DemoRequest = {
       ...demoRequest,

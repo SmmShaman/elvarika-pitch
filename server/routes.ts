@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertDemoRequestSchema } from "@shared/schema";
+import { insertDemoRequestSchema } from "../shared/schema.js";
 import { sendVerificationEmail } from "./email";
 import crypto from "crypto";
 
@@ -11,7 +11,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const validatedData = insertDemoRequestSchema.parse(req.body);
       const verificationToken = crypto.randomUUID();
-      
+
       const demoRequest = await storage.createDemoRequest({
         ...validatedData,
         verificationToken,
@@ -21,28 +21,31 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const emailSent = await sendVerificationEmail(
         validatedData.email,
         validatedData.name,
-        verificationToken
+        verificationToken,
       );
 
       if (emailSent) {
-        res.json({ 
-          success: true, 
-          message: "Demo request submitted. Please check your email for verification.",
-          emailSent: true
+        res.json({
+          success: true,
+          message:
+            "Demo request submitted. Please check your email for verification.",
+          emailSent: true,
         });
       } else {
         // Demo mode - return token for testing
-        res.json({ 
-          success: true, 
-          message: "Demo request submitted. Please check your email for verification.",
+        res.json({
+          success: true,
+          message:
+            "Demo request submitted. Please check your email for verification.",
           emailSent: false,
           // Remove this in production - only for demo when email service is not configured
           verificationToken: verificationToken,
-          demoNote: "Email service not configured. Use the token above for testing."
+          demoNote:
+            "Email service not configured. Use the token above for testing.",
         });
       }
     } catch (error) {
-      console.error('Demo request error:', error);
+      console.error("Demo request error:", error);
       res.status(400).json({ error: "Invalid request data" });
     }
   });
@@ -52,21 +55,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const { token } = req.params;
       const verifiedRequest = await storage.verifyDemoRequest(token);
-      
+
       if (!verifiedRequest) {
-        return res.status(404).json({ error: "Invalid or expired verification token" });
+        return res
+          .status(404)
+          .json({ error: "Invalid or expired verification token" });
       }
 
       // Set verification cookie that expires in 30 days
-      res.cookie('demo_verified', verifiedRequest.email, {
+      res.cookie("demo_verified", verifiedRequest.email, {
         maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'lax'
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
       });
 
       // Redirect to home page with success message
-      res.redirect('/?verified=true');
+      res.redirect("/?verified=true");
     } catch (error) {
       res.status(500).json({ error: "Verification failed" });
     }
@@ -76,33 +81,34 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/check-demo-access", async (req, res) => {
     try {
       const verifiedEmail = req.cookies?.demo_verified;
-      
+
       if (!verifiedEmail) {
-        return res.json({ 
+        return res.json({
           hasAccess: false,
           verified: false,
-          needsVerification: true
+          needsVerification: true,
         });
       }
 
       // Double-check that the email is still verified in our database
-      const verifiedRequest = await storage.getDemoRequestByEmail(verifiedEmail);
-      
+      const verifiedRequest =
+        await storage.getDemoRequestByEmail(verifiedEmail);
+
       if (!verifiedRequest?.isVerified) {
         // Clear invalid cookie
-        res.clearCookie('demo_verified');
-        return res.json({ 
+        res.clearCookie("demo_verified");
+        return res.json({
           hasAccess: false,
           verified: false,
-          needsVerification: true
+          needsVerification: true,
         });
       }
 
-      res.json({ 
+      res.json({
         hasAccess: true,
         verified: true,
         needsVerification: false,
-        email: verifiedEmail
+        email: verifiedEmail,
       });
     } catch (error) {
       res.status(500).json({ error: "Access check failed" });
@@ -114,10 +120,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const { email } = req.body;
       const verifiedRequest = await storage.getDemoRequestByEmail(email);
-      
-      res.json({ 
+
+      res.json({
         hasAccess: !!verifiedRequest,
-        verified: !!verifiedRequest?.isVerified
+        verified: !!verifiedRequest?.isVerified,
       });
     } catch (error) {
       res.status(500).json({ error: "Access check failed" });
