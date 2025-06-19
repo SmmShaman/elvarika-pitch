@@ -1,8 +1,49 @@
 import express, { type Request, Response, NextFunction } from "express";
 import cookieParser from "cookie-parser";
 import { registerRoutes } from "./routes";
-import { setupVite, serveStatic, log } from "./vite";
+(async () => {
+  // Умовний імпорт vite тільки для development
+  let setupVite, serveStatic, log;
+  
+  if (process.env.NODE_ENV === "development") {
+    const viteModule = await import("./vite.js");
+    setupVite = viteModule.setupVite;
+    serveStatic = viteModule.serveStatic;
+    log = viteModule.log;
+  } else {
+    // Заглушки для production
+    setupVite = () => Promise.resolve();
+    serveStatic = (app) => {
+      // Serve static files in production
+      app.use(express.static('client/dist'));
+    };
+    log = console.log;
+  }
 
+  const server = await registerRoutes(app);
+  
+  app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+    const status = err.status || err.statusCode || 500;
+    const message = err.message || "Internal Server Error";
+    res.status(status).json({ message });
+    throw err;
+  });
+
+  if (process.env.NODE_ENV === "development") {
+    await setupVite(app, server);
+  } else {
+    serveStatic(app);
+  }
+
+  const port = process.env.PORT || 5000;
+  server.listen({
+    port,
+    host: "0.0.0.0",
+    reusePort: true,
+  }, () => {
+    log(`serving on port ${port}`);
+  });
+})();
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
