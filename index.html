@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elvarika - Розумне навчання мови</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            overflow-x: hidden;
+            background: #000;
+        }
+        
+        .hero-section {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0066cc 0%, #00a1e6 50%, #022f36 100%);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            animation: gradientShift 15s ease-in-out infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background: linear-gradient(135deg, #0066cc 0%, #00a1e6 50%, #022f36 100%); }
+            33% { background: linear-gradient(135deg, #022f36 0%, #0066cc 50%, #00a1e6 100%); }
+            66% { background: linear-gradient(135deg, #00a1e6 0%, #022f36 50%, #0066cc 100%); }
+        }
+        
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .element-1 { 
+            top: 10%; left: 5%; width: 120px; height: 120px; 
+            animation: float1 8s ease-in-out infinite;
+        }
+        .element-2 { 
+            top: 30%; right: 15%; width: 80px; height: 80px; 
+            animation: float2 6s ease-in-out infinite 2s;
+        }
+        .element-3 { 
+            bottom: 20%; left: 20%; width: 60px; height: 60px; 
+            animation: float3 10s ease-in-out infinite 4s;
+            border-radius: 8px;
+            transform: rotate(45deg);
+        }
+        .element-4 { 
+            top: 50%; right: 10%; width: 100px; height: 100px; 
+            animation: float4 4s ease-in-out infinite 6s;
+            background: none;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        @keyframes float1 {
+            0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+            50% { transform: translateY(-30px) rotate(180deg) scale(1.1); }
+        }
+        
+        @keyframes float2 {
+            0%, 100% { transform: translateX(0px) translateY(0px); }
+            50% { transform: translateX(20px) translateY(-20px); }
+        }
+        
+        @keyframes float3 {
+            0%, 100% { transform: rotate(45deg) scale(1); }
+            50% { transform: rotate(225deg) scale(1.3); }
+        }
+        
+        @keyframes float4 {
+            0%, 100% { transform: scale(1); opacity: 0.2; }
+            50% { transform: scale(1.5); opacity: 0.4; }
+        }
+        
+        .content {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .text-content {
+            opacity: 0;
+            animation: slideInLeft 1.5s ease-out 0.5s forwards;
+        }
+        
+        .text-content h1 {
+            font-size: 52px;
+            font-weight: 700;
+            color: white;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
+        }
+        
+        .highlight {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        
+        @keyframes shimmer {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.3); }
+        }
+        
+        .text-content p {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            margin-bottom: 32px;
+            text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 16px 40px;
+            background: rgba(255, 255, 255, 0.95);
+            color: #022f36;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+        
+        .cta-button:hover {
+            background: white;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            border-color: #FFD700;
+        }
+        
+        .demo-showcase {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            opacity: 0;
+            animation: slideInRight 1.5s ease-out 1s forwards;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+        
+        .demo-title {
+            text-align: center;
+            color: white;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .demo-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+            opacity: 0;
+            animation: stepAppear 0.8s ease-out forwards;
+        }
+        
+        .step:nth-child(1) { animation-delay: 1.5s; }
+        .step:nth-child(2) { animation-delay: 1.7s; }
+        .step:nth-child(3) { animation-delay: 1.9s; }
+        .step:nth-child(4) { animation-delay: 2.1s; }
+        .step:nth-child(5) { animation-delay: 2.3s; }
+        
+        .step-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, rgba(255, 215, 0, 0.3), rgba(255, 165, 0, 0.3));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 12px;
+            animation: pulse 3s ease-in-out infinite;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .step-circle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+        }
+        
+        .step-label {
+            font-size: 14px;
+            text-align: center;
+            font-weight: 600;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .demo-description {
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            font-size: 16px;
+            line-height: 1.5;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 2.5s forwards;
+        }
+        
+        .progress-container {
+            display: none;
+            margin-top: 20px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #FFD700, #FFA500);
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 3px;
+        }
+        
+        .status-text {
+            text-align: center;
+            color: white;
+            font-size: 14px;
+            margin-top: 10px;
+            min-height: 20px;
+        }
+        
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-60px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(60px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes stepAppear {
+            from { opacity: 0; transform: translateY(20px) scale(0.8); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @media (max-width: 768px) {
+            .content { 
+                grid-template-columns: 1fr; 
+                gap: 40px; 
+                padding: 20px;
+            }
+            .text-content h1 { font-size: 36px; }
+            .demo-steps { flex-wrap: wrap; gap: 20px; justify-content: center; }
+            .step-circle { width: 40px; height: 40px; font-size: 16px; }
+            .hero-section { padding: 60px 0; }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero-section">
+        <div class="floating-elements">
+            <div class="floating-element element-1"></div>
+            <div class="floating-element element-2"></div>
+            <div class="floating-element element-3"></div>
+            <div class="floating-element element-4"></div>
+        </div>
+        
+        <div class="content">
+            <div class="text-content">
+                <h1>
+                    <span class="highlight">Розумне</span> навчання мови<br>
+                    для професіоналів
+                </h1>
+                <p>
+                    Перетворюємо складні норвезькі тексти на персоналізовані 
+                    аудіословники з контекстом та перекладом за 30 секунд.
+                </p>
+                <button class="cta-button" onclick="startDemo()">
+                    Подивись як це працює
+                </button>
+            </div>
+            
+            <div class="demo-showcase">
+                <h3 class="demo-title">Процес створення аудіословника</h3>
+                <div class="demo-steps">
+                    <div class="step">
+                        <div class="step-circle">📄</div>
+                        <div class="step-label">Текст</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-circle">🔍</div>
+                        <div class="step-label">Аналіз</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-circle">💡</div>
+                        <div class="step-label">Контекст</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-circle">🔄</div>
+                        <div class="step-label">Переклад</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-circle">🎵</div>
+                        <div class="step-label">Аудіо</div>
+                    </div>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <div class="status-text">Готовий до демонстрації</div>
+                </div>
+                <p class="demo-description">
+                    Інтелектуальна обробка тексту з використанням AI для створення 
+                    персоналізованого навчального контенту з аудіо та контекстом.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let isAnimating = false;
+        
+        function startDemo() {
+            if (isAnimating) return;
+            isAnimating = true;
+            
+            const progressContainer = document.querySelector('.progress-container');
+            const progressFill = document.querySelector('.progress-fill');
+            const statusText = document.querySelector('.status-text');
+            const demoDescription = document.querySelector('.demo-description');
+            const stepCircles = document.querySelectorAll('.step-circle');
+            
+            // Показуємо прогрес контейнер та ховаємо опис
+            progressContainer.style.display = 'block';
+            demoDescription.style.opacity = '0';
+            statusText.textContent = 'Ініціалізація демонстрації...';
+            
+            // Анімація завантаження
+            let progress = 0;
+            const loadingInterval = setInterval(() => {
+                progress += 2;
+                progressFill.style.width = progress + '%';
+                
+                if (progress >= 100) {
+                    clearInterval(loadingInterval);
+                    setTimeout(() => {
+                        animateSteps(stepCircles, statusText, progressContainer, demoDescription);
+                    }, 500);
+                }
+            }, 50);
+        }
+        
+        function animateSteps(stepCircles, statusText, progressContainer, demoDescription) {
+            const stepNames = ['Аналіз тексту', 'Виділення складних слів', 'Створення контексту', 'Генерація перекладу', 'Синтез аудіо'];
+            let currentStep = 0;
+            
+            const stepInterval = setInterval(() => {
+                if (currentStep < stepCircles.length) {
+                    // Активуємо поточний крок
+                    stepCircles[currentStep].style.background = 'linear-gradient(45deg, #FFD700, #FFA500)';
+                    stepCircles[currentStep].style.transform = 'scale(1.2)';
+                    stepCircles[currentStep].style.boxShadow = '0 0 25px rgba(255, 215, 0, 0.7)';
+                    
+                    statusText.textContent = `Крок ${currentStep + 1}: ${stepNames[currentStep]}`;
+                    
+                    // Повертаємо попередній крок до нормального стану
+                    if (currentStep > 0) {
+                        const prevStep = stepCircles[currentStep - 1];
+                        prevStep.style.background = 'linear-gradient(45deg, rgba(34, 197, 94, 0.8), rgba(34, 197, 94, 0.6))';
+                        prevStep.style.transform = 'scale(1)';
+                        prevStep.style.boxShadow = '0 5px 15px rgba(34, 197, 94, 0.3)';
+                        prevStep.innerHTML = '✓';
+                    }
+                    
+                    currentStep++;
+                } else {
+                    clearInterval(stepInterval);
+                    
+                    // Завершуємо демонстрацію
+                    setTimeout(() => {
+                        const lastStep = stepCircles[stepCircles.length - 1];
+                        lastStep.style.background = 'linear-gradient(45deg, rgba(34, 197, 94, 0.8), rgba(34, 197, 94, 0.6))';
+                        lastStep.style.transform = 'scale(1)';
+                        lastStep.style.boxShadow = '0 5px 15px rgba(34, 197, 94, 0.3)';
+                        lastStep.innerHTML = '✓';
+                        
+                        statusText.textContent = 'Демонстрацію завершено успішно!';
+                        
+                        setTimeout(() => {
+                            progressContainer.style.display = 'none';
+                            demoDescription.style.opacity = '1';
+                            demoDescription.textContent = 'Готовий аудіословник: 25 слів з контекстом, перекладом та аудіо. Демонстрація повної функціональності буде доступна після входу в систему.';
+                            
+                            // Скидаємо стан кроків
+                            stepCircles.forEach((circle, index) => {
+                                setTimeout(() => {
+                                    circle.style.background = 'linear-gradient(45deg, rgba(255, 215, 0, 0.3), rgba(255, 165, 0, 0.3))';
+                                    circle.style.transform = 'scale(1)';
+                                    circle.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
+                                    circle.innerHTML = ['📄', '🔍', '💡', '🔄', '🎵'][index];
+                                }, index * 200);
+                            });
+                            
+                            isAnimating = false;
+                        }, 3000);
+                    }, 1500);
+                }
+            }, 1500);
+        }
+        
+        // Додаткові інтерактивні ефекти
+        document.addEventListener('DOMContentLoaded', function() {
+            const floatingElements = document.querySelectorAll('.floating-element');
+            
+            // Інтерактивність плаваючих елементів
+            floatingElements.forEach((element, index) => {
+                element.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.3)';
+                    this.style.transition = 'transform 0.3s ease';
+                    this.style.background = 'rgba(255, 215, 0, 0.2)';
+                });
+                
+                element.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                    this.style.background = 'rgba(255, 255, 255, 0.1)';
+                });
+            });
+            
+            // Паралакс ефект при русі миші
+            document.addEventListener('mousemove', function(e) {
+                const mouseX = e.clientX / window.innerWidth;
+                const mouseY = e.clientY / window.innerHeight;
+                
+                floatingElements.forEach((element, index) => {
+                    const speed = (index + 1) * 0.3;
+                    const x = (mouseX - 0.5) * speed * 20;
+                    const y = (mouseY - 0.5) * speed * 20;
+                    
+                    element.style.transform += ` translate(${x}px, ${y}px)`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
