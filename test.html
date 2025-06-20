@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Preview</title>
+    <style>
+        body { 
+            margin: 0; 
+            font-family: Arial; 
+            background: linear-gradient(135deg, #0066cc, #00a1e6, #022f36);
+            color: white;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .hero {
+            max-width: 800px;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .animated {
+            animation: fadeInUp 1s ease-out;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1 class="animated">Elvarika - Демо працює!</h1>
+        <p class="animated">Героїчна секція з анімованим фоном готова</p>
+    </div>
+</body>
+</html>
