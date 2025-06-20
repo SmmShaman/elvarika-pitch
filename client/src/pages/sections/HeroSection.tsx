@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/hooks/useLanguage";
 import { DynamicImageCarousel } from "@/components/DynamicImageCarousel";
@@ -150,58 +151,224 @@ const partnerLogos = [
 
 export const HeroSection = (): JSX.Element => {
   const { translations } = useLanguage();
+
+  // Animation variants for text elements
+  const titleVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.1,
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    })
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" }
+    }
+  };
   
   return (
-    <section className="relative w-full bg-[#defff0] py-20">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-          <div className="w-full md:w-1/2 max-w-[691px]">
-            <h1 className="font-normal text-[#022f36] text-[50px] leading-[60px] tracking-[-2.00px] mb-6">
-              <span className="tracking-[-1.00px]">{translations.hero.title.part1}</span>
-              <span className="font-medium tracking-[-1.00px]">
-                {translations.hero.title.part2}
-              </span>
-              <span className="tracking-[-1.00px]">{translations.hero.title.part3}</span>
-              <span className="font-medium tracking-[-1.00px]">{translations.hero.title.part4}</span>
-              <span className="tracking-[-1.00px]">{translations.hero.title.part5}</span>
-              <span className="font-medium tracking-[-1.00px]">{translations.hero.title.part6}</span>
-              <span className="tracking-[-1.00px]">{translations.hero.title.part7}</span>
-            </h1>
-
-            <p className="text-[#022f36] text-base leading-[22.4px] mb-8 max-w-[449px]">
-              {translations.hero.subtitle}
-            </p>
-
-            <Button
-              variant="outline"
-              className="h-[46px] px-6 rounded-[999px] border border-solid border-[#022f36] bg-white text-[#022f36] font-medium text-sm"
-            >
-              {translations.hero.cta}
-            </Button>
-          </div>
-
-          <div className="w-full md:w-1/2 max-w-[507px]">
-            <DynamicImageCarousel />
-          </div>
+    <section className="relative w-full min-h-screen py-20 overflow-hidden">
+      {/* Background with gradient and animated elements */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0066cc] via-[#00a1e6] to-[#022f36]">
+        {/* Animated background elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <motion.div
+            className="absolute top-10 left-10 w-32 h-32 rounded-full bg-white/10"
+            animate={{
+              y: [0, -20, 0],
+              rotate: [0, 180, 360],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          <motion.div
+            className="absolute top-1/3 right-1/4 w-24 h-24 rounded-full bg-white/5"
+            animate={{
+              x: [0, 30, 0],
+              y: [0, -30, 0],
+            }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          <motion.div
+            className="absolute bottom-1/4 left-1/3 w-16 h-16 bg-white/8 transform rotate-45"
+            animate={{
+              rotate: [45, 225, 405],
+              scale: [1, 1.2, 1],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          <motion.div
+            className="absolute top-1/2 right-10 w-20 h-20 border-2 border-white/10 rounded-full"
+            animate={{
+              scale: [1, 1.5, 1],
+              opacity: [0.1, 0.3, 0.1],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
         </div>
+        
+        {/* Overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/20" />
+      </div>
+      
+      {/* Content overlay */}
+      <div className="relative z-10 container mx-auto px-4">
+        <motion.div 
+          className="flex flex-col md:flex-row items-center justify-between gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <div className="w-full md:w-1/2 max-w-[691px]">
+            <motion.h1 
+              className="font-normal text-white text-[50px] leading-[60px] tracking-[-2.00px] mb-6 drop-shadow-lg"
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+            >
+              <motion.span 
+                className="tracking-[-1.00px] inline-block"
+                variants={titleVariants}
+                custom={0}
+              >
+                {translations.hero.title.part1}
+              </motion.span>
+              <motion.span 
+                className="font-medium tracking-[-1.00px] inline-block"
+                variants={titleVariants}
+                custom={1}
+              >
+                {translations.hero.title.part2}
+              </motion.span>
+              <motion.span 
+                className="tracking-[-1.00px] inline-block"
+                variants={titleVariants}
+                custom={2}
+              >
+                {translations.hero.title.part3}
+              </motion.span>
+              <motion.span 
+                className="font-medium tracking-[-1.00px] inline-block"
+                variants={titleVariants}
+                custom={3}
+              >
+                {translations.hero.title.part4}
+              </motion.span>
+              <motion.span 
+                className="tracking-[-1.00px] inline-block"
+                variants={titleVariants}
+                custom={4}
+              >
+                {translations.hero.title.part5}
+              </motion.span>
+              <motion.span 
+                className="font-medium tracking-[-1.00px] inline-block"
+                variants={titleVariants}
+                custom={5}
+              >
+                {translations.hero.title.part6}
+              </motion.span>
+              <motion.span 
+                className="tracking-[-1.00px] inline-block"
+                variants={titleVariants}
+                custom={6}
+              >
+                {translations.hero.title.part7}
+              </motion.span>
+            </motion.h1>
+
+            <motion.p 
+              className="text-white text-base leading-[22.4px] mb-8 max-w-[449px] drop-shadow-md"
+              variants={itemVariants}
+            >
+              {translations.hero.subtitle}
+            </motion.p>
+
+            <motion.div variants={itemVariants}>
+              <Button
+                variant="outline"
+                className="h-[46px] px-6 rounded-[999px] border-2 border-white bg-white/90 backdrop-blur-sm text-[#022f36] font-medium text-sm hover:bg-white transition-all duration-300 shadow-lg"
+              >
+                {translations.hero.cta}
+              </Button>
+            </motion.div>
+          </div>
+
+          <motion.div 
+            className="w-full md:w-1/2 max-w-[507px]"
+            variants={itemVariants}
+          >
+            <DynamicImageCarousel />
+          </motion.div>
+        </motion.div>
       </div>
 
-      {/* Partner logos carousel */}
-      <div className="w-full h-[100px] mt-16 overflow-hidden">
-        <div className="relative w-[4900px] h-[100px]">
+      {/* Partner logos carousel with enhanced styling */}
+      <motion.div 
+        className="relative z-10 w-full h-[100px] mt-16 overflow-hidden"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.5, duration: 0.8 }}
+      >
+        <div className="absolute inset-0 bg-white/10 backdrop-blur-sm rounded-lg" />
+        <motion.div 
+          className="relative w-[4900px] h-[100px]"
+          animate={{ x: [-50, -2450] }}
+          transition={{
+            duration: 60,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        >
           {partnerLogos.map((logo, index) =>
             logo.isGroup ? (
-              <div
+              <motion.div
                 key={index}
-                className="absolute opacity-50"
+                className="absolute opacity-70 hover:opacity-100 transition-opacity duration-300"
                 style={{
                   width: logo.width,
                   height: logo.height,
                   top: logo.top,
                   left: logo.left,
                 }}
+                whileHover={{ scale: 1.1 }}
               >
-                <div className="h-4 overflow-hidden">
+                <div className="h-4 overflow-hidden filter brightness-0 invert">
                   <div className="relative w-[115px] h-4">
                     <img
                       className="absolute w-[115px] h-3.5 top-px left-0"
@@ -210,11 +377,11 @@ export const HeroSection = (): JSX.Element => {
                     />
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ) : (
-              <div
+              <motion.div
                 key={index}
-                className="absolute opacity-50 bg-cover bg-[50%_50%]"
+                className="absolute opacity-70 hover:opacity-100 bg-cover bg-[50%_50%] filter brightness-0 invert transition-all duration-300"
                 style={{
                   width: logo.width,
                   height: logo.height,
@@ -222,11 +389,12 @@ export const HeroSection = (): JSX.Element => {
                   left: logo.left,
                   backgroundImage: `url(${logo.src})`,
                 }}
+                whileHover={{ scale: 1.1 }}
               />
             ),
           )}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };
