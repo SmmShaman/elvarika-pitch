@@ -192,13 +192,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
         }
         
         .text-content h1 {
-            font-size: 48px;
-            font-weight: 600;
+            font-size: 52px;
+            font-weight: 700;
             color: white;
-            line-height: 1.2;
+            line-height: 1.1;
             margin-bottom: 24px;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
             animation: slideInLeft 1.2s ease-out;
+        }
+        
+        .highlight {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        
+        @keyframes shimmer {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.3); }
         }
         
         .text-content p {
@@ -225,8 +238,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
         
         .cta-button:hover {
             background: white;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            border: 2px solid #FFD700;
+        }
+        
+        .demo-steps {
+            animation: stepsAnimation 2s ease-out 1s;
+        }
+        
+        @keyframes stepsAnimation {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
         
         .demo-showcase {
@@ -300,9 +323,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
         
         <div class="content">
             <div class="text-content">
-                <h1>Розумне навчання мови для професіоналів</h1>
+                <h1>
+                    <span class="highlight">Розумне</span> навчання мови<br>
+                    для професіоналів
+                </h1>
                 <p>Перетворюємо складні норвезькі тексти на персоналізовані аудіословники з контекстом та перекладом за 30 секунд.</p>
-                <a href="#" class="cta-button">Подивись як це працює</a>
+                <a href="#" class="cta-button" onclick="showAnimation()">Подивись як це працює</a>
             </div>
             
             <div class="demo-showcase">
@@ -328,12 +354,120 @@ export async function registerRoutes(app: Express): Promise<Server> {
                         <div class="step-label">Аудіо</div>
                     </div>
                 </div>
-                <p style="color: rgba(255, 255, 255, 0.8); text-align: center; font-size: 14px;">
+                <p id="demo-status" style="color: rgba(255, 255, 255, 0.8); text-align: center; font-size: 14px;">
                     Анімована героїчна секція з динамічним фоном працює!
                 </p>
+                <div id="progress-bar" style="display: none; width: 100%; height: 4px; background: rgba(255,255,255,0.2); border-radius: 2px; margin-top: 20px; overflow: hidden;">
+                    <div style="height: 100%; background: linear-gradient(90deg, #FFD700, #FFA500); width: 0%; transition: width 0.3s ease; border-radius: 2px;"></div>
+                </div>
             </div>
         </div>
     </section>
+
+    <script>
+        let isAnimating = false;
+        
+        function showAnimation() {
+            if (isAnimating) return;
+            isAnimating = true;
+            
+            const status = document.getElementById('demo-status');
+            const progressBar = document.getElementById('progress-bar');
+            const progressFill = progressBar.querySelector('div');
+            const steps = document.querySelectorAll('.step-circle');
+            
+            // Показуємо прогрес бар
+            progressBar.style.display = 'block';
+            status.textContent = 'Запускаю демонстрацію...';
+            
+            // Анімація прогресу
+            let progress = 0;
+            const progressInterval = setInterval(() => {
+                progress += 2;
+                progressFill.style.width = progress + '%';
+                
+                if (progress >= 100) {
+                    clearInterval(progressInterval);
+                    setTimeout(() => {
+                        // Анімація кроків
+                        animateSteps(steps, status, progressBar);
+                    }, 500);
+                }
+            }, 50);
+        }
+        
+        function animateSteps(steps, status, progressBar) {
+            const stepNames = ['Текст', 'Аналіз', 'Контекст', 'Переклад', 'Аудіо'];
+            let currentStep = 0;
+            
+            const stepInterval = setInterval(() => {
+                if (currentStep < steps.length) {
+                    // Підсвічуємо поточний крок
+                    steps[currentStep].style.background = 'linear-gradient(45deg, #FFD700, #FFA500)';
+                    steps[currentStep].style.transform = 'scale(1.2)';
+                    steps[currentStep].style.boxShadow = '0 0 20px rgba(255, 215, 0, 0.6)';
+                    
+                    status.textContent = 'Крок ' + (currentStep + 1) + ': ' + stepNames[currentStep];
+                    
+                    // Повертаємо попередній крок до нормального стану
+                    if (currentStep > 0) {
+                        steps[currentStep - 1].style.background = 'linear-gradient(45deg, rgba(255, 215, 0, 0.3), rgba(255, 165, 0, 0.3))';
+                        steps[currentStep - 1].style.transform = 'scale(1)';
+                        steps[currentStep - 1].style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
+                    }
+                    
+                    currentStep++;
+                } else {
+                    clearInterval(stepInterval);
+                    
+                    // Завершення демо
+                    setTimeout(() => {
+                        status.textContent = 'Демо завершено! Готовий аудіословник з 25 слів, контекстом та перекладом.';
+                        progressBar.style.display = 'none';
+                        
+                        // Повертаємо останній крок до нормального стану
+                        steps[steps.length - 1].style.background = 'linear-gradient(45deg, rgba(255, 215, 0, 0.3), rgba(255, 165, 0, 0.3))';
+                        steps[steps.length - 1].style.transform = 'scale(1)';
+                        steps[steps.length - 1].style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
+                        
+                        isAnimating = false;
+                    }, 2000);
+                }
+            }, 1500);
+        }
+        
+        // Додаткові інтерактивні ефекти
+        document.addEventListener('DOMContentLoaded', function() {
+            // Інтерактивність плаваючих елементів
+            const floatingElements = document.querySelectorAll('.floating-element');
+            floatingElements.forEach((element, index) => {
+                element.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.3)';
+                    this.style.transition = 'transform 0.3s ease';
+                    this.style.background = 'rgba(255, 215, 0, 0.2)';
+                });
+                
+                element.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                    this.style.background = 'rgba(255, 255, 255, 0.1)';
+                });
+            });
+            
+            // Паралакс ефект для плаваючих елементів
+            document.addEventListener('mousemove', function(e) {
+                const mouseX = e.clientX / window.innerWidth;
+                const mouseY = e.clientY / window.innerHeight;
+                
+                floatingElements.forEach((element, index) => {
+                    const speed = (index + 1) * 0.5;
+                    const x = (mouseX - 0.5) * speed;
+                    const y = (mouseY - 0.5) * speed;
+                    
+                    element.style.transform += ' translate(' + x + 'px, ' + y + 'px)';
+                });
+            });
+        });
+    </script>
 </body>
 </html>`;
     
