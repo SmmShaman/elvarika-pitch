@@ -10,9 +10,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// --- Секція обслуговування статичних файлів для Production ---
-const clientDistPath = path.resolve(import.meta.dirname, "..", "public");
-// --- Кінець секції ---
+// ======================================================================
+// ВИПРАВЛЕННЯ №1: Правильний і простий спосіб обслуговувати статичні файли
+// Express буде шукати файли в папці 'dist/public' відносно кореня проекту.
+app.use(express.static("dist/public"));
+// ======================================================================
 
 (async () => {
   const server = await registerRoutes(app);
@@ -24,14 +26,20 @@ const clientDistPath = path.resolve(import.meta.dirname, "..", "public");
     throw err;
   });
 
-  // Для production, ми обслуговуємо index.html на всі не-API запити
-  app.get("*", (req, res) => {
-    if (!req.path.startsWith("/api/")) {
-      res.sendFile(path.resolve(clientDistPath, "index.html"));
+  // ======================================================================
+  // ВИПРАВЛЕННЯ №2: Правильний шлях до index.html для всіх інших запитів,
+  // що не є API-запитами. Це потрібно для React Router.
+  app.get("*", (req, res, next) => {
+    if (req.path.startsWith("/api/")) {
+      // Якщо це API запит, але для нього не знайдено роут, він пройде далі
+      return next();
     }
+    // Для всіх інших шляхів віддаємо головну сторінку фронтенду
+    res.sendFile(path.resolve("dist/public/index.html"));
   });
+  // ======================================================================
 
-  const port = process.env.PORT || 8080; // Cloud Run використовує 8080 за замовчуванням
+  const port = process.env.PORT || 8080;
 
   server.listen({ port, host: "0.0.0.0" }, () => {
     console.log(`Production server listening on port ${port}`);
