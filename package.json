@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "tsx server/dev.ts",
     "build": "vite build && tsc --project tsconfig.build.json",
-    "start": "node dist/prod.js",
+    "start": "node dist/server/prod.js",
     "check": "tsc --noEmit",
     "db:push": "drizzle-kit push"
   },
