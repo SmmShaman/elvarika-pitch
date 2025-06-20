@@ -31,9 +31,9 @@ COPY package*.json ./
 # Встановлюємо ТІЛЬКИ production залежності
 RUN npm install --omit=dev
 
+...
 # Копіюємо скомпільований код з етапу "Будівельник"
 COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/client/dist ./client/dist
 
 # Відкриваємо порт, на якому буде працювати сервер (Cloud Run використовує 8080)
 EXPOSE 8080

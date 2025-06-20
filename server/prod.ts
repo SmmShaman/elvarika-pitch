@@ -11,14 +11,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // --- Секція обслуговування статичних файлів для Production ---
-const clientDistPath = path.resolve(
-  import.meta.dirname,
-  "..",
-  "client",
-  "dist",
-);
-console.log(`Serving static files from: ${clientDistPath}`);
-app.use(express.static(clientDistPath));
+const clientDistPath = path.resolve(import.meta.dirname, "..", "public");
 // --- Кінець секції ---
 
 (async () => {
