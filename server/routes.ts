@@ -130,6 +130,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Simple status check
+  app.get("/status", (req, res) => {
+    res.json({ 
+      status: "OK", 
+      message: "Server working", 
+      timestamp: new Date().toISOString(),
+      routes: ["/test-preview", "/api/check-demo-access"] 
+    });
+  });
+
   // Test route for preview with animated hero section
   app.get("/test-preview", (req, res) => {
     const html = `<!DOCTYPE html>
