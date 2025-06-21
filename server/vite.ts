@@ -1,85 +1,65 @@
-import express, { type Express } from "express";
-import fs from "fs";
+import type { Express } from "express";
+import type { Server } from "http";
+import { createServer as createViteServer } from "vite";
 import path from "path";
-import { createServer as createViteServer, createLogger } from "vite";
-import { type Server } from "http";
-import viteConfig from "../vite.config.js";
-import { nanoid } from "nanoid";
-
-const viteLogger = createLogger();
-
-export function log(message: string, source = "express") {
-  const formattedTime = new Date().toLocaleTimeString("en-US", {
-    hour: "numeric",
-    minute: "2-digit",
-    second: "2-digit",
-    hour12: true,
-  });
-
-  console.log(`${formattedTime} [${source}] ${message}`);
-}
 
 export async function setupVite(app: Express, server: Server) {
-  const serverOptions = {
-    middlewareMode: true,
-    hmr: { server },
-    allowedHosts: ["*"],
-  };
-
   const vite = await createViteServer({
-    ...viteConfig,
+    // Вказуємо корінь нашого фронтенд-додатку
+    root: path.resolve(process.cwd(), "client"),
+    // Ігноруємо зовнішній конфіг, щоб уникнути плутанини
     configFile: false,
-    customLogger: {
-      ...viteLogger,
-      error: (msg, options) => {
-        viteLogger.error(msg, options);
-        process.exit(1);
+    server: {
+      // ==========================================================
+      // ОСЬ КЛЮЧОВІ НАЛАШТУВАННЯ ДЛЯ РОБОТИ В REPLIT
+      // ==========================================================
+      host: "0.0.0.0", // Слухаємо на всіх інтерфейсах
+      middlewareMode: true, // Включаємо режим middleware для інтеграції з Express
+      hmr: {
+        // Налаштування для Hot Module Replacement (HMR) за проксі Replit
+        server, // HMR буде працювати на нашому існуючому http-сервері
+        clientPort: 443,
       },
     },
-    server: serverOptions,
     appType: "custom",
   });
 
+  // Підключаємо Vite як middleware до нашого Express-додатку
   app.use(vite.middlewares);
+
+  // Цей блок потрібен, щоб React Router працював коректно
+  // Він віддає index.html на будь-який запит, що не є API
   app.use("*", async (req, res, next) => {
-    const url = req.originalUrl;
+    // Пропускаємо API-запити
+    if (req.originalUrl.startsWith("/api")) {
+      return next();
+    }
 
     try {
-      const clientTemplate = path.resolve(
-        import.meta.dirname,
-        "..",
-        "client",
-        "index.html",
+      // 1. Читаємо наш основний HTML-шаблон
+      const template = await vite.transformIndexHtml(
+        req.originalUrl,
+        `
+        <!doctype html>
+        <html lang="en">
+          <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title>Vite + React + TS</title>
+          </head>
+          <body>
+            <div id="root"></div>
+            <script type="module" src="/src/main.tsx"></script>
+          </body>
+        </html>
+      `,
       );
 
-      // always reload the index.html file from disk incase it changes
-      let template = await fs.promises.readFile(clientTemplate, "utf-8");
-      template = template.replace(
-        `src="/src/main.tsx"`,
-        `src="/src/main.tsx?v=${nanoid()}"`,
-      );
-      const page = await vite.transformIndexHtml(url, template);
-      res.status(200).set({ "Content-Type": "text/html" }).end(page);
+      // 2. Віддаємо оброблену сторінку
+      res.status(200).set({ "Content-Type": "text/html" }).end(template);
     } catch (e) {
       vite.ssrFixStacktrace(e as Error);
       next(e);
     }
-  });
-}
-
-export function serveStatic(app: Express) {
-  const distPath = path.resolve(import.meta.dirname, "public");
-
-  if (!fs.existsSync(distPath)) {
-    throw new Error(
-      `Could not find the build directory: ${distPath}, make sure to build the client first`,
-    );
-  }
-
-  app.use(express.static(distPath));
-
-  // fall through to index.html if the file doesn't exist
-  app.use("*", (_req, res) => {
-    res.sendFile(path.resolve(distPath, "index.html"));
   });
 }
