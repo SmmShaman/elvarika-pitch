@@ -4,7 +4,7 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "dev": "vite",
+    "dev": "tsx server/dev.ts",
     "build": "vite build && tsc --project tsconfig.build.json",
     "start": "node dist/server/prod.js",
     "check": "tsc --noEmit",
