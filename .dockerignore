@@ -1,0 +1,19 @@
+node_modules
+.git
+attached_assets
+client/public/figmaAssets
+# Build directories
+build
+out
+dist
+# Logs
+*.log
+npm-debug.log*
+# Environment files
+.env
+.env.*
+# IDE files
+.vscode
+.DS_Store
+coverage
+client/.svelte-kit
