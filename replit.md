@@ -193,6 +193,8 @@ Changelog:
 - June 23, 2025. Elvarika demo application running stable with all features functional
 - June 23, 2025. Implemented simple preview server bypass for Vite configuration issues
 - June 23, 2025. Application accessible on port 5000 with complete animated demo functionality
+- June 23, 2025. Fixed Replit preview access issue by creating bypass server for Vite host restrictions
+- June 23, 2025. Resolved "Blocked request" error with allowedHosts configuration workaround
 ```
 
 ## User Preferences
