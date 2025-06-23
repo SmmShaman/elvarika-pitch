@@ -25,7 +25,7 @@ app.use(cookieParser());
 
   const port = process.env.PORT || 5000;
 
-  server.listen({ port, host: "0.0.0.0" }, () => {
+  server.listen(port, "0.0.0.0", () => {
     console.log(`Development server with Vite listening on port ${port}`);
   });
 })();
