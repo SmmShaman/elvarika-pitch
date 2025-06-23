@@ -23,7 +23,7 @@ app.use(cookieParser());
   // Налаштування Vite для HMR
   await setupVite(app, server);
 
-  const port = process.env.PORT || 5000;
+  const port = Number(process.env.PORT) || 5000;
 
   server.listen(port, "0.0.0.0", () => {
     console.log(`Development server with Vite listening on port ${port}`);
