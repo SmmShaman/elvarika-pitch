@@ -1,9 +1,9 @@
 import React from 'react';
-import { PronunciationGuide } from './components/PronunciationGuide';
-import { Navigation } from './components/Navigation';
-import { Footer } from './components/Footer';
-import { PageNavigation } from './components/PageNavigation';
-import { useLanguage } from '@/hooks/useLanguage';
+import { PronunciationGuide } from '../components/PronunciationGuide';
+import { Navigation } from '../components/Navigation';
+import { Footer } from '../components/Footer';
+import { PageNavigation } from '../components/PageNavigation';
+import { useLanguage } from '../hooks/useLanguage';
 
 export const PronunciationPage: React.FC = () => {
   const { language } = useLanguage();

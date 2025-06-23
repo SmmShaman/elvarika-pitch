@@ -1,6 +1,6 @@
 import React from "react";
-import { Card, CardContent } from "./components/ui/card";
-import { useLanguage } from "@/hooks/useLanguage";
+import { Card, CardContent } from "../../components/ui/card";
+import { useLanguage } from "../../hooks/useLanguage";
 
 export const StatisticsSection = (): JSX.Element => {
   const { translations } = useLanguage();

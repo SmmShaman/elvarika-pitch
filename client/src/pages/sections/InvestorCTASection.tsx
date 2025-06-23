@@ -1,7 +1,7 @@
 import React from "react";
-import { Button } from "./components/ui/button";
-import { Card, CardContent } from "./components/ui/card";
-import { useLanguage } from "@/hooks/useLanguage";
+import { Button } from "../../components/ui/button";
+import { Card, CardContent } from "../../components/ui/card";
+import { useLanguage } from "../../hooks/useLanguage";
 
 export const InvestorCTASection = (): JSX.Element => {
   const { translations } = useLanguage();

@@ -4,8 +4,8 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "./components/ui/accordion";
-import { useLanguage } from "@/hooks/useLanguage";
+} from "../../components/ui/accordion";
+import { useLanguage } from "../../hooks/useLanguage";
 
 export const ContentSection = (): JSX.Element => {
   const { translations } = useLanguage();
