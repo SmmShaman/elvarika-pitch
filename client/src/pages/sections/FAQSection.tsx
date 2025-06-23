@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "./components/ui/card";
 
 export const FAQSection = (): JSX.Element => {
   // Feature data for mapping

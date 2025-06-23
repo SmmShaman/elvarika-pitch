@@ -1,8 +1,8 @@
 import React from "react";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+import { Button } from "./components/ui/button";
+import { Separator } from "./components/ui/separator";
 import { Mail, Phone, MapPin, Linkedin, Twitter } from "lucide-react";
-import { useLanguage } from "@/hooks/useLanguage";
+import { useLanguage } from "../hooks/useLanguage";
 
 export const Footer: React.FC = () => {
   const { translations } = useLanguage();

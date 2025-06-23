@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Slider } from "@/components/ui/slider";
+import { Card, CardContent } from "./components/ui/card";
+import { Button } from "./components/ui/button";
+import { Slider } from "./components/ui/slider";
 import { Play, Pause, SkipBack, SkipForward, FileText, Mail, Globe, Book, Volume2 } from "lucide-react";
-import { useLanguage } from "@/hooks/useLanguage";
+import { useLanguage } from "../hooks/useLanguage";
 
 interface BilingualDocument {
   id: string;

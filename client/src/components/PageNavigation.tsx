@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'wouter';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+import { Button } from './components/ui/button';
+import { Badge } from './components/ui/badge';
 import { Users, Building2, Volume2 } from 'lucide-react';
 
 export const PageNavigation: React.FC = () => {

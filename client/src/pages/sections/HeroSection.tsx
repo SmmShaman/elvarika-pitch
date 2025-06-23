@@ -1,8 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
+import { Button } from "./components/ui/button";
 import { useLanguage } from "@/hooks/useLanguage";
-import { DynamicImageCarousel } from "@/components/DynamicImageCarousel";
+import { DynamicImageCarousel } from "./components/DynamicImageCarousel";
 
 // Define partner logos data for the carousel
 const partnerLogos = [

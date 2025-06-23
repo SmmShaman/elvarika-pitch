@@ -1,7 +1,7 @@
 import React from "react";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "./components/ui/card";
 import { TrendingUp, Users, Headphones, Globe } from "lucide-react";
-import { useLanguage } from "@/hooks/useLanguage";
+import { useLanguage } from "../hooks/useLanguage";
 
 interface MarketTrendProps {
   icon: React.ReactNode;

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useLanguage } from '@/hooks/useLanguage';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Navigation } from '@/components/Navigation';
-import { Footer } from '@/components/Footer';
+import { Button } from './components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from './components/ui/card';
+import { Badge } from './components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/tabs';
+import { Navigation } from './components/Navigation';
+import { Footer } from './components/Footer';
 
-import { LanguageSwitcher } from '@/components/LanguageSwitcher';
+import { LanguageSwitcher } from './components/LanguageSwitcher';
 import { 
   Shield, 
   TrendingUp, 
@@ -25,9 +25,9 @@ import {
   Coffee,
   Tractor
 } from 'lucide-react';
-import { CompactAnimatedDemo } from '@/components/CompactAnimatedDemo';
-import { FullScreenScrolling } from '@/components/FullScreenScrolling';
-import { DemoAccessForm } from '@/components/DemoAccessForm';
+import { CompactAnimatedDemo } from './components/CompactAnimatedDemo';
+import { FullScreenScrolling } from './components/FullScreenScrolling';
+import { DemoAccessForm } from './components/DemoAccessForm';
 
 interface BusinessTranslations {
   nav: {

@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "./components/ui/button";
+import { Card, CardContent } from "./components/ui/card";
 import { Play, Pause, CheckCircle, ArrowRight, Sparkles } from "lucide-react";
-import { useLanguage } from "@/hooks/useLanguage";
+import { useLanguage } from "../hooks/useLanguage";
 
 interface DemoStep {
   id: number;

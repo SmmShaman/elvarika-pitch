@@ -6,14 +6,14 @@ import { PartnershipSection } from "./sections/PartnershipSection";
 import { StatisticsSection } from "./sections/StatisticsSection";
 import { AudioPlayerSection } from "./sections/AudioPlayerSection";
 import { InvestorCTASection } from "./sections/InvestorCTASection";
-import { InteractiveDemo } from "@/components/InteractiveDemo";
-import { MarketVisualization } from "@/components/MarketVisualization";
-import { TechShowcase } from "@/components/TechShowcase";
-import { CompetitiveAdvantage } from "@/components/CompetitiveAdvantage";
-import { Navigation } from "@/components/Navigation";
-import { Footer } from "@/components/Footer";
-import { PageNavigation } from "@/components/PageNavigation";
-import { PageGuide } from "@/components/PageGuide";
+import { InteractiveDemo } from "./components/InteractiveDemo";
+import { MarketVisualization } from "./components/MarketVisualization";
+import { TechShowcase } from "./components/TechShowcase";
+import { CompetitiveAdvantage } from "./components/CompetitiveAdvantage";
+import { Navigation } from "./components/Navigation";
+import { Footer } from "./components/Footer";
+import { PageNavigation } from "./components/PageNavigation";
+import { PageGuide } from "./components/PageGuide";
 
 export const Font = (): JSX.Element => {
   return (

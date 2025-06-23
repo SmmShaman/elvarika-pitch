@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "./components/ui/card";
+import { Button } from "./components/ui/button";
 import { Mic, Brain, Zap, Shield } from "lucide-react";
-import { useLanguage } from "@/hooks/useLanguage";
+import { useLanguage } from "../hooks/useLanguage";
 
 interface TechFeature {
   icon: React.ReactNode;

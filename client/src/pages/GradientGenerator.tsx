@@ -1,7 +1,7 @@
 import React from 'react';
-import { DynamicGradientBackground } from '@/components/DynamicGradientBackground';
-import { Navigation } from '@/components/Navigation';
-import { Footer } from '@/components/Footer';
+import { DynamicGradientBackground } from './components/DynamicGradientBackground';
+import { Navigation } from './components/Navigation';
+import { Footer } from './components/Footer';
 
 export const GradientGenerator: React.FC = () => {
   return (

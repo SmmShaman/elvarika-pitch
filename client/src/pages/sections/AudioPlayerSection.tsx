@@ -1,5 +1,5 @@
 import React from "react";
-import { BilingualAudioPlayer } from "@/components/BilingualAudioPlayer";
+import { BilingualAudioPlayer } from "./components/BilingualAudioPlayer";
 
 export const AudioPlayerSection = (): JSX.Element => {
   return (

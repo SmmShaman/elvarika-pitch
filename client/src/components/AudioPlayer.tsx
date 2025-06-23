@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Play, Pause, SkipBack, SkipForward, Volume2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Slider } from "@/components/ui/slider";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useLanguage } from "@/hooks/useLanguage";
-import { Translations } from "@/lib/translations";
+import { Button } from "./components/ui/button";
+import { Slider } from "./components/ui/slider";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./components/ui/select";
+import { useLanguage } from "../hooks/useLanguage";
+import { Translations } from "../lib/translations";
 
 interface PlaylistItem {
   id: string;
