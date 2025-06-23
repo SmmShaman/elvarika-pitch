@@ -1,6 +1,6 @@
 import React from "react";
-import { Button } from "@/components/ui/button";
-import { Language } from "@/lib/translations";
+import { Button } from "./ui/button";
+import { Language } from "../lib/translations";
 
 interface LanguageSwitcherProps {
   currentLanguage: Language;

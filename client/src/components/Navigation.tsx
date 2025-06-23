@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "wouter";
 import { LanguageSwitcher } from "./LanguageSwitcher";
-import { useLanguage } from "@/hooks/useLanguage";
+import { useLanguage } from "../hooks/useLanguage";
 
 export const Navigation: React.FC = () => {
   const { language, changeLanguage } = useLanguage();

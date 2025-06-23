@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Language, Translations } from '@/lib/translations';
-import { languageStore } from '@/lib/languageStore';
+import { Language, Translations } from '../lib/translations';
+import { languageStore } from '../lib/languageStore';
 
 export const useLanguage = () => {
   const [language, setLanguage] = useState<Language>(languageStore.getLanguage());
