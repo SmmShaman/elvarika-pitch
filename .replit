@@ -6,8 +6,10 @@ modules = ["nodejs-20"]
 [nix]
 channel = "stable-24_05"
 
-# Вказуємо, який порт з нашого додатку (5000)
-# потрібно "виставити" назовні для прев'ю
+[[ports]]
+localPort = 3000
+externalPort = 3000
+
 [[ports]]
 localPort = 5000
 externalPort = 80
