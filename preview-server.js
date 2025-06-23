@@ -285,7 +285,7 @@ app.get('*', (req, res) => {
 });
 
 app.listen(port, '0.0.0.0', () => {
-  console.log(\`Preview server running on port \${port}\`);
-  console.log(\`✅ All @ imports fixed\`);
-  console.log(\`⚡ Vite configuration optimized\`);
+  console.log(`Preview server running on port ${port}`);
+  console.log(`✅ All @ imports fixed`);
+  console.log(`⚡ Vite configuration optimized`);
 });
