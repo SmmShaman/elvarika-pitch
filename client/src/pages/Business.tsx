@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useLanguage } from '@/hooks/useLanguage';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { LanguageSwitcher } from '@/components/LanguageSwitcher';
-import { useToast } from '@/hooks/use-toast';
+import { useLanguage } from '../hooks/useLanguage';
+import { Button } from '../components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
+import { LanguageSwitcher } from '../components/LanguageSwitcher';
+import { useToast } from '../hooks/use-toast';
 import { 
   Truck,
   HardHat,
@@ -15,9 +15,9 @@ import {
   Target,
   BarChart3
 } from 'lucide-react';
-import { CompactAnimatedDemo } from '@/components/CompactAnimatedDemo';
-import { FullScreenScrolling } from '@/components/FullScreenScrolling';
-import { DemoAccessForm } from '@/components/DemoAccessForm';
+import { CompactAnimatedDemo } from '../components/CompactAnimatedDemo';
+import { FullScreenScrolling } from '../components/FullScreenScrolling';
+import { DemoAccessForm } from '../components/DemoAccessForm';
 
 interface BusinessTranslations {
   nav: {

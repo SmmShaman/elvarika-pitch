@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { useLanguage } from "@/hooks/useLanguage";
+import { Button } from "../components/ui/button";
+import { useLanguage } from "../hooks/useLanguage";
 import { X, Calendar, Clock, User } from "lucide-react";
 
 interface BlogPost {
